@@ -14,7 +14,7 @@ import javax.swing.border.*;
 
 public class PanelGoal extends PanelElder {
 
-    private JPanel panHaut, panBas, panGoal;
+    private JPanel panHaut, panBas, panGoal, cePanneau;
     private JButton bOK;
     private JLabel labGoal1, labGoal2;
 
@@ -24,17 +24,10 @@ public class PanelGoal extends PanelElder {
         initComponents();
         initListeners();
     }
-
-    public PanelGoal(JFrame laFrameQuiLeContient) {
-        super();
-        initComponents();
-        initListeners();
-        setFrameContainer(laFrameQuiLeContient);
-    }
-
     // Methodes Specifiques
 
     public void initComponents() {
+        this.cePanneau = this;
         panGoal = new JPanel(new GridLayout(2, 1, 10, 10));
         panHaut = new JPanel(new GridLayout(2, 1, 10, 10));
         panBas = new JPanel();
@@ -55,25 +48,19 @@ public class PanelGoal extends PanelElder {
     public void initListeners() {
         bOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                laFrameQuiLeContient.dispose();
+                disposerDuCadreDuPanneau(panHaut);
             }
         });
     }
-
-    // Mutateurs
-
-    public void setFrameContainer(JFrame uneFrame) {
-        super.laFrameQuiLeContient = uneFrame;
+    @Override
+    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
+        super.disposerDuCadreDuPanneau(cePanneau);
     }
-
-    public JFrame getFrameContainer() {
-        return super.laFrameQuiLeContient;
-    }
-
+    
     //MAIN POUR TESTER
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.add(new PanelGoal(frame));
+        frame.add(new PanelGoal());
         frame.setSize(450, 250);
         frame.setVisible(true);
         frame.setResizable(false);

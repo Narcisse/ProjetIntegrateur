@@ -6,10 +6,6 @@ package vue.PanneauxMenus;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-import java.io.*;
-import javax.swing.text.*;
-import javax.swing.GroupLayout.*;
 import javax.swing.border.*;
 
 public class PanelStats extends PanelElder {
@@ -17,14 +13,8 @@ public class PanelStats extends PanelElder {
     private JPanel panHaut, panBas, panStats;
     private JButton bOK;
     private JLabel labStats1, labStats2;
-
-    public PanelStats(JFrame laFrameQuiLeContient) {
-        super();
-        initComponents();
-        initListeners();
-        setFrameContainer(laFrameQuiLeContient);
-    }
-
+    private JPanel cePanneau;
+    
     public PanelStats() {
         super();
         initComponents();
@@ -34,6 +24,7 @@ public class PanelStats extends PanelElder {
     // Methodes spécifiques
 
     public void initComponents() {
+        this.cePanneau = this;
         panStats = new JPanel(new GridLayout(2, 1, 10, 10));
         panHaut = new JPanel(new GridLayout(2, 1, 10, 10));
         panBas = new JPanel();
@@ -54,25 +45,20 @@ public class PanelStats extends PanelElder {
     public void initListeners() {
         bOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                laFrameQuiLeContient.dispose();
+                disposerDuCadreDuPanneau(cePanneau);
             }
         });
     }
-
-    // Mutateurs
-
-    public void setFrameContainer(JFrame uneFrame) {
-        super.laFrameQuiLeContient = uneFrame;
+    
+    @Override
+    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
+        super.disposerDuCadreDuPanneau(unPanneau);
     }
-
-    public JFrame getFrameContainer() {
-        return super.laFrameQuiLeContient;
-    }
-
+    
     //MAIN POUR TESTER
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.add(new PanelStats(frame));
+        frame.add(new PanelStats());
         frame.setSize(450, 250);
         frame.setVisible(true);
         frame.setResizable(false);

@@ -5,27 +5,21 @@ package vue.PanneauxMenus;
  */
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import vue.PanneauxInterface.PanMenuPrincipal;
+import vue.refonte.BoitesDialogue;
 
 public class PanelMenu extends PanelElder {
 
     private JButton bSave, bLoad, bOptions, bHelp, bTips, bEnd, bBack;
     private JPanel panMenu, panHaut, panMid, panBas;
     private JLabel labSpace;
-
-    public PanelMenu(JFrame laFrameQuiLeContient) {
-        super();
-        initComponents();
-        initListeners();
-        setFrameContainer(laFrameQuiLeContient);
-    }
-
+    private JPanel cePanneau;
+    
     public PanelMenu() {
         super();
+        this.cePanneau = this;
         initComponents();
         initListeners();
     }
@@ -94,7 +88,7 @@ public class PanelMenu extends PanelElder {
         bOptions.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JFrame frame = new JFrame();
-                //frame.add(new PanelOptions(frame));
+                frame.add(new PanelOptions());
                 frame.setSize(300, 400);
                 frame.setVisible(true);
                 frame.setResizable(false);
@@ -104,19 +98,14 @@ public class PanelMenu extends PanelElder {
 
         bHelp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                JFrame frame = new JFrame();
-                frame.add(new PanelHelp(frame));
-                frame.setSize(400, 250);
-                frame.setVisible(true);
-                frame.setResizable(false);
-                frame.setLocationRelativeTo(null);
+                new BoitesDialogue(new PanelHelp(), "Aide", 400, 250);
             }
         });
 
         bTips.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JFrame frame = new JFrame();
-                frame.add(new PanelTips(frame));
+                frame.add(new PanelTips());
                 frame.setSize(400, 250);
                 frame.setVisible(true);
                 frame.setResizable(false);
@@ -134,11 +123,13 @@ public class PanelMenu extends PanelElder {
                     JFileChooser savePartie = new JFileChooser();
                     savePartie.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                     savePartie.showDialog(null, "Sauvegarder");
-                    JOptionPane.showMessageDialog(null, "Partie Sauvegard�e");
-                    JOptionPane.showMessageDialog(null, "Partie Termin�");
+                    JOptionPane.showMessageDialog(null, "Partie Sauvegardée");
+                    JOptionPane.showMessageDialog(null, "Partie Terminée");
+                    disposerDuCadreDuPanneau(cePanneau);
                     PanMenuPrincipal frame = new PanMenuPrincipal();
                     frame.setVisible(true);
                 } else {
+                    disposerDuCadreDuPanneau(cePanneau);
                     PanMenuPrincipal frame = new PanMenuPrincipal();
                     frame.setVisible(true);
                 }
@@ -148,26 +139,21 @@ public class PanelMenu extends PanelElder {
 
         bBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                laFrameQuiLeContient.dispose();
+                disposerDuCadreDuPanneau(cePanneau);
             }
         });
     }
-
-    // Mutateurs
-
-    public void setFrameContainer(JFrame uneFrame) {
-        super.laFrameQuiLeContient = uneFrame;
-    }
-
-    public JFrame getFrameContainer() {
-        return super.laFrameQuiLeContient;
+    
+    @Override
+    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
+        super.disposerDuCadreDuPanneau(unPanneau);
     }
 
     //MAIN POUR TESTER
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.add(new PanelMenu(frame));
+        frame.add(new PanelMenu());
         frame.setSize(300, 400);
         frame.setVisible(true);
         frame.setResizable(false);

@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import vue.PanneauxMenus.PanelHelp;
 import vue.PanneauxMenus.PanelTips;
+import vue.refonte.BoitesDialogue;
 
 public class BarreDeMenu extends JPanel {
 
@@ -89,28 +90,28 @@ public class BarreDeMenu extends JPanel {
         //Écouteur pour le bouton Menu
         btnMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                creerFrameAvecPanneau("Menu", 300, 400);
+                nouveauDialogue(new PanelMenu(), "Menu", 300, 400);
             }
         });
 
         //Écouteur pour le bouton Statistiques (Stats)
         btnStats.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                creerFrameAvecPanneau("Stats", 450, 250);
+                nouveauDialogue(new PanelStats(), "Stats", 450, 250);
             }
         });
 
         //Écouteur pour le bouton Message
         btnLog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                creerFrameAvecPanneau("Log", 400, 250);
+                nouveauDialogue(new PanelLog(), "Log", 400, 250);
             }
         });
 
         //Écouteur pour le bouton Objectif
         btnGoal.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                creerFrameAvecPanneau("Goal", 450, 250);
+                nouveauDialogue(new PanelGoal(), "Goal", 450, 250);
             }
         });
 
@@ -132,22 +133,21 @@ public class BarreDeMenu extends JPanel {
 
         public void keyPressed(KeyEvent e) {
         }
-
         public void keyReleased(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                creerFrameAvecPanneau("Menu", 300, 400);
+                nouveauDialogue(new PanelMenu(), "Menu", 300, 400);
             }
             if (e.getKeyCode() == KeyEvent.VK_P) {
-                creerFrameAvecPanneau("Menu", 300, 400);
+                nouveauDialogue(new PanelMenu(), "Menu", 300, 400);
             }
             if (e.getKeyCode() == KeyEvent.VK_F1) {
-                creerFrameAvecPanneau("Stats", 450, 250);
+                nouveauDialogue(new PanelStats(), "Stats", 450, 250);
             }
             if (e.getKeyCode() == KeyEvent.VK_F2) {
-                creerFrameAvecPanneau("Log", 400, 250);
+                nouveauDialogue(new PanelLog(), "Log", 400, 250);
             }
             if (e.getKeyCode() == KeyEvent.VK_F3) {
-                creerFrameAvecPanneau("Goal", 450, 250);
+                nouveauDialogue(new PanelGoal(), "Goal", 450, 250);
             }
         }
 
@@ -156,53 +156,8 @@ public class BarreDeMenu extends JPanel {
     }
 
     // Methodes specifiques
-    public void creerFrameAvecPanneau(String panneau, int largeur, int hauteur) {
-        JFrame frame = new JFrame();
-        if (panneau.equals("Menu")) {
-            //Création d'un panMenu lorsqu'on click sur le bouton Menu
-            PanelMenu unPanneau = new PanelMenu(frame);
-            unPanneau.setOpaque(false);
-            frame.add(unPanneau);
-        } else if (panneau.equals("Goal")) {
-            //Création d'un panGoal lorsqu'on click sur le bouton Objectif
-            PanelGoal unPanneau = new PanelGoal(frame);
-            unPanneau.setOpaque(false);
-            frame.add(unPanneau);
-        } else if (panneau.equals("Help")) {
-            //Création d'un panHelp lorsqu'on click sur le bouton Aide du panneau Menu
-            PanelHelp unPanneau = new PanelHelp(frame);
-            unPanneau.setOpaque(false);
-            frame.add(unPanneau);
-        } else if (panneau.equals("Log")) {
-            //Création d'un panLog lorsqu'on click sur le bouton Objectif
-            PanelLog unPanneau = new PanelLog(frame);
-            unPanneau.setOpaque(false);
-            frame.add(unPanneau);
-        } else if (panneau.equals("Tips")) {
-            //Création d'un panTips lorsqu'on clique sur le bouton Astuces du panneau Menu
-            PanelTips unPanneau = new PanelTips(frame);
-            unPanneau.setOpaque(false);
-            frame.add(unPanneau);
-        } else if (panneau.equals("Options")) {
-            //Création d'un panOption lorsqu'on click sur le bouton action du panneau Menu
-
-            //PanelOptions unPanneau = new PanelOptions(DonneesUtiles.fondDecran);
-            //unPanneau.setOpaque(false);    
-            //frame.add(unPanneau);
-            frame.setResizable(false);
-            frame.setLocationRelativeTo(null);
-            frame.setUndecorated(true);
-        } else if (panneau.equals("Stats")) {
-            //Création d'un panStats lorsqu'on click sur le bouton Statistiques
-            PanelStats unPanneau = new PanelStats(frame);
-            unPanneau.setOpaque(false);
-            frame.add(unPanneau);
-        }
-        frame.setSize(largeur, hauteur);
-        frame.setUndecorated(true);
-        frame.setVisible(true);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
+    public void nouveauDialogue(JPanel unPanneau, String unTitre, int largeur, int hauteur) {
+        new BoitesDialogue(unPanneau, unTitre, largeur, hauteur);
     }
 
     //MAIN POUR TESTER

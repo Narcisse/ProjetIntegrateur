@@ -16,15 +16,8 @@ public class PanelHelp extends PanelElder {
 
     private JScrollPane scrollHelp;
     private JTextArea textHelp;
-    private JPanel panHaut, panBas, panHelp;
+    private JPanel panHaut, panBas, panHelp, cePanneau;
     private JButton bOK;
-
-    public PanelHelp(JFrame laFrameQuiLeContient) {
-        super();
-        initComponents();
-        initListeners();
-        setFrameContainer(laFrameQuiLeContient);
-    }
 
     public PanelHelp() {
         super();
@@ -35,6 +28,7 @@ public class PanelHelp extends PanelElder {
     // Methodes spécifiques
 
     public void initComponents() {
+        this.cePanneau = this;
         panHelp = new JPanel(new GridLayout(2, 1, 10, 10));
         panHaut = new JPanel(new GridLayout(1, 1, 10, 10));
         panBas = new JPanel();
@@ -60,26 +54,19 @@ public class PanelHelp extends PanelElder {
     public void initListeners() {
         bOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                laFrameQuiLeContient.dispose();
+                disposerDuCadreDuPanneau(cePanneau);
             }
         });
     }
-
-    // Mutateurs
-
-    public void setFrameContainer(JFrame uneFrame) {
-        super.laFrameQuiLeContient = uneFrame;
+    @Override
+    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
+        super.disposerDuCadreDuPanneau(unPanneau);
     }
-
-    public JFrame getFrameContainer() {
-        return super.laFrameQuiLeContient;
-    }
-
     //MAIN POUR TESTER
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.add(new PanelHelp(frame));
+        frame.add(new PanelHelp());
         frame.setSize(400, 250);
         frame.setVisible(true);
         frame.setResizable(false);
