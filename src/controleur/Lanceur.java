@@ -7,7 +7,7 @@ package controleur;
 
 import javax.swing.ImageIcon;
 import vue.PanneauxInterface.PanMenuPrincipal;
-import vue.PanneauxInterface.PanelMainMenu;
+import vue.PanneauxInterface.PanMainMenu;
 
 /**
  *

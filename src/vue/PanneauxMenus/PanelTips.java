@@ -10,26 +10,17 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.io.*;
-import javax.swing.text.*;
-import javax.swing.GroupLayout.*;
 import javax.swing.border.*;
 
 public class PanelTips extends PanelElder {
 
     private JTextArea textTips;
-    private JPanel panHaut, panBas, panTips;
+    private JPanel panHaut, panBas, panTips, cePanneau;
     private JButton bOK, bPrev, bNext;
     private ArrayList<String> listeAstuces;
     private int astuceActuelle;
 
     // Constructeur
-    public PanelTips(JFrame laFrameQuiLeContient) {
-        super();
-        initComponents();
-        initListeners();
-        setFrameContainer(laFrameQuiLeContient);
-    }
-
     public PanelTips() {
         super();
         initComponents();
@@ -39,6 +30,7 @@ public class PanelTips extends PanelElder {
     // Methodes spécifiques
 
     public void initComponents() {
+        this.cePanneau = this;
         Dimension positions = DonneesUtiles.placerUnPanneauAuMilieu(this, this.getWidth() / 2, this.getHeight() / 2);
         this.setLocation(positions.height, positions.width);
         panTips = new JPanel(new GridLayout(2, 1, 10, 10));
@@ -85,7 +77,7 @@ public class PanelTips extends PanelElder {
     public void initListeners() {
         bOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                laFrameQuiLeContient.dispose();
+                disposerDuCadreDuPanneau(cePanneau);
             }
         });
 
@@ -113,22 +105,15 @@ public class PanelTips extends PanelElder {
             }
         });
     }
-
-    // Mutateurs
-
-    public void setFrameContainer(JFrame uneFrame) {
-        super.laFrameQuiLeContient = uneFrame;
+    @Override
+    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
+        super.disposerDuCadreDuPanneau(unPanneau);
     }
-
-    public JFrame getFrameContainer() {
-        return super.laFrameQuiLeContient;
-    }
-
     //MAIN POUR TESTER
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.add(new PanelTips(frame));
+        frame.add(new PanelTips());
         frame.setSize(400, 250);
         frame.setVisible(true);
         frame.setResizable(false);

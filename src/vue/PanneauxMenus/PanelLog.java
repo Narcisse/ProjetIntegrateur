@@ -16,15 +16,8 @@ public class PanelLog extends PanelElder {
 
     private JScrollPane scrollLog;
     private JTextArea textLog;
-    private JPanel panHaut, panBas, panLog;
+    private JPanel panHaut, panBas, panLog, cePanneau;
     private JButton bOK;
-
-    public PanelLog(JFrame laFrameQuiLeContient) {
-        super();
-        initComponents();
-        initListeners();
-        setFrameContainer(laFrameQuiLeContient);
-    }
 
     public PanelLog() {
         super();
@@ -34,6 +27,7 @@ public class PanelLog extends PanelElder {
 
     // Methodes spécifiques
     public void initComponents() {
+        this.cePanneau = this;
         panLog = new JPanel(new GridLayout(2, 1, 10, 10));
         panHaut = new JPanel(new GridLayout(1, 1, 10, 10));
         panBas = new JPanel();
@@ -59,24 +53,19 @@ public class PanelLog extends PanelElder {
     public void initListeners() {
         bOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                laFrameQuiLeContient.dispose();
+                disposerDuCadreDuPanneau(cePanneau);
             }
         });
     }
-
-    // Mutateurs
-    public void setFrameContainer(JFrame uneFrame) {
-        super.laFrameQuiLeContient = uneFrame;
+    @Override
+    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
+        super.disposerDuCadreDuPanneau(unPanneau);
     }
-
-    public JFrame getFrameContainer() {
-        return super.laFrameQuiLeContient;
-    }
-
+    
     //MAIN POUR TESTER
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.add(new PanelLog(frame));
+        frame.add(new PanelLog());
         frame.setSize(400, 250);
         frame.setVisible(true);
         frame.setResizable(false);
