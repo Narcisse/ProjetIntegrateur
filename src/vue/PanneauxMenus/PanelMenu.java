@@ -2,6 +2,10 @@ package vue.PanneauxMenus;
 
 /**
  * Loic Grant-Steinhardt
+ * ReCommenté par Christo Mondor
+ * Un panneau pour afficher plusieurs options C'est le
+ * "menu" du jeu. Il offre des options de sauvegarde, d'aide, d'astuces de
+ * jouabilité etc.
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -27,13 +31,17 @@ public class PanelMenu extends PanelElder {
     // Methodes spécifiques
 
     public void initComponents() {
-        
+        /*
+         La disposition est simple, un panneau de fond (this) qui contient
+         trois autres panneau dans un gridlayout de 3 par 1
+         */
         panMenu = new JPanel(new GridLayout(3, 1, 10, 10));
         panMenu.setBackground(new Color(0,0,0,0));
         Border noir = BorderFactory.createLineBorder(Color.black);
         Border titre = BorderFactory.createTitledBorder(noir, "Menu de Jeu");
         panMenu.setBorder(titre);
-
+        // Le panneau du haut contient les options de charge, de sauvegarde et
+        // de jouabilité
         panHaut = new JPanel(new GridLayout(3, 1, 0, 10));
         bSave = new JButton("Sauvegarder Partie");
         bLoad = new JButton("Charger Partie");
@@ -43,7 +51,7 @@ public class PanelMenu extends PanelElder {
         panHaut.add(bLoad);
         panHaut.add(bOptions);
         panMenu.add(panHaut);
-
+        // Le panneau du milieu Contient les aide et astuces
         panMid = new JPanel(new FlowLayout(0, 0, 0));
         bHelp = new JButton("    Aide   ");
         bTips = new JButton(" Astuces ");
@@ -51,7 +59,8 @@ public class PanelMenu extends PanelElder {
         panMid.add(bHelp);
         panMid.add(bTips);
         panMenu.add(panMid);
-
+        // Le panneau du bas contient les options de retour, retour au jeu ou
+        // retour au menu principal
         panBas = new JPanel(new GridLayout(3, 1, 0, 10));
         bEnd = new JButton("Terminer Partie");
         labSpace = new JLabel("   ");
@@ -68,6 +77,7 @@ public class PanelMenu extends PanelElder {
     }
 
     public void initListeners() {
+        // Le bouton de sauvegarde offre d'enregistrer dans n'importe quel dossier
         bSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JFileChooser savePartie = new JFileChooser();
@@ -76,7 +86,7 @@ public class PanelMenu extends PanelElder {
                 JOptionPane.showMessageDialog(null, "Partie Sauvegard�e");
             }
         });
-
+        // Le bouton de charge offre de lire dans n'importe quel fichier .save
         bLoad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JFileChooser savePartie = new JFileChooser();
@@ -85,6 +95,7 @@ public class PanelMenu extends PanelElder {
                 JOptionPane.showMessageDialog(null, "Chargement en Cours...");
             }
         });
+        
         bOptions.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JFrame frame = new JFrame();
@@ -143,7 +154,10 @@ public class PanelMenu extends PanelElder {
             }
         });
     }
-    
+    /*
+    Cette fonction permet de disposer d'un window donc d'un JFrame, un Jdialog etc. dans n'importe quelle
+    situation et dans n'importe quelle partie du code
+    */
     @Override
     public void disposerDuCadreDuPanneau(JPanel unPanneau) {
         super.disposerDuCadreDuPanneau(unPanneau);
