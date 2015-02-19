@@ -2,6 +2,7 @@ package vue.PanneauxMenus;
 
 /**
  * Loic Grant-Steinhardt
+ * ReCommenté par Christo Mondor
  */
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +25,10 @@ public class PanelStats extends PanelElder {
     // Methodes spécifiques
 
     public void initComponents() {
+        // Pour accéder à cet objet à partir des action listeners on déclare et on initie une variable globale à
+        // la classe qui contient ce panneau
         this.cePanneau = this;
+        // Un panneau 2 par un en grilayout pour contenir le tout
         panStats = new JPanel(new GridLayout(2, 1, 10, 10));
         panHaut = new JPanel(new GridLayout(2, 1, 10, 10));
         panBas = new JPanel();
@@ -49,7 +53,10 @@ public class PanelStats extends PanelElder {
             }
         });
     }
-    
+    /*
+    Cette fonction permet de disposer d'un window donc d'un JFrame, un Jdialog etc. dans n'importe quelle
+    situation et dans n'importe quelle partie du code
+    */
     @Override
     public void disposerDuCadreDuPanneau(JPanel unPanneau) {
         super.disposerDuCadreDuPanneau(unPanneau);
