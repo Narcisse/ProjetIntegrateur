@@ -7,10 +7,6 @@ package vue.PanneauxMenus;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-import java.io.*;
-import javax.swing.text.*;
-import javax.swing.GroupLayout.*;
 import javax.swing.border.*;
 
 public class PanelLog extends PanelElder {
@@ -63,15 +59,6 @@ public class PanelLog extends PanelElder {
             }
         });
     }
-    /*
-    Cette fonction permet de disposer d'un window donc d'un JFrame, un Jdialog etc. dans n'importe quelle
-    situation et dans n'importe quelle partie du code
-    */
-    @Override
-    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
-        super.disposerDuCadreDuPanneau(unPanneau);
-    }
-    
     //MAIN POUR TESTER
     public static void main(String[] args) {
         JFrame frame = new JFrame();

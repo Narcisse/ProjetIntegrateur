@@ -8,5 +8,5 @@ import java.time.*;
 
 public class Informateur {
 	LocalTime unTemps = LocalTime.now();
-        System.out.println(unTemps.getMinute()+"");
+        //System.out.println(unTemps.getMinute()+"");
 }

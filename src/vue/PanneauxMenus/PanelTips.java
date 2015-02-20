@@ -105,10 +105,6 @@ public class PanelTips extends PanelElder {
             }
         });
     }
-    @Override
-    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
-        super.disposerDuCadreDuPanneau(unPanneau);
-    }
     //MAIN POUR TESTER
 
     public static void main(String[] args) {

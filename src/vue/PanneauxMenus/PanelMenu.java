@@ -12,7 +12,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import vue.PanneauxInterface.PanMenuPrincipal;
-import vue.refonte.BoitesDialogue;
+import vue.composants.BoitesDialogue;
 
 public class PanelMenu extends PanelElder {
 
@@ -153,14 +153,6 @@ public class PanelMenu extends PanelElder {
                 disposerDuCadreDuPanneau(cePanneau);
             }
         });
-    }
-    /*
-    Cette fonction permet de disposer d'un window donc d'un JFrame, un Jdialog etc. dans n'importe quelle
-    situation et dans n'importe quelle partie du code
-    */
-    @Override
-    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
-        super.disposerDuCadreDuPanneau(unPanneau);
     }
 
     //MAIN POUR TESTER

@@ -53,14 +53,6 @@ public class PanelStats extends PanelElder {
             }
         });
     }
-    /*
-    Cette fonction permet de disposer d'un window donc d'un JFrame, un Jdialog etc. dans n'importe quelle
-    situation et dans n'importe quelle partie du code
-    */
-    @Override
-    public void disposerDuCadreDuPanneau(JPanel unPanneau) {
-        super.disposerDuCadreDuPanneau(unPanneau);
-    }
     
     //MAIN POUR TESTER
     public static void main(String[] args) {
