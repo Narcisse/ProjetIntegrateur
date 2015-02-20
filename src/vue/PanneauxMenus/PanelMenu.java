@@ -8,7 +8,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import vue.PanneauxInterface.PanMenuPrincipal;
-import vue.refonte.BoitesDialogue;
+import vue.composants.BoitesDialogue;
 
 public class PanelMenu extends PanelElder {
 

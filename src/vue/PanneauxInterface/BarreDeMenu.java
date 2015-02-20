@@ -15,7 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import vue.PanneauxMenus.PanelHelp;
 import vue.PanneauxMenus.PanelTips;
-import vue.refonte.BoitesDialogue;
+import vue.composants.BoitesDialogue;
 
 public class BarreDeMenu extends JPanel {
 
