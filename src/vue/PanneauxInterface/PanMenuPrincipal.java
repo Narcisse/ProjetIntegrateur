@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import vue.PanneauxMenus.PanelOptions;
+import vue.PanneauxMenus.PanOptions;
 import vue.UnePartie;
 
 public class PanMenuPrincipal extends JFrame {
@@ -44,10 +44,10 @@ public class PanMenuPrincipal extends JFrame {
     // Panneau multiJoueur (carte 3)
     // à venir
     // Panneau d'options (carte 4)
-    private PanelOptions carteDesOptionsDuJeu = new PanelOptions(DonneesUtiles.fondDecran, myCardLayout);
+    private PanOptions carteDesOptionsDuJeu = new PanOptions(DonneesUtiles.fondDecran, myCardLayout);
 
     // Panneau de tutotiel, qui devra également être fait sur un frame de cardLayout (carte 5)
-    PanelTutoriel carteDesTutoriels = new PanelTutoriel(DonneesUtiles.fondDecran, myCardLayout);
+    PanTutoriel carteDesTutoriels = new PanTutoriel(DonneesUtiles.fondDecran, myCardLayout);
 
     // Panneau de crédit du jeu (carte 6)
     // à venir

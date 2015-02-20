@@ -15,7 +15,7 @@ import javax.swing.ImageIcon.*;
 import java.awt.Graphics.*;
 import java.awt.Image.*;
 import javax.swing.JPanel.*;
-import vue.PanneauxMenus.PanelOptions;
+import vue.PanneauxMenus.PanOptions;
 import vue.UnePartie;
 import java.applet.Applet;
 import java.applet.AudioClip;
