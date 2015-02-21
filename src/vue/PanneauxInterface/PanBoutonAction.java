@@ -6,8 +6,8 @@ package vue.PanneauxInterface;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
-import modele.HotelDeVille;
-import modele.Paysan;
+import vue.ElementsVisuels.HotelDeVille;
+import vue.ElementsVisuels.Paysan;
 import vue.ecouteurs.EcouteurBoutonsHotelVille;
 import vue.ecouteurs.EcouteurBoutonsPaysan;
 

@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import modele.Paysan;
+import vue.ElementsVisuels.Paysan;
 import vue.PanneauxInterface.PanBoutonAction;
 import vue.PanneauxInterface.PanDescription;
 import vue.PanneauxInterface.PanJeux;

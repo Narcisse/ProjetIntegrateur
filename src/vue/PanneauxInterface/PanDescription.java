@@ -2,6 +2,9 @@
  ce qui est sélectionné (le toString de l'élément sélectionné)*/
 package vue.PanneauxInterface;
 
+import vue.ElementsVisuels.ElementDecor;
+import vue.ElementsVisuels.Unite;
+import vue.ElementsVisuels.Batiment;
 import modele.*;
 /**
  *

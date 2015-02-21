@@ -9,8 +9,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
-import modele.Arbre;
-import modele.ElementDecor;
+import vue.ElementsVisuels.Arbre;
+import vue.ElementsVisuels.ElementDecor;
 
 /**
  *

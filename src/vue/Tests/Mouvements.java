@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import modele.Paysan;
-import modele.Unite;
+import vue.ElementsVisuels.Paysan;
+import vue.ElementsVisuels.Unite;
 
 /**
  *

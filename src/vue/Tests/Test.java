@@ -10,12 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import modele.Arbre;
-import modele.ElementDecor;
-import modele.MineOr;
-import modele.Paysan;
-import modele.Ressource;
-import modele.Vache;
+import vue.ElementsVisuels.Arbre;
+import vue.ElementsVisuels.ElementDecor;
+import vue.ElementsVisuels.MineOr;
+import vue.ElementsVisuels.Paysan;
+import vue.ElementsVisuels.Ressource;
+import vue.ElementsVisuels.Vache;
 
 /**
  *
