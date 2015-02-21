@@ -1,12 +1,10 @@
 package controleur;
 
-import javax.swing.ImageIcon;
 import vue.PanneauxInterface.PanMenuPrincipal;
-import vue.PanneauxInterface.PanMainMenu;
 
 /**
  *
- * @author usager
+ * @author Christo Mondor
  */
 public class Lanceur {
 
