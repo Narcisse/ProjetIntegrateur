@@ -82,6 +82,11 @@ public class Mouvements extends JFrame {
         int valeurDeplacement = 7;
         @Override
         public void keyPressed(KeyEvent e) {
+            // Test avec deux touches
+            if ((e.getModifiers()==KeyEvent.VK_DOWN) && (e.getKeyCode()==KeyEvent.VK_RIGHT)) {
+                patientZero.deplacement(valeurDeplacement, valeurDeplacement);
+                patientZero.repaint();
+            }
             // Déplacement de un vers la droite
             if (e.getKeyCode() == KeyEvent.VK_RIGHT
                     || e.getKeyChar() == 'd') {
