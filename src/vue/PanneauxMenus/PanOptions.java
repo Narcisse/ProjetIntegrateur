@@ -23,7 +23,10 @@ public class PanOptions extends PanElder {
 
     public PanOptions(Image img, CardLayout cLayout) {
         super();
-        
+        Image swap = img.getScaledInstance(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran, Image.SCALE_SMOOTH);
+        ImageIcon swap2 = new ImageIcon(swap);
+        this.img = swap;
+        this.cLayout = cLayout;
         initComponents();
         initListeners();
     }
@@ -37,10 +40,6 @@ public class PanOptions extends PanElder {
     // Methodes spécifiques
 
     public void initComponents() {
-        Image swap = img.getScaledInstance(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran, Image.SCALE_SMOOTH);
-        ImageIcon swap2 = new ImageIcon(swap);
-        this.img = swap;
-        this.cLayout = cLayout;
         this.setBackground(new Color(0, 0, 0, 0));
         this.cePanneau = this;
         // Panneau de 5 par 1 en gridLayout pour offrir une liste d'options
@@ -67,7 +66,7 @@ public class PanOptions extends PanElder {
         // Lorsqu'on initie le panneau de facon vide, cette fonction dispose du cadre qui contient ce panneau
         bOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                if (!(cLayout == null)){
+                if (cLayout != null){
                     cLayout.show(getParent(), PanMenuPrincipal.CARTE_MENU_PRINCIPALE);
                 }else{
                     disposerDuCadreDuPanneau(cePanneau);
