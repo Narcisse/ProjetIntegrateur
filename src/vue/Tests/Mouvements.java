@@ -3,13 +3,12 @@ package vue.Tests;
 import controleur.DonneesUtiles;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import vue.ElementsVisuels.Paysan;
 import vue.ElementsVisuels.Unite;
+import vue.ecouteurs.MovementListener;
 
 /**
  *
@@ -68,61 +67,12 @@ public class Mouvements extends JFrame {
 
     public void initListeners() {
         // Déclaration d'un écouteur pour les touches directionnelles
-        EcouteurTouchesDirectionnelles ecoDirections =
-        new EcouteurTouchesDirectionnelles();
+        MovementListener ecoDirections = new MovementListener(patientZero);
         
         // Ajout de l'écouteur au panneau de test
         getContentPane().addKeyListener(ecoDirections);
         this.addKeyListener(ecoDirections);
-    }
-
-    // *************************************************************************
-    // Classes écouteurs
-    public class EcouteurTouchesDirectionnelles implements KeyListener {
-        int valeurDeplacement = 7;
-        @Override
-        public void keyPressed(KeyEvent e) {
-            // Test avec deux touches
-            if ((e.getModifiers()==KeyEvent.VK_DOWN) && (e.getKeyCode()==KeyEvent.VK_RIGHT)) {
-                patientZero.deplacement(valeurDeplacement, valeurDeplacement);
-                patientZero.repaint();
-            }
-            // Déplacement de un vers la droite
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT
-                    || e.getKeyChar() == 'd') {
-                patientZero.deplacement(valeurDeplacement, 0);
-                patientZero.repaint();
-            }
-            // Déplacement de un vers la gauche
-            if (e.getKeyCode() == KeyEvent.VK_LEFT
-                    || e.getKeyChar() == 'a') {
-                patientZero.deplacement(-valeurDeplacement, 0);
-                patientZero.repaint();
-            }
-            // Déplacement de un vers le haut
-            if (e.getKeyCode() == KeyEvent.VK_UP
-                    || e.getKeyChar() == 'w') {
-                patientZero.deplacement(0, -valeurDeplacement);
-                patientZero.repaint();
-            }
-            // Déplacement de un vers le bas
-            if (e.getKeyCode() == KeyEvent.VK_DOWN
-                    || e.getKeyChar() == 's') {
-                patientZero.deplacement(0, valeurDeplacement);
-                patientZero.repaint();
-            }
-            // Déplacements en diagonale
-                // à venir...
-        }
-        @Override
-        public void keyReleased(KeyEvent e) {
-            
-        }
-        @Override
-        public void keyTyped(KeyEvent e) {
-
-        }
-
+        
     }
     // *************************************************************************
     // Zone de test
