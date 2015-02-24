@@ -6,7 +6,6 @@ package vue.PanneauxInterface;
  * Loic Grant-Steinhardt
  *
  */
-import controleur.DonneesUtiles;
 import vue.PanneauxMenus.PanGoal;
 import vue.PanneauxMenus.PanMenu;
 import vue.PanneauxMenus.PanStats;
@@ -15,7 +14,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import vue.composants.BoitesDialogue;
-import vue.composants.MenuOpaque;
 
 public class BarreDeMenu extends JPanel {
 
@@ -90,28 +88,28 @@ public class BarreDeMenu extends JPanel {
         //Écouteur pour le bouton Menu
         btnMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                MenuOpaque menu = new MenuOpaque(new PanMenu());
+                nouveauDialogue(new PanMenu(), "Menu", 300, 400);
             }
         });
 
         //Écouteur pour le bouton Statistiques (Stats)
         btnStats.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                MenuOpaque menu = new MenuOpaque(new PanStats());
+                nouveauDialogue(new PanStats(), "Stats", 450, 250);
             }
         });
 
         //Écouteur pour le bouton Message
         btnLog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                MenuOpaque menu = new MenuOpaque(new PanLog());
+                nouveauDialogue(new PanLog(), "Log", 400, 250);
             }
         });
 
         //Écouteur pour le bouton Objectif
         btnGoal.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                MenuOpaque menu = new MenuOpaque(new PanGoal());
+                nouveauDialogue(new PanGoal(), "Goal", 450, 250);
             }
         });
 
@@ -135,19 +133,19 @@ public class BarreDeMenu extends JPanel {
         }
         public void keyReleased(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                MenuOpaque menu = new MenuOpaque(new PanMenu());
+                nouveauDialogue(new PanMenu(), "Menu", 300, 400);
             }
             if (e.getKeyCode() == KeyEvent.VK_P) {
-                MenuOpaque menu = new MenuOpaque(new PanMenu());
+                nouveauDialogue(new PanMenu(), "Menu", 300, 400);
             }
             if (e.getKeyCode() == KeyEvent.VK_F1) {
-                MenuOpaque menu = new MenuOpaque(new PanStats());
+                nouveauDialogue(new PanStats(), "Stats", 450, 250);
             }
             if (e.getKeyCode() == KeyEvent.VK_F2) {
-                MenuOpaque menu = new MenuOpaque(new PanLog());
+                nouveauDialogue(new PanLog(), "Log", 400, 250);
             }
             if (e.getKeyCode() == KeyEvent.VK_F3) {
-                MenuOpaque menu = new MenuOpaque(new PanGoal());
+                nouveauDialogue(new PanGoal(), "Goal", 450, 250);
             }
         }
 
