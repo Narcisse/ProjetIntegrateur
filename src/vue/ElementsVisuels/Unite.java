@@ -1,8 +1,7 @@
 package vue.ElementsVisuels;
 
-import java.awt.Graphics;
+
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public abstract class Unite extends JLabel{
     // Donnee membres
