@@ -13,6 +13,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import vue.PanneauxInterface.PanMenuPrincipal;
 import vue.composants.BoitesDialogue;
+import vue.composants.MenuOpaque;
 
 public class PanMenu extends PanElder {
 
@@ -36,7 +37,6 @@ public class PanMenu extends PanElder {
          trois autres panneau dans un gridlayout de 3 par 1
          */
         panMenu = new JPanel(new GridLayout(3, 1, 10, 10));
-        panMenu.setBackground(new Color(0,0,0,0));
         Border noir = BorderFactory.createLineBorder(Color.black);
         Border titre = BorderFactory.createTitledBorder(noir, "Menu de Jeu");
         panMenu.setBorder(titre);
@@ -70,9 +70,6 @@ public class PanMenu extends PanElder {
         panBas.add(labSpace);
         panBas.add(bBack);
         panMenu.add(panBas);
-        panHaut.setBackground(new Color(0,0,0,0));
-        panMid.setBackground(new Color(0,0,0,0));
-        panBas.setBackground(new Color(0,0,0,0));
         add(panMenu);
     }
 
@@ -98,29 +95,19 @@ public class PanMenu extends PanElder {
         
         bOptions.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                JFrame frame = new JFrame();
-                frame.add(new PanOptions());
-                frame.setSize(300, 400);
-                frame.setVisible(true);
-                frame.setResizable(false);
-                frame.setLocationRelativeTo(null);
+                MenuOpaque menu = new MenuOpaque(new PanOptions());
             }
         });
 
         bHelp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                new BoitesDialogue(new PanHelp(), "Aide", 400, 250);
+                MenuOpaque menu = new MenuOpaque(new PanHelp());
             }
         });
 
         bTips.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                JFrame frame = new JFrame();
-                frame.add(new PanTips());
-                frame.setSize(400, 250);
-                frame.setVisible(true);
-                frame.setResizable(false);
-                frame.setLocationRelativeTo(null);
+                MenuOpaque menu = new MenuOpaque(new PanTips());
             }
         });
 
