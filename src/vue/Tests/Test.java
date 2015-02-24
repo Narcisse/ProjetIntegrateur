@@ -10,17 +10,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import vue.ElementsVisuels.Arbre;
-import vue.ElementsVisuels.ElementDecor;
-import vue.ElementsVisuels.MineOr;
-import vue.ElementsVisuels.Paysan;
-import vue.ElementsVisuels.Ressource;
-import vue.ElementsVisuels.Vache;
+import vue.ElementsVisuels.ArbreVue;
+import vue.ElementsVisuels.ElementDecorVue;
+import vue.ElementsVisuels.MineOrVue;
+import vue.ElementsVisuels.PaysanVue;
+import modele.Ressource;
+import modele.Vache;
 
 /**
  *
  * @author Christo
  */
+/*
 public class Test extends JFrame {
     // Donnees membres
     // Composants graphiques
@@ -31,9 +32,9 @@ public class Test extends JFrame {
     private int bois;
     private int nourriture;
     private int or;
-    private ElementDecor unArbre = new Arbre();
-    private ElementDecor uneVache = new Vache();
-    private ElementDecor uneMineOr = new MineOr();
+    private ElementDecorVue unArbre = new ArbreVue();
+    private Vache uneVache = new Vache();
+    private ElementDecorVue uneMineOr = new MineOrVue();
 
     // Constructeur
 
@@ -86,7 +87,7 @@ public class Test extends JFrame {
         boutons.get(0).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Paysan unPaysan = new Paysan();
+                PaysanVue unPaysan = new PaysanVue();
                 JOptionPane.showMessageDialog(null,
                         "Nom de l'unité: " + unPaysan.getNom() + "\n"
                         + "Or necessaire: " + unPaysan.getOrNecessaire() + "\n"
@@ -114,7 +115,7 @@ public class Test extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     uneMineOr.retirerQuantite();
-                    ajouterRessource(uneMineOr.getRessource(), MineOr.quantiteRetirer);
+                    ajouterRessource(uneMineOr.getRessource(), MineOrVue.quantiteRetirer);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                     ex.printStackTrace();
@@ -151,3 +152,4 @@ public class Test extends JFrame {
         uneFenetre.setVisible(true);
     }
 }
+*/

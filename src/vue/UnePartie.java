@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import vue.ElementsVisuels.Paysan;
+import vue.ElementsVisuels.PaysanVue;
 import vue.PanneauxInterface.PanBoutonAction;
 import vue.PanneauxInterface.PanDescription;
 import vue.PanneauxInterface.PanJeux;
@@ -56,7 +56,7 @@ public class UnePartie extends JFrame {
         panJoueur.add(new JLabel(new ImageIcon("images\\mini.jpg")));
         // centre d'informations
         //exemple avec un paysan
-        Paysan unPaysan = new Paysan();
+        PaysanVue unPaysan = new PaysanVue();
         panJoueur.add(new PanDescription(unPaysan)); //Création du panDescription figurant la description d'un paysan
         // centre d'actions
         panJoueur.add(new PanBoutonAction());

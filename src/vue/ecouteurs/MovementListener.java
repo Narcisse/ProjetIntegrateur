@@ -2,7 +2,7 @@ package vue.ecouteurs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import vue.ElementsVisuels.Unite;
+import vue.ElementsVisuels.UniteVue;
 
 /**
  *
@@ -11,11 +11,11 @@ import vue.ElementsVisuels.Unite;
 public class MovementListener implements KeyListener {
     // *************************************************************************
     // Donnees membres
-    private Unite patientZero;
+    private UniteVue patientZero;
     private int valeurDeplacement = 7;
     // *************************************************************************
     // Constructeurs
-    public MovementListener(Unite uneUnite){
+    public MovementListener(UniteVue uneUnite){
         this.patientZero = uneUnite;
     }
     

@@ -6,8 +6,8 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import vue.ElementsVisuels.Paysan;
-import vue.ElementsVisuels.Unite;
+import vue.ElementsVisuels.PaysanVue;
+import vue.ElementsVisuels.UniteVue;
 import vue.ecouteurs.MovementListener;
 
 /**
@@ -25,11 +25,11 @@ public class Mouvements extends JFrame {
      de collision sur toute la liste de façon simple et
      rapide!
      */
-    private ArrayList<Unite> paysans = new ArrayList<Unite>();
+    private ArrayList<UniteVue> paysans = new ArrayList<UniteVue>();
     // Un panneau pour bien contrôler le positionnement
     private JPanel panMouvements = new JPanel(new GridLayout(1, 1));
     // Un paysan
-    private Paysan patientZero;
+    private PaysanVue patientZero;
 
     // *************************************************************************
     // Constructeurs
@@ -57,7 +57,7 @@ public class Mouvements extends JFrame {
          observer le comportement des méthodes que j'ai développer dans la
          classe paysan
          */
-        patientZero = new Paysan();
+        patientZero = new PaysanVue();
         // On doit définir manuellement les coordonnées du paysans
         patientZero.setPositionX(0);
         patientZero.setPositionY(0);

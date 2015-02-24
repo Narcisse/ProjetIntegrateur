@@ -9,8 +9,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
-import vue.ElementsVisuels.Arbre;
-import vue.ElementsVisuels.ElementDecor;
+import vue.ElementsVisuels.ArbreVue;
+import vue.ElementsVisuels.ElementDecorVue;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Changements extends JFrame{
     /*
      Je vais creer des elements de decor pour tester des interactions
      */
-    private Arbre elementZero;
+    private ArbreVue elementZero;
     private JPanel panChangements;
 
     // *************************************************************************
@@ -51,7 +51,7 @@ public class Changements extends JFrame{
          pour observer le comportement des méthodes que j'ai développer dans la
          classe élément de décor et ses classes filles
          */
-        elementZero = new Arbre();
+        elementZero = new ArbreVue();
         // On doit définir manuellement les coordonnées du paysans
         elementZero.setLocation(0, 0);
         this.setContentPane(elementZero);
@@ -64,7 +64,7 @@ public class Changements extends JFrame{
     public class EcouteurInteraction extends MouseAdapter{
         @Override
         public void mouseClicked(MouseEvent e) {
-            ElementDecor unElement = (ElementDecor)e.getSource();
+            ElementDecorVue unElement = (ElementDecorVue)e.getSource();
             Image imageApresClick = unElement.getImageApresClick();
             unElement.setImagePeinturer(imageApresClick);
             unElement.repaint();
