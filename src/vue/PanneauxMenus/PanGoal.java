@@ -1,7 +1,7 @@
 package vue.PanneauxMenus;
 
 /**
- * Loic Grant-Steinhardt salut changement
+ * Loic Grant-Steinhardt
  * ReCommenté par Christo Mondor
  */
 import javax.swing.*;
