@@ -1,9 +1,7 @@
 package vue.Tests;
 
 import controleur.DonneesUtiles;
-import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -11,6 +9,8 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
 import modele.ElementDecor;
 import modele.Vache;
+import vue.ElementsVisuels.ElementDecorVue;
+import vue.ElementsVisuels.VacheVue;
 
 /**
  *
@@ -27,11 +27,11 @@ public class MouvementVache extends JFrame implements Runnable {
      de collision sur toute la liste de façon simple et
      rapide!
      */
-    private ArrayList<ElementDecor> vaches = new ArrayList<ElementDecor>();
+    private ArrayList<ElementDecorVue> vaches = new ArrayList<ElementDecorVue>();
     // Un panneau pour bien contrôler le positionnement
     private JPanel panMouvements = new JPanel(new GridLayout(1, 1));
     // Une vache
-    private Vache vacheUltime;
+    private VacheVue vacheUltime;
     private boolean mouvement1, mouvement2, mouvement3, running;
     private int compteurGaucheDroite = 0, compteurBasHaut = 0;
     private boolean horizontalPlein, verticalPlein;
@@ -64,10 +64,8 @@ public class MouvementVache extends JFrame implements Runnable {
          observer le comportement des méthodes que j'ai développer dans la
          classe paysan
          */
-        vacheUltime = new Vache();
+        vacheUltime = new VacheVue();
         // On doit définir manuellement les coordonnées du paysans
-        vacheUltime.setPositionX(DonneesUtiles.largeurEcran / 2);
-        vacheUltime.setPositionY(DonneesUtiles.hauteurEcran / 2);
         vaches.add(vacheUltime);
         this.setContentPane(vacheUltime);
     }
