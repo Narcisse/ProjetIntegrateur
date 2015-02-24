@@ -8,8 +8,11 @@ package vue.PanneauxInterface;
 import controleur.DonneesUtiles;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +21,10 @@ import vue.PanneauxMenus.PanOptions;
 import vue.UnePartie;
 
 public class PanMenuPrincipal extends JFrame {
+    //Curseur
+    private Toolkit tk = Toolkit.getDefaultToolkit();
+    private Cursor curseur;
+    private ImageIcon imageCurseur1;
 
     // Données membres
     // Noms des cartes
@@ -54,6 +61,11 @@ public class PanMenuPrincipal extends JFrame {
     // Constructeur de la fenetre principale
     public PanMenuPrincipal() {
         super();
+        //Icone du jeu
+        Image icone =Toolkit.getDefaultToolkit().getImage("images\\Icone\\piskelLogo.png");
+        icone=icone.getScaledInstance(2000,2000,0);
+        this.setIconImage(icone);
+        
         this.setSize(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran);
         this.setUndecorated(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -63,6 +75,13 @@ public class PanMenuPrincipal extends JFrame {
 
     // Méthodes spécifiques
     public void initComponents() {
+        // Apparence du curseur
+        imageCurseur1 = new ImageIcon("images\\curseur.png");
+        Image imageCurseur2 = imageCurseur1.getImage().getScaledInstance(40,40, java.awt.Image.SCALE_SMOOTH);
+        //Curseur
+        curseur = tk.createCustomCursor( imageCurseur2, new Point(1, 1), "Pointeur" );
+        setCursor(curseur);
+       
         // ajouter les cartes au panneau qui est en cardLayout
         cartesDaffichageMenu.add(carteMenuPrincipal, CARTE_MENU_PRINCIPALE);
         cartesDaffichageMenu.add(carteDesOptionsDuJeu, CARTE_OPTIONS_JEU);
