@@ -3,7 +3,6 @@ package vue.PanneauxInterface;
 /**
  * Fait partie du CardLayout du menu Carte no.1 , affiche les bouton du menu
  */
-
 import controleur.DonneesUtiles;
 import javax.swing.*;
 import java.awt.*;
@@ -107,6 +106,7 @@ public class PanMainMenu extends JPanel {
                 partie.setVisible(true);
             }
         });
+
         btnTutoriel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 cLayout.show(getParent(), PanMenuPrincipal.CARTE_TUTORIEL);

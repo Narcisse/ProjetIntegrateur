@@ -104,10 +104,12 @@ public class PanMenuPrincipal extends JFrame {
         ArrayList<ImageIcon> lstImage = new ArrayList<ImageIcon>();
         lstImage.add(lesImages);
         lstImage.add(lesImages);
+        lstImage.add(lesImages);
 
         //Ajout des Strings dans une liste, à venir BufferedReader
         ArrayList<String> lstString = new ArrayList<String>();
         lstString.add("TITRODELTUTORIALAMIGO");
+        lstString.add("JAJAJMUIESPECIAL");
         lstString.add("JAJAJMUIESPECIAL");
         lstString.add("JAJAJMUIESPECIAL");
 
@@ -115,6 +117,26 @@ public class PanMenuPrincipal extends JFrame {
         laCategorie = new Categorie(lstString, lstImage);
         //Construction de la carte avec les éléments initialisé dans la methode
         carteDesObjectifs = new PanCategorie(DonneesUtiles.fondDecran, myCardLayout, laCategorie);
+    }
+    
+    //Initialisation des données Ressources, ainsi que la construction de la carte.
+    public void initRessource() {
+
+    }
+    
+    //Initialisation des données Mouvements, ainsi que la construction de la carte.
+    public void initMouvement() {
+
+    }
+
+    //Initialisation des données Batiments, ainsi que la construction de la carte.
+    public void initBatiment() {
+
+    }
+
+    //Initialisation des données Ennemis, ainsi que la construction de la carte.
+    public void initEnnemi() {
+
     }
 
     public void initListeners() {

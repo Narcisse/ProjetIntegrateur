@@ -18,7 +18,8 @@ import modele.Categorie;
 public class PanTutoriel extends JPanel {
 
     //Données membres
-    private JButton btnBut, btnMovement, btnRessources, btnRetour;
+    private JButton btnBut, btnRessources, btnMovement, btnBatiment, btnEnnemi,
+            btnRetour;
     private JPanel panTutoriel;
     private JFrame frame;
     private Categorie categorie;
@@ -29,7 +30,8 @@ public class PanTutoriel extends JPanel {
     public PanTutoriel(Image img, CardLayout cLayout) {
         super();
         //Image de fond
-        Image swap = img.getScaledInstance(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran, Image.SCALE_SMOOTH);
+        Image swap = img.getScaledInstance(DonneesUtiles.largeurEcran,
+                DonneesUtiles.hauteurEcran, Image.SCALE_SMOOTH);
         ImageIcon swap2 = new ImageIcon(swap);
         this.img = swap;
         //CardLayout
@@ -42,15 +44,19 @@ public class PanTutoriel extends JPanel {
 
     //initialisation des Données membres
     public void initComponents() {
-        panTutoriel = new JPanel(new GridLayout(4, 1, 10, 55));
+        panTutoriel = new JPanel(new GridLayout(6, 1, 10, 55));
         btnBut = new JButton("Objectif");
+        btnRessources = new JButton("Ressources");
         btnMovement = new JButton("Mouvement");
-        btnRessources = new JButton("Ressources/Unités");
+        btnBatiment = new JButton("Batiment");
+        btnEnnemi = new JButton("Ennemi");
         btnRetour = new JButton("Retour");
 
         this.add(btnBut);
-        this.add(btnMovement);
         this.add(btnRessources);
+        this.add(btnMovement);
+        this.add(btnBatiment);
+        this.add(btnEnnemi);
         this.add(btnRetour);
         this.setBackground(new Color(0, 0, 0, 0));
     }
@@ -64,15 +70,27 @@ public class PanTutoriel extends JPanel {
             }
         });
 
+        btnRessources.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe des ressources");
+            }
+        });
+
         btnMovement.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JOptionPane.showMessageDialog(null, "Tutoriel décrivant comment se déplacer dans le jeu");
             }
         });
 
-        btnRessources.addActionListener(new ActionListener() {
+        btnBatiment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe de ressources et d'unité");
+                JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe des batiments");
+            }
+        });
+
+        btnEnnemi.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe des ennemis");
             }
         });
 
