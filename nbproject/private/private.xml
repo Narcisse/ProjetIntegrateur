@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanMenuPrincipal.java</file>
-            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanMainMenu.java</file>
-            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanCategorie.java</file>
+            <file>file:/C:/Users/Guillaume/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanMenuPrincipal.java</file>
+            <file>file:/C:/Users/Guillaume/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanTutoriel.java</file>
+            <file>file:/C:/Users/Guillaume/Documents/GitHub/ProjetIntegrateur/src/modele/Categorie.java</file>
+            <file>file:/C:/Users/Guillaume/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanMainMenu.java</file>
+            <file>file:/C:/Users/Guillaume/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanCategorie.java</file>
         </group>
     </open-files>
 </project-private>

@@ -24,7 +24,6 @@ import vue.UnePartie;
 public class PanMenuPrincipal extends JFrame {
 
     //Curseur
-
     private Toolkit tk = Toolkit.getDefaultToolkit();
     private Cursor curseur;
     private ImageIcon imageCurseur1;
@@ -35,7 +34,7 @@ public class PanMenuPrincipal extends JFrame {
     public final static String CARTE_MENU_PRINCIPALE = "Carte avec les boutons de menu",
             CARTE_OPTIONS_JEU = "Carte avec les options du jeu",
             CARTE_TUTORIEL = "Carte avec les tutoriaux du jeu",
-            CARTE_CATEGORIE = "Carte des categories";
+            CARTE_OBJECTIF = "Carte du tutoriel objectif";
 
     // Panneau avec un layout de cartes
     // Chaques cartes ajoutée pourra être appeler pour revenir sur le "Dessus"
@@ -60,7 +59,7 @@ public class PanMenuPrincipal extends JFrame {
 
     // Panneau de tutotiel, qui devra également être fait sur un frame de cardLayout (carte 5)
     PanTutoriel carteDesTutoriels = new PanTutoriel(DonneesUtiles.fondDecran, myCardLayout);
-    PanCategorie carteDesObjectifs = new PanCategorie(DonneesUtiles.fondDecran, myCardLayout, laCategorie);
+    PanCategorie carteDesObjectifs;
 
     // Panneau de crédit du jeu (carte 6)
     // à venir
@@ -93,28 +92,29 @@ public class PanMenuPrincipal extends JFrame {
         cartesDaffichageMenu.add(carteMenuPrincipal, CARTE_MENU_PRINCIPALE);
         cartesDaffichageMenu.add(carteDesOptionsDuJeu, CARTE_OPTIONS_JEU);
         cartesDaffichageMenu.add(carteDesTutoriels, CARTE_TUTORIEL);
-        cartesDaffichageMenu.add(carteDesObjectifs, CARTE_CATEGORIE);
+        cartesDaffichageMenu.add(carteDesObjectifs, CARTE_OBJECTIF);
         // ajouter le panneau qui contient les cartes à la fenetre
         add(cartesDaffichageMenu);
     }
 
-    public void initObjectif() {       
+    //Initialisation des données Objectifs, ainsi que la construction de la carte.
+    public void initObjectif() {
+        //Ajout des images dans une liste
         ImageIcon lesImages = new ImageIcon("images\\chat.jpg");
         ArrayList<ImageIcon> lstImage = new ArrayList<ImageIcon>();
         lstImage.add(lesImages);
         lstImage.add(lesImages);
 
+        //Ajout des Strings dans une liste, à venir BufferedReader
         ArrayList<String> lstString = new ArrayList<String>();
         lstString.add("TITRODELTUTORIALAMIGO");
         lstString.add("JAJAJMUIESPECIAL");
         lstString.add("JAJAJMUIESPECIAL");
-        
-        String[] lesString = new String[3];
-        lesString[0] = "TITRODELTUTORIALAMIGO";
-        lesString[1] = "JAJAJMUIESPECIAL";
-        lesString[2] = "JAJAJMUIESPECIAL";
 
-        laCategorie = new Categorie(lesString, lstImage);
+        //Construction de la categorie
+        laCategorie = new Categorie(lstString, lstImage);
+        //Construction de la carte avec les éléments initialisé dans la methode
+        carteDesObjectifs = new PanCategorie(DonneesUtiles.fondDecran, myCardLayout, laCategorie);
     }
 
     public void initListeners() {

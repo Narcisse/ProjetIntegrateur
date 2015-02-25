@@ -24,16 +24,18 @@ public class PanTutoriel extends JPanel {
     private Categorie categorie;
     private CardLayout cLayout;
     private Image img;
-    private PanCategorie panCategorie;
 
     //Constructeur
     public PanTutoriel(Image img, CardLayout cLayout) {
         super();
+        //Image de fond
         Image swap = img.getScaledInstance(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran, Image.SCALE_SMOOTH);
         ImageIcon swap2 = new ImageIcon(swap);
         this.img = swap;
+        //CardLayout
         this.cLayout = cLayout;
         this.setBackground(new Color(0, 0, 0, 0));
+        //Ajout des méthodes
         initComponents();
         initListener();
     }
@@ -46,40 +48,44 @@ public class PanTutoriel extends JPanel {
         btnRessources = new JButton("Ressources/Unités");
         btnRetour = new JButton("Retour");
 
-        panTutoriel.add(btnBut);
-        panTutoriel.add(btnMovement);
-        panTutoriel.add(btnRessources);
-        panTutoriel.add(btnRetour);
-        panTutoriel.setBackground(new Color(0, 0, 0, 0));
-        add(panTutoriel);
+        this.add(btnBut);
+        this.add(btnMovement);
+        this.add(btnRessources);
+        this.add(btnRetour);
+        this.setBackground(new Color(0, 0, 0, 0));
     }
 
     //initialisation des ActionListener
     public void initListener() {
         btnBut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                
-                cLayout.show(getParent(), PanMenuPrincipal.CARTE_CATEGORIE);
+                cLayout.show(getParent(), PanMenuPrincipal.CARTE_OBJECTIF);
                 revalidate();
             }
         });
+
         btnMovement.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JOptionPane.showMessageDialog(null, "Tutoriel décrivant comment se déplacer dans le jeu");
             }
         });
+
         btnRessources.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe de ressources et d'unité");
             }
         });
+
         btnRetour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 cLayout.show(getParent(), PanMenuPrincipal.CARTE_MENU_PRINCIPALE);
             }
         });
     }
+
+    //Ajout des composants graphiques
     public void paintComponent(Graphics g) {
+        //Ajout de l'image de fond
         g.drawImage(img, 0, 0, null);
     }
 }
