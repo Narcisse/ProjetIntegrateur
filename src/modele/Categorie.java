@@ -17,17 +17,35 @@ import javax.swing.ImageIcon;
  */
 public class Categorie implements Serializable {
 
-private ArrayList<String> lstString = new ArrayList<String>();
-private ArrayList<ImageIcon> lstImage = new ArrayList<ImageIcon>();
+private ArrayList<String> lstString;
+private ArrayList<ImageIcon> lstImage;
+private String[] lesString = new String[3];
 
-    public Categorie(ArrayList<String> listeString, ArrayList<ImageIcon> listeImage){
-        this.lstString = listeString;
-        this.lstImage = listeImage;
+    public Categorie(String[] desString, ArrayList<ImageIcon> listeImage){
+        /*lstString = new ArrayList<>();
+        for(int i = 0; i < listeString.size(); i++){
+            setString(i, listeString.get(i));
+        }*/
+        
+        this.lesString = desString;
+        
+        lstImage = new ArrayList<>();
+        for(int i = 0; i < listeImage.size(); i++){
+            setImage(i, listeImage.get(i));
+        }
     }
     
     //Accesseurs
     public String getString(int index) {
         return lstString.get(index);
+    }
+    
+    public String getTabString(int index){
+        String leRetour = "NULL";
+        if(index <= lesString.length){
+            leRetour = lesString[index];
+        }
+        return leRetour;
     }
     
     public ImageIcon getImage(int index){
@@ -44,11 +62,11 @@ private ArrayList<ImageIcon> lstImage = new ArrayList<ImageIcon>();
     
     //Muttateurs    
     public void setString(int index, String leString) {
-        lstString.set(index, leString);
+        lstString.add(index, leString);
     }
     
     public void setImage(int index, ImageIcon unImage){
-        lstImage.set(index, unImage);
+        lstImage.add(index, unImage);
     }
     
     //Methode specifique

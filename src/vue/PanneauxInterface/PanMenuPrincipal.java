@@ -60,7 +60,7 @@ public class PanMenuPrincipal extends JFrame {
 
     // Panneau de tutotiel, qui devra également être fait sur un frame de cardLayout (carte 5)
     PanTutoriel carteDesTutoriels = new PanTutoriel(DonneesUtiles.fondDecran, myCardLayout);
-    PanCategorie carteDesObjectifs = new PanCategorie(fondDecran, myCardLayout, laCategorie);
+    PanCategorie carteDesObjectifs = new PanCategorie(DonneesUtiles.fondDecran, myCardLayout, laCategorie);
 
     // Panneau de crédit du jeu (carte 6)
     // à venir
@@ -75,9 +75,9 @@ public class PanMenuPrincipal extends JFrame {
         this.setSize(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran);
         this.setUndecorated(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        initObjectif();
         initComponents();
         initListeners();
-        initObjectif();
     }
 
     // Méthodes spécifiques
@@ -108,8 +108,13 @@ public class PanMenuPrincipal extends JFrame {
         lstString.add("TITRODELTUTORIALAMIGO");
         lstString.add("JAJAJMUIESPECIAL");
         lstString.add("JAJAJMUIESPECIAL");
+        
+        String[] lesString = new String[3];
+        lesString[0] = "TITRODELTUTORIALAMIGO";
+        lesString[1] = "JAJAJMUIESPECIAL";
+        lesString[2] = "JAJAJMUIESPECIAL";
 
-        laCategorie = new Categorie(lstString, lstImage);
+        laCategorie = new Categorie(lesString, lstImage);
     }
 
     public void initListeners() {

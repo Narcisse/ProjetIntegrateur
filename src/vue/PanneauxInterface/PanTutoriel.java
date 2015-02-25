@@ -60,7 +60,7 @@ public class PanTutoriel extends JPanel {
             public void actionPerformed(ActionEvent event) {
                 
                 cLayout.show(getParent(), PanMenuPrincipal.CARTE_CATEGORIE);
-                
+                revalidate();
             }
         });
         btnMovement.addActionListener(new ActionListener() {

@@ -42,13 +42,13 @@ public class PanCategorie extends JPanel {
             this.add(btnRetour);
 
             //Information de la premiere partie de la categorie
-            lbInformation = new JLabel(laCategorie.getString(1));
+            lbInformation = new JLabel(laCategorie.getTabString(1));
             lbInformation.setBounds(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
                     200, 500, 200);
             this.add(lbInformation);
 
             //Information de la deuxieme partie de la categorie
-            lbInformation = new JLabel(laCategorie.getString(2));
+            lbInformation = new JLabel(laCategorie.getTabString(2));
             lbInformation.setBounds(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
                     400, 500, 200);
             this.add(lbInformation);
@@ -69,7 +69,7 @@ public class PanCategorie extends JPanel {
             g.setFont(new Font("Helvetica", Font.PLAIN, 30));
 
             //Le titre de la categorie
-            g.drawString(laCategorie.getString(0), Toolkit.getDefaultToolkit().
+            g.drawString(laCategorie.getTabString(0), Toolkit.getDefaultToolkit().
                     getScreenSize().width / 2 - 100, getHeight() / 8);
             repaint();
         } catch (Exception e) {
@@ -90,10 +90,10 @@ public class PanCategorie extends JPanel {
         lstString.add("JAJAJMUIESPECIAL");
         lstString.add("JAJAJMUIESPECIAL");
 
-        Categorie categorie = new Categorie(lstString, lstImage);
-        PanCategorie panel = new PanCategorie(null, null, categorie);
+        //Categorie categorie = new Categorie(lstString, lstImage);
+        //PanCategorie panel = new PanCategorie(null, null, categorie);
 
-        frame.add(panel);
+        //frame.add(panel);
         frame.setSize(1000, 750);
         frame.setVisible(true);
         frame.setResizable(false);
