@@ -4,6 +4,7 @@ import controleur.DonneesUtiles;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import modele.Categorie;
 
@@ -23,6 +24,7 @@ public class PanTutoriel extends JPanel {
     private Categorie categorie;
     private CardLayout cLayout;
     private Image img;
+    private PanCategorie panCategorie;
 
     //Constructeur
     public PanTutoriel(Image img, CardLayout cLayout) {
@@ -56,11 +58,8 @@ public class PanTutoriel extends JPanel {
     public void initListener() {
         btnBut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-
-                //Ajoute un img afin de le passer en parametre du constructeur
-                ImageIcon img = new ImageIcon("images\\chat.jpg");
-                categorie = new Categorie(img, img, "chat chat", "gijsd;lgkhjsdlkghds", "gijsd;lgkhjsdlkghds");
-                //créer un panelCategorie avec l'objet créé
+                
+                cLayout.show(getParent(), PanMenuPrincipal.CARTE_CATEGORIE);
                 
             }
         });

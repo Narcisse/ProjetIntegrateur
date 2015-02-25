@@ -17,76 +17,51 @@ import javax.swing.ImageIcon;
  */
 public class Categorie implements Serializable {
 
-    private ImageIcon imgDuTutoriel;
-    private String infoTutoriel;
-    private String titreCategorie;
-    public String infoTutoriel2;
-    private ImageIcon imgDuTutoriel2;
+private ArrayList<String> lstString = new ArrayList<String>();
+private ArrayList<ImageIcon> lstImage = new ArrayList<ImageIcon>();
 
-    private ArrayList<Categorie> listesDeCategoirie;
-
-    public Categorie(ImageIcon imageDuTutoriel, ImageIcon imageDuTutoriel2, String informationTutoriel,
-            String titreDeLaCategorie, String informationTutoriel2) {
-
-        setImgDuTutoriel(imageDuTutoriel);
-        setInfoDuTutoriel(informationTutoriel);
-        setTitreCategorie(titreDeLaCategorie);
-        setImgDuTutoriel2(imageDuTutoriel2);
-        setInfoDuTutoriel2(informationTutoriel2);
-        
-        //listesDeCategoirie = new ArrayList<>();
-        //listesDeCategoirie.add(this);
+    public Categorie(ArrayList<String> listeString, ArrayList<ImageIcon> listeImage){
+        this.lstString = listeString;
+        this.lstImage = listeImage;
     }
     
     //Accesseurs
-    public ImageIcon getImgDuTutoriel() {
-        return this.imgDuTutoriel;
+    public String getString(int index) {
+        return lstString.get(index);
     }
     
-    public ImageIcon getImgDuTutoriel2() {
-        return this.imgDuTutoriel2;
-    }
-
-    public String getInfoTutoriel() {
-        return this.infoTutoriel;
+    public ImageIcon getImage(int index){
+        return lstImage.get(index);
     }
     
-    public String getInfoTutoriel2() {
-        return this.infoTutoriel2;
-    }
-
-    public String getTitreCategorie() {
-        return this.titreCategorie;
+    public int getlstImageSize(){
+        return lstImage.size();
     }
     
-    public Object getCategorieListe(){
-        return this.listesDeCategoirie.indexOf(0);
-    }
-
-    //Muttateurs
-    public void setImgDuTutoriel(ImageIcon image) {
-        this.imgDuTutoriel = image;
-    }
-
-    public void setImgDuTutoriel2(ImageIcon image) {
-        this.imgDuTutoriel2 = image;
+    public int getLstStringSize(){
+        return lstString.size();
     }
     
-    public void setInfoDuTutoriel(String leString) {
-        this.infoTutoriel = leString;
+    //Muttateurs    
+    public void setString(int index, String leString) {
+        lstString.set(index, leString);
     }
     
-    public void setInfoDuTutoriel2(String leString) {
-        this.infoTutoriel2 = leString;
+    public void setImage(int index, ImageIcon unImage){
+        lstImage.set(index, unImage);
     }
-
-    public void setTitreCategorie(String leString) {
-        this.titreCategorie = leString;
-    }
-
+    
     //Methode specifique
-    public void clearListeCategorie(){
-        listesDeCategoirie.clear();
+    //Verifie si les listes sont vides
+    public boolean lstStringVide(){
+        boolean laListeEstVide = false;
+        if(lstString.isEmpty()){laListeEstVide = true;}
+        return laListeEstVide;
     }
     
+    public boolean lstImageVide(){
+        boolean laListeEstVide = false;
+        if(lstImage.isEmpty()){laListeEstVide = true;}
+        return laListeEstVide;
+    }
 }
