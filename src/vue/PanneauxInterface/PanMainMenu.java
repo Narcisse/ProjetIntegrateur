@@ -64,10 +64,8 @@ public class PanMainMenu extends JPanel{
         this.frame = uneFrame;
         // Construire les panneaux de remplissage
         panNorth = new JLabel();
-        panNorth.setBackground(Color.red);
         
         panWest = new JLabel();
-        panWest.setBackground(Color.red);
         
         GridBagConstraints cons = new GridBagConstraints();
         panCenter = new JPanel(new GridBagLayout());
@@ -90,10 +88,8 @@ public class PanMainMenu extends JPanel{
         panCenter.add(btnQuit, cons);
         
         panEast = new JLabel();
-        panEast.setBackground(Color.red);
         
         panSouth = new JLabel();
-        panSouth.setBackground(Color.red);
         // Construire le gridbagLayout x,y,wx,wy
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
