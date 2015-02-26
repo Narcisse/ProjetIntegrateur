@@ -18,6 +18,7 @@ public class Informateur {
     public static Image fondDecran = new ImageIcon("images\\fond.jpg").getImage();
     public static int largeurEcran = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int hauteurEcran = Toolkit.getDefaultToolkit().getScreenSize().height;
+    public static Color invisibilityCloak = new Color(0, 0, 0, 0);
     
     // Donnees utiles aux traitements
     private LocalTime leTemps;

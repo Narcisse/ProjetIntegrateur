@@ -14,6 +14,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -106,39 +108,42 @@ public class PanMainMenu extends JPanel{
         jouerEnBoucle();
     }
     public void initListeners(){
-        btnSingle.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+        btnSingle.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 arreter();
                 frame.dispose();
                 UnePartie partie = new UnePartie();
                 partie.setVisible(true);
             }
         });
-        btnTutoriel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+        btnTutoriel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 cLayout.show(getParent(), PanMenuPrincipal.CARTE_TUTORIEL);
             }
         });
-        btnCredits.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+        btnCredits.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 JOptionPane.showMessageDialog(null, "Affiche les crédits");
-
             }
         });
-        btnOptions.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+        btnOptions.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 cLayout.show(getParent(), PanMenuPrincipal.CARTE_OPTIONS_JEU);
             }
         });
-        btnQuit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+        btnQuit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 int option = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment quitter?", "Quitter?",
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                 if (option == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
-
             }
         });
     }
