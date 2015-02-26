@@ -66,6 +66,7 @@ public class MouvementVache extends JFrame implements Runnable {
          */
         vacheUltime = new VacheVue();
         // On doit définir manuellement les coordonnées du paysans
+        vacheUltime.setLocation(DonneesUtiles.largeurEcran/2 , DonneesUtiles.hauteurEcran/2);
         vaches.add(vacheUltime);
         this.setContentPane(vacheUltime);
     }

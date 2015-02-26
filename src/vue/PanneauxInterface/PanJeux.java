@@ -12,7 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import javafx.beans.binding.SetExpression;
+//import javafx.beans.binding.SetExpression; ca fait quoi ?!?
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
