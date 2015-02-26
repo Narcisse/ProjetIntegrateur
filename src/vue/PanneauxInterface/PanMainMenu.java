@@ -17,13 +17,13 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import vue.PanneauxInterface.PanMenuPrincipal;
 import vue.UnePartie;
+import vue.composants.Bouton;
 
 /**
  *
@@ -32,7 +32,7 @@ import vue.UnePartie;
 public class PanMainMenu extends JPanel{
     // *************************************************************************
     // Donnees membres
-    private JButton btnMulti, btnSingle, btnCredits, btnOptions, btnQuit, btnTutoriel;
+    private Bouton btnSingle, btnCredits, btnOptions, btnQuit, btnTutoriel;
     private Image img;
     private ImageIcon swap2;
     private Image swap;
@@ -71,11 +71,11 @@ public class PanMainMenu extends JPanel{
         panCenter = new JPanel(new GridBagLayout());
         panCenter.setBackground(Informateur.voileSombre);
         panCenter.setBorder(BorderFactory.createLineBorder(Color.darkGray, 5, true));
-        btnSingle = new JButton("Campagne");
-        btnCredits = new JButton("Crédits");
-        btnOptions = new JButton("Options");
-        btnQuit = new JButton("Quitter");
-        btnTutoriel = new JButton("Tutoriel");
+        btnSingle = new Bouton("Campagne");
+        btnCredits = new Bouton("Crédits");
+        btnOptions = new Bouton("Options");
+        btnQuit = new Bouton("Quitter");
+        btnTutoriel = new Bouton("Tutoriel");
         changerContrainte(cons, 0, 0, 1, 1);
         panCenter.add(btnSingle, cons);
         changerContrainte(cons, 0, 1, 1, 1);
