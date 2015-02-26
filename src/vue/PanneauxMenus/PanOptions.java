@@ -9,6 +9,7 @@ import controleur.DonneesUtiles;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 import vue.PanneauxInterface.PanMenuPrincipal;
 
 public class PanOptions extends PanElder {
@@ -24,27 +25,31 @@ public class PanOptions extends PanElder {
     public PanOptions(Image img, CardLayout cLayout) {
         super();
         Image swap = img.getScaledInstance(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran, Image.SCALE_SMOOTH);
-        ImageIcon swap2 = new ImageIcon(swap);
+        ImageIcon swap2 = new ImageIcon(swap); 
         this.img = swap;
         this.cLayout = cLayout;
-        initComponents();
-        initListeners();
+        initComponents(new Color(0,0,0,0));
+        initListeners();      
     }
-
+ 
     public PanOptions() {
         super();
-        initComponents();
+        cePanneau=this;
+        this.setSize(300, 300);
+        initComponents(null);
         initListeners();
+        Border noir = BorderFactory.createLineBorder(Color.black);
+        Border titre = BorderFactory.createTitledBorder(noir, "Options");
+        this.setBorder(titre);
+        this.revalidate();
     }
 
     // Methodes spécifiques
 
-    public void initComponents() {
-        this.setBackground(new Color(0, 0, 0, 0));
-        this.cePanneau = this;
+    public void initComponents(Color c) {
         // Panneau de 5 par 1 en gridLayout pour offrir une liste d'options
         panOptions = new JPanel(new GridLayout(5, 1, 10, 10));
-        panOptions.setBackground(new Color(0, 0, 0, 0));
+        panOptions.setBackground(c);
 
         bSon = new JButton("Son");
         bVideo = new JButton("Video");
@@ -100,5 +105,16 @@ public class PanOptions extends PanElder {
    
     public void paintComponent(Graphics g) {
         g.drawImage(img, 0, 0, null);
+    }
+    
+    
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.add(new PanOptions());
+        frame.setSize(300, 400);
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
     }
 }
