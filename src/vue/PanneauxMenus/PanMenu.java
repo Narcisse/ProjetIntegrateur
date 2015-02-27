@@ -27,7 +27,6 @@ public class PanMenu extends PanElder {
         this.cePanneau = this;
         initComponents();
         initListeners();
-        this.setSize(300,400);
     }
 
     // Methodes spécifiques
@@ -97,8 +96,6 @@ public class PanMenu extends PanElder {
         bOptions.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 MenuOpaque menu = new MenuOpaque(new PanOptions());
-                menu.revalidate();
-                
             }
         });
 

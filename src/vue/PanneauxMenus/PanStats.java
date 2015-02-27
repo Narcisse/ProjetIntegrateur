@@ -20,7 +20,6 @@ public class PanStats extends PanElder {
         super();
         initComponents();
         initListeners();
-        this.setSize(450, 250);
     }
 
     // Methodes spécifiques

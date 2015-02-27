@@ -20,7 +20,6 @@ public class PanGoal extends PanElder {
         super();
         initComponents();
         initListeners();
-        this.setSize(450, 250);
     }
     // Methodes Specifiques
 
