@@ -14,6 +14,7 @@ public abstract class UniteVue extends JLabel{
     private int nourritureNecessaire;
     private int positionX;
     private int positionY;
+    private boolean selectionner = false;
 
     // Constructeur
     public UniteVue() {
@@ -43,6 +44,10 @@ public abstract class UniteVue extends JLabel{
     public void setPositionY(int uneValeur) {
         this.positionY = uneValeur;
     }
+    public void setSelectionner(boolean selectionner){
+        this.selectionner = selectionner;
+    }
+    
 
     // Accesseurs
     public String getNom() {
@@ -66,5 +71,9 @@ public abstract class UniteVue extends JLabel{
     public int getPositionY() {
         return this.positionY;
     }
+    public boolean getSelectionner(){
+        return this.selectionner;
+    }
 
+    
 }
