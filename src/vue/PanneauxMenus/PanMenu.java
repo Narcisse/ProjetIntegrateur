@@ -21,8 +21,9 @@ public class PanMenu extends PanElder {
     private JPanel panMenu, panHaut, panMid, panBas;
     private JLabel labSpace;
     private JPanel cePanneau;
+    private JFrame uneFrame;
     
-    public PanMenu() {
+    public PanMenu(JFrame uneFrame) {
         super();
         this.cePanneau = this;
         initComponents();
@@ -134,6 +135,7 @@ public class PanMenu extends PanElder {
                     PanMenuPrincipal frame = new PanMenuPrincipal();
                     frame.setVisible(true);
                 }
+                uneFrame.dispose();
 
             }
         });
@@ -149,7 +151,7 @@ public class PanMenu extends PanElder {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.add(new PanMenu());
+        frame.add(new PanMenu(frame));
         frame.setSize(300, 400);
         frame.setVisible(true);
         frame.setResizable(false);
