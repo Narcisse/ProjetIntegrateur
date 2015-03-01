@@ -4,6 +4,7 @@ import controleur.DonneesUtiles;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import modele.Categorie;
 
@@ -17,7 +18,8 @@ import modele.Categorie;
 public class PanTutoriel extends JPanel {
 
     //Données membres
-    private JButton btnBut, btnMovement, btnRessources, btnRetour;
+    private JButton btnBut, btnRessources, btnMovement, btnBatiment, btnEnnemi,
+            btnRetour;
     private JPanel panTutoriel;
     private JFrame frame;
     private Categorie categorie;
@@ -27,60 +29,81 @@ public class PanTutoriel extends JPanel {
     //Constructeur
     public PanTutoriel(Image img, CardLayout cLayout) {
         super();
-        Image swap = img.getScaledInstance(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran, Image.SCALE_SMOOTH);
+        //Image de fond
+        Image swap = img.getScaledInstance(DonneesUtiles.largeurEcran,
+                DonneesUtiles.hauteurEcran, Image.SCALE_SMOOTH);
         ImageIcon swap2 = new ImageIcon(swap);
         this.img = swap;
+        //CardLayout
         this.cLayout = cLayout;
         this.setBackground(new Color(0, 0, 0, 0));
+        //Ajout des méthodes
         initComponents();
         initListener();
     }
 
     //initialisation des Données membres
     public void initComponents() {
-        panTutoriel = new JPanel(new GridLayout(4, 1, 10, 55));
+        panTutoriel = new JPanel(new GridLayout(6, 1, 10, 55));
         btnBut = new JButton("Objectif");
+        btnRessources = new JButton("Ressources");
         btnMovement = new JButton("Mouvement");
-        btnRessources = new JButton("Ressources/Unités");
+        btnBatiment = new JButton("Batiment");
+        btnEnnemi = new JButton("Ennemi");
         btnRetour = new JButton("Retour");
 
-        panTutoriel.add(btnBut);
-        panTutoriel.add(btnMovement);
-        panTutoriel.add(btnRessources);
-        panTutoriel.add(btnRetour);
-        panTutoriel.setBackground(new Color(0, 0, 0, 0));
-        add(panTutoriel);
+        this.add(btnBut);
+        this.add(btnRessources);
+        this.add(btnMovement);
+        this.add(btnBatiment);
+        this.add(btnEnnemi);
+        this.add(btnRetour);
+        this.setBackground(new Color(0, 0, 0, 0));
     }
 
     //initialisation des ActionListener
     public void initListener() {
         btnBut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-
-                //Ajoute un img afin de le passer en parametre du constructeur
-                ImageIcon img = new ImageIcon("images\\chat.jpg");
-                categorie = new Categorie(img, img, "chat chat", "gijsd;lgkhjsdlkghds", "gijsd;lgkhjsdlkghds");
-                //créer un panelCategorie avec l'objet créé
-                
+                cLayout.show(getParent(), PanMenuPrincipal.CARTE_OBJECTIF);
+                revalidate();
             }
         });
+
+        btnRessources.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe des ressources");
+            }
+        });
+
         btnMovement.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 JOptionPane.showMessageDialog(null, "Tutoriel décrivant comment se déplacer dans le jeu");
             }
         });
-        btnRessources.addActionListener(new ActionListener() {
+
+        btnBatiment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe de ressources et d'unité");
+                JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe des batiments");
             }
         });
+
+        btnEnnemi.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(null, "Tutoriel décrivant le principe des ennemis");
+            }
+        });
+
         btnRetour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 cLayout.show(getParent(), PanMenuPrincipal.CARTE_MENU_PRINCIPALE);
             }
         });
     }
+
+    //Ajout des composants graphiques
     public void paintComponent(Graphics g) {
+        //Ajout de l'image de fond
         g.drawImage(img, 0, 0, null);
     }
 }

@@ -6,8 +6,8 @@ package vue.PanneauxInterface;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
-import vue.ElementsVisuels.HotelDeVille;
-import vue.ElementsVisuels.Paysan;
+import vue.ElementsVisuels.HotelDeVilleVue;
+import vue.ElementsVisuels.PaysanVue;
 import vue.ecouteurs.EcouteurBoutonsHotelVille;
 import vue.ecouteurs.EcouteurBoutonsPaysan;
 
@@ -83,7 +83,7 @@ public class PanBoutonAction extends JPanel {
 
     //Main pour tester la class
     public static void main(String[] args) {
-        Paysan unPaysan = new Paysan();
+        PaysanVue unPaysan = new PaysanVue();
         EcouteurBoutonsPaysan ecoPaysan = new EcouteurBoutonsPaysan();
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

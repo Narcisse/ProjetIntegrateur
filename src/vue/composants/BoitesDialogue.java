@@ -1,5 +1,6 @@
 package vue.composants;
 
+import controleur.DonneesUtiles;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
@@ -15,6 +16,8 @@ public class BoitesDialogue extends JDialog{
         setTitle(unTitre);
         setContentPane(unPanneau);
         setSize(largeur, hauteur);
+        setUndecorated(true);
+        setBackground(DonneesUtiles.invisibilityCloak);
         setLocationRelativeTo(null);
         setVisible(true);
     }

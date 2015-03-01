@@ -2,9 +2,9 @@
  ce qui est sélectionné (le toString de l'élément sélectionné)*/
 package vue.PanneauxInterface;
 
-import vue.ElementsVisuels.ElementDecor;
-import vue.ElementsVisuels.Unite;
-import vue.ElementsVisuels.Batiment;
+import vue.ElementsVisuels.ElementDecorVue;
+import vue.ElementsVisuels.UniteVue;
+import vue.ElementsVisuels.BatimentVue;
 import modele.*;
 /**
  *
@@ -21,13 +21,13 @@ public class PanDescription extends JPanel {
     private int frameHauteur, frameLargeur;
     private GridBagConstraints constraints;
     private Font monFont;
-    private Unite unite;
-    private Batiment batiment;
-    private ElementDecor decor;
+    private UniteVue unite;
+    private BatimentVue batiment;
+    private ElementDecorVue decor;
     private String test;
 
     //Constructeur
-    public PanDescription(Unite uneUnite) {
+    public PanDescription(UniteVue uneUnite) {
         init();
         this.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
@@ -44,7 +44,7 @@ public class PanDescription extends JPanel {
         decor = null;
     }
 
-    public PanDescription(Batiment unBatiment) {
+    public PanDescription(BatimentVue unBatiment) {
         init();
         this.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
@@ -65,7 +65,7 @@ public class PanDescription extends JPanel {
         decor = null;
     }
 
-    public PanDescription(ElementDecor unDecor) {
+    public PanDescription(ElementDecorVue unDecor) {
         init();
         this.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
