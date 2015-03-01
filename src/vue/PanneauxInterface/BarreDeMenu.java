@@ -24,10 +24,9 @@ public class BarreDeMenu extends JPanel {
     private JPanel barreMenu, panRessources;
     private JLabel labBois, labOr, labNourriture;
     private ImageIcon imageOr1, imageOr4, imageBois1, imageBois4, imageNourriture1, imageNourriture4;
-    private JFrame uneFrame;
 
     //Constructeur
-    public BarreDeMenu(JFrame uneFrame) {
+    public BarreDeMenu() {
         super();
         setLayout(new BorderLayout());
         initComponents();
@@ -91,7 +90,7 @@ public class BarreDeMenu extends JPanel {
         //Écouteur pour le bouton Menu
         btnMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                MenuOpaque menu = new MenuOpaque(new PanMenu(uneFrame));
+                MenuOpaque menu = new MenuOpaque(new PanMenu());
             }
         });
 
@@ -136,10 +135,10 @@ public class BarreDeMenu extends JPanel {
         }
         public void keyReleased(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                MenuOpaque menu = new MenuOpaque(new PanMenu(uneFrame));
+                MenuOpaque menu = new MenuOpaque(new PanMenu());
             }
             if (e.getKeyCode() == KeyEvent.VK_P) {
-                MenuOpaque menu = new MenuOpaque(new PanMenu(uneFrame));
+                MenuOpaque menu = new MenuOpaque(new PanMenu());
             }
             if (e.getKeyCode() == KeyEvent.VK_F1) {
                 MenuOpaque menu = new MenuOpaque(new PanStats());
@@ -165,7 +164,7 @@ public class BarreDeMenu extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setSize(1200, 600);
-        frame.add(new BarreDeMenu(frame));
+        frame.add(new BarreDeMenu());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

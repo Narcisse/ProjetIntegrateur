@@ -51,7 +51,7 @@ public class UnePartie extends JFrame {
         curseur = tk.createCustomCursor(imageCurseur2, new Point(1, 1), "Pointeur");
         setCursor(curseur);
         
-        BarreDeMenu panStatut = new BarreDeMenu(this); //Ajoute une barre de menu à la fenêtre
+        BarreDeMenu panStatut = new BarreDeMenu(); //Ajoute une barre de menu à la fenêtre
         add(panStatut, BorderLayout.NORTH);
         PanJeux panJeux = new PanJeux(); //Importe la carte créée par la classe panJeu
         add(panJeux, BorderLayout.CENTER);
