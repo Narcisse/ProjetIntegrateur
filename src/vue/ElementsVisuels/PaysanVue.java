@@ -2,13 +2,14 @@ package vue.ElementsVisuels;
 
 import controleur.DonneesUtiles;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import vue.ecouteurs.SelectionListener;
 
 /**
  *
@@ -45,7 +46,7 @@ public class PaysanVue extends UniteVue {
         this.setBackground(DonneesUtiles.invisibilityCloak);
     }
     public void initListeners(){
-        EcouteurPaysan ecoPaysan = new EcouteurPaysan();
+        SelectionListener ecoPaysan = new SelectionListener(this);
         addMouseListener(ecoPaysan);
     }
     public String toString() {
@@ -75,12 +76,9 @@ public class PaysanVue extends UniteVue {
     //**************************************************************************
     // Mutateurs
     
+    
+    
     //**************************************************************************
     // Écouteurs
-    public class EcouteurPaysan extends MouseAdapter{
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            System.out.println("Touches moi pas!");
-        }        
-    }
+    
 }

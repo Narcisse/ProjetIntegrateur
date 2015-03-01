@@ -2,6 +2,7 @@ package vue.ecouteurs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import vue.ElementsVisuels.UniteVue;
 
 /**
@@ -9,51 +10,53 @@ import vue.ElementsVisuels.UniteVue;
  * @author Hubris
  */
 public class MovementListener implements KeyListener {
+
     // *************************************************************************
     // Donnees membres
-    private UniteVue patientZero;
     private int valeurDeplacement = 7;
+    private ArrayList<UniteVue> paysans;
+
     // *************************************************************************
     // Constructeurs
-    public MovementListener(UniteVue uneUnite){
-        this.patientZero = uneUnite;
+    public MovementListener(ArrayList<UniteVue> paysans) {
+        this.paysans = paysans;
     }
+
     
     // *************************************************************************
     // Écouteurs
     @Override
     public void keyPressed(KeyEvent e) {
-        // Test avec deux touches
-        if ((e.getModifiers() == KeyEvent.VK_DOWN) && (e.getKeyCode() == KeyEvent.VK_RIGHT)) {
-            patientZero.deplacement(valeurDeplacement, valeurDeplacement);
-            patientZero.repaint();
-        }
-        // Déplacement de un vers la droite
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT
-                || e.getKeyChar() == 'd') {
-            patientZero.deplacement(valeurDeplacement, 0);
-            patientZero.repaint();
-        }
-        // Déplacement de un vers la gauche
-        if (e.getKeyCode() == KeyEvent.VK_LEFT
-                || e.getKeyChar() == 'a') {
-            patientZero.deplacement(-valeurDeplacement, 0);
-            patientZero.repaint();
-        }
-        // Déplacement de un vers le haut
-        if (e.getKeyCode() == KeyEvent.VK_UP
-                || e.getKeyChar() == 'w') {
-            patientZero.deplacement(0, -valeurDeplacement);
-            patientZero.repaint();
-        }
-        // Déplacement de un vers le bas
-        if (e.getKeyCode() == KeyEvent.VK_DOWN
-                || e.getKeyChar() == 's') {
-            patientZero.deplacement(0, valeurDeplacement);
-            patientZero.repaint();
-        }
+        for (UniteVue u : paysans) {
+            if (u.getSelectionner() == true) {
+                // Déplacement de un vers la droite
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT
+                        || e.getKeyChar() == 'd') {
+                    u.deplacement(valeurDeplacement, 0);
+                    u.repaint();
+                }
+                // Déplacement de un vers la gauche
+                if (e.getKeyCode() == KeyEvent.VK_LEFT
+                        || e.getKeyChar() == 'a') {
+                    u.deplacement(-valeurDeplacement, 0);
+                    u.repaint();
+                }
+                // Déplacement de un vers le haut
+                if (e.getKeyCode() == KeyEvent.VK_UP
+                        || e.getKeyChar() == 'w') {
+                    u.deplacement(0, -valeurDeplacement);
+                    u.repaint();
+                }
+                // Déplacement de un vers le bas
+                if (e.getKeyCode() == KeyEvent.VK_DOWN
+                        || e.getKeyChar() == 's') {
+                    u.deplacement(0, valeurDeplacement);
+                    u.repaint();
+                }
             // Déplacements en diagonale
-        // à venir...
+                // à venir...
+            }
+        }
     }
 
     @Override

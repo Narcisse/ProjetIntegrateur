@@ -4,24 +4,26 @@
  train de jouer)*/
 package vue;
 
-import java.awt.*;
-import javax.swing.*;
+import vue.PanneauxInterface.BarreDeMenu;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import vue.ElementsVisuels.*;
-import vue.PanneauxInterface.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import vue.ElementsVisuels.PaysanVue;
+import vue.PanneauxInterface.PanBoutonAction;
+import vue.PanneauxInterface.PanDescription;
+import vue.PanneauxInterface.PanJeux;
 
 /**
  *
  * @author Christo
  */
 public class UnePartie extends JFrame {
-    //Donnes membre
-    //Curseur
-    private Toolkit tk = Toolkit.getDefaultToolkit();
-    private Cursor curseur;
-    private ImageIcon imageCurseur1;
-    
-    
+
     //Constructeur
     public UnePartie() {
         this.setTitle("Chantier en construction...");
@@ -44,13 +46,6 @@ public class UnePartie extends JFrame {
 
     //Initialisation
     public void initComponents() {
-        // Apparence du curseur
-        imageCurseur1 = new ImageIcon("images\\curseur.png");
-        Image imageCurseur2 = imageCurseur1.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
-        //Curseur
-        curseur = tk.createCustomCursor(imageCurseur2, new Point(1, 1), "Pointeur");
-        setCursor(curseur);
-        
         BarreDeMenu panStatut = new BarreDeMenu(); //Ajoute une barre de menu à la fenêtre
         add(panStatut, BorderLayout.NORTH);
         PanJeux panJeux = new PanJeux(); //Importe la carte créée par la classe panJeu

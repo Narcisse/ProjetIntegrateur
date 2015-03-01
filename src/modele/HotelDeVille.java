@@ -85,7 +85,7 @@ public class HotelDeVille extends Batiment {
         JOptionPane.showMessageDialog(null,
                 "Nom du bâtiment: " + unHotelDeVille.getNom() + "\n"
                 + "Bois necessaire: " + unHotelDeVille.getBoisNecessaire() + "\n"
-                + "Or necessaire: " + unHotelDeVille.getOrNecessaire() + "\n vie :" +unHotelDeVille.getVie()
+                + "Or necessaire: " + unHotelDeVille.getOrNecessaire() + "\n"
                 + "Fin du test..."
         );
     }
