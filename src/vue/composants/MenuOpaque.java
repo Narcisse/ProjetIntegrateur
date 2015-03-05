@@ -27,15 +27,16 @@ public class MenuOpaque extends JFrame {
     }
     
     public void initComponents(JPanel unPanneau){
-        JFrame frame=new JFrame();
-        frame.setSize(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran);
-        frame.setUndecorated(true);
-        frame.setLayout(new BorderLayout());
-        frame.setBackground(new Color(0f, 0f, 0f, 0.8f));
-        unPanneau.setBackground(new Color(0,0,0,0));
-        unPanneau.setOpaque(false);
-        frame.add(unPanneau);
-        frame.setVisible(true);
+       this.setSize(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran);
+        this.setUndecorated(true);
+        this.setLayout(null);
+        int panelX = ((this.getWidth() - unPanneau.getWidth() - this.getInsets().left - this.getInsets().right) / 2);
+        int panelY = ((this.getHeight() - unPanneau.getHeight() - this.getInsets().top - this.getInsets().bottom) / 2);
+        unPanneau.setBounds(panelX,panelY,unPanneau.getWidth(),unPanneau.getHeight());
+        this.setBackground(new Color(0f, 0f, 0f, 0.8f));
+        unPanneau.setBackground(new Color(0f, 0f, 0f, 0f));
+        this.add(unPanneau);
+        this.setVisible(true);
         
     }
     
