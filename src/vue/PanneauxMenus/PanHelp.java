@@ -26,6 +26,7 @@ public class PanHelp extends PanElder {
         super();
         initComponents();
         initListeners();
+        this.setSize(400, 250);
     }
 
     // Methodes spécifiques

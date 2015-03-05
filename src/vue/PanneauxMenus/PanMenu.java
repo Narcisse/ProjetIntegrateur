@@ -27,6 +27,7 @@ public class PanMenu extends PanElder {
         this.cePanneau = this;
         initComponents();
         initListeners();
+        this.setSize(300,400);
     }
 
     // Methodes spécifiques

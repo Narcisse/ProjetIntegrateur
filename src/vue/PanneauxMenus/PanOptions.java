@@ -35,6 +35,7 @@ public class PanOptions extends PanElder {
         super();
         initComponents();
         initListeners();
+        this.setSize(400, 250);
     }
 
     // Methodes spécifiques
