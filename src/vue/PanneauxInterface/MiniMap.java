@@ -16,7 +16,8 @@ public class MiniMap extends JPanel {
     private PanLog lesMessages;
     private PanMiniMap laMiniMapImage, laMiniMapText;
     private JPanel panel;
-
+    private JLabel labelImage;
+    
     public MiniMap() {
         super();
         panel = this;
@@ -24,16 +25,19 @@ public class MiniMap extends JPanel {
         initListeners();
     }
 
-    public void initComposant() {       
+    public void initComposant() {
         setFocusable(true);
         requestFocusInWindow();
-        imgLogo = new ImageIcon(new ImageIcon("images\\chat.jpg").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
+        this.setLayout(new GridLayout(1,1));
+        //imgLogo = new ImageIcon(new ImageIcon("images\\mini.jpg").getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_SMOOTH));
+        imgLogo = new ImageIcon("images\\mini.jpg");
+        labelImage = new JLabel();
+        labelImage.setIcon(imgLogo);
         lesMessages = new PanLog();
         //Constructeur avec l'image
         laMiniMapImage = new PanMiniMap(imgLogo.getImage());
-        //Constructeur avec le JTextArea
-        laMiniMapText = new PanMiniMap(lesMessages.getJTextAreaLog());
-        this.add(laMiniMapImage);
+        labelImage.add(laMiniMapImage);
+        this.add(labelImage);
     }
 
     public void initListeners() {

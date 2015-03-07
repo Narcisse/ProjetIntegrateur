@@ -16,6 +16,7 @@ public class PanMiniMap extends JPanel {
     private Image img_miniMap;
     private JTextArea txtArea_message;
     private int largeur, hauteur;
+    private JPanel panel;
 
     //Constructeur
     public PanMiniMap(Image uneImage) {
@@ -36,7 +37,7 @@ public class PanMiniMap extends JPanel {
         if (img_miniMap != null) {
             largeur = this.getWidth();
             hauteur = this.getHeight();
-            g.drawImage(img_miniMap, 0, 0, largeur, hauteur, this);
+            g.drawImage(img_miniMap, 0, 0,this);
         }
 
     }

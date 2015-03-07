@@ -5,6 +5,7 @@
  */
 package vue.ecouteurs;
 
+import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
@@ -18,13 +19,11 @@ public class MiniMapListener implements KeyListener  {
     
     private ImageIcon imgLogo;
     private JTextArea lesMessage;
-    private PanMiniMap laMiniMapImage, laMiniMapText;
+    private PanMiniMap laMiniMap;
     
     public MiniMapListener(ImageIcon img, JTextArea message){
         this.imgLogo=img;
         this.lesMessage = message;
-        //laMiniMapImage = new PanMiniMap(imgLogo.getImage());
-        laMiniMapText = new PanMiniMap(lesMessage);
     }
     
     @Override
@@ -38,12 +37,10 @@ public class MiniMapListener implements KeyListener  {
             JOptionPane.showMessageDialog(null, "L'image");
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyChar() == 'a') {
-            /*laMiniMapImage.removeAll();
-            laMiniMapImage.revalidate();
-            laMiniMapText = new PanMiniMap(lesMessage);
-            laMiniMapText.repaint();
-            laMiniMapText.revalidate();*/
-            JOptionPane.showMessageDialog(null, "Le texte");
+            laMiniMap.removeAll();
+            laMiniMap = new PanMiniMap(lesMessage);
+            laMiniMap.revalidate();
+            //laMiniMap.repaint();
         }
     }
 
