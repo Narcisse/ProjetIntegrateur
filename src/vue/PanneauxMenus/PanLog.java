@@ -20,7 +20,6 @@ public class PanLog extends PanElder {
         super();
         initComponents();
         initListeners();
-        this.setSize(450, 250);
     }
 
     // Methodes spécifiques
@@ -60,6 +59,11 @@ public class PanLog extends PanElder {
             }
         });
     }
+	
+	public JTextArea getJTextAreaLog(){
+        return textLog;
+    }
+	
     //MAIN POUR TESTER
     public static void main(String[] args) {
         JFrame frame = new JFrame();
