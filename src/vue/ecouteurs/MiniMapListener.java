@@ -30,11 +30,20 @@ public class MiniMapListener implements KeyListener  {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyChar() == 'd') {
+            /*laMiniMapText.removeAll();
+            laMiniMapText.revalidate();
             laMiniMapImage = new PanMiniMap(imgLogo.getImage());
             laMiniMapImage.repaint();
-            //laMiniMapText = new PanMiniMap(lesMessages.getJTextAreaLog());
-            //labelLog.add(laMiniMapImage);
-            //repaint();
+            laMiniMapImage.revalidate();*/
+            JOptionPane.showMessageDialog(null, "L'image");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyChar() == 'a') {
+            /*laMiniMapImage.removeAll();
+            laMiniMapImage.revalidate();
+            laMiniMapText = new PanMiniMap(lesMessage);
+            laMiniMapText.repaint();
+            laMiniMapText.revalidate();*/
+            JOptionPane.showMessageDialog(null, "Le texte");
         }
     }
 

@@ -1,7 +1,7 @@
 package vue.PanneauxInterface;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.GridLayout;
+import java.awt.Image;
 import javax.swing.*;
 import vue.PanneauxMenus.PanLog;
 import vue.ecouteurs.MiniMapListener;
@@ -19,31 +19,26 @@ public class MiniMap extends JPanel {
 
     public MiniMap() {
         super();
+        panel = this;
         initComposant();
         initListeners();
     }
 
-    public void initComposant() {
-        panel = this;
-        panel.setFocusable(true);
-        panel.requestFocusInWindow();
-        imgLogo = new ImageIcon("images\\mini.jpg");
+    public void initComposant() {       
+        setFocusable(true);
+        requestFocusInWindow();
+        imgLogo = new ImageIcon(new ImageIcon("images\\chat.jpg").getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH));
         lesMessages = new PanLog();
         //Constructeur avec l'image
         laMiniMapImage = new PanMiniMap(imgLogo.getImage());
         //Constructeur avec le JTextArea
         laMiniMapText = new PanMiniMap(lesMessages.getJTextAreaLog());
-        this.add(laMiniMapText);
+        this.add(laMiniMapImage);
     }
 
     public void initListeners() {
-        // Déclaration d'un écouteur pour les touches directionnelles
         MiniMapListener ecoMiniMap = new MiniMapListener(imgLogo, lesMessages.getJTextAreaLog());
-
-        // Ajout de l'écouteur au panneau de test
-        //panel.addKeyListener(ecoMiniMap);
-        this.addKeyListener(ecoMiniMap);
-
+        panel.addKeyListener(ecoMiniMap);
     }
 
     public static void main(String[] args) {
