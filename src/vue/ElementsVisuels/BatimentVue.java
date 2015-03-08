@@ -1,6 +1,6 @@
 package vue.ElementsVisuels;
 
-import javax.swing.JLabel;
+import javax.swing.*;
 
 /**
  *

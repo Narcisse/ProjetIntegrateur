@@ -1,5 +1,4 @@
-/*
- */
+
 package modele;
 
 import java.io.Serializable;

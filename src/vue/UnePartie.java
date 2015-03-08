@@ -4,19 +4,11 @@
  train de jouer)*/
 package vue;
 
-import vue.PanneauxInterface.BarreDeMenu;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import vue.ElementsVisuels.PaysanVue;
-import vue.PanneauxInterface.PanBoutonAction;
-import vue.PanneauxInterface.PanDescription;
-import vue.PanneauxInterface.PanJeux;
+import javax.swing.*;
+import vue.ElementsVisuels.*;
+import vue.PanneauxInterface.*;
 
 /**
  *
@@ -53,7 +45,7 @@ public class UnePartie extends JFrame {
         JPanel panJoueur = new JPanel(new GridLayout(1, 3));  // panneau du bas de l'écran contenant la mini-map, le panDescription et le panBoutonAction
         add(panJoueur, BorderLayout.SOUTH);
         // mini map
-        panJoueur.add(new JLabel(new ImageIcon("images\\mini.jpg")));
+        panJoueur.add(new MiniMap());
         // centre d'informations
         //exemple avec un paysan
         PaysanVue unPaysan = new PaysanVue();

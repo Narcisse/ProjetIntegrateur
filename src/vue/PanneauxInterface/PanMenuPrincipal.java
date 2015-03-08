@@ -5,18 +5,10 @@ package vue.PanneauxInterface;
  *
  */
 import controleur.DonneesUtiles;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Cursor;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
+import java.awt.*;
+
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import modele.Categorie;
 import vue.PanneauxMenus.PanOptions;
 import vue.UnePartie;

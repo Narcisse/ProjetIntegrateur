@@ -1,8 +1,8 @@
 package vue.PanneauxMenus;
 
 import java.awt.Window;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+
 
 /**
  *

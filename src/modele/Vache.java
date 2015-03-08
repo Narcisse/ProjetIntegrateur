@@ -1,8 +1,5 @@
 package modele;
 
-import modele.Ressource;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author Christo

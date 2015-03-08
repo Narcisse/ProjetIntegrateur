@@ -12,7 +12,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import vue.PanneauxInterface.PanMenuPrincipal;
-import vue.composants.BoitesDialogue;
 import vue.composants.MenuOpaque;
 
 public class PanMenu extends PanElder {

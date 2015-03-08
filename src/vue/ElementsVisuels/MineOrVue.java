@@ -1,8 +1,6 @@
 package vue.ElementsVisuels;
 
 import modele.Ressource;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author Christo

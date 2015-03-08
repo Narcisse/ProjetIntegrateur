@@ -9,10 +9,7 @@ package vue.PanneauxMenus;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-import java.io.*;
-import javax.swing.text.*;
-import javax.swing.GroupLayout.*;
+
 import javax.swing.border.*;
 
 public class PanHelp extends PanElder {

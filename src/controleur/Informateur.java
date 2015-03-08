@@ -1,7 +1,5 @@
 package controleur;
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;

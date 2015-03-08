@@ -7,11 +7,9 @@ package vue.PanneauxInterface;
  *
  */
 import controleur.DonneesUtiles;
-import vue.PanneauxMenus.PanGoal;
-import vue.PanneauxMenus.PanMenu;
-import vue.PanneauxMenus.PanStats;
-import vue.PanneauxMenus.PanLog;
+import vue.PanneauxMenus.*;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import vue.composants.BoitesDialogue;

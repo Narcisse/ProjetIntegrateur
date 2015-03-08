@@ -1,13 +1,9 @@
 package vue.ElementsVisuels;
 
 import controleur.DonneesUtiles;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import java.awt.*;
+import javax.swing.*;
 import modele.Ressource;
-import vue.ElementsVisuels.ElementDecorVue;
 
 /**
  *

@@ -8,15 +8,9 @@ package vue.PanneauxInterface;
 
 import controleur.DonneesUtiles;
 import java.awt.GridLayout;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 //import javafx.beans.binding.SetExpression; ca fait quoi ?!?
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class PanJeux extends JPanel {
 

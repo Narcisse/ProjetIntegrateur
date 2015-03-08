@@ -1,14 +1,9 @@
 package vue.ElementsVisuels;
 
 import controleur.DonneesUtiles;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.*;
 import vue.ecouteurs.SelectionListener;
 
 /**

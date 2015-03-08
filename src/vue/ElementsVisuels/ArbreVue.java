@@ -1,12 +1,8 @@
 package vue.ElementsVisuels;
 
 import modele.Ressource;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
