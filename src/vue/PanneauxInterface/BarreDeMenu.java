@@ -9,7 +9,6 @@ package vue.PanneauxInterface;
 import controleur.DonneesUtiles;
 import vue.PanneauxMenus.*;
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import vue.composants.BoitesDialogue;
