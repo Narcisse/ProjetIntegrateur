@@ -7,7 +7,10 @@ import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import org.newdawn.slick.SlickException;
 import vue.UnePartie;
 import vue.composants.Bouton;
 
@@ -98,7 +101,12 @@ public class PanMainMenu extends JPanel{
             public void mouseClicked(MouseEvent e) {
                 arreter();
                 frame.dispose();
-                UnePartie partie = new UnePartie();
+                UnePartie partie = null;
+                try {
+                    partie = new UnePartie();
+                } catch (SlickException ex) {
+                    Logger.getLogger(PanMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 partie.setVisible(true);
             }
         });

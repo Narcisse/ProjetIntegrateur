@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="14">
+ <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
+  <image source="../tiles/grass.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="19" name="mountains" tilewidth="32" tileheight="32">
+  <image source="../tiles/mountains.png" width="384" height="288"/>
+ </tileset>
+ <tileset firstgid="127" name="treetop" tilewidth="32" tileheight="32">
+  <image source="../tiles/treetop.png" width="192" height="224"/>
+ </tileset>
+ <tileset firstgid="169" name="trunk" tilewidth="32" tileheight="32">
+  <image source="../tiles/trunk.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="187" name="logic_tiles" tilewidth="32" tileheight="32">
+  <image source="../Colission/logic_tiles.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="212" name="cup" tilewidth="32" tileheight="32">
+  <image source="../tiles/cup.png" width="32" height="64"/>
+ </tileset>
+ <tileset firstgid="214" name="chests" tilewidth="32" tileheight="32">
+  <image source="../tiles/chests.png" width="64" height="96"/>
+ </tileset>
+ <layer name="gazon" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RsQ3AMAACQfeeI/uvmBlS8VIO6XoE95xzIeSJWO9Qsf7BH/4oW//gD3+UrX/whz/K1j/4wx9l6x/84Y+y9Q/+8EdZJesdKipZ71BRyXqHikrWO1RUst6hopL1DhWVrHeoqGS9Q0Ul6x0qKlnvUFHJeoeKStY7VFSy3qGikvUOFZWsd6ioZL3DH3zJuisAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKy9GkpZ5ECcAAA=
+  </data>
+ </layer>
+ <layer name="Montagnes" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VMU7DMBiG4RyjMFedgbl0ptwGLgYMwPVqtixRRKjx5+R5pF+dIjl9bWcYtm1X5iZkbiu/aw/2rRcwcmi9gAB6ZNEjS689XkazJj33GP+uRc89nI+6fD/ye/zs/9dhfedgSg891ngvTUnvsTV6ZNEjix5Z7srch8xD5XftwbHMY8icKr9rD/TIokcWPbLokUWPLHpk0SOLHln0yKJHFj2y6JFFjyx6XNdbmfcyHwuffypzrjhb6/FZ5qvMd+uFTPhNu+dGa0z31zPHMlP/+9yZm+ul5zJL77q559Lv0Bbs0Sz2KAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/hArXWzPxAnAAA
+  </data>
+ </layer>
+ <layer name="Echelles" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RsQmAUAxAQQd0AAdwAad1HS1sfmUj+sA7CCkTeNMEAAAAAAD/MH/9AIPl6wcY6NGiR4seLXq06NGiR4seLXq06NGiR4seLXq06NGix739pTvbOeu1AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAZx2QC8NkQJwAAA==
+  </data>
+ </layer>
+ <layer name="DevantPersoArbreBas" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VMQqAMAwF0Nz/JupQHNTrtUI7Cw6NwnsQMhU+bUoiAAAAAAAAAAAAgL9Yet9SUzCU3vfUFAxHq7PVlR0EJrr3whr2Asziz+V4e+9P57wnX2dGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHJVWTr6nECcAAA=
+  </data>
+ </layer>
+ <layer name="DevantPersoArbreHaut" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3WQQqDQAwFUG9uXdgu1ON4v4Z2OQwRREfb9+CvZhMiP9h1AAAAAAAAAAAAwF30kUdkaDwHX2PkGXm1HoSPKTJHltaD/Dh36FrcoWvZc4dq3co6p5PHqHUr61z27nuVtuyk1q2sc9m7G1pquRP/cqUtO1lPmgUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgH70BpAedr0CcAAA=
+  </data>
+ </layer>
+ <layer name="Interactions" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OQREAAAQAMP3z0cfbCeBhS7AIAOCTvA4w1HUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACApQGWfJDsQJwAAA==
+  </data>
+ </layer>
+ <layer name="logic" width="100" height="100" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Z0YqCUABF0fv/v2Qz/VoPvQwxElri7rY2SCAUHRcR2TLGWByp45sr7efR2s+jtZ9Ha/8Wj1m/b0p7tnr8fZyl0h6fj9aeGa/v1kr7//OY9XOwVmknj9bOb7rua5X282jt59Haz2P//Vf3d49p6/4jfxfz4FGLRyserXi04tGKRyserXi04nFOv+O+9fpwnsc5rd0f4nFOl3Hf+vNwnkcrHq14vL9XNhz9/8ee96Jj8n/U+zrjuvDYv//Z8/a8Lo9Ws3t82rbZPT4tHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tOLRikcrHq14tFocueMGQyYxvUCcAAA=
+  </data>
+ </layer>
+</map>

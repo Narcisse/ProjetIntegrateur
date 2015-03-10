@@ -42,7 +42,7 @@ public class PanMenuPrincipal extends JFrame {
     private PanMainMenu carteMenuPrincipal = new PanMainMenu(fondDecran, myCardLayout, this);
 
     // La campagne elle ouvrira une fenetre à part et fermera celle-ci
-    private UnePartie campagneSolo = new UnePartie();
+    //private UnePartie campagneSolo = new UnePartie();
 
     // Panneau multiJoueur (carte 3)
     // à venir

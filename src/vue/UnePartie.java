@@ -7,17 +7,18 @@ package vue;
 import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
-import vue.ElementsVisuels.*;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.SlickException;
 import vue.PanneauxInterface.*;
 
 /**
  *
  * @author Christo
  */
-public class UnePartie extends JFrame {
+public class UnePartie extends JFrame{
 
     //Constructeur
-    public UnePartie() {
+    public UnePartie() throws SlickException {
         this.setTitle("Chantier en construction...");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         int hauteurEcran = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -37,21 +38,10 @@ public class UnePartie extends JFrame {
     }
 
     //Initialisation
-    public void initComponents() {
-        BarreDeMenu panStatut = new BarreDeMenu(); //Ajoute une barre de menu à la fenêtre
-        add(panStatut, BorderLayout.NORTH);
-        PanJeux panJeux = new PanJeux(); //Importe la carte créée par la classe panJeu
-        add(panJeux, BorderLayout.CENTER);
-        JPanel panJoueur = new JPanel(new GridLayout(1, 3));  // panneau du bas de l'écran contenant la mini-map, le panDescription et le panBoutonAction
-        add(panJoueur, BorderLayout.SOUTH);
-        // mini map
-        panJoueur.add(new MiniMap());
-        // centre d'informations
-        //exemple avec un paysan
-        PaysanVue unPaysan = new PaysanVue();
-        panJoueur.add(new PanDescription(unPaysan)); //Création du panDescription figurant la description d'un paysan
-        // centre d'actions
-        panJoueur.add(new PanBoutonAction());
+    public void initComponents() throws SlickException {
+        AppGameContainer jeu = new AppGameContainer(new PlancheDeJeu());
+        jeu.setFullscreen(true);
+        jeu.start();
     }
 
     public void initListeners() {
@@ -59,7 +49,7 @@ public class UnePartie extends JFrame {
     }
 
     // Zone de test
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SlickException {
         UnePartie test = new UnePartie();
         test.setVisible(true);
     }
