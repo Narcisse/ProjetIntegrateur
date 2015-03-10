@@ -17,15 +17,17 @@ import javax.swing.JOptionPane;
 public class HotelDeVille extends Batiment {
 
     //Données
-    private String nom = "Hotel de Ville";
     public static final String BOUTON_HOTELVILLE_PAYSAN = "paysan";
     public static final String BOUTON_HOTELVILLE_CANCEL = "annuler";
     private ArrayList<JButton> btnHotel;
 
     //Constructeur
     public HotelDeVille(int vie, int boisNecessaire, int orNecessaire) {
-        //Importation des données du bâtiment
-        super(vie, boisNecessaire, orNecessaire);
+        //Défintion des donné de la classe mère
+        super.setNom("Hotel de Ville");
+        super.setVie(vie);
+        super.setBoisNecessaire(boisNecessaire);
+        super.setOrNecessaire(orNecessaire);
         // initialisation
         // composants graphiques
         
@@ -42,38 +44,18 @@ public class HotelDeVille extends Batiment {
     }
 
     //Accesseurs
-    public String getNom() {
-        return this.nom;
-    }
-
-    public int getVie() {
-        return super.getVie();
-    }
-
-    public int getBoisNecessaire() {
-        return super.getBoisNecessaire();
-    }
-
-    public int getOrNecessaire() {
-        return super.getOrNecessaire();
-    }
-
-
     public ArrayList<JButton> getBoutonsActions() {
         return this.btnHotel;
     }
 
-    //Mutateurs
-    public void setVie(int unMontant) {
-        super.setVie(unMontant);
-    }
-
-    public void setOrNecessaire(int unMontant) {
-        super.setOrNecessaire(unMontant);
-    }
-
 
     //Méthode
+    // Redefini la classe toString(), retourne une brève description de l'hotel de ville
+    public String toString() {
+        return ("Un batiment de base qui permet" + "\n"
+                + " la création d'unité de bases");
+    }
+    
     //Générer un paysan
     public void genererPaysan() {
         Paysan newPaysan = new Paysan();
