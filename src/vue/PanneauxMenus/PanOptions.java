@@ -9,6 +9,7 @@ import controleur.DonneesUtiles;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 import vue.PanneauxInterface.PanMenuPrincipal;
 
 public class PanOptions extends PanElder {
@@ -33,15 +34,33 @@ public class PanOptions extends PanElder {
 
     public PanOptions() {
         super();
-        initComponents();
-        initListeners();
+        this.cePanneau = this;
+        // Panneau de 5 par 1 en gridLayout pour offrir une liste d'options
+        panOptions = new JPanel(new GridLayout(5, 1, 10, 10));
+        Border noir = BorderFactory.createLineBorder(Color.black);
+        Border titre = BorderFactory.createTitledBorder(noir, "Options");
+        panOptions.setBorder(titre);
+
+        bSon = new JButton("Son");
+        bVideo = new JButton("Video");
+        bControl = new JButton("Jouabilite");
+        bOK = new JButton("OK");
+        labSpace = new JLabel("   ");
+
+        panOptions.add(bControl);
+        panOptions.add(bSon);
+        panOptions.add(bVideo);
+        panOptions.add(labSpace);
+        panOptions.add(bOK);
+
+        add(panOptions);
         this.setSize(400, 250);
+        initListeners();
     }
 
     // Methodes spécifiques
 
     public void initComponents() {
-        this.setBackground(new Color(0, 0, 0, 0));
         this.cePanneau = this;
         // Panneau de 5 par 1 en gridLayout pour offrir une liste d'options
         panOptions = new JPanel(new GridLayout(5, 1, 10, 10));

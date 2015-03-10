@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanJeux.java</file>
             <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanMenuPrincipal.java</file>
             <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PlancheDeJeu.java</file>
             <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/UnePartie.java</file>
             <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PanMainMenu.java</file>
+=======
+            <file>file:/C:/Users/Loic/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxMenus/PanLog.java</file>
+>>>>>>> origin/master
         </group>
     </open-files>
 </project-private>
