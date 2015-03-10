@@ -13,7 +13,6 @@ public class Paysan extends Unite {
 
     //**************************************************************************
     // Donnees membres
-    private final String nom = "Paysan";
     public static final String BOUTON_PAYSAN_ATTAQUER = "attaquer";
     public static final String BOUTON_PAYSAN_ARRETER = "Arreter";
     public static final String BOUTON_PAYSAN_RECOLTER = "Recolter";
@@ -21,8 +20,8 @@ public class Paysan extends Unite {
     //**************************************************************************
     // Constructeur
     public Paysan() {
-        super();
-		initComponents();
+        super.setNom("Paysan");
+        initComponents();
     }
 
     //**************************************************************************
@@ -36,9 +35,9 @@ public class Paysan extends Unite {
 	
     // Initialisation des données
     public void initComponents() {
-		setVie(100);
-        setDps(10);
-        setOrNecessaire(50);
-        setNourritureNecessaire(5);
+	super.setVie(100);
+        super.setDps(10);
+        super.setOrNecessaire(50);
+        super.setNourritureNecessaire(5);
     }
 }
