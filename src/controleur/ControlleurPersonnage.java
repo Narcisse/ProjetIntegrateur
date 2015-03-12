@@ -2,6 +2,7 @@ package controleur;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
+//import org.newdawn.slick.MouseListener;
 import vue.Jeu.Joueur;
 
 /**

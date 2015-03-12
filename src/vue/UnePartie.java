@@ -4,6 +4,7 @@
  train de jouer)*/
 package vue;
 
+import controleur.Informateur;
 import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
@@ -40,7 +41,7 @@ public class UnePartie extends JFrame{
     //Initialisation
     public void initComponents() throws SlickException {
         AppGameContainer jeu = new AppGameContainer(new PlancheDeJeu());
-        jeu.setFullscreen(true);
+        jeu.setDisplayMode(Informateur.largeurEcran, Informateur.hauteurEcran, true);
         jeu.start();
     }
 

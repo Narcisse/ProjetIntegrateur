@@ -17,6 +17,8 @@ public class Informateur {
     public static int largeurEcran = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int hauteurEcran = Toolkit.getDefaultToolkit().getScreenSize().height;
     public static Color invisibilityCloak = new Color(0, 0, 0, 0);
+    public static int positionCurseurX = MouseInfo.getPointerInfo().getLocation().x;
+    public static int positionCurseurY = MouseInfo.getPointerInfo().getLocation().y;
     
     // Donnees utiles aux traitements
     private LocalTime leTemps;
