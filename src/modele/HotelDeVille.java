@@ -22,12 +22,7 @@ public class HotelDeVille extends Batiment {
     private ArrayList<JButton> btnHotel;
 
     //Constructeur
-    public HotelDeVille(int vie, int boisNecessaire, int orNecessaire) {
-        //Défintion des donné de la classe mère
-        super.setNom("Hotel de Ville");
-        super.setVie(vie);
-        super.setBoisNecessaire(boisNecessaire);
-        super.setOrNecessaire(orNecessaire);
+    public HotelDeVille() {
         // initialisation
         // composants graphiques
         
@@ -63,12 +58,6 @@ public class HotelDeVille extends Batiment {
 
     //Test 
     public static void main(String[] args) {
-        HotelDeVille unHotelDeVille = new HotelDeVille(50, 100, 20);
-        JOptionPane.showMessageDialog(null,
-                "Nom du bâtiment: " + unHotelDeVille.getNom() + "\n"
-                + "Bois necessaire: " + unHotelDeVille.getBoisNecessaire() + "\n"
-                + "Or necessaire: " + unHotelDeVille.getOrNecessaire() + "\n"
-                + "Fin du test..."
-        );
+        HotelDeVille unHotelDeVille = new HotelDeVille();
     }
 }

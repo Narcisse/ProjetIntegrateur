@@ -11,7 +11,7 @@ public abstract class Batiment extends Element{
     //L'attribut boisNecessaire définit le nombre necessaire de bois pour construir le batiment
     private int boisNecessaire;
     // Constructeur
-    public Batiment(int vie, int bois, int or){
+    public Batiment(){
         
     }
 

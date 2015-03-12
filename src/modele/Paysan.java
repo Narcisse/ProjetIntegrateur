@@ -20,7 +20,6 @@ public class Paysan extends Unite {
     //**************************************************************************
     // Constructeur
     public Paysan() {
-        super.setNom("Paysan");
         initComponents();
     }
 
@@ -35,9 +34,7 @@ public class Paysan extends Unite {
 	
     // Initialisation des données
     public void initComponents() {
-	super.setVie(100);
         super.setDps(10);
-        super.setOrNecessaire(50);
         super.setNourritureNecessaire(5);
     }
 }
