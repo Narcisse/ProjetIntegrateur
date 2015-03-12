@@ -24,7 +24,13 @@ public class HotelDeVille extends Batiment {
     //Constructeur
     public HotelDeVille() {
         // initialisation
-        // composants graphiques
+        /*La classe hotel de ville appelle la classe batiment qui
+         *elle même appelle la classe Element où se trouve l'attribut nom, vie, orNecessaire.
+         *L'attribut boisNecessaire se trouve dans la classe Batiment.*/
+        super.setNom("Hotel de Ville");
+        super.setVie(50);
+        super.setBoisNecessaire(100);
+        super.setOrNecessaire(20);
         
         //Bouton paysan doit genererPaysan()
         btnHotel = new ArrayList<>();
