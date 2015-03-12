@@ -20,6 +20,7 @@ public class Paysan extends Unite {
     //**************************************************************************
     // Constructeur
     public Paysan() {
+        //Initialisation des attributs du paysant
         initComponents();
     }
 
@@ -34,7 +35,12 @@ public class Paysan extends Unite {
 	
     // Initialisation des données
     public void initComponents() {
+        /*Les attributs dps nourritureNecessaire sont initialiser dans la classe Unite. 
+         *Les attributs nom, vie, orNecessaire et */
+        super.setNom("Paysant");
+        super.setVie(50);
+        super.setOrNecessaire(5);
         super.setDps(10);
-        super.setNourritureNecessaire(5);
+        super.setNourritureNecessaire(10);
     }
 }
