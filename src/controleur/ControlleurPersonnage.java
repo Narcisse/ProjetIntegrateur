@@ -9,39 +9,42 @@ import vue.Jeu.Joueur;
  *
  * @author Christopher Desrosiers Mondor
  */
-public class ControlleurPersonnage implements KeyListener{
+public class ControlleurPersonnage implements KeyListener {
+
     // *************************************************************************
     // Donnee membres
+
     private Joueur personnage;
-    
+
     // *************************************************************************
     // Constructeur
-    public ControlleurPersonnage(Joueur unJoueur){
+    public ControlleurPersonnage(Joueur unJoueur) {
         this.personnage = unJoueur;
     }
-    
+
     // *************************************************************************
     // Methodes implementes
-
     @Override
     public void keyPressed(int key, char c) {
-        switch (key) {
-            case Input.KEY_UP:
-                this.personnage.setDirection(0);
-                this.personnage.setMoving(true);
-                break;
-            case Input.KEY_LEFT:
-                this.personnage.setDirection(1);
-                this.personnage.setMoving(true);
-                break;
-            case Input.KEY_DOWN:
-                this.personnage.setDirection(2);
-                this.personnage.setMoving(true);
-                break;
-            case Input.KEY_RIGHT:
-                this.personnage.setDirection(3);
-                this.personnage.setMoving(true);
-                break;
+        if (personnage.isSelected()) {
+            switch (key) {
+                case Input.KEY_UP:
+                    this.personnage.setDirection(0);
+                    this.personnage.setMoving(true);
+                    break;
+                case Input.KEY_LEFT:
+                    this.personnage.setDirection(1);
+                    this.personnage.setMoving(true);
+                    break;
+                case Input.KEY_DOWN:
+                    this.personnage.setDirection(2);
+                    this.personnage.setMoving(true);
+                    break;
+                case Input.KEY_RIGHT:
+                    this.personnage.setDirection(3);
+                    this.personnage.setMoving(true);
+                    break;
+            }
         }
     }
 
@@ -52,7 +55,7 @@ public class ControlleurPersonnage implements KeyListener{
 
     @Override
     public void setInput(Input input) {
-        
+
     }
 
     @Override
@@ -62,11 +65,11 @@ public class ControlleurPersonnage implements KeyListener{
 
     @Override
     public void inputEnded() {
-        
+
     }
 
     @Override
     public void inputStarted() {
-        
+
     }
 }

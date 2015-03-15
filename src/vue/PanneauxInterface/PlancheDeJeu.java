@@ -2,16 +2,15 @@ package vue.PanneauxInterface;
 
 import controleur.Camera;
 import controleur.ControlleurPersonnage;
-import controleur.Informateur;
-import java.awt.MouseInfo;
+import javax.swing.JOptionPane;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
 
@@ -19,11 +18,10 @@ import vue.Jeu.Joueur;
  *
  * @author Christopher Desrosiers Mondor
  */
-public class PlancheDeJeu extends BasicGame{
+public class PlancheDeJeu extends BasicGame {
 
     // *************************************************************************
     // Donnees membres
-
     private GameContainer container;
     private Carte cartePrincipale;
     // Personnage
@@ -32,10 +30,13 @@ public class PlancheDeJeu extends BasicGame{
     ControlleurPersonnage ecoPerso;
     // Camera
     private Camera camera;
-    // Curseur rect
-    Rectangle rect;
+    // Curseur
+    int xCurseur = -1000;
+    int yCurseur = -1000;
+
     // *************************************************************************
     // Constructeur
+
     public PlancheDeJeu() {
         super("WindowGame");
         cartePrincipale = new Carte();
@@ -49,11 +50,13 @@ public class PlancheDeJeu extends BasicGame{
     public void init(GameContainer container) throws SlickException {
         // Jeu et carte
         this.container = container;
-        Image curseur = new Image("images/curseur.png", true);
-        this.container.setMouseCursor(curseur, 0, 0);
+        //Image curseur = new Image("images/curseur.png", true);
+        //this.container.setMouseCursor(curseur, 0, 0);
         this.cartePrincipale.init();
         // Personnage
         this.personnage.init();
+        this.personnage.setX(container.getWidth()/2);
+        this.personnage.setY(container.getHeight()/2);
         // Ecouteur
         container.getInput().addKeyListener(ecoPerso);
     }
@@ -62,34 +65,48 @@ public class PlancheDeJeu extends BasicGame{
         this.camera.place(container, g);
         this.cartePrincipale.renderArrierePlan();
         this.personnage.render(g);
-        g.setColor(Color.yellow);
-        rect = new Rectangle(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y, 20, 20);
-        g.drawRect(rect.getX(), rect.getY() , 20, 20);
         this.cartePrincipale.renderAvantPlan();
     }
 
     public void update(GameContainer container, int delta) throws SlickException {
         this.personnage.update(delta);
         this.camera.update(container);
+
+        Input input = container.getInput();
         
-        int w = container.getWidth() / 4;
-        if (this.personnage.getX() > rect.getX() + w) {
-            rect.setX(this.personnage.getX() - w);
-        } else if (this.personnage.getX() < rect.getX() - w) {
-            rect.setX(this.personnage.getX() + w);
+        // La camera est toujours au centre de l'ecran et donc en ajoutant son
+        // x - la moitier de l'ecran on arrive a fixer la position en x de la
+        // souris lors de la mise a jour de la camera.
+        xCurseur = (int) (input.getMouseX() + (camera.getX() - container.getWidth()/2));
+        yCurseur = (int) (input.getMouseY() + (camera.getY() - container.getHeight()/2));
+
+        int x = (int) personnage.getX();
+        int y = (int) personnage.getY();
+
+        int x2 = x - 32;
+        int y2 = y - 56;
+
+        if (input.isMousePressed(0)) {
+            /*
+            System.out.println("x2: " + x2);
+            System.out.println("y2: " + y2);
+            System.out.println("xCurseur: " + xCurseur);
+            System.out.println("yCurseur: " + yCurseur);
+            System.out.println("xCamera: " + camera.getX());
+            System.out.println("yCamera: " + camera.getY());
+            System.out.println("Container width: " + container.getWidth());
+            System.out.println("Container height " + container.getHeight());
+            */
+            // Condition sur le curseur s'il est sur le personnage
+            if ((xCurseur >= x2 && xCurseur <= (x2 + 64)) && (yCurseur >= y2 && yCurseur <= (y2+64))) {
+                personnage.selection();
+            }
         }
-        int h = container.getHeight() / 4;
-        if (this.personnage.getY() > rect.getY() + h) {
-            rect.setY(this.personnage.getY() - h);
-        } else if (this.personnage.getY() < rect.getY() - h) {
-            rect.setY(this.personnage.getY() - h);
-        }
+
     }
 
     // *************************************************************************
     // Ecouteurs
-
-    // *************************************************************************
     // Main
     public static void main(String[] args) throws SlickException {
         new AppGameContainer(new PlancheDeJeu(), 800, 800, false).start();

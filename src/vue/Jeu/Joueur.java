@@ -1,10 +1,9 @@
 package vue.Jeu;
 
-import java.awt.Rectangle;
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
@@ -22,6 +21,8 @@ public class Joueur {
     private boolean moving = false;
     private Animation[] animations = new Animation[8];
     private boolean onStair = false;
+    private boolean isSelected = true;
+    private Rectangle rectInteraction;
     private Carte carte;
 
     // *************************************************************************
@@ -43,6 +44,9 @@ public class Joueur {
         this.animations[5] = loadAnimation(spriteSheet, 1, 9, 1);
         this.animations[6] = loadAnimation(spriteSheet, 1, 9, 2);
         this.animations[7] = loadAnimation(spriteSheet, 1, 9, 3);
+        this.rectInteraction = new Rectangle();
+        this.rectInteraction.setHeight(64);
+        this.rectInteraction.setWidth(64);
     }
 
     private Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
@@ -57,10 +61,25 @@ public class Joueur {
     // Affichage
     public void render(Graphics g) throws SlickException {
         g.setColor(new Color(0, 0, 0, .5f));
+        rectInteraction.setX((int)this.x -32);
+        rectInteraction.setY((int)this.y -56);
+        if(isSelected){
+            g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
+        }
         g.fillOval(x - 16, y - 8, 32, 16);
         g.drawAnimation(animations[direction + (moving ? 4 : 0)], x - 32, y - 60);
     }
-
+    
+    // *************************************************************************
+    // Methodes specifiques
+    public void selection(){
+        if(isSelected){
+            isSelected = false;
+        } else{
+            isSelected = true;
+        }
+    }
+    
     // *************************************************************************
     // Methodes de mise a jour
     public void update(int delta) {
@@ -150,8 +169,16 @@ public class Joueur {
     public boolean isOnStair() {
         return onStair;
     }
+    
+    public boolean isSelected(){
+        return this.isSelected;
+    }
 
     public void setOnStair(boolean onStair) {
         this.onStair = onStair;
+    }
+    
+    public Rectangle getRectangle(){
+        return this.rectInteraction;
     }
 }
