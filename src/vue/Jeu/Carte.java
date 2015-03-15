@@ -1,5 +1,6 @@
 package vue.Jeu;
 
+import org.lwjgl.util.Dimension;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -13,7 +14,6 @@ public class Carte {
 
     // *************************************************************************
     // Donnees membres
-
     private TiledMap carte;
 
     // *************************************************************************
@@ -36,8 +36,22 @@ public class Carte {
         this.carte.render(0, 0, 4);
     }
 
+    public Dimension getMapDimension() {
+        int mapWidth = carte.getWidth();
+        int mapHeight = carte.getHeight();
+        
+        int tileWidth = carte.getTileWidth();
+        int tileHeight = carte.getTileHeight();
+        
+        int mapPixelWidth = mapWidth * tileWidth;
+        int mapPixelHeight = mapHeight * tileHeight;
+        
+        return new Dimension(mapPixelWidth, mapPixelHeight);
+    }
+
     // *************************************************************************
     // Colisions
+
     public boolean isCollision(float x, float y) {
         int tileW = this.carte.getTileWidth();
         int tileH = this.carte.getTileHeight();
@@ -80,7 +94,7 @@ public class Carte {
     public String getObjectProperty(int objectID, String propertyName, String def) {
         return this.carte.getObjectProperty(0, objectID, propertyName, def);
     }
-    
+
     // *************************************************************************
     // Methode de changement de map (utiliser pour la teleportation)
     public void changeMap(String file) throws SlickException {

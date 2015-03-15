@@ -2,6 +2,7 @@ package controleur;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
 
 /**
@@ -13,12 +14,14 @@ public class Camera {
     // *************************************************************************
     // Donnee membre
     private Joueur personnage;
+    private Carte cartePrincipale;
     private float xCamera, yCamera;
 
     // *************************************************************************
     // Constructeur
-    public Camera(Joueur unJoueur) {
+    public Camera(Joueur unJoueur, Carte uneCarte) {
         this.personnage = unJoueur;
+        this.cartePrincipale = uneCarte;
         this.xCamera = personnage.getX();
         this.yCamera = personnage.getY();
     }
@@ -53,15 +56,14 @@ public class Camera {
         if (yCamera - container.getHeight()/2 <0){
             yCamera = container.getHeight()/2;
         }
-        if (xCamera + container.getWidth()/2 > 3200){
+        if (xCamera + container.getWidth()/2 > cartePrincipale.getMapDimension().getWidth()){
             xCamera = 3200 - container.getWidth()/2;
         }
-        if (yCamera + container.getHeight()/2 > 3200){
+        if (yCamera + container.getHeight()/2 > cartePrincipale.getMapDimension().getHeight()){
             yCamera = 3200 - container.getHeight()/2;
         }
         
     }
-    
     public float getX(){
         return xCamera;
     }

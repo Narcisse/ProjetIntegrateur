@@ -36,17 +36,16 @@ public class PlancheDeJeu extends BasicGame {
 
     // *************************************************************************
     // Constructeur
-
     public PlancheDeJeu() {
         super("WindowGame");
         cartePrincipale = new Carte();
         personnage = new Joueur(cartePrincipale);
         ecoPerso = new ControlleurPersonnage(personnage);
-        camera = new Camera(personnage);
+        camera = new Camera(personnage, cartePrincipale);
     }
 
     // *************************************************************************
-    // Constructeur
+    // Methodes specifiques
     public void init(GameContainer container) throws SlickException {
         // Jeu et carte
         this.container = container;
@@ -55,8 +54,8 @@ public class PlancheDeJeu extends BasicGame {
         this.cartePrincipale.init();
         // Personnage
         this.personnage.init();
-        this.personnage.setX(container.getWidth()/2);
-        this.personnage.setY(container.getHeight()/2);
+        this.personnage.setX(container.getWidth() / 2);
+        this.personnage.setY(container.getHeight() / 2);
         // Ecouteur
         container.getInput().addKeyListener(ecoPerso);
     }
@@ -73,12 +72,12 @@ public class PlancheDeJeu extends BasicGame {
         this.camera.update(container);
 
         Input input = container.getInput();
-        
+
         // La camera est toujours au centre de l'ecran et donc en ajoutant son
         // x - la moitier de l'ecran on arrive a fixer la position en x de la
         // souris lors de la mise a jour de la camera.
-        xCurseur = (int) (input.getMouseX() + (camera.getX() - container.getWidth()/2));
-        yCurseur = (int) (input.getMouseY() + (camera.getY() - container.getHeight()/2));
+        xCurseur = (int) (input.getMouseX() + (camera.getX() - container.getWidth() / 2));
+        yCurseur = (int) (input.getMouseY() + (camera.getY() - container.getHeight() / 2));
 
         int x = (int) personnage.getX();
         int y = (int) personnage.getY();
@@ -87,27 +86,31 @@ public class PlancheDeJeu extends BasicGame {
         int y2 = y - 56;
 
         if (input.isMousePressed(0)) {
-            /*
-            System.out.println("x2: " + x2);
-            System.out.println("y2: " + y2);
-            System.out.println("xCurseur: " + xCurseur);
-            System.out.println("yCurseur: " + yCurseur);
-            System.out.println("xCamera: " + camera.getX());
-            System.out.println("yCamera: " + camera.getY());
-            System.out.println("Container width: " + container.getWidth());
-            System.out.println("Container height " + container.getHeight());
-            */
+            // testLog();
             // Condition sur le curseur s'il est sur le personnage
-            if ((xCurseur >= x2 && xCurseur <= (x2 + 64)) && (yCurseur >= y2 && yCurseur <= (y2+64))) {
+            if ((xCurseur >= x2 && xCurseur <= (x2 + 64)) && (yCurseur >= y2 && yCurseur <= (y2 + 64))) {
                 personnage.selection();
             }
         }
 
     }
 
+    public void testLog() {
+        System.out.println("x2: " + ((int)personnage.getX()-32));
+        System.out.println("y2: " + ((int)personnage.getY()-56));
+        System.out.println("xCurseur: " + xCurseur);
+        System.out.println("yCurseur: " + yCurseur);
+        System.out.println("xCamera: " + camera.getX());
+        System.out.println("yCamera: " + camera.getY());
+        System.out.println("Container width: " + container.getWidth());
+        System.out.println("Container height " + container.getHeight());
+        System.out.println("Map width " + this.cartePrincipale.getMapDimension().getWidth());
+        System.out.println("Map height " + this.cartePrincipale.getMapDimension().getHeight());
+    }
+
     // *************************************************************************
-    // Ecouteurs
     // Main
+
     public static void main(String[] args) throws SlickException {
         new AppGameContainer(new PlancheDeJeu(), 800, 800, false).start();
     }
