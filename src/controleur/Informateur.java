@@ -1,7 +1,7 @@
 package controleur;
 import java.awt.*;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
+//import java.time.*;
+//import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
 /*
 *	Christo
@@ -21,10 +21,10 @@ public class Informateur {
     public static int positionCurseurY = MouseInfo.getPointerInfo().getLocation().y;
     
     // Donnees utiles aux traitements
-    private LocalTime leTemps;
-    private LocalDate laDate;
+    //private LocalTime leTemps;
+    //private LocalDate laDate;
     
-    
+   /* 
     //**************************************************************************
     // Methodes specifiques a l'informateur
     public String donneHeure(){
@@ -37,6 +37,6 @@ public class Informateur {
         String date = laDate.format(DateTimeFormatter.ofPattern("d MMM uuuu"));
         return date;
     }
-    
+    */
     
 }

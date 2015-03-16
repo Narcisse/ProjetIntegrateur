@@ -11,6 +11,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
 
@@ -34,13 +35,15 @@ public class PlancheDeJeu extends BasicGame {
     int xCurseur = -1000;
     int yCurseur = -1000;
 
+    private Rectangle rect;
+
     // *************************************************************************
     // Constructeur
     public PlancheDeJeu() {
         super("WindowGame");
         cartePrincipale = new Carte();
         personnage = new Joueur(cartePrincipale);
-        ecoPerso = new ControlleurPersonnage(personnage);
+
         camera = new Camera(personnage, cartePrincipale);
     }
 
@@ -57,7 +60,9 @@ public class PlancheDeJeu extends BasicGame {
         this.personnage.setX(container.getWidth() / 2);
         this.personnage.setY(container.getHeight() / 2);
         // Ecouteur
+        ecoPerso = new ControlleurPersonnage(personnage, container);
         container.getInput().addKeyListener(ecoPerso);
+        container.getInput().addMouseListener(ecoPerso);
     }
 
     public void render(GameContainer container, Graphics g) throws SlickException {
@@ -65,6 +70,9 @@ public class PlancheDeJeu extends BasicGame {
         this.cartePrincipale.renderArrierePlan();
         this.personnage.render(g);
         this.cartePrincipale.renderAvantPlan();
+        if (rect != null) {
+            g.drawRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+        }
     }
 
     public void update(GameContainer container, int delta) throws SlickException {
@@ -91,16 +99,17 @@ public class PlancheDeJeu extends BasicGame {
             if ((xCurseur >= x2 && xCurseur <= (x2 + 64)) && (yCurseur >= y2 && yCurseur <= (y2 + 64))) {
                 personnage.selection();
             }
-        } if (input.isMouseButtonDown(1)) {
-           personnage.setMoving(true);
-           personnage.update(1);
         }
+    }
 
+    public void mouseDragged(int oldx, int oldy, int newx, int newy){
+        Input input = container.getInput();
+        rect = new Rectangle(oldx, oldy, newx - oldx, newy - oldy);
     }
 
     public void testLog() {
-        System.out.println("x2: " + ((int)personnage.getX()-32));
-        System.out.println("y2: " + ((int)personnage.getY()-56));
+        System.out.println("x2: " + ((int) personnage.getX() - 32));
+        System.out.println("y2: " + ((int) personnage.getY() - 56));
         System.out.println("xCurseur: " + xCurseur);
         System.out.println("yCurseur: " + yCurseur);
         System.out.println("xCamera: " + camera.getX());
@@ -113,7 +122,6 @@ public class PlancheDeJeu extends BasicGame {
 
     // *************************************************************************
     // Main
-
     public static void main(String[] args) throws SlickException {
         new AppGameContainer(new PlancheDeJeu(), 800, 800, false).start();
     }
