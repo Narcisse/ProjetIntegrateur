@@ -91,6 +91,9 @@ public class PlancheDeJeu extends BasicGame {
             if ((xCurseur >= x2 && xCurseur <= (x2 + 64)) && (yCurseur >= y2 && yCurseur <= (y2 + 64))) {
                 personnage.selection();
             }
+        } if (input.isMouseButtonDown(1)) {
+           personnage.setMoving(true);
+           personnage.update(1);
         }
 
     }
