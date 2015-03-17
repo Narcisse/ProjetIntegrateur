@@ -22,7 +22,7 @@ public class Joueur {
     private boolean moving = false;
     private Animation[] animations = new Animation[8];
     private boolean onStair = false;
-    private boolean isSelected = true;
+    private boolean isSelected = false;
     private Rectangle rectInteraction;
     private Carte carte;
 
@@ -70,17 +70,14 @@ public class Joueur {
         g.fillOval(x - 16, y - 8, 32, 16);
         g.drawAnimation(animations[direction + (moving ? 4 : 0)], x - 32, y - 60);
     }
-    
+
     // *************************************************************************
     // Methodes specifiques
-    public void selection() {
-        if (isSelected) {
-            isSelected = false;
-        } else {
-            isSelected = true;
-        }
+    public boolean selection(boolean laValeur) {
+        isSelected = laValeur;
+        return isSelected;
     }
-    
+
     // *************************************************************************
     // Methodes de mise a jour
     public void update(int delta) {
@@ -95,17 +92,17 @@ public class Joueur {
                     this.x += 1;
                 } else {
                     this.x -= 1;
-            }
+                }
 
                 if (y >= yDest) {
                     this.y -= 1;
                 } else {
                     this.y += 1;
-        }
-                
-                if (y == yDest && x == xDest){
+                }
+
+                if (y == yDest && x == xDest) {
                     this.moving = false;
-    }
+                }
                 System.out.println(x);
                 System.out.println(y);
             }
@@ -149,7 +146,7 @@ public class Joueur {
         }
         return futurY;
     }
-    
+
     // *************************************************************************
     // Accesseurs et mutateurs
     public float getX() {
@@ -195,7 +192,7 @@ public class Joueur {
     public boolean isOnStair() {
         return onStair;
     }
-    
+
     public boolean isSelected() {
         return this.isSelected;
     }
@@ -203,7 +200,7 @@ public class Joueur {
     public void setOnStair(boolean onStair) {
         this.onStair = onStair;
     }
-    
+
     public Rectangle getRectangle() {
         return this.rectInteraction;
     }

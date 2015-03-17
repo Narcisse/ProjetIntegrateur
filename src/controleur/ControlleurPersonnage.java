@@ -2,7 +2,6 @@ package controleur;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.MouseListener;
 import vue.Jeu.Joueur;
 
@@ -10,7 +9,7 @@ import vue.Jeu.Joueur;
  *
  * @author Christopher Desrosiers Mondor
  */
-public class ControlleurPersonnage implements KeyListener, MouseListener {
+public class ControlleurPersonnage implements MouseListener {
 
     // *************************************************************************
     // Donnee membres
@@ -26,35 +25,6 @@ public class ControlleurPersonnage implements KeyListener, MouseListener {
 
     // *************************************************************************
     // Methodes implementes
-    @Override
-    public void keyPressed(int key, char c) {
-        if (personnage.isSelected()) {
-            switch (key) {
-                case Input.KEY_UP:
-                    this.personnage.setDirection(0);
-                    this.personnage.setMoving(true);
-                    break;
-                case Input.KEY_LEFT:
-                    this.personnage.setDirection(1);
-                    this.personnage.setMoving(true);
-                    break;
-                case Input.KEY_DOWN:
-                    this.personnage.setDirection(2);
-                    this.personnage.setMoving(true);
-                    break;
-                case Input.KEY_RIGHT:
-                    this.personnage.setDirection(3);
-                    this.personnage.setMoving(true);
-                    break;
-            }
-        }
-    }
-
-    @Override
-    public void keyReleased(int key, char c) {
-        this.personnage.setMoving(false);
-    }
-
     @Override
     public void setInput(Input input) {
 
@@ -85,7 +55,7 @@ public class ControlleurPersonnage implements KeyListener, MouseListener {
 
     @Override
     public void mousePressed(int button, int x, int y) {
-        if (button == 1) {
+        if (button == 1 && personnage.isSelected()) {
             if (this.personnage.getX() < x) {
                 this.personnage.setDirection(3);
                 this.personnage.setMoving(true);

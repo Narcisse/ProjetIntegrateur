@@ -1,5 +1,6 @@
 package controleur;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import vue.Jeu.Carte;
@@ -13,41 +14,39 @@ public class Camera {
 
     // *************************************************************************
     // Donnee membre
-    private Joueur personnage;
     private Carte cartePrincipale;
     private float xCamera, yCamera;
 
     // *************************************************************************
     // Constructeur
-    public Camera(Joueur unJoueur, Carte uneCarte) {
-        this.personnage = unJoueur;
+    public Camera(Carte uneCarte) {
         this.cartePrincipale = uneCarte;
-        this.xCamera = personnage.getX();
-        this.yCamera = personnage.getY();
+        this.xCamera = 400;
+        this.yCamera = 400;
     }
 
     // *************************************************************************
     // Methodes d'affichage
     public void place(GameContainer container, Graphics g) {
         g.translate(container.getWidth() / 2 - (int) this.xCamera, container.getHeight() / 2 - (int) this.yCamera);
-        //g.translate( -personnage.getX() - 80 + container.getWidth() / 2, -personnage.getY() - 80 + container.getHeight() / 2);
-       
     }
 
     // *************************************************************************
     // Mise a jour de la camera
     public void update(GameContainer container) {
-        int w = container.getWidth() / 4;
-        if (this.personnage.getX() > this.xCamera + w) {
-            this.xCamera = this.personnage.getX() - w;
-        } else if (this.personnage.getX() < this.xCamera - w) {
-            this.xCamera = this.personnage.getX() + w;
+        int mouseX = (int) (Mouse.getX() + (this.xCamera - container.getWidth() / 2));
+        int mouseY = (int) (Mouse.getY() + (this.yCamera - container.getHeight() / 2));
+        int w = container.getWidth() / 6;
+        if (mouseX > this.xCamera + w) {
+            this.xCamera = mouseX - w;
+        } else if (mouseX < this.xCamera - w) {
+            this.xCamera = mouseX + w;
         }
-        int h = container.getHeight() / 4;
-        if (this.personnage.getY() > this.yCamera + h) {
-            this.yCamera = this.personnage.getY() - h;
-        } else if (this.personnage.getY() < this.yCamera - h) {
-            this.yCamera = this.personnage.getY() + h;
+        int h = container.getHeight() / 6;
+        if (mouseY >= this.yCamera - h) {
+            this.yCamera = mouseY - h;
+        } else if (mouseY <= this.yCamera - h) {
+            this.yCamera = mouseY + h;
         }
         // Redefinition des coordonnees de la camera si elle depasse de la map
         if (xCamera - container.getWidth()/2 < 0){

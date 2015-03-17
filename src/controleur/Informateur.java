@@ -1,8 +1,10 @@
 package controleur;
 import java.awt.*;
+import java.util.ArrayList;
 //import java.time.*;
 //import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
+import vue.Jeu.Joueur;
 /*
 *	Christo
 *	Une classe qui peut être utilisée pour accéder à diverses informations
@@ -23,6 +25,16 @@ public class Informateur {
     // Donnees utiles aux traitements
     //private LocalTime leTemps;
     //private LocalDate laDate;
+    public static boolean estDejaLa(ArrayList<Joueur> uneListe, Joueur unPerso){
+        boolean estPresent = false;
+        for(int i=0; i<uneListe.size(); i++){
+            if (uneListe.get(i).getX() == unPerso.getX() && uneListe.get(i).getY() == unPerso.getY()){
+                estPresent = true;
+                break;
+            }
+        }
+        return estPresent;
+    }
     
    /* 
     //**************************************************************************
