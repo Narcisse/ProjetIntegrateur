@@ -73,12 +73,9 @@ public class Joueur {
     
     // *************************************************************************
     // Methodes specifiques
-    public void selection() {
-        if (isSelected) {
-            isSelected = false;
-        } else {
-            isSelected = true;
-        }
+    public boolean selection(boolean laValeur) {
+        isSelected = laValeur;
+        return isSelected;
     }
     
     // *************************************************************************
