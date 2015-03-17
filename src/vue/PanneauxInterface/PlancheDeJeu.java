@@ -46,6 +46,8 @@ public class PlancheDeJeu extends BasicGame {
     private boolean rectEstConstruit = false, mouseReleased = false;
     //ArrayList de personnage selectionné
     private ArrayList lstSelection = new ArrayList();
+    //event
+    private Input input;
 
     // *************************************************************************
     // Constructeur
@@ -101,7 +103,7 @@ public class PlancheDeJeu extends BasicGame {
         this.camera.update(container);
 
         //Event
-        Input input = container.getInput();
+        input = container.getInput();
 
         // La camera est toujours au centre de l'ecran et donc en ajoutant son
         // x - la moitier de l'ecran on arrive a fixer la position en x de la
@@ -121,7 +123,7 @@ public class PlancheDeJeu extends BasicGame {
             // testLog();
             // Condition sur le curseur s'il est sur le personnage
             if ((xCurseur >= x2 && xCurseur <= (x2 + 64)) && (yCurseur >= y2 && yCurseur <= (y2 + 64))) {
-                personnage.selection();
+                personnage.selection(true);
             }
         }
     }
@@ -130,6 +132,7 @@ public class PlancheDeJeu extends BasicGame {
     //Methode qui trouve la position de la souris au moment où on clique
     public void mousePressed(int button, int x, int y) {
         if (button == 0) {
+             personnage.selection(false);
             // La camera est toujours au centre de l'ecran et donc en ajoutant son
             // x - la moitier de l'ecran on arrive a fixer la position en x de la
             // souris lors de la mise a jour de la camera.
@@ -140,52 +143,51 @@ public class PlancheDeJeu extends BasicGame {
 
     //Methode qui calcule la nouvelle position de la souris lorsqu'elle est cliqué
     public void mouseDragged(int oldx, int oldy, int newx, int newy) {
+        if (input.isMouseButtonDown(0)) {
+            //newx/newy sont les positions en temps réels de la souris lorsque cliqué
+            //xPressed/yPressed est le clique initiale de la souris
+            deltaX = (int) ((newx - xPressed) + (camera.getX() - container.getWidth() / 2));
+            deltaY = (int) ((newy - yPressed) + (camera.getY() - container.getHeight() / 2));
 
-        //newx/newy sont les positions en temps réels de la souris lorsque cliqué
-        //xPressed/yPressed est le clique initiale de la souris
-        deltaX = (int) ((newx - xPressed) + (camera.getX() - container.getWidth() / 2));
-        deltaY = (int) ((newy - yPressed) + (camera.getY() - container.getHeight() / 2));
+            //position en temps réel
+            float newxDrag = (int) (newx + (camera.getX() - container.getWidth() / 2));
+            float newyDrag = (int) (newy + (camera.getX() - container.getWidth() / 2));
 
-        //position en temps réel
-        float newxDrag = (int) (newx + (camera.getX() - container.getWidth() / 2));
-        float newyDrag = (int) (newy + (camera.getX() - container.getWidth() / 2));
+            //set le rectangle grace aux variables calculées dans la methode
+            rect = new Rectangle(xPressed, yPressed, deltaX, deltaY);
+            rectEstConstruit = true;
 
-        //set le rectangle grace aux variables calculées dans la methode
-        rect = new Rectangle(xPressed, yPressed, deltaX, deltaY);
-        rectEstConstruit = true;
-
-        //Si les personnages se trouvent dans le rectangle construit il sont ajoutés à la liste
-        //y2,x2 sont les bornes exterieure de l'image du personnage
-        //HautGauche vers BasDroit
-        if (deltaX > 1 && deltaY > 1) {
-            if (rect.getX() <= personnage.getX() && x2 <= newxDrag
-                    && rect.getY() <= personnage.getY() && y2 <= newyDrag) {
-                //Ajoute à la liste mais trop (c'est peut-etre pas grave though) -> 
-                //On devrait faire un boolean dans joueur qui vien canceler l'ajout s'il n'est pas en mouvement?
-                lstSelection.add(personnage);
-                System.out.println(lstSelection.size());
-                System.out.println("Selectionné1");
-            }
-        } //BasDroit vers HautGauche
-        else if (deltaX < 1 && deltaY < 1) {
-            if (rect.getX() >= x2 && personnage.getX() >= newxDrag
-                    && rect.getY() >= y2 && personnage.getY() >= newyDrag) {
-                personnage.selection();
-                System.out.println("Selectionné2");
-            }
-        } //HautDroit vers BasGauche
-        else if (deltaX < 1 && deltaY > 1) {
-            if (rect.getX() >= x2 && personnage.getX() >= newxDrag
-                    && rect.getY() <= personnage.getY() && y2 <= newyDrag) {
-                personnage.selection();
-                System.out.println("Selectionné3");
-            }
-        } //BasGauche vers HautDroit
-        else if (deltaX > 1 && deltaY < 1) {
-            if (rect.getX() <= personnage.getX() && x2 <= newxDrag
-                    && rect.getY() >= y2 && personnage.getY() >= newyDrag) {
-                personnage.selection();
-                System.out.println("Selectionné4");
+            //Si les personnages se trouvent dans le rectangle construit il sont ajoutés à la liste
+            //y2,x2 sont les bornes exterieure de l'image du personnage
+            //HautGauche vers BasDroit
+            if (deltaX > 1 && deltaY > 1) {
+                if (rect.getX() <= personnage.getX() && x2 <= newxDrag
+                        && rect.getY() <= personnage.getY() && y2 <= newyDrag) {
+                    //Ajoute à la liste
+                    personnage.selection(true);
+                    if (lstSelection.contains(personnage) == false) {
+                        lstSelection.add(personnage);
+                        System.out.println(lstSelection.size());
+                    }
+                }
+            } //BasDroit vers HautGauche
+            else if (deltaX < 1 && deltaY < 1) {
+                if (rect.getX() >= x2 && personnage.getX() >= newxDrag
+                        && rect.getY() >= y2 && personnage.getY() >= newyDrag) {
+                    personnage.selection(true);
+                }
+            } //HautDroit vers BasGauche
+            else if (deltaX < 1 && deltaY > 1) {
+                if (rect.getX() >= x2 && personnage.getX() >= newxDrag
+                        && rect.getY() <= personnage.getY() && y2 <= newyDrag) {
+                    personnage.selection(true);
+                }
+            } //BasGauche vers HautDroit
+            else if (deltaX > 1 && deltaY < 1) {
+                if (rect.getX() <= personnage.getX() && x2 <= newxDrag
+                        && rect.getY() >= y2 && personnage.getY() >= newyDrag) {
+                    personnage.selection(true);
+                }
             }
         }
     }
