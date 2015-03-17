@@ -39,8 +39,7 @@ public class PlancheDeJeu extends BasicGame {
     public PlancheDeJeu() {
         super("WindowGame");
         cartePrincipale = new Carte();
-        personnage = new Joueur(cartePrincipale);
-        ecoPerso = new ControlleurPersonnage(personnage);
+        personnage = new Joueur(cartePrincipale);        
         camera = new Camera(personnage, cartePrincipale);
     }
 
@@ -57,7 +56,9 @@ public class PlancheDeJeu extends BasicGame {
         this.personnage.setX(container.getWidth() / 2);
         this.personnage.setY(container.getHeight() / 2);
         // Ecouteur
+        ecoPerso = new ControlleurPersonnage(personnage, container);
         container.getInput().addKeyListener(ecoPerso);
+        container.getInput().addMouseListener(ecoPerso);
     }
 
     public void render(GameContainer container, Graphics g) throws SlickException {

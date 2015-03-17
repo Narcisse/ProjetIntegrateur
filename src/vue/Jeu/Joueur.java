@@ -16,6 +16,7 @@ public class Joueur {
     // *************************************************************************
     // Donnee membre
     private float x = 300, y = 300;
+    private float xDest = 300, yDest = 300;
     private float vitesse = 0.3f;
     private int direction = 0;
     private boolean moving = false;
@@ -61,38 +62,55 @@ public class Joueur {
     // Affichage
     public void render(Graphics g) throws SlickException {
         g.setColor(new Color(0, 0, 0, .5f));
-        rectInteraction.setX((int)this.x -32);
-        rectInteraction.setY((int)this.y -56);
-        if(isSelected){
+        rectInteraction.setX((int) this.x - 32);
+        rectInteraction.setY((int) this.y - 56);
+        if (isSelected) {
             g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
         }
         g.fillOval(x - 16, y - 8, 32, 16);
         g.drawAnimation(animations[direction + (moving ? 4 : 0)], x - 32, y - 60);
     }
-    
+
     // *************************************************************************
     // Methodes specifiques
-    public void selection(){
-        if(isSelected){
+    public void selection() {
+        if (isSelected) {
             isSelected = false;
-        } else{
+        } else {
             isSelected = true;
         }
     }
-    
+
     // *************************************************************************
     // Methodes de mise a jour
     public void update(int delta) {
-        if (this.moving) {
+        if (this.moving && (this.x <= this.xDest || this.x >= this.xDest || this.y >= this.yDest || this.y <= this.yDest)) {
             float futurX = getFuturX(delta);
             float futurY = getFuturY(delta);
             boolean collision = this.carte.isCollision(futurX, futurY);
             if (collision) {
                 this.moving = false;
             } else {
-                this.x = futurX;
-                this.y = futurY;
+                if (x <= xDest) {
+                    this.x += 1;
+                } else {
+                    this.x -= 1;
+                }
+
+                if (y >= yDest) {
+                    this.y -= 1;
+                } else {
+                    this.y += 1;
+                }
+                
+                if (y == yDest && x == xDest){
+                    this.moving = false;
+                }
+                System.out.println(x);
+                System.out.println(y);
             }
+        } else {
+            this.moving = false;
         }
     }
 
@@ -131,7 +149,7 @@ public class Joueur {
         }
         return futurY;
     }
-    
+
     // *************************************************************************
     // Accesseurs et mutateurs
     public float getX() {
@@ -158,6 +176,14 @@ public class Joueur {
         this.direction = direction;
     }
 
+    public void setxDest(int x) {
+        this.xDest = x;
+    }
+
+    public void setyDest(int y) {
+        this.yDest = y;
+    }
+
     public boolean isMoving() {
         return moving;
     }
@@ -169,16 +195,16 @@ public class Joueur {
     public boolean isOnStair() {
         return onStair;
     }
-    
-    public boolean isSelected(){
+
+    public boolean isSelected() {
         return this.isSelected;
     }
 
     public void setOnStair(boolean onStair) {
         this.onStair = onStair;
     }
-    
-    public Rectangle getRectangle(){
+
+    public Rectangle getRectangle() {
         return this.rectInteraction;
     }
 }
