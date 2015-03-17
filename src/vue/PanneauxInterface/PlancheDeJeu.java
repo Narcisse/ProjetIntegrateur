@@ -44,6 +44,7 @@ public class PlancheDeJeu extends BasicGame {
     int deltaY = 0;
     //Rectangle contruit par la souris
     private Rectangle rect;
+    private boolean rectEstConstruit = false;
     //ArrayList de personnage selectionné
     private ArrayList lstSelection = new ArrayList();
 
@@ -84,6 +85,11 @@ public class PlancheDeJeu extends BasicGame {
         if (rect != null) {
             g.setColor(new Color(255, 255, 255, 100));
             g.drawRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+            //Déconstruit le rectangle apres le relachement de la souris
+            if (rectEstConstruit) {
+                //Temporaire, j'ai rien trouvé de mieux
+                rect.setSize(0, 0);
+            }
         }
     }
 
@@ -91,7 +97,8 @@ public class PlancheDeJeu extends BasicGame {
     public void update(GameContainer container, int delta) throws SlickException {
         this.personnage.update(delta);
         this.camera.update(container);
-
+        
+        //Event
         Input input = container.getInput();
 
         // La camera est toujours au centre de l'ecran et donc en ajoutant son
@@ -100,9 +107,11 @@ public class PlancheDeJeu extends BasicGame {
         xCurseur = (int) (input.getMouseX() + (camera.getX() - container.getWidth() / 2));
         yCurseur = (int) (input.getMouseY() + (camera.getY() - container.getHeight() / 2));
 
+        //La position du personnage en temps réels
         int x = (int) personnage.getX();
         int y = (int) personnage.getY();
-
+        //La Frontière extérieur du personnage
+        // x,x2,y,y2 forme un rectangle englobant le personnage
         int x2 = x - 32;
         int y2 = y - 56;
 
@@ -119,6 +128,9 @@ public class PlancheDeJeu extends BasicGame {
     //Methode qui trouve la position de la souris au moment où on clique
     public void mousePressed(int button, int x, int y) {
         if (button == 0) {
+             // La camera est toujours au centre de l'ecran et donc en ajoutant son
+            // x - la moitier de l'ecran on arrive a fixer la position en x de la
+            // souris lors de la mise a jour de la camera.
             xPressed = (int) (x + (camera.getX() - container.getWidth() / 2));
             yPressed = (int) (y + (camera.getY() - container.getHeight() / 2));
         }
@@ -134,6 +146,7 @@ public class PlancheDeJeu extends BasicGame {
 
         //set le rectangle grace aux variables calculées dans la methode
         rect = new Rectangle(xPressed, yPressed, deltaX, deltaY);
+        rectEstConstruit = true;
 
         //Si les personnages se trouvent dans le rectangle construit il sont ajoutés à la liste
         //HautGauche vers BasDroit
@@ -159,6 +172,14 @@ public class PlancheDeJeu extends BasicGame {
             if (rect.getX() <= personnage.getX() && rect.getY() >= personnage.getY()) {
                 personnage.selection();
             }
+        }
+    }
+
+    //Méthode qui prend le relachement de la souris comme event
+    public void mouseReleased(int button, int x, int y) {
+        //Remet la valeur du boolean a false apres le relachement de la souris
+        if (rectEstConstruit) {
+            rectEstConstruit = false;
         }
     }
     //*****************************************************************
