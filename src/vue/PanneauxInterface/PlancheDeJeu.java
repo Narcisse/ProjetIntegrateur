@@ -29,22 +29,21 @@ public class PlancheDeJeu extends BasicGame {
     private Carte cartePrincipale;
     // Personnage
     private Joueur personnage;
+    //Borne maximal de l'image du personnage
+    private int x2, y2;
     // Controlleurs (ecouteurs)
     ControlleurPersonnage ecoPerso;
     // Camera
     private Camera camera;
     // Curseur
-    int xCurseur = -1000;
-    int yCurseur = -1000;
+    int xCurseur = -1000, yCurseur = -1000;
     //Utilisé pour savoir a quelle endroit la souris est cliqué
-    int xPressed = 0;
-    int yPressed = 0;
+    int xPressed = 0, yPressed = 0;
     //Le delta de la position initiale de la souris et de sa position finale
-    int deltaX = 0;
-    int deltaY = 0;
+    int deltaX = 0, deltaY = 0;
     //Rectangle contruit par la souris
     private Rectangle rect;
-    private boolean rectEstConstruit = false;
+    private boolean rectEstConstruit = false, mouseReleased = false;
     //ArrayList de personnage selectionné
     private ArrayList lstSelection = new ArrayList();
 
@@ -86,9 +85,12 @@ public class PlancheDeJeu extends BasicGame {
             g.setColor(new Color(255, 255, 255, 100));
             g.drawRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
             //Déconstruit le rectangle apres le relachement de la souris
-            if (rectEstConstruit) {
+            if (rectEstConstruit && mouseReleased) {
                 //Temporaire, j'ai rien trouvé de mieux
                 rect.setSize(0, 0);
+                //reset les boolean apres le relachement de la souris
+                rectEstConstruit = false;
+                mouseReleased = false;
             }
         }
     }
@@ -97,7 +99,7 @@ public class PlancheDeJeu extends BasicGame {
     public void update(GameContainer container, int delta) throws SlickException {
         this.personnage.update(delta);
         this.camera.update(container);
-        
+
         //Event
         Input input = container.getInput();
 
@@ -112,8 +114,8 @@ public class PlancheDeJeu extends BasicGame {
         int y = (int) personnage.getY();
         //La Frontière extérieur du personnage
         // x,x2,y,y2 forme un rectangle englobant le personnage
-        int x2 = x - 32;
-        int y2 = y - 56;
+        x2 = x - 32;
+        y2 = y - 56;
 
         if (input.isMousePressed(0)) {
             // testLog();
@@ -128,7 +130,7 @@ public class PlancheDeJeu extends BasicGame {
     //Methode qui trouve la position de la souris au moment où on clique
     public void mousePressed(int button, int x, int y) {
         if (button == 0) {
-             // La camera est toujours au centre de l'ecran et donc en ajoutant son
+            // La camera est toujours au centre de l'ecran et donc en ajoutant son
             // x - la moitier de l'ecran on arrive a fixer la position en x de la
             // souris lors de la mise a jour de la camera.
             xPressed = (int) (x + (camera.getX() - container.getWidth() / 2));
@@ -144,42 +146,57 @@ public class PlancheDeJeu extends BasicGame {
         deltaX = (int) ((newx - xPressed) + (camera.getX() - container.getWidth() / 2));
         deltaY = (int) ((newy - yPressed) + (camera.getY() - container.getHeight() / 2));
 
+        //position en temps réel
+        float newxDrag = (int) (newx + (camera.getX() - container.getWidth() / 2));
+        float newyDrag = (int) (newy + (camera.getX() - container.getWidth() / 2));
+
         //set le rectangle grace aux variables calculées dans la methode
         rect = new Rectangle(xPressed, yPressed, deltaX, deltaY);
         rectEstConstruit = true;
 
         //Si les personnages se trouvent dans le rectangle construit il sont ajoutés à la liste
+        //y2,x2 sont les bornes exterieure de l'image du personnage
         //HautGauche vers BasDroit
         if (deltaX > 1 && deltaY > 1) {
-            if (rect.getX() <= personnage.getX() && rect.getY() <= personnage.getY()) {
+            if (rect.getX() <= personnage.getX() && x2 <= newxDrag
+                    && rect.getY() <= personnage.getY() && y2 <= newyDrag) {
                 //Ajoute à la liste mais trop (c'est peut-etre pas grave though) -> 
                 //On devrait faire un boolean dans joueur qui vien canceler l'ajout s'il n'est pas en mouvement?
                 lstSelection.add(personnage);
                 System.out.println(lstSelection.size());
+                System.out.println("Selectionné1");
             }
         } //BasDroit vers HautGauche
         else if (deltaX < 1 && deltaY < 1) {
-            if (rect.getX() >= personnage.getX() && rect.getY() >= personnage.getY()) {
+            if (rect.getX() >= x2 && personnage.getX() >= newxDrag
+                    && rect.getY() >= y2 && personnage.getY() >= newyDrag) {
                 personnage.selection();
+                System.out.println("Selectionné2");
             }
         } //HautDroit vers BasGauche
         else if (deltaX < 1 && deltaY > 1) {
-            if (rect.getX() >= personnage.getX() && rect.getY() <= personnage.getY()) {
+            if (rect.getX() >= x2 && personnage.getX() >= newxDrag
+                    && rect.getY() <= personnage.getY() && y2 <= newyDrag) {
                 personnage.selection();
+                System.out.println("Selectionné3");
             }
         } //BasGauche vers HautDroit
         else if (deltaX > 1 && deltaY < 1) {
-            if (rect.getX() <= personnage.getX() && rect.getY() >= personnage.getY()) {
+            if (rect.getX() <= personnage.getX() && x2 <= newxDrag
+                    && rect.getY() >= y2 && personnage.getY() >= newyDrag) {
                 personnage.selection();
+                System.out.println("Selectionné4");
             }
         }
     }
 
     //Méthode qui prend le relachement de la souris comme event
     public void mouseReleased(int button, int x, int y) {
-        //Remet la valeur du boolean a false apres le relachement de la souris
+
+        //mouseReleased est true seulement si le rectangle est contruit
+        //Donc si la mouseDragged a été appeler
         if (rectEstConstruit) {
-            rectEstConstruit = false;
+            mouseReleased = true;
         }
     }
     //*****************************************************************
