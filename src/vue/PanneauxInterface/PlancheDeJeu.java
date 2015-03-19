@@ -3,6 +3,7 @@ package vue.PanneauxInterface;
 import controleur.Camera;
 import controleur.ControlleurPersonnage;
 import controleur.Informateur;
+import java.awt.Point;
 import java.util.ArrayList;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.AppGameContainer;
@@ -30,8 +31,6 @@ public class PlancheDeJeu extends BasicGame {
     private ControlleurPersonnage ecoPerso, ecoPerso2;
     // Camera
     private Camera camera;
-    // Curseur
-    private int xCurseur = -1000, yCurseur = -1000;
     //Utilisé pour savoir a quelle endroit la souris est cliqué
     private int xPressed = 0, yPressed = 0;
     //Le delta de la position initiale de la souris et de sa position finale
@@ -114,12 +113,6 @@ public class PlancheDeJeu extends BasicGame {
             //Event
             input = container.getInput();
 
-            // La camera est toujours au centre de l'ecran et donc en ajoutant son
-            // x - la moitier de l'ecran on arrive a fixer la position en x de la
-            // souris lors de la mise a jour de la camera.
-            xCurseur = (int) (input.getMouseX() + (camera.getX() - container.getWidth() / 2));
-            yCurseur = (int) (input.getMouseY() + (camera.getY() - container.getHeight() / 2));
-
             this.camera.update(container);
         }
     }
@@ -144,6 +137,8 @@ public class PlancheDeJeu extends BasicGame {
                     unJoueur.selection(true);
                 }
             }
+            Point mousePos = Informateur.getMousePosition(camera, container);
+            cartePrincipale.isArbre(mousePos.x, mousePos.y);
         }
     }
 
