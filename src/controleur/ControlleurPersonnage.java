@@ -1,6 +1,7 @@
 package controleur;
 
 import java.awt.Point;
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
@@ -59,29 +60,30 @@ public class ControlleurPersonnage implements MouseListener {
     @Override
     public void mousePressed(int button, int x, int y) {
         if (button == 1 && personnage.isSelected()) {
-            Point mousePos = Informateur.getMousePosition(camera, container);
-            if (this.personnage.getX() < x) {
+            Point mousPos = Informateur.getMousePosition(camera, container);
+            if (this.personnage.getX() < mousPos.x) {
                 this.personnage.setDirection(3);
                 this.personnage.setMoving(true);
-                this.personnage.setxDest(mousePos.x);
+                this.personnage.setxDest(mousPos.x);
             }
-            if (this.personnage.getX() > x){
+            if (this.personnage.getX() > mousPos.x){
                 this.personnage.setDirection(1);
                 this.personnage.setMoving(true);
-                this.personnage.setxDest(mousePos.x);
+                this.personnage.setxDest(mousPos.x);
             }
-            if (this.personnage.getY() > y){
+            if (this.personnage.getY() > mousPos.y){
                 this.personnage.setDirection(0);
                 this.personnage.setMoving(true);
-                this.personnage.setyDest(mousePos.y);
+                this.personnage.setyDest(mousPos.y);
             }
-            if (this.personnage.getY() < y){
+            if (this.personnage.getY() < mousPos.y){
                 this.personnage.setDirection(2);
                 this.personnage.setMoving(true);
-                this.personnage.setyDest(mousePos.y);
+                this.personnage.setyDest(mousPos.y);
             }
-            System.out.println("Dest x: " + mousePos.x);
-            System.out.println("Dest y: " + mousePos.y);
+            System.out.println("Dest x: " + x);
+            System.out.println("Dest y: " + y);
+            
         }
     }
 

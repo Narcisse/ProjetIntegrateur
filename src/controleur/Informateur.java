@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
 import vue.Jeu.Joueur;
 /*
 *	Christo
@@ -38,8 +39,9 @@ public class Informateur {
         return estPresent;
     }
     public static Point getMousePosition(Camera uneCamera, GameContainer container){
-        int mouseX = (int) (Mouse.getX() + (uneCamera.getX() - container.getWidth() / 2));
-        int mouseY = (int) (Mouse.getY() + (uneCamera.getY() - container.getHeight() / 2));
+        Input input = container.getInput();
+        int mouseX = ((int) (input.getMouseX() + (uneCamera.getX() - container.getWidth() / 2)));
+        int mouseY = ((int) (input.getMouseY() + (uneCamera.getY() - container.getHeight() / 2)));
         return new Point(mouseX, mouseY);
     }
     

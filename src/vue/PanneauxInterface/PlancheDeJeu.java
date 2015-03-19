@@ -87,6 +87,8 @@ public class PlancheDeJeu extends BasicGame {
             unJoueur.render(g);
         }
         this.cartePrincipale.renderAvantPlan();
+        g.setColor(Color.yellow);
+        g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
         if (rect != null) {
             g.setColor(new Color(255, 255, 255, 100));
             g.drawRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
@@ -118,22 +120,6 @@ public class PlancheDeJeu extends BasicGame {
             xCurseur = (int) (input.getMouseX() + (camera.getX() - container.getWidth() / 2));
             yCurseur = (int) (input.getMouseY() + (camera.getY() - container.getHeight() / 2));
 
-            /*
-             //La position du personnage en temps réels
-             int x = (int) personnage.getX();
-             int y = (int) personnage.getY();
-             //La Frontière extérieur du personnage
-             //x,x2,y,y2 forme un rectangle englobant le personnage
-             x2 = x - 32;
-             y2 = y - 56;
-
-             if (input.isMousePressed(0)) {
-             // testLog();
-             // Condition sur le curseur s'il est sur le personnage
-             if ((xCurseur >= x2 && xCurseur <= (x2 + 64)) && (yCurseur >= y2 && yCurseur <= (y2 + 64))) {
-             personnage.selection(true);
-             }
-             }*/
             this.camera.update(container);
         }
     }
@@ -156,7 +142,6 @@ public class PlancheDeJeu extends BasicGame {
                 if (unJoueur.getX() <= xPressed && unJoueur.getX() - 150 >= xPressed
                         && unJoueur.getY() <= yPressed && unJoueur.getY() - 56 >= yPressed) {
                     unJoueur.selection(true);
-                    System.out.println("YOLO@@@@@@");
                 }
             }
         }
@@ -189,8 +174,6 @@ public class PlancheDeJeu extends BasicGame {
                             unJoueur.selection(true);
                             lstSelection.add(unJoueur);
                         }
-                        System.out.println(lstSelection.size());
-                        System.out.println("Selectionné1");
                     }
                 } //BasDroit vers HautGauche
                 else if (deltaX < 1 && deltaY < 1) {
@@ -200,7 +183,6 @@ public class PlancheDeJeu extends BasicGame {
                             unJoueur.selection(true);
                             lstSelection.add(unJoueur);
                         }
-                        System.out.println("Selectionné2");
                     }
                 } //HautDroit vers BasGauche
                 else if (deltaX < 1 && deltaY > 1) {
@@ -210,7 +192,6 @@ public class PlancheDeJeu extends BasicGame {
                             unJoueur.selection(true);
                             lstSelection.add(unJoueur);
                         }
-                        System.out.println("Selectionné3");
                     }
                 } //BasGauche vers HautDroit
                 else if (deltaX > 1 && deltaY < 1) {
@@ -220,60 +201,8 @@ public class PlancheDeJeu extends BasicGame {
                             unJoueur.selection(true);
                             lstSelection.add(unJoueur);
                         }
-                        System.out.println("Selectionné4");
                     }
                 }
-
-                //###############################################
-                //Je pense que c'est du vieux code qui n'a pas overwrite
-                /*     if (input.isMouseButtonDown(0)) {
-                 //newx/newy sont les positions en temps réels de la souris lorsque cliqué
-                 //xPressed/yPressed est le clique initiale de la souris
-                 deltaX = (int) ((newx - xPressed) + (camera.getX() - container.getWidth() / 2));
-                 deltaY = (int) ((newy - yPressed) + (camera.getY() - container.getHeight() / 2));
-
-                 //position en temps réel
-                 newxDrag = (int) (newx + (camera.getX() - container.getWidth() / 2));
-                 newyDrag = (int) (newy + (camera.getX() - container.getWidth() / 2));
-
-                 //set le rectangle grace aux variables calculées dans la methode
-                 rect = new Rectangle(xPressed, yPressed, deltaX, deltaY);
-                 rectEstConstruit = true;
-
-                 //Si les personnages se trouvent dans le rectangle construit il sont ajoutés à la liste
-                 //y2,x2 sont les bornes exterieure de l'image du personnage
-                 //HautGauche vers BasDroit
-                 if (deltaX > 1 && deltaY > 1) {
-                 if (rect.getX() <= personnage.getX() && x2 <= newxDrag
-                 && rect.getY() <= personnage.getY() && y2 <= newyDrag) {
-                 //Ajoute à la liste
-                 personnage.selection(true);
-                 if (lstSelection.contains(personnage) == false) {
-                 lstSelection.add(personnage);
-                 System.out.println(lstSelection.size());
-                 }
-                 }
-                 } //BasDroit vers HautGauche
-                 else if (deltaX < 1 && deltaY < 1) {
-                 if (rect.getX() >= x2 && personnage.getX() >= newxDrag
-                 && rect.getY() >= y2 && personnage.getY() >= newyDrag) {
-                 personnage.selection(true);
-                 }
-                 } //HautDroit vers BasGauche
-                 else if (deltaX < 1 && deltaY > 1) {
-                 if (rect.getX() >= x2 && personnage.getX() >= newxDrag
-                 && rect.getY() <= personnage.getY() && y2 <= newyDrag) {
-                 personnage.selection(true);
-                 }
-                 } //BasGauche vers HautDroit
-                 else if (deltaX > 1 && deltaY < 1) {
-                 if (rect.getX() <= personnage.getX() && x2 <= newxDrag
-                 && rect.getY() >= y2 && personnage.getY() >= newyDrag) {
-                 personnage.selection(true);
-                 }
-                 }
-                 System.out.println(lstSelection.size());
-                 }*/
             }
         }
     }
@@ -290,7 +219,7 @@ public class PlancheDeJeu extends BasicGame {
 
     @Override
     public void mouseMoved(int oldx, int oldy, int newx, int newy) {
-        testLog();
+        
     }
     //*****************************************************************
 
