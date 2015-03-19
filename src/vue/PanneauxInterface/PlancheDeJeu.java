@@ -74,7 +74,7 @@ public class PlancheDeJeu extends BasicGame {
         }
         // Ecouteur
         for (int i = 0; i < personnages.size(); i++) {
-            container.getInput().addMouseListener(new ControlleurPersonnage((Joueur) personnages.get(i), container));
+            container.getInput().addMouseListener(new ControlleurPersonnage((Joueur) personnages.get(i), container, camera));
         }
     }
 

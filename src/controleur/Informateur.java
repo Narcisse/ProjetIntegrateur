@@ -4,6 +4,8 @@ import java.util.ArrayList;
 //import java.time.*;
 //import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
+import org.lwjgl.input.Mouse;
+import org.newdawn.slick.GameContainer;
 import vue.Jeu.Joueur;
 /*
 *	Christo
@@ -34,6 +36,11 @@ public class Informateur {
             }
         }
         return estPresent;
+    }
+    public static Point getMousePosition(Camera uneCamera, GameContainer container){
+        int mouseX = (int) (Mouse.getX() + (uneCamera.getX() - container.getWidth() / 2));
+        int mouseY = (int) (Mouse.getY() + (uneCamera.getY() - container.getHeight() / 2));
+        return new Point(mouseX, mouseY);
     }
     
    /* 
