@@ -42,11 +42,12 @@ public class Camera {
         } else if (mouseX < this.xCamera - w) {
             this.xCamera = mouseX + w;
         }
+        
         int h = container.getHeight() / 6;
-        if (mouseY >= this.yCamera - h) {
-            this.yCamera = mouseY - h;
-        } else if (mouseY <= this.yCamera - h) {
+        if (mouseY <= this.yCamera - h) {
             this.yCamera = mouseY + h;
+        } else if (mouseY >= this.yCamera + h) {
+            this.yCamera = mouseY - h;
         }
         // Redefinition des coordonnees de la camera si elle depasse de la map
         if (xCamera - container.getWidth()/2 < 0){
