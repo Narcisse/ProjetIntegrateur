@@ -17,7 +17,7 @@ public class Joueur {
     // Donnee membre
     private float x = 300, y = 300;
     private float xDest = 300, yDest = 300;
-    private float vitesse = 0.3f;
+    private float vitesse = 0.5f;
     private int direction = 0;
     private boolean moving = false;
     private Animation[] animations = new Animation[8];
@@ -92,19 +92,25 @@ public class Joueur {
                     this.x += 1;
                 } else if (x > xDest){
                     this.x -= 1;
+                } else if (x == xDest && y < yDest){
+                    this.setDirection(2);
+                } else if (x == xDest && y > yDest){
+                    this.setDirection(0);
                 }
 
                 if (y < yDest) {
                     this.y += 1;
                 } else if (y > yDest){
                     this.y -= 1;
+                } else if (y == yDest && x < xDest){
+                    this.setDirection(3);
+                } else if (y == yDest && x > xDest){
+                    this.setDirection(1);
                 }
 
                 if (y == yDest && x == xDest) {
                     this.moving = false;
                 }
-                System.out.println(x);
-                System.out.println(y);
             }
         } else {
             this.moving = false;

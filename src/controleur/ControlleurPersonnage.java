@@ -81,8 +81,6 @@ public class ControlleurPersonnage implements MouseListener {
                 this.personnage.setMoving(true);
                 this.personnage.setyDest(mousPos.y);
             }
-            System.out.println("Dest x: " + x);
-            System.out.println("Dest y: " + y);
             
         }
     }
