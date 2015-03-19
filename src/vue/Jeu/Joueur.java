@@ -88,16 +88,16 @@ public class Joueur {
             if (collision) {
                 this.moving = false;
             } else {
-                if (x <= xDest) {
+                if (x < xDest) {
                     this.x += 1;
-                } else {
+                } else if (x > xDest){
                     this.x -= 1;
                 }
 
-                if (y >= yDest) {
-                    this.y -= 1;
-                } else {
+                if (y < yDest) {
                     this.y += 1;
+                } else if (y > yDest){
+                    this.y -= 1;
                 }
 
                 if (y == yDest && x == xDest) {
