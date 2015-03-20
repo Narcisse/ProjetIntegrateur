@@ -13,8 +13,15 @@ public class Entrepot {
 
     //Variables ressources du jeu
     private int bois, nourriture, or;
+    public static final int valeurInitiale = 100;
 
     //Constructeur des ressources de depart
+    public Entrepot() {
+        setBois(0);
+        setNourriture(0);
+        setOr(0);
+    }
+    
     public Entrepot(int leBois, int laNourriture, int lOr) {
         setBois(leBois);
         setNourriture(laNourriture);

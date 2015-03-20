@@ -5,6 +5,7 @@ import controleur.ControlleurPersonnage;
 import controleur.Informateur;
 import java.awt.Point;
 import java.util.ArrayList;
+import modele.Entrepot;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -31,6 +32,8 @@ public class PlancheDeJeu extends BasicGame {
     private ControlleurPersonnage ecoPerso, ecoPerso2;
     // Camera
     private Camera camera;
+    // Entrepot
+    private Entrepot entrepot;
     //Utilisé pour savoir a quelle endroit la souris est cliqué
     private int xPressed = 0, yPressed = 0;
     //Le delta de la position initiale de la souris et de sa position finale
@@ -71,6 +74,12 @@ public class PlancheDeJeu extends BasicGame {
             unJoueur.setX(container.getWidth() / 2 + 50 * personnages.indexOf(j));
             unJoueur.setY(container.getHeight() / 2 + 50 * personnages.indexOf(j));
         }
+        // entrepot
+        int nombreDeRessourceInitial = Entrepot.valeurInitiale;
+        entrepot = new Entrepot();
+        entrepot.setBois(nombreDeRessourceInitial);
+        entrepot.setNourriture(nombreDeRessourceInitial);
+        entrepot.setOr(nombreDeRessourceInitial);
         // Ecouteur
         for (int i = 0; i < personnages.size(); i++) {
             container.getInput().addMouseListener(new ControlleurPersonnage((Joueur) personnages.get(i), container, camera));
@@ -137,11 +146,16 @@ public class PlancheDeJeu extends BasicGame {
                     unJoueur.selection(true);
                 }
             }
-            Point mousePos = Informateur.getMousePosition(camera, container);
-            cartePrincipale.isArbre(mousePos.x, mousePos.y);
+            
         }
     }
-
+    public void recolte(){
+        Point mousePos = Informateur.getMousePosition(camera, container);
+        if (cartePrincipale.isArbre(mousePos.x, mousePos.y)){
+            entrepot.ajoutBois(10);
+            System.out.println(entrepot.getBois());
+        }
+    }
     //Methode qui calcule la nouvelle position de la souris lorsqu'elle est cliqué
     public void mouseDragged(int oldx, int oldy, int newx, int newy) {
         if (input.isMouseButtonDown(0)) {
