@@ -154,17 +154,19 @@ public class PlancheDeJeu extends BasicGame {
             // changer .isArbre par une methode .isRessource pour une meilleure
             // gestion
             if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
-                entrepot.ajoutBois(10);
-                System.out.println(entrepot.getBois());
+                recolte(cartePrincipale, entrepot, mousePos);
             }
         }
     }
     // Je reutilise .isArbre parce que quand tout sera fait il y aura aussi 
     // .isGold et .isFood
-    public void recolte() {
-        if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
-            entrepot.ajoutBois(10);
-            System.out.println(entrepot.getBois());
+    
+    // Jai ajouter des arguments pour qu'on puisse retirer la methode de recolte
+    // De planche de jeu et que sa continu de fonctionner
+    public void recolte(Carte uneCarte, Entrepot unEntrepot, Point unPointSouris) {
+        if (uneCarte.isArbre(unPointSouris.x, unPointSouris.y)) {
+            unEntrepot.ajoutBois(10);
+            System.out.println(unEntrepot.getBois());
         }
     }
 
