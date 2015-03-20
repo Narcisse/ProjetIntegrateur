@@ -48,7 +48,7 @@ public class PlancheDeJeu extends BasicGame {
     //event
     private Input input;
     // Souris
-    private Point mousePos = Informateur.getMousePosition(camera, container);
+    private Point mousePos;
 
     // *************************************************************************
     // Constructeur
