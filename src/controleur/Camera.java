@@ -69,7 +69,7 @@ public class Camera {
         }else if (input.isKeyDown(Input.KEY_UP)) {
             this.yCamera--;
         }else if (input.isKeyDown(Input.KEY_DOWN)) {
-            this.xCamera++;
+            this.yCamera++;
         }
         // Redefinition des coordonnees de la camera si elle depasse de la map
         if (xCamera - container.getWidth() / 2 < 0) {

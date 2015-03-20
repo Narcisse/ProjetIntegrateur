@@ -152,7 +152,7 @@ public class PlancheDeJeu extends BasicGame {
 
             //position de la souris en temps réel
             float newxDrag = (int) (newx + (camera.getX() - container.getWidth() / 2));
-            float newyDrag = (int) (newy + (camera.getX() - container.getWidth() / 2));
+            float newyDrag = (int) (newy + (camera.getY() - container.getHeight() / 2));
 
             //set le rectangle grace aux variables calculées dans la methode
             rect = new Rectangle(xPressed, yPressed, deltaX, deltaY);
@@ -162,6 +162,9 @@ public class PlancheDeJeu extends BasicGame {
             for (Object j : personnages) {
                 Joueur unJoueur = (Joueur) j;
                 //HautGauche vers BasDroit
+                System.out.println(deltaX +" : "+ deltaY);
+                System.out.println(rect.getY() +" : "+ unJoueur.getY() +" : "+ 
+                        (unJoueur.getY() - 56) +" : "+  newyDrag);
                 if (deltaX > 1 && deltaY > 1) {
                     if (rect.getX() <= unJoueur.getX() && unJoueur.getX() - 32 <= newxDrag
                             && rect.getY() <= unJoueur.getY() && unJoueur.getY() - 56 <= newyDrag) {
