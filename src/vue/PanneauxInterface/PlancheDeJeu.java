@@ -47,6 +47,8 @@ public class PlancheDeJeu extends BasicGame {
     private ArrayList ecouteursPersonnages = new ArrayList();
     //event
     private Input input;
+    // Souris
+    private Point mousePos = Informateur.getMousePosition(camera, container);
 
     // *************************************************************************
     // Constructeur
@@ -84,6 +86,8 @@ public class PlancheDeJeu extends BasicGame {
         for (int i = 0; i < personnages.size(); i++) {
             container.getInput().addMouseListener(new ControlleurPersonnage((Joueur) personnages.get(i), container, camera));
         }
+        // Souris
+        mousePos = Informateur.getMousePosition(camera, container);
     }
 
     //Methode qui rennder la frame
@@ -124,6 +128,7 @@ public class PlancheDeJeu extends BasicGame {
 
             this.camera.update(container);
         }
+        mousePos = Informateur.getMousePosition(camera, container);
     }
     //*****************************************************************
 //Methode qui trouve la position de la souris au moment où on clique
@@ -146,17 +151,25 @@ public class PlancheDeJeu extends BasicGame {
                     unJoueur.selection(true);
                 }
             }
-            
+            // changer .isArbre par une methode .isRessource pour une meilleure
+            // gestion
+            if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
+                entrepot.ajoutBois(10);
+                System.out.println(entrepot.getBois());
+            }
         }
     }
-    public void recolte(){
-        Point mousePos = Informateur.getMousePosition(camera, container);
-        if (cartePrincipale.isArbre(mousePos.x, mousePos.y)){
+    // Je reutilise .isArbre parce que quand tout sera fait il y aura aussi 
+    // .isGold et .isFood
+    public void recolte() {
+        if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
             entrepot.ajoutBois(10);
             System.out.println(entrepot.getBois());
         }
     }
+
     //Methode qui calcule la nouvelle position de la souris lorsqu'elle est cliqué
+
     public void mouseDragged(int oldx, int oldy, int newx, int newy) {
         if (input.isMouseButtonDown(0)) {
             //newx/newy sont les positions en temps réels de la souris lorsque cliqué
@@ -176,9 +189,9 @@ public class PlancheDeJeu extends BasicGame {
             for (Object j : personnages) {
                 Joueur unJoueur = (Joueur) j;
                 //HautGauche vers BasDroit
-                System.out.println(deltaX +" : "+ deltaY);
-                System.out.println(rect.getY() +" : "+ unJoueur.getY() +" : "+ 
-                        (unJoueur.getY() - 56) +" : "+  newyDrag);
+                System.out.println(deltaX + " : " + deltaY);
+                System.out.println(rect.getY() + " : " + unJoueur.getY() + " : "
+                        + (unJoueur.getY() - 56) + " : " + newyDrag);
                 if (deltaX > 1 && deltaY > 1) {
                     if (rect.getX() <= unJoueur.getX() && unJoueur.getX() - 32 <= newxDrag
                             && rect.getY() <= unJoueur.getY() && unJoueur.getY() - 56 <= newyDrag) {
@@ -231,7 +244,7 @@ public class PlancheDeJeu extends BasicGame {
 
     @Override
     public void mouseMoved(int oldx, int oldy, int newx, int newy) {
-        
+
     }
     //*****************************************************************
 
