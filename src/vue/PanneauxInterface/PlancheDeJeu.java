@@ -2,6 +2,7 @@ package vue.PanneauxInterface;
 
 import controleur.Camera;
 import controleur.ControlleurPersonnage;
+import controleur.ControlleurSouris;
 import controleur.Informateur;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class PlancheDeJeu extends BasicGame {
     private Carte cartePrincipale;
     // Controlleurs (ecouteurs)
     private ControlleurPersonnage ecoPerso, ecoPerso2;
+    private ControlleurSouris ecoSouris;
     // Camera
     private Camera camera;
     // Entrepot
@@ -86,6 +88,10 @@ public class PlancheDeJeu extends BasicGame {
         for (int i = 0; i < personnages.size(); i++) {
             container.getInput().addMouseListener(new ControlleurPersonnage((Joueur) personnages.get(i), container, camera));
         }
+        for (int i = 0; i < personnages.size(); i++) {
+            ecoSouris = new ControlleurSouris((Joueur) personnages.get(i), container, camera);
+            container.getInput().addMouseListener(ecoSouris);
+        }
         // Souris
         mousePos = Informateur.getMousePosition(camera, container);
     }
@@ -103,7 +109,7 @@ public class PlancheDeJeu extends BasicGame {
         g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
         if (rect != null) {
             g.setColor(new Color(255, 255, 255, 100));
-            g.drawRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+            g.drawRect(ecoSouris.getRectX(), ecoSouris.getRectY(), ecoSouris.getRectWidth(), ecoSouris.getRectHeight());
             //Déconstruit le rectangle apres le relachement de la souris
             if (rectEstConstruit && mouseReleased) {
                 //Temporaire, j'ai rien trouvé de mieux
@@ -133,7 +139,7 @@ public class PlancheDeJeu extends BasicGame {
     //*****************************************************************
 //Methode qui trouve la position de la souris au moment où on clique
 
-    public void mousePressed(int button, int x, int y) {
+    /*public void mousePressed(int button, int x, int y) {
         // La camera est toujours au centre de l'ecran et donc en ajoutant son
         // x - la moitier de l'ecran on arrive a fixer la position en x de la
         // souris lors de la mise a jour de la camera.
@@ -163,6 +169,7 @@ public class PlancheDeJeu extends BasicGame {
     
     // Jai ajouter des arguments pour qu'on puisse retirer la methode de recolte
     // De planche de jeu et que sa continu de fonctionner
+    */
     public void recolte(Carte uneCarte, Entrepot unEntrepot, Point unPointSouris) {
         if (uneCarte.isArbre(unPointSouris.x, unPointSouris.y)) {
             unEntrepot.ajoutBois(10);
@@ -172,7 +179,7 @@ public class PlancheDeJeu extends BasicGame {
 
     //Methode qui calcule la nouvelle position de la souris lorsqu'elle est cliqué
 
-    public void mouseDragged(int oldx, int oldy, int newx, int newy) {
+    /*public void mouseDragged(int oldx, int oldy, int newx, int newy) {
         if (input.isMouseButtonDown(0)) {
             //newx/newy sont les positions en temps réels de la souris lorsque cliqué
             //xPressed/yPressed est le clique initiale de la souris
@@ -191,9 +198,6 @@ public class PlancheDeJeu extends BasicGame {
             for (Object j : personnages) {
                 Joueur unJoueur = (Joueur) j;
                 //HautGauche vers BasDroit
-                System.out.println(deltaX + " : " + deltaY);
-                System.out.println(rect.getY() + " : " + unJoueur.getY() + " : "
-                        + (unJoueur.getY() - 56) + " : " + newyDrag);
                 if (deltaX > 1 && deltaY > 1) {
                     if (rect.getX() <= unJoueur.getX() && unJoueur.getX() - 32 <= newxDrag
                             && rect.getY() <= unJoueur.getY() && unJoueur.getY() - 56 <= newyDrag) {
@@ -248,6 +252,7 @@ public class PlancheDeJeu extends BasicGame {
     public void mouseMoved(int oldx, int oldy, int newx, int newy) {
 
     }
+    */
     //*****************************************************************
 
     public void testLog() {
