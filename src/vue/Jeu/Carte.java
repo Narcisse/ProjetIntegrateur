@@ -65,15 +65,13 @@ public class Carte {
         return collision;
     }
     
-    public void isArbre(float x, float y){
+    public boolean isArbre(float x, float y){
         int tileW = this.carte.getTileWidth();
         int tileH = this.carte.getTileHeight();
         int logicLayer = this.carte.getLayerIndex("DevantPersoArbreBas");
         Image tile = this.carte.getTileImage((int) x / tileW, (int) y / tileH, logicLayer);
         boolean collision = tile != null;
-        if (collision) {
-            System.out.println("Bois +10");
-        }
+        return collision;
     }
 
     // *************************************************************************
