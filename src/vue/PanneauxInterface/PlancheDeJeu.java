@@ -12,6 +12,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import vue.Hud.Hud;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
 
@@ -35,6 +36,8 @@ public class PlancheDeJeu extends BasicGame {
     private ArrayList personnages = new ArrayList();
     // Planche de jeu
     private PlancheDeJeu cettePlanche;
+    // Hud
+    private Hud hud;
 
     // *************************************************************************
     // Constructeur
@@ -68,6 +71,9 @@ public class PlancheDeJeu extends BasicGame {
         entrepot.setBois(nombreDeRessourceInitial);
         entrepot.setNourriture(nombreDeRessourceInitial);
         entrepot.setOr(nombreDeRessourceInitial);
+        // Hud
+        hud = new Hud();
+        hud.init();
         // Ecouteur
         for (int i = 0; i < personnages.size(); i++) {
             container.getInput().addMouseListener(new ControlleurPersonnage((Joueur) personnages.get(i), container, camera));
@@ -89,6 +95,7 @@ public class PlancheDeJeu extends BasicGame {
         g.setColor(Color.yellow);
         g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
         ecoSouris.render(container, g);
+        this.hud.render(g);
     }
 
     //Methode qui actualise la frame (selon le fps)
