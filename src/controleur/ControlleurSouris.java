@@ -3,7 +3,9 @@
  */
 package controleur;
 
+import java.awt.Point;
 import java.util.ArrayList;
+import modele.Entrepot;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,7 +13,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
+import vue.PanneauxInterface.PlancheDeJeu;
 
 /**
  *
@@ -20,12 +24,14 @@ import vue.Jeu.Joueur;
 public class ControlleurSouris implements MouseListener {
 
     //Variables utilisées avec dans la classe controlleur de la souris
-    //L'objet du personnage
-    private Joueur personnage;
     //Le container du jeu
     private GameContainer container;
     //La camera
     private Camera camera;
+    // La carte
+    private Carte cartePrincipale;
+    // Entrepot
+    private Entrepot entrepot;
     //Utilisé pour savoir a quelle endroit la souris est cliqué
     private int xPressed = 0, yPressed = 0;
     //Le delta est la difference entre la position initiale de la souris et la position finale
@@ -39,12 +45,13 @@ public class ControlleurSouris implements MouseListener {
     private Rectangle rect;
     private boolean rectEstConstruit = false, mouseReleased = false;
 
-    public ControlleurSouris(Joueur unJoueur, GameContainer container, Camera uneCamera) {
-        //Event
+    public ControlleurSouris(PlancheDeJeu unePlanche) {
+        this.personnages = unePlanche.getPersonnages();
+        this.container = unePlanche.getContainer();
+        this.camera = unePlanche.getCamera();
+        this.cartePrincipale = unePlanche.getCartePrincipale();
+        this.entrepot = unePlanche.getEntrepot();
         input = container.getInput();
-        this.personnage = unJoueur;
-        this.container = container;
-        this.camera = uneCamera;
     }
     
     public void render(GameContainer container, Graphics g) throws SlickException {
@@ -94,6 +101,24 @@ public class ControlleurSouris implements MouseListener {
                     unJoueur.selection(true);
                 }
             }
+            // changer .isArbre par une methode .isRessource pour une meilleure
+            // gestion
+            Point mousePos = Informateur.getMousePosition(camera, container);
+            if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
+                recolte(cartePrincipale, entrepot, mousePos);
+            }
+        }
+    }
+    // Je reutilise .isArbre parce que quand tout sera fait il y aura aussi 
+    // .isGold et .isFood
+    
+    // Jai ajouter des arguments pour qu'on puisse retirer la methode de recolte
+    // De planche de jeu et que sa continu de fonctionner
+    
+    public void recolte(Carte uneCarte, Entrepot unEntrepot, Point unPointSouris) {
+        if (uneCarte.isArbre(unPointSouris.x, unPointSouris.y)) {
+            unEntrepot.ajoutBois(10);
+            System.out.println(unEntrepot.getBois());
         }
     }
 
