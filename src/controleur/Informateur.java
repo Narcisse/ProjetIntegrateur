@@ -4,7 +4,6 @@ import java.util.ArrayList;
 //import java.time.*;
 //import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import vue.Jeu.Joueur;

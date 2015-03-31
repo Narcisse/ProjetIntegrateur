@@ -72,7 +72,7 @@ public class PlancheDeJeu extends BasicGame {
         entrepot.setNourriture(nombreDeRessourceInitial);
         entrepot.setOr(nombreDeRessourceInitial);
         // Hud
-        hud = new Hud();
+        hud = new Hud(container, camera, container);
         hud.init();
         // Ecouteur
         for (int i = 0; i < personnages.size(); i++) {
