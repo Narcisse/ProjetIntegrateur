@@ -24,6 +24,8 @@ public class Informateur {
     public static Color invisibilityCloak = new Color(0, 0, 0, 0);
     public static int positionCurseurX = MouseInfo.getPointerInfo().getLocation().x;
     public static int positionCurseurY = MouseInfo.getPointerInfo().getLocation().y;
+    public static int largeurFrame;
+    public static int hauteurFrame;
     
     // Donnees utiles aux traitements
     //private LocalTime leTemps;
