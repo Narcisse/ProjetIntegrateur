@@ -1,11 +1,14 @@
 package vue.Jeu;
 
+import controleur.Informateur;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import vue.Hud.Bouton;
 
 /**
  *
@@ -25,11 +28,15 @@ public class Joueur {
     private boolean isSelected = false;
     private Rectangle rectInteraction;
     private Carte carte;
+    //Temporaires
+    private Bouton unBouton;
+    private Image uneImage;
 
     // *************************************************************************
     // Constructeur
     public Joueur(Carte uneCarte) {
         this.carte = uneCarte;
+        this.unBouton = new Bouton();
     }
 
     // *************************************************************************
@@ -48,6 +55,8 @@ public class Joueur {
         this.rectInteraction = new Rectangle();
         this.rectInteraction.setHeight(64);
         this.rectInteraction.setWidth(64);
+        //importation de l'image Temporaire
+        this.uneImage = new Image("images//chat.jpg");
     }
 
     private Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
@@ -66,6 +75,10 @@ public class Joueur {
         rectInteraction.setY((int) this.y - 56);
         if (isSelected) {
             g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
+            //Dessin du bouton
+            //Solution temporaire(Mauris)
+            int taille = 50, posX = Informateur.largeurFrame-taille, posY = Informateur.hauteurFrame-taille;
+            unBouton.dessinerBouton(g, posX, posY, taille, uneImage);
         }
         g.fillOval(x - 16, y - 8, 32, 16);
         g.drawAnimation(animations[direction + (moving ? 4 : 0)], x - 32, y - 60);
