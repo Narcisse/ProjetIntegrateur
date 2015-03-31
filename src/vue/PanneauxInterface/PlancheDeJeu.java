@@ -15,6 +15,7 @@ import org.newdawn.slick.SlickException;
 import vue.Hud.Hud;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
+import vue.Jeu.Objet;
 
 /**
  *
@@ -38,6 +39,8 @@ public class PlancheDeJeu extends BasicGame {
     private PlancheDeJeu cettePlanche;
     // Hud
     private Hud hud;
+    //Batiment
+    private Objet batiment;
 
     // *************************************************************************
     // Constructeur
@@ -46,6 +49,7 @@ public class PlancheDeJeu extends BasicGame {
         cartePrincipale = new Carte();
         personnages.add(new Joueur(cartePrincipale));
         personnages.add(new Joueur(cartePrincipale));
+        batiment= new Objet(cartePrincipale);
         cettePlanche = this;
         camera = new Camera(cartePrincipale);
     }
@@ -65,6 +69,7 @@ public class PlancheDeJeu extends BasicGame {
             unJoueur.setX(container.getWidth() / 2 + 50 * personnages.indexOf(j));
             unJoueur.setY(container.getHeight() / 2 + 50 * personnages.indexOf(j));
         }
+        this.batiment.init();
         // entrepot
         int nombreDeRessourceInitial = Entrepot.valeurInitiale;
         entrepot = new Entrepot();
@@ -89,6 +94,7 @@ public class PlancheDeJeu extends BasicGame {
     public void render(GameContainer container, Graphics g) throws SlickException {
         this.camera.place(container, g);
         this.cartePrincipale.renderArrierePlan();
+        this.batiment.render(g);
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.render(g);
@@ -124,6 +130,10 @@ public class PlancheDeJeu extends BasicGame {
 
     public ArrayList<Joueur> getPersonnages() {
         return this.personnages;
+    }
+    
+    public Objet getBatiment() {
+        return this.batiment;
     }
 
     public Carte getCartePrincipale() {
