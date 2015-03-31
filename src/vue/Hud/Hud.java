@@ -23,7 +23,7 @@ public class Hud implements MouseListener{
     public void render(Graphics g) {
         g.resetTransform();
         g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
-        g.drawRect(600, 650, 30, 40);
+        g.fillRect(600, 650, 30, 40);
     }
     
     
