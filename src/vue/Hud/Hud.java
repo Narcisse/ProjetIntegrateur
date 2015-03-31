@@ -1,5 +1,7 @@
 package vue.Hud;
 
+import controleur.Informateur;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -15,15 +17,19 @@ public class Hud implements MouseListener{
     private static final int P_BAR_Y = 10;
 
     private Image playerbars;
+    private Image paneauSelection;
 
     public void init() throws SlickException {
         this.playerbars = new Image("data/Hud/barreVie.png");
+        this.paneauSelection = new Image("images//romanStone.jpg");        
     }
 
     public void render(Graphics g) {
         g.resetTransform();
         g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
-        g.drawRect(600, 650, 30, 40);
+        //Dessine un peneau (image) a la position  x=500 et y= 500 de la taille =150
+        int taille = 150, posX = Informateur.largeurFrame-taille-10, posY = Informateur.hauteurFrame-taille-10;
+        paneauSelection.draw(posX, posY, taille, taille);        
     }
     
     
@@ -46,8 +52,7 @@ public class Hud implements MouseListener{
         if ((button == 0) && (i1>20 && i1<60) && (i2>20 && i2<65)){
             System.exit(0);
         }
-        //System.out.println("PosX : "+i1 + " ; PaosY: "+ i2);
-        
+        //System.out.println("PosX : "+i1 + " ; PaosY: "+ i2);    
     }
 
     @Override
@@ -77,5 +82,5 @@ public class Hud implements MouseListener{
 
     @Override
     public void inputStarted() {
-    }
+    }    
 }
