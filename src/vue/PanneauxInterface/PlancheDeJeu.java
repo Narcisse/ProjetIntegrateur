@@ -48,6 +48,7 @@ public class PlancheDeJeu extends BasicGame {
         personnages.add(new Joueur(cartePrincipale));
         cettePlanche = this;
         camera = new Camera(cartePrincipale);
+        
     }
 
     // *************************************************************************
@@ -55,6 +56,9 @@ public class PlancheDeJeu extends BasicGame {
     public void init(GameContainer container) throws SlickException {
         // Jeu et carte
         this.container = container;
+        //Initialisation de la hauteur et de la largeur de la frame de jeu
+        Informateur.hauteurFrame = container.getHeight();
+        Informateur.largeurFrame = container.getWidth();
         //Image curseur = new Image("images/curseur.png", true);
         //this.container.setMouseCursor(curseur, 0, 0);
         this.cartePrincipale.init();
@@ -94,10 +98,13 @@ public class PlancheDeJeu extends BasicGame {
             unJoueur.render(g);
         }
         this.cartePrincipale.renderAvantPlan();
+        //Dessine le render du hud
+        this.hud.render(g);
+        //Dessine l'oval jaune sur le pointeur de la souris
         g.setColor(Color.yellow);
         g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
         ecoSouris.render(container, g);
-        this.hud.render(g);
+        
     }
 
     //Methode qui actualise la frame (selon le fps)
