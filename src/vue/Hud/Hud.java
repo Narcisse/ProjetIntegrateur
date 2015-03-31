@@ -23,6 +23,7 @@ public class Hud implements MouseListener{
     public void render(Graphics g) {
         g.resetTransform();
         g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
+        g.drawRect(600, 650, 30, 40);
     }
     
     
@@ -39,10 +40,14 @@ public class Hud implements MouseListener{
 
     @Override
     public void mousePressed(int button, int i1, int i2) {
-        if (button == 0){
+        /*Bouton pour sortir de la frame (pour le moment le bouton va de la 
+        * position x= 20 a 60 et y = 20 a 65.
+        */
+        if ((button == 0) && (i1>20 && i1<60) && (i2>20 && i2<65)){
             System.exit(0);
         }
-        System.out.println("RGGGGGGGGG");
+        //System.out.println("PosX : "+i1 + " ; PaosY: "+ i2);
+        
     }
 
     @Override
