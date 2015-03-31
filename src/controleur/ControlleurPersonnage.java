@@ -59,6 +59,7 @@ public class ControlleurPersonnage implements MouseListener {
 
     @Override
     public void mousePressed(int button, int x, int y) {
+        //Le personnage bouge lorsque l'on presse le bouton gauche de la souris
         if (button == 1 && personnage.isSelected()) {
             Point mousPos = Informateur.getMousePosition(camera, container);
             if (this.personnage.getX() < mousPos.x) {
@@ -80,7 +81,10 @@ public class ControlleurPersonnage implements MouseListener {
                 this.personnage.setDirection(2);
                 this.personnage.setMoving(true);
                 this.personnage.setyDest(mousPos.y);
-            }
+            }    
+        }
+        
+        if(personnage.isSelected()){
             
         }
     }
