@@ -74,6 +74,8 @@ public class PlancheDeJeu extends BasicGame {
         // Hud
         hud = new Hud();
         hud.init();
+        //ajouter le hud comme un mouseListener a la planche du jeu.
+        container.getInput().addMouseListener(hud);
         // Ecouteur
         for (int i = 0; i < personnages.size(); i++) {
             container.getInput().addMouseListener(new ControlleurPersonnage((Joueur) personnages.get(i), container, camera));
