@@ -3,6 +3,7 @@ package vue.Hud;
 import controleur.Camera;
 import controleur.Informateur;
 import java.awt.Point;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -32,12 +33,19 @@ public class Hud extends AbstractComponent implements MouseListener{
     }
 
     public void init() throws SlickException {
-        this.playerbars = new Image("data/Hud/barreVie.png");
+        this.playerbars = new Image("images//jbutton//piskelButtonVide.png");
     }
-
+    
     public void render(Graphics g) {
+        int imageHeight = this.playerbars.getHeight();
+        int imageWidth = this.playerbars.getWidth();
+        
         g.resetTransform();
         g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
+        
+        //String "Quitter sur le bouton en au à gauche
+        g.setColor(Color.green);
+        g.drawString("Quitter", P_BAR_X+20, P_BAR_Y+imageWidth/2-10);
     }
     
     
