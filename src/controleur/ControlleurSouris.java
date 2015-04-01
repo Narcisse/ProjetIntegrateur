@@ -4,8 +4,13 @@
 package controleur;
 
 import java.awt.Point;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modele.Entrepot;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Cursor;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,8 +18,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.opengl.CursorLoader;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
+import vue.Jeu.Objet;
 import vue.PanneauxInterface.PlancheDeJeu;
 
 /**
@@ -33,16 +40,19 @@ public class ControlleurSouris implements MouseListener {
     // Entrepot
     private Entrepot entrepot;
     //Utilisé pour savoir a quelle endroit la souris est cliqué
-    private int xPressed = 0, yPressed = 0;
+    private int xPressed = 0, yPressed = 0,indic=0;
     //Le delta est la difference entre la position initiale de la souris et la position finale
     private int deltaX = 0, deltaY = 0;
     //ArrayList de personnage selectionné
     private ArrayList personnages = new ArrayList();
     private ArrayList lstSelection = new ArrayList();
+    private Objet batiment;
     //event
     private Input input;
     //Rectangle contruit par la souris
     private Rectangle rect;
+    //Curseur
+    private Cursor curseur;
     private boolean rectEstConstruit = false, mouseReleased = false;
 
     public ControlleurSouris(PlancheDeJeu unePlanche) {
@@ -50,6 +60,7 @@ public class ControlleurSouris implements MouseListener {
         this.container = unePlanche.getContainer();
         this.camera = unePlanche.getCamera();
         this.cartePrincipale = unePlanche.getCartePrincipale();
+        this.batiment=unePlanche.getBatiment();
         this.entrepot = unePlanche.getEntrepot();
         input = container.getInput();
     }
@@ -66,6 +77,22 @@ public class ControlleurSouris implements MouseListener {
                 rectEstConstruit = false;
                 mouseReleased = false;
             }
+        }
+        if(input.isKeyPressed(Input.KEY_SPACE)){
+        try {
+            //Curseur
+            curseur = (CursorLoader.get()).getCursor("data/sprites/objet/TownHall.png",0,0);
+        } catch (IOException ex) {
+            Logger.getLogger(PlancheDeJeu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LWJGLException ex) {
+            Logger.getLogger(PlancheDeJeu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                try {
+                    container.setMouseCursor(curseur,0,0);
+                } catch (SlickException ex) {
+                    Logger.getLogger(PlancheDeJeu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                indic=1;
         }
     }
 
@@ -84,13 +111,22 @@ public class ControlleurSouris implements MouseListener {
     //Button est le bouton de la souris: bouton de gauche = 0, bouton de droit = 1.
     //X représente la position de event.getX(), y représente la position de event.getY().
     public void mousePressed(int button, int x, int y) {
+        
+            xPressed = (int) (x + (camera.getX() - container.getWidth() / 2));
+            yPressed = (int) (y + (camera.getY() - container.getHeight() / 2));
         // La camera est toujours au centre de l'ecran et donc en ajoutant son
         // x - la moitier de l'ecran on arrive a fixer la position en x de la
         // souris lors de la mise a jour de la camera.
         if (button == 0) {
-            xPressed = (int) (x + (camera.getX() - container.getWidth() / 2));
-            yPressed = (int) (y + (camera.getY() - container.getHeight() / 2));
+
+            if(indic==1){
+               batiment.setX(x);
+               batiment.setY(y);
+            container.setDefaultMouseCursor();
+            indic=0;
+            }
             lstSelection.clear();
+            
             //Clear la liste si on click gauche, cancel la selection
             for (Object j : personnages) {
                 Joueur unJoueur = (Joueur) j;
@@ -100,12 +136,23 @@ public class ControlleurSouris implements MouseListener {
                         && unJoueur.getY() <= yPressed && unJoueur.getY() - 56 >= yPressed) {
                     unJoueur.selection(true);
                 }
+    
             }
             // changer .isArbre par une methode .isRessource pour une meilleure
             // gestion
             Point mousePos = Informateur.getMousePosition(camera, container);
             if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
                 recolte(cartePrincipale, entrepot, mousePos);
+            }
+            if ((xPressed >= batiment.getX() && xPressed <= (batiment.getX() + 64)) && (yPressed >= batiment.getY() && yPressed <= (batiment.getY()+ 64))) {
+                batiment.selection();
+                }else{batiment.notSelection();}
+        }
+        
+        if (button == 1) {
+            if(indic==1){
+            container.setDefaultMouseCursor();
+            indic=0;
             }
         }
     }
