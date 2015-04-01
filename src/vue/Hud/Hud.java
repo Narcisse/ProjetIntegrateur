@@ -21,7 +21,8 @@ import org.newdawn.slick.gui.GUIContext;
 public class Hud extends AbstractComponent implements MouseListener{
     private static final int P_BAR_X = 10;
     private static final int P_BAR_Y = 10;
-
+    
+    private Image paneauAction;
     private Image playerbars;
     private Camera camera;
     private GameContainer container;
@@ -34,6 +35,7 @@ public class Hud extends AbstractComponent implements MouseListener{
 
     public void init() throws SlickException {
         this.playerbars = new Image("images//jbutton//piskelButtonVide.png");
+        this.paneauAction = new Image("images//romanStone.jpg");
     }
     
     public void render(Graphics g) {
@@ -41,8 +43,17 @@ public class Hud extends AbstractComponent implements MouseListener{
         int imageWidth = this.playerbars.getWidth();
         
         g.resetTransform();
-        g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
+        //PANEAU ACTION JOUEUR 
+        int hauteurFrameY= container.getHeight();
+        int largeurFrameX= container.getWidth();
+        int tailleImageX = largeurFrameX/3;
+        int tailleImageY = hauteurFrameY/3;
+        int positionX = hauteurFrameY- tailleImageX - 10;
+        int positionY= largeurFrameX - tailleImageY - 10;
+        paneauAction.draw(positionX, positionY, tailleImageX, tailleImageY);
         
+        //BOUTON QUITTER
+        g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
         //String "Quitter sur le bouton en au à gauche
         g.setColor(Color.green);
         g.drawString("Quitter", P_BAR_X+20, P_BAR_Y+imageWidth/2-10);
