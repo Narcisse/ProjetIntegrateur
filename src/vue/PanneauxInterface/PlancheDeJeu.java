@@ -143,6 +143,10 @@ public class PlancheDeJeu extends BasicGame {
     public Entrepot getEntrepot() {
         return this.entrepot;
     }
+    
+    public Hud getHud(){
+        return this.hud;
+    }
 
     // *************************************************************************
     // Main
