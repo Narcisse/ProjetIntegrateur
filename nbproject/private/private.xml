@@ -5,6 +5,10 @@
         <group>
             <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/PanneauxInterface/PlancheDeJeu.java</file>
             <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Hud/Hud.java</file>
+            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Jeu/Joueur.java</file>
+            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/ControlleurSouris.java</file>
+            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/ControlleurHud.java</file>
+            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/ControlleurPersonnage.java</file>
         </group>
     </open-files>
 </project-private>
