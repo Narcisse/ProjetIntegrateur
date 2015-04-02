@@ -11,10 +11,12 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import vue.Hud.Hud;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
+import vue.Jeu.MenuIG;
 import vue.Jeu.Objet;
 
 /**
@@ -41,6 +43,10 @@ public class PlancheDeJeu extends BasicGame {
     private Hud hud;
     //Batiment
     private Objet batiment;
+    //Menu In game
+    private MenuIG menuIG;
+    //Condition pour afficher menu
+    private boolean escapePressed= false;
 
     // *************************************************************************
     // Constructeur
@@ -87,6 +93,8 @@ public class PlancheDeJeu extends BasicGame {
         }
         ecoSouris = new ControlleurSouris(cettePlanche);
         container.getInput().addMouseListener(ecoSouris);
+        menuIG = new MenuIG(container, camera, container);
+        menuIG.init();
         
     }
 
@@ -104,6 +112,13 @@ public class PlancheDeJeu extends BasicGame {
         g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
         ecoSouris.render(container, g);
         this.hud.render(g);
+        
+        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
+            escapePressed = !escapePressed;   
+        }
+        if(escapePressed == true){
+            this.menuIG.render(g);   
+        }
     }
 
     //Methode qui actualise la frame (selon le fps)
@@ -155,3 +170,4 @@ public class PlancheDeJeu extends BasicGame {
         new AppGameContainer(new PlancheDeJeu(), 800, 800, false).start();
     }
 }
+
