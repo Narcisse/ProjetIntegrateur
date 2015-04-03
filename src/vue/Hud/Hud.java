@@ -20,7 +20,7 @@ import org.newdawn.slick.gui.GUIContext;
  */
 public class Hud extends AbstractComponent implements MouseListener{
     private static final int P_BAR_X = 10;
-    private static final int P_BAR_Y = 10;
+    private static final int P_BAR_Y = 30;
     
     private Image paneauAction;
     private Image playerbars;
@@ -34,7 +34,7 @@ public class Hud extends AbstractComponent implements MouseListener{
     }
 
     public void init() throws SlickException {
-        this.playerbars = new Image("images//jbutton//piskelButtonVide.png");
+        this.playerbars = new Image("images//jbutton//buttonVide.png");
         this.paneauAction = new Image("images//romanStone.jpg");
     }
     
@@ -63,7 +63,7 @@ public class Hud extends AbstractComponent implements MouseListener{
         g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
         //String "Quitter sur le bouton en au à gauche
         g.setColor(Color.green);
-        g.drawString("Quitter", P_BAR_X+20, P_BAR_Y+imageWidth/2-10);
+        g.drawString("Quitter", P_BAR_X+20, P_BAR_Y+imageHeight/2);
     }
     
     
@@ -85,9 +85,7 @@ public class Hud extends AbstractComponent implements MouseListener{
         
         Rectangle image = new Rectangle(P_BAR_X, P_BAR_Y, imageWidth, imageHeight);
         
-        Point mousePos = Informateur.getMousePosition(camera, container);
-        
-        if (button == 0 && image.contains(mousePos.x, mousePos.y)){
+        if (button == 0 && image.contains(i1, i2)){
             System.exit(0);
         }
     }
