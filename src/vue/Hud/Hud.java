@@ -46,11 +46,18 @@ public class Hud extends AbstractComponent implements MouseListener{
         //PANEAU ACTION JOUEUR 
         int hauteurFrameY= container.getHeight();
         int largeurFrameX= container.getWidth();
-        int tailleImageX = largeurFrameX/3;
-        int tailleImageY = hauteurFrameY/3;
-        int positionX = hauteurFrameY- tailleImageX - 10;
-        int positionY= largeurFrameX - tailleImageY - 10;
-        paneauAction.draw(positionX, positionY, tailleImageX, tailleImageY);
+        int tailleImageX = largeurFrameX/4;
+        int tailleImageY = hauteurFrameY/4;
+        int tailleImage;
+        if(tailleImageX < tailleImageY){
+            tailleImage = tailleImageX;
+        }else{
+            tailleImage = tailleImageY;
+        }  
+        int positionX = largeurFrameX - tailleImage - 10;
+        int positionY= hauteurFrameY - tailleImage - 10;
+        
+        paneauAction.draw(positionX, positionY, tailleImage, tailleImage);
         
         //BOUTON QUITTER
         g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
