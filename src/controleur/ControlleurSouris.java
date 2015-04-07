@@ -120,8 +120,8 @@ public class ControlleurSouris implements MouseListener {
         if (button == 0) {
 
             if(indic==1){
-               batiment.setX(x);
-               batiment.setY(y);
+               batiment.setX(xPressed);
+               batiment.setY(yPressed);
             container.setDefaultMouseCursor();
             indic=0;
             }
