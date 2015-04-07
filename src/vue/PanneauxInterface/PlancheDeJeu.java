@@ -11,10 +11,13 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import vue.Hud.Hud;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
+import vue.Jeu.MenuIG;
+import vue.Jeu.Objet;
 
 /**
  *
@@ -38,6 +41,12 @@ public class PlancheDeJeu extends BasicGame {
     private PlancheDeJeu cettePlanche;
     // Hud
     private Hud hud;
+    //Batiment
+    private Objet batiment;
+    //Menu In game
+    private MenuIG menuIG;
+    //Condition pour afficher menu
+    private boolean escapePressed= false;
 
     // *************************************************************************
     // Constructeur
@@ -46,6 +55,7 @@ public class PlancheDeJeu extends BasicGame {
         cartePrincipale = new Carte();
         personnages.add(new Joueur(cartePrincipale));
         personnages.add(new Joueur(cartePrincipale));
+        batiment= new Objet(cartePrincipale);
         cettePlanche = this;
         camera = new Camera(cartePrincipale);
     }
@@ -65,6 +75,7 @@ public class PlancheDeJeu extends BasicGame {
             unJoueur.setX(container.getWidth() / 2 + 50 * personnages.indexOf(j));
             unJoueur.setY(container.getHeight() / 2 + 50 * personnages.indexOf(j));
         }
+        this.batiment.init();
         // entrepot
         int nombreDeRessourceInitial = Entrepot.valeurInitiale;
         entrepot = new Entrepot();
@@ -82,6 +93,8 @@ public class PlancheDeJeu extends BasicGame {
         }
         ecoSouris = new ControlleurSouris(cettePlanche);
         container.getInput().addMouseListener(ecoSouris);
+        menuIG = new MenuIG(container, camera, container);
+        menuIG.init();
         
     }
 
@@ -89,6 +102,7 @@ public class PlancheDeJeu extends BasicGame {
     public void render(GameContainer container, Graphics g) throws SlickException {
         this.camera.place(container, g);
         this.cartePrincipale.renderArrierePlan();
+        this.batiment.render(g);
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.render(g);
@@ -98,6 +112,13 @@ public class PlancheDeJeu extends BasicGame {
         g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
         ecoSouris.render(container, g);
         this.hud.render(g);
+        
+        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
+            escapePressed = !escapePressed;   
+        }
+        if(escapePressed == true){
+            this.menuIG.render(g);   
+        }
     }
 
     //Methode qui actualise la frame (selon le fps)
@@ -125,6 +146,10 @@ public class PlancheDeJeu extends BasicGame {
     public ArrayList<Joueur> getPersonnages() {
         return this.personnages;
     }
+    
+    public Objet getBatiment() {
+        return this.batiment;
+    }
 
     public Carte getCartePrincipale() {
         return this.cartePrincipale;
@@ -132,6 +157,10 @@ public class PlancheDeJeu extends BasicGame {
 
     public Entrepot getEntrepot() {
         return this.entrepot;
+    }
+    
+    public Hud getHud(){
+        return this.hud;
     }
 
     // *************************************************************************
@@ -141,3 +170,4 @@ public class PlancheDeJeu extends BasicGame {
         new AppGameContainer(new PlancheDeJeu(), 800, 800, false).start();
     }
 }
+
