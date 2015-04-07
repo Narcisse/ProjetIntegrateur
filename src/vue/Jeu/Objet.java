@@ -44,6 +44,7 @@ public class Objet {
     // Initialisation
     public void init() throws SlickException {
         batiment =new Image("data/sprites/objet/TownHall.png",true);
+        batiment.setRotation(180f);
         this.rectInteraction = new Rectangle();
         this.rectInteraction.setHeight(64);
         this.rectInteraction.setWidth(64);
