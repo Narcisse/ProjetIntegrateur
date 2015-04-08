@@ -83,12 +83,13 @@ public class Hud extends AbstractComponent implements MouseListener{
         int positionY= hauteurFrameY - tailleImage - 10;
         
         paneauAction.draw(positionX, positionY, tailleImage, tailleImage);
-        
+       /* 
         //BOUTON QUITTER
         g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
         //String "Quitter sur le bouton en au à gauche
         g.setColor(Color.green);
         g.drawString("Quitter", P_BAR_X+20, P_BAR_Y+imageHeight/2);
+        */
     }
     
     
@@ -105,14 +106,14 @@ public class Hud extends AbstractComponent implements MouseListener{
 
     @Override
     public void mousePressed(int button, int i1, int i2) {
-        int imageHeight = this.playerbars.getHeight();
+        /*int imageHeight = this.playerbars.getHeight();
         int imageWidth = this.playerbars.getWidth();
         
         Rectangle image = new Rectangle(P_BAR_X, P_BAR_Y, imageWidth, imageHeight);
         
         if (button == 0 && image.contains(i1, i2)){
             System.exit(0);
-        }
+        }*/
     }
 
     @Override
