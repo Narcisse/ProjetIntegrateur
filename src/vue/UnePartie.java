@@ -10,13 +10,15 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
+import vue.Jeu.StateHandler;
 import vue.PanneauxInterface.*;
 
 /**
  *
  * @author Christo
  */
-public class UnePartie extends JFrame{
+public class UnePartie extends JFrame {
 
     //Constructeur
     public UnePartie() throws SlickException {
@@ -40,9 +42,13 @@ public class UnePartie extends JFrame{
 
     //Initialisation
     public void initComponents() throws SlickException {
-        AppGameContainer jeu = new AppGameContainer(new PlancheDeJeu());
-        jeu.setDisplayMode(Informateur.largeurEcran, Informateur.hauteurEcran, true);
-        jeu.start();
+        try {
+            AppGameContainer container = new AppGameContainer(new StateHandler("Jeu"));
+            container.setDisplayMode(800, 600, false);
+            container.start();
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
     }
 
     public void initListeners() {

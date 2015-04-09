@@ -23,7 +23,7 @@ import org.newdawn.slick.opengl.CursorLoader;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
 import vue.Jeu.Objet;
-import vue.PanneauxInterface.PlancheDeJeu;
+import vue.PanneauxInterface.Game;
 
 /**
  *
@@ -56,7 +56,7 @@ public class ControlleurSouris implements MouseListener {
     private Cursor curseur;
     private boolean rectEstConstruit = false, mouseReleased = false;
 
-    public ControlleurSouris(PlancheDeJeu unePlanche) {
+    public ControlleurSouris(Game unePlanche) {
         this.personnages = unePlanche.getPersonnages();
         this.container = unePlanche.getContainer();
         this.camera = unePlanche.getCamera();
@@ -84,14 +84,14 @@ public class ControlleurSouris implements MouseListener {
             //Curseur
             curseur = (CursorLoader.get()).getCursor("data/sprites/objet/TownHall.png",0,0);
         } catch (IOException ex) {
-            Logger.getLogger(PlancheDeJeu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LWJGLException ex) {
-            Logger.getLogger(PlancheDeJeu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
                 try {
                     container.setMouseCursor(curseur,0,0);
                 } catch (SlickException ex) {
-                    Logger.getLogger(PlancheDeJeu.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 indic=1;
         }

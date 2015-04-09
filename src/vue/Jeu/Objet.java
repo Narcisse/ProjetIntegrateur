@@ -16,7 +16,7 @@ import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.opengl.CursorLoader;
-import vue.PanneauxInterface.PlancheDeJeu;
+import vue.PanneauxInterface.Game;
 
 /**
  *
