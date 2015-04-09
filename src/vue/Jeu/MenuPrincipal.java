@@ -6,13 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.CrossStateTransition;
-import org.newdawn.slick.state.transition.EmptyTransition;
-import org.newdawn.slick.state.transition.FadeInTransition;
-import org.newdawn.slick.state.transition.FadeOutTransition;
-import vue.PanneauxInterface.Game;
 
 /**
  *
@@ -53,25 +47,13 @@ public class MenuPrincipal extends BasicGameState {
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_1:
-                GameState target = game.getState(Game.ID);
-
-                final long start = System.currentTimeMillis();
-                CrossStateTransition t = new CrossStateTransition(target) {
-                    public boolean isComplete() {
-                        return (System.currentTimeMillis() - start) > 2000;
-                    }
-
-                    public void init(GameState firstState, GameState secondState) {
-                    }
-                };
-
-                game.enterState(Game.ID, t, new EmptyTransition());
+                game.enterState(Game.ID);
                 break;
             case Input.KEY_2:
                 // TODO: Implement later
                 break;
             case Input.KEY_3:
-                // TODO: Implement later
+                System.exit(0);
                 break;
             default:
                 break;

@@ -44,7 +44,7 @@ public class UnePartie extends JFrame {
     public void initComponents() throws SlickException {
         try {
             AppGameContainer container = new AppGameContainer(new StateHandler("Jeu"));
-            container.setDisplayMode(800, 600, false);
+            container.setDisplayMode(Informateur.largeurEcran, Informateur.hauteurEcran, true);
             container.start();
         } catch (SlickException e) {
             e.printStackTrace();

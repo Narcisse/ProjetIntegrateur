@@ -23,7 +23,7 @@ import org.newdawn.slick.opengl.CursorLoader;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
 import vue.Jeu.Objet;
-import vue.PanneauxInterface.Game;
+import vue.Jeu.Game;
 
 /**
  *
