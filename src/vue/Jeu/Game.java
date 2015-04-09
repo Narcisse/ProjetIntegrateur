@@ -1,6 +1,7 @@
 package vue.Jeu;
 
 import controleur.Camera;
+import controleur.ControlleurEnnemi;
 import controleur.ControlleurPersonnage;
 import controleur.ControlleurSouris;
 import controleur.Informateur;
@@ -33,6 +34,7 @@ public class Game extends BasicGameState {
     private Entrepot entrepot;
     //ArrayList de personnage selectionné
     private ArrayList personnages = new ArrayList();
+    private ArrayList ennemis = new ArrayList();
     // Planche de jeu
     private Game cettePlanche;
     // Hud
@@ -53,6 +55,7 @@ public class Game extends BasicGameState {
         cartePrincipale = new Carte();
         personnages.add(new Joueur(cartePrincipale));
         personnages.add(new Joueur(cartePrincipale));
+        ennemis.add(new Ennemi(cartePrincipale));
         batiment= new Objet(cartePrincipale);
         cettePlanche = this;
         camera = new Camera(cartePrincipale);
@@ -116,6 +119,12 @@ public class Game extends BasicGameState {
             unJoueur.setX(container.getWidth() / 2 + 50 * personnages.indexOf(j));
             unJoueur.setY(container.getHeight() / 2 + 50 * personnages.indexOf(j));
         }
+        for (Object e : ennemis){
+            Ennemi unEnnemi = (Ennemi) e;
+            unEnnemi.init();
+            unEnnemi.setX(500);
+            unEnnemi.setY(500);
+        }
         this.batiment.init();
         // entrepot
         int nombreDeRessourceInitial = Entrepot.valeurInitiale;
@@ -132,6 +141,9 @@ public class Game extends BasicGameState {
         for (int i = 0; i < personnages.size(); i++) {
             container.getInput().addMouseListener(new ControlleurPersonnage((Joueur) personnages.get(i), container, camera));
         }
+        for (int i = 0; i < ennemis.size(); i++) {
+            container.getInput().addMouseListener(new ControlleurEnnemi((Ennemi) ennemis.get(i), container, camera));
+        }
         ecoSouris = new ControlleurSouris(cettePlanche);
         container.getInput().addMouseListener(ecoSouris);
         menuIG = new MenuIG(container, camera, container);
@@ -146,6 +158,10 @@ public class Game extends BasicGameState {
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.render(g);
+        }
+        for (Object e : ennemis) {
+            Ennemi unEnnemi = (Ennemi) e;
+            unEnnemi.render(g);
         }
         this.cartePrincipale.renderAvantPlan();
         g.setColor(Color.yellow);
@@ -166,6 +182,14 @@ public class Game extends BasicGameState {
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.update(delta);
+            //this.personnage.update(delta);
+            this.camera.update(container);
+
+            //this.camera.update(container);
+        }
+        for (Object e : ennemis) {
+            Ennemi unEnnemi = (Ennemi) e;
+            unEnnemi.update(delta);
             //this.personnage.update(delta);
             this.camera.update(container);
 

@@ -14,7 +14,7 @@ import org.newdawn.slick.SpriteSheet;
 public class Joueur {
 
     // *************************************************************************
-    // Donnee membre
+    // Donnee membre    
     private float x = 300, y = 300;
     private float xDest = 300, yDest = 300;
     private float vitesse = 0.5f;
