@@ -1,6 +1,8 @@
 package controleur;
 
+import org.newdawn.slick.SlickException;
 import vue.PanneauxInterface.PanMenuPrincipal;
+import vue.UnePartie;
 
 /**
  *
@@ -8,8 +10,7 @@ import vue.PanneauxInterface.PanMenuPrincipal;
  */
 public class Lanceur {
 
-    public static void main(String[] args) {
-        PanMenuPrincipal menu = new PanMenuPrincipal();
-        menu.setVisible(true);
+    public static void main(String[] args) throws SlickException {
+        UnePartie unePartie  = new UnePartie();
     }
 }

@@ -89,9 +89,15 @@ public class Joueur {
                 this.moving = false;
             } else {
                 if (x < xDest) {
+<<<<<<< HEAD
                     this.x += (int)1*vitesse;
                 } else if (x > xDest){
                     this.x -= (int)1*vitesse;
+=======
+                    this.x += (int) 1 * vitesse;
+                } else if (x > xDest){
+                    this.x -= (int) 1 * vitesse;
+>>>>>>> origin/master
                 } else if (x == xDest && y < yDest){
                     this.setDirection(2);
                 } else if (x == xDest && y > yDest){
@@ -99,9 +105,15 @@ public class Joueur {
                 }
 
                 if (y < yDest) {
+<<<<<<< HEAD
                     this.y += (int)1*vitesse;
                 } else if (y > yDest){
                     this.y -= (int)1*vitesse;
+=======
+                    this.y += (int) 1 * vitesse;
+;                } else if (y > yDest){
+                    this.y -= (int) 1 * vitesse;
+>>>>>>> origin/master
                 } else if (y == yDest && x < xDest){
                     this.setDirection(3);
                 } else if (y == yDest && x > xDest){
