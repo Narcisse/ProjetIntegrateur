@@ -1,0 +1,1 @@
+Pour bouger vos personnage dans le jeu vous devez premièrement les selectionners avec le bouton de gauche de la souris et ensuite ils se deplaceront en direction de l'endroit cliqué avec le bouton droit de la souris.

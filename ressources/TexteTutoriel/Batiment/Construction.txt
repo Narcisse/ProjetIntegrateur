@@ -1,0 +1,1 @@
+Pour construire de nouveau bâtiment il faut premièrement selectionner un paysan et ensuite selectionner l'option construire dans la barre des taches qui se trouve au bas à droite. Si vous avez les ressources disponible a la construction du bâtiment vous pourrez alors l'ajouter a votre village.

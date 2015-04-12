@@ -1,0 +1,1 @@
+Pour bouger la camera dans le jeu vous pouvez vous servire la sourie en la bougant sur les bord de votre écran ou avec les touches directionnelles de votre clavier.
