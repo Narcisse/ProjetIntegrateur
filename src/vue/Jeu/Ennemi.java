@@ -1,5 +1,7 @@
 package vue.Jeu;
 
+import java.util.ArrayList;
+import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
@@ -19,11 +21,11 @@ public class Ennemi {
     
     private int hp = 100;
     
-    private float x = 300, y = 300;
+    private float x = 500, y = 500;
     private float xDest = 300, yDest = 300;
     private float vitesse = 0.5f;
     private int direction = 0;
-    private boolean moving = false;
+    private boolean moving = true;
     private Animation[] animations = new Animation[8];
     private boolean onStair = false;
     private boolean isSelected = false;
@@ -39,7 +41,7 @@ public class Ennemi {
     // *************************************************************************
     // Initialisation
     public void init() throws SlickException {
-        String file = "data/sprites/people/characters_sheet.png";
+        String file = "data/sprites/people/soldier.png";
         SpriteSheet spriteSheet = new SpriteSheet(file, 64, 64);
         this.animations[0] = loadAnimation(spriteSheet, 0, 1, 0);
         this.animations[1] = loadAnimation(spriteSheet, 0, 1, 1);
@@ -84,35 +86,35 @@ public class Ennemi {
 
     // *************************************************************************
     // Methodes de mise a jour
-    public void update(int delta) {
-        if (this.moving && (this.x <= this.xDest || this.x >= this.xDest || this.y >= this.yDest || this.y <= this.yDest)) {
+    public void update(int delta,Joueur unJoueur) {
+        if (this.x <= unJoueur.getX() || this.x >= unJoueur.getX() || this.y >= unJoueur.getY() || this.y <= unJoueur.getY()) {
             float futurX = getFuturX(delta);
             float futurY = getFuturY(delta);
             boolean collision = this.carte.isCollision(futurX, futurY);
             if (collision) {
                 this.moving = false;
             } else {
-                if (x < xDest) {
-                    this.x += 1;
-                } else if (x > xDest){
-                    this.x -= 1;
-                } else if (x == xDest && y < yDest){
+                if (x < unJoueur.getX()) {
+                    this.x += (int)1*vitesse;
+                } else if (x > unJoueur.getX()){
+                    this.x -= (int)1*vitesse;
+                } else if (x == unJoueur.getX() && y < unJoueur.getY()){
                     this.setDirection(2);
-                } else if (x == xDest && y > yDest){
+                } else if (x == unJoueur.getX() && y > unJoueur.getY()){
                     this.setDirection(0);
                 }
 
-                if (y < yDest) {
-                    this.y += 1;
-                } else if (y > yDest){
-                    this.y -= 1;
-                } else if (y == yDest && x < xDest){
+                if (y < unJoueur.getY()) {
+                    this.y += (int)1*vitesse;
+                } else if (y > unJoueur.getY()){
+                    this.y -= (int)1*vitesse;
+                } else if (y == unJoueur.getY() && x < unJoueur.getX()){
                     this.setDirection(3);
-                } else if (y == yDest && x > xDest){
+                } else if (y == unJoueur.getY() && x > unJoueur.getX()){
                     this.setDirection(1);
                 }
 
-                if (y == yDest && x == xDest) {
+                if (y == unJoueur.getY() && x == unJoueur.getX()) {
                     this.moving = false;
                 }
             }
@@ -155,6 +157,27 @@ public class Ennemi {
                 break;
         }
         return futurY;
+    }
+    
+    public Joueur getCloser(ArrayList listePersonnage){
+        int distanceActuelle=999999;
+        Ennemi unEnnemi=this;
+        Joueur unJoueur;
+        for(Object j : listePersonnage){
+            unJoueur=(Joueur)j;
+            Point joueur = new Point((int)unJoueur.getX(),(int)unJoueur.getY());
+            Point ennemi = new Point((int)unEnnemi.getX(),(int)unEnnemi.getY());
+            if(distancePoint(joueur,ennemi)<=distanceActuelle){
+                distanceActuelle=distancePoint(joueur,ennemi); 
+                return unJoueur;
+            }
+   
+        }
+        return null;
+    }
+    
+    public int distancePoint(Point un,Point deux){
+        return (deux.getY()-un.getY())/(deux.getX()-un.getX());
     }
 
     // *************************************************************************

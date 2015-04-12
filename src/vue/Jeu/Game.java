@@ -47,13 +47,13 @@ public class Game extends BasicGameState {
     private boolean escapePressed= false;
     // ID
     public static final int ID = 1;
+    private float distance=0;
 
     // *************************************************************************
     // Constructeur
     public Game() {
         super();
         cartePrincipale = new Carte();
-        personnages.add(new Joueur(cartePrincipale));
         personnages.add(new Joueur(cartePrincipale));
         ennemis.add(new Ennemi(cartePrincipale));
         batiment= new Objet(cartePrincipale);
@@ -186,14 +186,16 @@ public class Game extends BasicGameState {
             this.camera.update(container);
 
             //this.camera.update(container);
-        }
+        
         for (Object e : ennemis) {
             Ennemi unEnnemi = (Ennemi) e;
-            unEnnemi.update(delta);
+            unEnnemi.update(delta,unJoueur);
             //this.personnage.update(delta);
             this.camera.update(container);
 
             //this.camera.update(container);
+           
+        }
         }
     }
 }
