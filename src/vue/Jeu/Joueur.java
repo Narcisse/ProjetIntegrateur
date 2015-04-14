@@ -186,6 +186,10 @@ public class Joueur {
     public void setxDest(int x) {
         this.xDest = x;
     }
+    
+    public float getxDest() {
+        return this.xDest;
+    }
 
     public void setyDest(int y) {
         this.yDest = y;
