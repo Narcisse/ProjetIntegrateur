@@ -3,19 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/PanneauxInterface/PlancheDeJeu.java</file>
-            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/UnePartie.java</file>
-            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/Hud/Hud.java</file>
-            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/controleur/ControlleurPersonnage.java</file>
-=======
             <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/Informateur.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/PanneauxInterface/PlancheDeJeu.java</file>
             <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/modele/Entrepot.java</file>
             <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Hud/Hud.java</file>
             <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/ControlleurSouris.java</file>
             <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/composants/Bouton.java</file>
->>>>>>> b30a9952c1ba99d4786fd0b3ba1366e2bdb83674
         </group>
     </open-files>
 </project-private>
