@@ -60,6 +60,15 @@ public class Objet {
             g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
         }
         }
+        
+        if(this.isSelected()){
+            Animation[] imagePaysant;
+            imagePaysant = new Animation[1];
+            String filePaysant = "data/sprites/people/characters_sheet.png";
+            SpriteSheet uneSpriteSheet = new SpriteSheet(filePaysant, 64, 64);
+            //imagePaysant[0] = loadAnimation(filePaysant, 0, 1, 0);
+            g.drawRect(300, 400, 50, 50);
+        }
     }
       
     
