@@ -55,6 +55,7 @@ public class Game extends BasicGameState {
         super();
         cartePrincipale = new Carte();
         personnages.add(new Joueur(cartePrincipale));
+        personnages.add(new Joueur(cartePrincipale));
         ennemis.add(new Ennemi(cartePrincipale));
         batiment= new Objet(cartePrincipale);
         cettePlanche = this;
@@ -189,7 +190,7 @@ public class Game extends BasicGameState {
         
         for (Object e : ennemis) {
             Ennemi unEnnemi = (Ennemi) e;
-            unEnnemi.update(delta,unJoueur);
+            unEnnemi.update(delta,unJoueur,personnages);
             //this.personnage.update(delta);
             this.camera.update(container);
 
