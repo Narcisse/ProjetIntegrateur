@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/Informateur.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/modele/Entrepot.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Hud/Hud.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/ControlleurSouris.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/composants/Bouton.java</file>
+            <file>file:/C:/Users/Loic/Documents/GitHub/ProjetIntegrateur/src/vue/Jeu/Joueur.java</file>
+            <file>file:/C:/Users/Loic/Documents/GitHub/ProjetIntegrateur/src/vue/Jeu/Ennemi.java</file>
+            <file>file:/C:/Users/Loic/Documents/GitHub/ProjetIntegrateur/src/vue/Jeu/Game.java</file>
         </group>
     </open-files>
 </project-private>
