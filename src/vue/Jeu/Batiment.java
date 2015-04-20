@@ -1,5 +1,6 @@
 package vue.Jeu;
 import controleur.Camera;
+import controleur.Informateur;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,26 +17,36 @@ import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.opengl.CursorLoader;
+import vue.Hud.Hud;
 
 /**
  *
  * @author Christopher Desrosiers Mondor
  */
-public class Objet {
+public class Batiment {
 
     // *************************************************************************
     // Donnee membre
     private Cursor curseur;
-    private int x,y,indic;
+    private int x,y, indic;
+    private float visuelX, visuelY;
     private boolean isSelected = false;
     private Rectangle rectInteraction;
     private Carte carte;
     private Image batiment;
-    private GameContainer container;//=new GameContainer();
+    private GameContainer container;
 
     // *************************************************************************
     // Constructeur
-    public Objet(Carte uneCarte) {
+    public Batiment(Carte uneCarte, GameContainer unContainer, int constructionX, int constructionY) throws SlickException {
+        this.carte = uneCarte;
+        this.container = unContainer;
+        this.setX(constructionX);
+        this.setY(constructionY);
+        this.init();
+    }
+    
+    public Batiment(Carte uneCarte) {
         this.carte = uneCarte;
     }
 
@@ -51,38 +62,53 @@ public class Objet {
     // *************************************************************************
     // Affichage
     public void render(Graphics g) throws SlickException {
-        if(x==0&&y==0){
-        }else{
-        g.drawImage(batiment,x,y);
-        rectInteraction.setX(x);
-        rectInteraction.setY(y);
-        if(isSelected){
-            g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
-        }
-        }
-        
+        g.drawImage(batiment,visuelX, visuelY);
+        rectInteraction.setX((int)visuelX);
+        rectInteraction.setY((int)visuelY);
         if(this.isSelected()){
-            Animation[] imagePaysant;
-            imagePaysant = new Animation[1];
+            g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
+
+            int tailleImage;
+            tailleImage = vue.Hud.Hud.tailleImagePaneauAction/3;
+            
+            int i = 0, j = 0;
+            int positionX = vue.Hud.Hud.positionXPaneauAction + tailleImage*i;
+            int positionY= vue.Hud.Hud.positionYPaneauAction + tailleImage*j;
+            
+            Animation imagePaysant;
+            imagePaysant = new Animation();
             String filePaysant = "data/sprites/people/characters_sheet.png";
-            SpriteSheet uneSpriteSheet = new SpriteSheet(filePaysant, 64, 64);
-            //imagePaysant[0] = loadAnimation(filePaysant, 0, 1, 0);
-            g.drawRect(300, 400, 50, 50);
+            SpriteSheet uneSpriteSheet = new SpriteSheet(filePaysant, tailleImage, tailleImage);
+            imagePaysant = loadAnimation(uneSpriteSheet, 1, 9, 2);
+            g.drawAnimation(imagePaysant, positionX, positionY);
         }
     }
-      
+    
+    //Mise à jour
+    public void update(float cameraX, float cameraY) {
+        this.setVisuelX(cameraX);
+        this.setVisuelY(cameraY);
+    }
     
     // *************************************************************************
     // Methodes specifiques
-    public void selection(){
-        if(isSelected){
-            isSelected = false;
-        } else{
-            isSelected = true;
+    
+    private Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
+        Animation animation = new Animation();
+        for (int x = startX; x < endX; x++) {
+            animation.addFrame(spriteSheet.getSprite(x, y), 100);
         }
+        return animation;
     }
-    public void notSelection(){
-        isSelected=false;
+    
+    //Acualisation visuel pour la camera en X
+    public void setVisuelX(float cameraX){
+        visuelX = x - cameraX + container.getScreenWidth()/2;
+    }
+    
+    //Acualisation visuel pour la camera en Y
+    public void setVisuelY(float cameraY){
+        visuelY = y - cameraY + container.getHeight()/2;
     }
     
     // *************************************************************************
@@ -102,14 +128,21 @@ public class Objet {
     public void setY(int y) {
         this.y = y;
     }
-
+    
+    public void setSelection(boolean VF){
+        isSelected = VF;
+    }
+    
+    public void setContainer(GameContainer unContainer){
+        this.container = unContainer;
+    }
     
     public boolean isSelected(){
         return this.isSelected;
     }
 
-
     public Rectangle getRectangle(){
         return this.rectInteraction;
     }
+    
 }
