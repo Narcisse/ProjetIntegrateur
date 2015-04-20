@@ -150,7 +150,6 @@ public class ControlleurSouris implements MouseListener {
             Point mousePos = Informateur.getMousePosition(camera, container);
             if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
                 recolte(cartePrincipale, entrepot, mousePos);
-                System.out.print("recolte is called");
             }
             /*if (cartePrincipale.isOr(mousePos.x, mousePos.y)) {
              recolte(cartePrincipale, entrepot, mousePos);
@@ -199,7 +198,6 @@ public class ControlleurSouris implements MouseListener {
 
         if (uneCarte.isArbre(unPointSouris.x, unPointSouris.y)) {
             unEntrepot.ajoutBois(10);
-            System.out.print("recolte ajoute 10");
         }
         /*if (cartePrincipale.isOr(unPointSouris.x, unPointSouris.y)) {
          unEntrepot.ajoutOr(10);
