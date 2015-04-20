@@ -22,7 +22,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.opengl.CursorLoader;
 import vue.Jeu.Carte;
 import vue.Jeu.Joueur;
-import vue.Jeu.Objet;
+import vue.Jeu.Batiment;
 import vue.Jeu.Game;
 
 /**
@@ -47,7 +47,7 @@ public class ControlleurSouris implements MouseListener {
     //ArrayList de personnage selectionné
     private ArrayList personnages = new ArrayList();
     private ArrayList lstSelection = new ArrayList();
-    private Objet batiment;
+    private ArrayList batiments = new ArrayList();
     //event
     private Input input;
     //Rectangle contruit par la souris
@@ -61,8 +61,8 @@ public class ControlleurSouris implements MouseListener {
         this.container = unePlanche.getContainer();
         this.camera = unePlanche.getCamera();
         this.cartePrincipale = unePlanche.getCartePrincipale();
-        this.batiment=unePlanche.getBatiment();
         this.entrepot = unePlanche.getEntrepot();
+        this.batiments = unePlanche.getBatiments();
         input = container.getInput();
     }
     
@@ -80,20 +80,19 @@ public class ControlleurSouris implements MouseListener {
             }
         }
         if(input.isKeyPressed(Input.KEY_SPACE)){
-        try {
-            //Curseur
-            curseur = (CursorLoader.get()).getCursor("data/sprites/objet/TownHall.png",0,0);
-        } catch (IOException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LWJGLException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                try {
-                    container.setMouseCursor(curseur,0,0);
-                } catch (SlickException ex) {
-                    Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                indic=1;
+            try {
+                //Curseur
+                curseur = (CursorLoader.get()).getCursor("data/sprites/objet/TownHall.png",0,0);
+            }catch (IOException ex) {
+                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }catch (LWJGLException ex) {
+                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }try {
+                container.setMouseCursor(curseur,0,0);
+            } catch (SlickException ex) {
+                        Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            indic=1;
         }
     }
 
@@ -111,7 +110,7 @@ public class ControlleurSouris implements MouseListener {
     //À utiliser pour les simple click
     //Button est le bouton de la souris: bouton de gauche = 0, bouton de droit = 1.
     //X représente la position de event.getX(), y représente la position de event.getY().
-    public void mousePressed(int button, int x, int y) {
+    public void mousePressed(int button, int x, int y)  {
         
             xPressed = (int) (x + (camera.getX() - container.getWidth() / 2));
             yPressed = (int) (y + (camera.getY() - container.getHeight() / 2));
@@ -119,23 +118,29 @@ public class ControlleurSouris implements MouseListener {
         // x - la moitier de l'ecran on arrive a fixer la position en x de la
         // souris lors de la mise a jour de la camera.
         if (button == 0) {
-
-            if(indic==1){
-               batiment.setX(xPressed);
-               batiment.setY(yPressed);
-            container.setDefaultMouseCursor();
-            indic=0;
-            }
             lstSelection.clear();
+            
+            //Construit l'hotel de ville 
+            if(indic==1){
+                try{
+                    Batiment unBatiment = new Batiment(cartePrincipale, container, xPressed, yPressed);
+                    container.setDefaultMouseCursor();
+                    batiments.add(unBatiment);
+                    indic=0;
+                }catch (SlickException eSlick){
+                    System.out.println("Erreur de chargement de l'image du batiment!");
+                }
+            }
             
             //Clear la liste si on click gauche, cancel la selection
             for (Object j : personnages) {
                 Joueur unJoueur = (Joueur) j;
                 unJoueur.selection(false);
                 //Permet de selectionner un personnage en cliquant sur lui
-                if (unJoueur.getX() <= xPressed && unJoueur.getX() - 150 >= xPressed
-                        && unJoueur.getY() <= yPressed && unJoueur.getY() - 56 >= yPressed) {
+                if (unJoueur.getX() <= xPressed && (unJoueur.getX() - 150) >= xPressed
+                        && unJoueur.getY() <= yPressed && (unJoueur.getY() - 56) >= yPressed) {
                     unJoueur.selection(true);
+                    lstSelection.add(unJoueur);
                 }
     
             }
@@ -145,15 +150,39 @@ public class ControlleurSouris implements MouseListener {
             if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
                 recolte(cartePrincipale, entrepot, mousePos);
             }
-            if ((xPressed >= batiment.getX() && xPressed <= (batiment.getX() + 64)) && (yPressed >= batiment.getY() && yPressed <= (batiment.getY()+ 64))) {
-                batiment.selection();
-                }else{batiment.notSelection();}
+            
+            //Sélectionne le batiment
+            for(Object b : batiments){
+                Batiment unBatiment = (Batiment) b;
+                if ((xPressed >= unBatiment.getX() && xPressed <= (unBatiment.getX() + 64)) && (yPressed >= unBatiment.getY() && yPressed <= (unBatiment.getY()+ 64))) {
+                    unBatiment.setSelection(true);
+                }else{
+                    if(x < vue.Hud.Hud.positionXPaneauAction || y < vue.Hud.Hud.positionYPaneauAction){
+                        unBatiment.setSelection(false);
+                    }
+                }
+                
+                //Bouton creer Paysant dans l'hotel de ville
+                if(unBatiment.isSelected() && x > (vue.Hud.Hud.positionXPaneauAction) && x < (vue.Hud.Hud.positionXPaneauAction + vue.Hud.Hud.tailleImagePaneauAction) 
+                        && y > vue.Hud.Hud.positionYPaneauAction && y < (vue.Hud.Hud.positionYPaneauAction + vue.Hud.Hud.positionYPaneauAction)){
+                    Joueur unPaysant;
+                    unPaysant = new Joueur(cartePrincipale);
+                    try{
+                        unPaysant.init();
+                    }catch(SlickException exPaysant){
+                        System.out.println("Problème avec le chargement de l'image du paysant!");
+                    }
+                    personnages.add(unPaysant);
+                    input.addMouseListener(new ControlleurPersonnage(unPaysant, container, camera));
+                    
+                }
+            }  
         }
         
         if (button == 1) {
             if(indic==1){
-            container.setDefaultMouseCursor();
-            indic=0;
+                container.setDefaultMouseCursor();
+                indic=0;
             }
         }
     }
