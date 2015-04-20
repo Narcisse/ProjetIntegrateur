@@ -1,5 +1,7 @@
 package vue.Jeu;
 
+import java.util.ArrayList;
+import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
@@ -170,6 +172,27 @@ public class Joueur {
         }
         return futurY;
     }
+    public Joueur getCloser(ArrayList listePersonnage,Ennemi unEnnemi){
+        int distanceActuelle=Integer.MAX_VALUE;
+        Joueur unJoueur,joueurProche=null;
+        for(Object j : listePersonnage){
+            unJoueur=(Joueur)j;
+            Point joueur = new Point((int)unJoueur.getX(),(int)unJoueur.getY());
+            Point ennemi = new Point((int)unEnnemi.getX(),(int)unEnnemi.getY());
+            if(distancePoint(joueur,ennemi)<distanceActuelle){
+                distanceActuelle=distancePoint(joueur,ennemi); 
+                joueurProche=unJoueur;
+            }
+            
+   
+        }
+        return joueurProche;
+    }
+    
+    public int distancePoint(Point un,Point deux){
+        return (int)Math.sqrt(Math.pow(deux.getY()-un.getY(),2)+Math.pow(deux.getX()-un.getX(),2));   
+    }
+
 
     // *************************************************************************
     // Accesseurs et mutateurs
