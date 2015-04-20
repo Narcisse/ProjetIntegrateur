@@ -26,6 +26,7 @@ public class Game extends BasicGameState {
     // Donnees membres
     private GameContainer container;
     private Carte cartePrincipale;
+    private StateBasedGame game;
     // Controlleurs (ecouteurs)
     private ControlleurSouris ecoSouris;
     // Camera
@@ -108,6 +109,7 @@ public class Game extends BasicGameState {
     public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
         // Jeu et carte
         this.container = container;
+        this.game = sbg;
         //Image curseur = new Image("images/curseur.png", true);
         //this.container.setMouseCursor(curseur, 0, 0);
         this.cartePrincipale.init();
@@ -143,7 +145,7 @@ public class Game extends BasicGameState {
         for (int i = 0; i < ennemis.size(); i++) {
             container.getInput().addMouseListener(new ControlleurEnnemi((Ennemi) ennemis.get(i), container, camera));
         }
-        ecoSouris = new ControlleurSouris(cettePlanche);
+        ecoSouris = new ControlleurSouris(cettePlanche, sbg);
         container.getInput().addMouseListener(ecoSouris);
         menuIG = new MenuIG(container, camera, container);
         menuIG.init();
@@ -211,6 +213,21 @@ public class Game extends BasicGameState {
             unBatiment.update(this.camera.getX(), this.camera.getY());
             
 
+        }
+    }
+    
+    public void victoire(ArrayList ennemis, ArrayList batiments){
+        if(ennemis.isEmpty() && batiments.isEmpty()){
+            game.addState(new EndGameState(null));
+            game.enterState(EndGameState.ID);
+        }
+    }
+    
+    public void keyReleased(int key, char c) {
+        switch (key) {
+            case Input.KEY_D:
+                game.enterState(EndGameState.ID);
+                break;
         }
     }
 }

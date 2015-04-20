@@ -10,9 +10,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.StateBasedGame;
 import vue.Jeu.StateHandler;
-import vue.PanneauxInterface.*;
 
 /**
  *
@@ -45,6 +43,7 @@ public class UnePartie extends JFrame {
         try {
             AppGameContainer container = new AppGameContainer(new StateHandler("Jeu"));
             container.setDisplayMode(Informateur.largeurEcran, Informateur.hauteurEcran, true);
+            container.setShowFPS(false);
             container.start();
         } catch (SlickException e) {
             e.printStackTrace();
