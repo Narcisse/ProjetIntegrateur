@@ -44,7 +44,7 @@ public class Camera {
         int mouseX = (int) (Mouse.getX() + (this.xCamera - container.getWidth() / 2));
         int mouseY = (int) (Mouse.getY() + (this.yCamera - container.getHeight() / 2));
 
-        int w = container.getWidth() / 3;
+        int w = container.getWidth() / 3 + 220;
         //Vers la droite
         if (mouseX > this.xCamera + w) {
             this.xCamera++;
@@ -52,7 +52,7 @@ public class Camera {
         else if (mouseX < this.xCamera - w) {
             this.xCamera--;
         }
-        int h = container.getHeight() / 3;
+        int h = container.getHeight() / 3 + 120;
         //Vers le haut
         if (mouseY >= this.yCamera + h) {
             this.yCamera--;

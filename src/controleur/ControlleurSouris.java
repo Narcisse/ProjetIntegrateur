@@ -41,7 +41,7 @@ public class ControlleurSouris implements MouseListener {
     // Entrepot
     private Entrepot entrepot;
     //Utilisé pour savoir a quelle endroit la souris est cliqué
-    private int xPressed = 0, yPressed = 0,indic=0;
+    private int xPressed = 0, yPressed = 0, indic = 0;
     //Le delta est la difference entre la position initiale de la souris et la position finale
     private int deltaX = 0, deltaY = 0;
     //ArrayList de personnage selectionné
@@ -65,7 +65,7 @@ public class ControlleurSouris implements MouseListener {
         this.batiments = unePlanche.getBatiments();
         input = container.getInput();
     }
-    
+
     public void render(GameContainer container, Graphics g) throws SlickException {
         if (rect != null) {
             g.setColor(new Color(255, 255, 255, 100));
@@ -79,20 +79,21 @@ public class ControlleurSouris implements MouseListener {
                 mouseReleased = false;
             }
         }
-        if(input.isKeyPressed(Input.KEY_SPACE)){
+        if (input.isKeyPressed(Input.KEY_SPACE)) {
             try {
                 //Curseur
-                curseur = (CursorLoader.get()).getCursor("data/sprites/objet/TownHall.png",0,0);
-            }catch (IOException ex) {
+                curseur = (CursorLoader.get()).getCursor("data/sprites/objet/TownHall.png", 0, 0);
+            } catch (IOException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-            }catch (LWJGLException ex) {
+            } catch (LWJGLException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-            }try {
-                container.setMouseCursor(curseur,0,0);
-            } catch (SlickException ex) {
-                        Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }
-            indic=1;
+            try {
+                container.setMouseCursor(curseur, 0, 0);
+            } catch (SlickException ex) {
+                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            indic = 1;
         }
     }
 
@@ -110,39 +111,39 @@ public class ControlleurSouris implements MouseListener {
     //À utiliser pour les simple click
     //Button est le bouton de la souris: bouton de gauche = 0, bouton de droit = 1.
     //X représente la position de event.getX(), y représente la position de event.getY().
-    public void mousePressed(int button, int x, int y)  {
-        
-            xPressed = (int) (x + (camera.getX() - container.getWidth() / 2));
-            yPressed = (int) (y + (camera.getY() - container.getHeight() / 2));
+    public void mousePressed(int button, int x, int y) {
+
+        xPressed = (int) (x + (camera.getX() - container.getWidth() / 2));
+        yPressed = (int) (y + (camera.getY() - container.getHeight() / 2));
         // La camera est toujours au centre de l'ecran et donc en ajoutant son
         // x - la moitier de l'ecran on arrive a fixer la position en x de la
         // souris lors de la mise a jour de la camera.
         if (button == 0) {
             lstSelection.clear();
-            
+
             //Construit l'hotel de ville 
-            if(indic==1){
-                try{
+            if (indic == 1) {
+                try {
                     Batiment unBatiment = new Batiment(cartePrincipale, container, xPressed, yPressed);
                     container.setDefaultMouseCursor();
                     batiments.add(unBatiment);
-                    indic=0;
-                }catch (SlickException eSlick){
+                    indic = 0;
+                } catch (SlickException eSlick) {
                     System.out.println("Erreur de chargement de l'image du batiment!");
                 }
             }
-            
+
             //Clear la liste si on click gauche, cancel la selection
             for (Object j : personnages) {
                 Joueur unJoueur = (Joueur) j;
                 unJoueur.selection(false);
+
                 //Permet de selectionner un personnage en cliquant sur lui
-                if (unJoueur.getX() <= xPressed && (unJoueur.getX() - 150) >= xPressed
-                        && unJoueur.getY() <= yPressed && (unJoueur.getY() - 56) >= yPressed) {
+                if (unJoueur.getX() >= xPressed && (unJoueur.getX() - 150.0) <= xPressed
+                        && unJoueur.getY() >= yPressed && (unJoueur.getY() - 56.0) <= yPressed) {
                     unJoueur.selection(true);
-                    lstSelection.add(unJoueur);
                 }
-    
+
             }
             // changer .isArbre par une methode .isRessource pour une meilleure
             // gestion
@@ -150,73 +151,66 @@ public class ControlleurSouris implements MouseListener {
             if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
                 recolte(cartePrincipale, entrepot, mousePos);
             }
-            if (cartePrincipale.isOr(mousePos.x, mousePos.y)) {
-                recolte(cartePrincipale, entrepot, mousePos);
-            }
-            if (cartePrincipale.isFood(mousePos.x, mousePos.y)) {
-                recolte(cartePrincipale, entrepot, mousePos);
-            }
+            /*if (cartePrincipale.isOr(mousePos.x, mousePos.y)) {
+             recolte(cartePrincipale, entrepot, mousePos);
+             }
+             if (cartePrincipale.isFood(mousePos.x, mousePos.y)) {
+             recolte(cartePrincipale, entrepot, mousePos);
+             }*/
 
-            
             //Sélectionne le batiment
-            for(Object b : batiments){
+            for (Object b : batiments) {
                 Batiment unBatiment = (Batiment) b;
-                if ((xPressed >= unBatiment.getX() && xPressed <= (unBatiment.getX() + 64)) && (yPressed >= unBatiment.getY() && yPressed <= (unBatiment.getY()+ 64))) {
+                if ((xPressed >= unBatiment.getX() && xPressed <= (unBatiment.getX() + 64)) && (yPressed >= unBatiment.getY() && yPressed <= (unBatiment.getY() + 64))) {
                     unBatiment.setSelection(true);
-                }else{
-                    if(x < vue.Hud.Hud.positionXPaneauAction || y < vue.Hud.Hud.positionYPaneauAction){
+                } else {
+                    if (x < vue.Hud.Hud.positionXPaneauAction || y < vue.Hud.Hud.positionYPaneauAction) {
                         unBatiment.setSelection(false);
                     }
                 }
-                
+
                 //Bouton creer Paysant dans l'hotel de ville
-                if(unBatiment.isSelected() && x > (vue.Hud.Hud.positionXPaneauAction) && x < (vue.Hud.Hud.positionXPaneauAction + vue.Hud.Hud.tailleImagePaneauAction) 
-                        && y > vue.Hud.Hud.positionYPaneauAction && y < (vue.Hud.Hud.positionYPaneauAction + vue.Hud.Hud.positionYPaneauAction)){
+                if (unBatiment.isSelected() && x > (vue.Hud.Hud.positionXPaneauAction) && x < (vue.Hud.Hud.positionXPaneauAction + vue.Hud.Hud.tailleImagePaneauAction)
+                        && y > vue.Hud.Hud.positionYPaneauAction && y < (vue.Hud.Hud.positionYPaneauAction + vue.Hud.Hud.positionYPaneauAction)) {
                     Joueur unPaysant;
                     unPaysant = new Joueur(cartePrincipale);
-                    try{
+                    try {
                         unPaysant.init();
-                    }catch(SlickException exPaysant){
+                    } catch (SlickException exPaysant) {
                         System.out.println("Problème avec le chargement de l'image du paysant!");
                     }
                     personnages.add(unPaysant);
                     input.addMouseListener(new ControlleurPersonnage(unPaysant, container, camera));
-                    
+
                 }
-            }  
+            }
         }
-        
-        
+
         if (button == 1) {
-            if(indic==1){
+            if (indic == 1) {
                 container.setDefaultMouseCursor();
-                indic=0;
+                indic = 0;
             }
         }
     }
-    // Je reutilise .isArbre parce que quand tout sera fait il y aura aussi 
-    // .isGold et .isFood
-    
-    // Jai ajouter des arguments pour qu'on puisse retirer la methode de recolte
-    // De planche de jeu et que sa continu de fonctionner
     
     public void recolte(Carte uneCarte, Entrepot unEntrepot, Point unPointSouris) {
-        
+
         if (uneCarte.isArbre(unPointSouris.x, unPointSouris.y)) {
             unEntrepot.ajoutBois(10);
         }
-        if (cartePrincipale.isOr(unPointSouris.x, unPointSouris.y)) {
-            unEntrepot.ajoutOr(10);
-        }
+        /*if (cartePrincipale.isOr(unPointSouris.x, unPointSouris.y)) {
+         unEntrepot.ajoutOr(10);
+         }
 
-        if (cartePrincipale.isFood(unPointSouris.x, unPointSouris.y)) {
-            unEntrepot.ajoutNourriture(10);
-        }
+         if (cartePrincipale.isFood(unPointSouris.x, unPointSouris.y)) {
+         unEntrepot.ajoutNourriture(10);
+         }*/
     }
 
     @Override
     //Relachement du bouton de la souris
-    public void mouseReleased(int i, int i1, int i2) {    
+    public void mouseReleased(int i, int i1, int i2) {
         //mouseReleased est true seulement si le rectangle est contruit
         //Donc si la mouseDragged a été appeler
         if (rectEstConstruit) {
@@ -232,6 +226,7 @@ public class ControlleurSouris implements MouseListener {
     @Override
     //Lorsque le boutton est click et que nous bougeons la souris
     public void mouseDragged(int oldx, int oldy, int newx, int newy) {
+        personnages.clear();
         //input.isMouseButtonDown(0) représente le bouton de gauche
         if (input.isMouseButtonDown(0)) {
             //newx/newy sont les positions en temps réels de la souris lorsque cliqué
@@ -311,20 +306,20 @@ public class ControlleurSouris implements MouseListener {
     //??
     public void inputStarted() {
     }
-    
-    public float getRectX(){
+
+    public float getRectX() {
         return rect.getX();
     }
-    
-    public float getRectY(){
+
+    public float getRectY() {
         return rect.getY();
     }
-    
-    public float getRectWidth(){
+
+    public float getRectWidth() {
         return rect.getWidth();
     }
-    
-    public float getRectHeight(){
+
+    public float getRectHeight() {
         return rect.getHeight();
     }
 }
