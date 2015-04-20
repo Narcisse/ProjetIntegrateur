@@ -15,7 +15,7 @@ import vue.ElementsVisuels.ElementDecorVue;
 import vue.ElementsVisuels.MineOrVue;
 import vue.ElementsVisuels.PaysanVue;
 import modele.Ressource;
-import modele.Vache;
+import modele.Nourriture;
 
 /**
  *

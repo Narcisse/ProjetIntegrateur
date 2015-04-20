@@ -12,7 +12,7 @@ package modele;
 public class MineOr extends ElementDecor {
 
     // Donnee membres
-    public static final int quantiteRetirer = 20;
+    public final static int OR = 20;
 
     // Constructeur
     public MineOr() {

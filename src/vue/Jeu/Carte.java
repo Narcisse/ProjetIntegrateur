@@ -73,6 +73,25 @@ public class Carte {
         boolean collision = tile != null;
         return collision;
     }
+    public boolean isOr(float x, float y){
+        int tileW = this.carte.getTileWidth();
+        int tileH = this.carte.getTileHeight();
+        //LayerRessource
+        int logicLayer = this.carte.getLayerIndex("DevantPersoArbreBas");
+        Image tile = this.carte.getTileImage((int) x / tileW, (int) y / tileH, logicLayer);
+        boolean collision = tile != null;
+        return collision;
+    }
+    
+      public boolean isFood(float x, float y){
+        int tileW = this.carte.getTileWidth();
+        int tileH = this.carte.getTileHeight();
+        //LayerRessource
+        int logicLayer = this.carte.getLayerIndex("DevantPersoArbreBas");
+        Image tile = this.carte.getTileImage((int) x / tileW, (int) y / tileH, logicLayer);
+        boolean collision = tile != null;
+        return collision;
+    }
 
     // *************************************************************************
     // Ecouteurs

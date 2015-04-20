@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
 import modele.ElementDecor;
-import modele.Vache;
+import modele.Nourriture;
 import vue.ElementsVisuels.ElementDecorVue;
 import vue.ElementsVisuels.VacheVue;
 

@@ -150,6 +150,13 @@ public class ControlleurSouris implements MouseListener {
             if (cartePrincipale.isArbre(mousePos.x, mousePos.y)) {
                 recolte(cartePrincipale, entrepot, mousePos);
             }
+            if (cartePrincipale.isOr(mousePos.x, mousePos.y)) {
+                recolte(cartePrincipale, entrepot, mousePos);
+            }
+            if (cartePrincipale.isFood(mousePos.x, mousePos.y)) {
+                recolte(cartePrincipale, entrepot, mousePos);
+            }
+
             
             //Sélectionne le batiment
             for(Object b : batiments){
@@ -179,6 +186,7 @@ public class ControlleurSouris implements MouseListener {
             }  
         }
         
+        
         if (button == 1) {
             if(indic==1){
                 container.setDefaultMouseCursor();
@@ -193,9 +201,16 @@ public class ControlleurSouris implements MouseListener {
     // De planche de jeu et que sa continu de fonctionner
     
     public void recolte(Carte uneCarte, Entrepot unEntrepot, Point unPointSouris) {
+        
         if (uneCarte.isArbre(unPointSouris.x, unPointSouris.y)) {
             unEntrepot.ajoutBois(10);
-            System.out.println(unEntrepot.getBois());
+        }
+        if (cartePrincipale.isOr(unPointSouris.x, unPointSouris.y)) {
+            unEntrepot.ajoutOr(10);
+        }
+
+        if (cartePrincipale.isFood(unPointSouris.x, unPointSouris.y)) {
+            unEntrepot.ajoutNourriture(10);
         }
     }
 
@@ -312,5 +327,4 @@ public class ControlleurSouris implements MouseListener {
     public float getRectHeight(){
         return rect.getHeight();
     }
-
 }
