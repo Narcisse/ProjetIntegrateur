@@ -226,7 +226,7 @@ public class ControlleurSouris implements MouseListener {
     @Override
     //Lorsque le boutton est click et que nous bougeons la souris
     public void mouseDragged(int oldx, int oldy, int newx, int newy) {
-        personnages.clear();
+        lstSelection.clear();
         //input.isMouseButtonDown(0) représente le bouton de gauche
         if (input.isMouseButtonDown(0)) {
             //newx/newy sont les positions en temps réels de la souris lorsque cliqué
