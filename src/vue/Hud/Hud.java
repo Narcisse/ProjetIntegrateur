@@ -19,8 +19,7 @@ import org.newdawn.slick.gui.GUIContext;
 public class Hud extends AbstractComponent implements MouseListener{
     
     private Image paneauAction;
-    public static int positionXPaneauAction;
-    public static int positionYPaneauAction;
+    public static int positionXPaneauAction, positionYPaneauAction;
     public static int tailleImagePaneauAction;
     // Position 
     private static final int P_BAR_X = 10;
@@ -79,7 +78,7 @@ public class Hud extends AbstractComponent implements MouseListener{
             tailleImagePaneauAction = tailleImageY;
         }  
         positionXPaneauAction = largeurFrameX - tailleImagePaneauAction - 10;
-        positionYPaneauAction= hauteurFrameY - tailleImagePaneauAction - 10;
+        positionYPaneauAction = hauteurFrameY - tailleImagePaneauAction - 10;
         
         paneauAction.draw(positionXPaneauAction, positionYPaneauAction, tailleImagePaneauAction, tailleImagePaneauAction);
        /* 
@@ -171,4 +170,4 @@ public class Hud extends AbstractComponent implements MouseListener{
     public int getHeight() {
         return 0;
     }
-    }
+}

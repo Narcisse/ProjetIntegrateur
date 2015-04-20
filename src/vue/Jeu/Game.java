@@ -35,12 +35,11 @@ public class Game extends BasicGameState {
     //ArrayList de personnage selectionné
     private ArrayList personnages = new ArrayList();
     private ArrayList ennemis = new ArrayList();
+    private ArrayList batiments = new ArrayList();
     // Planche de jeu
     private Game cettePlanche;
     // Hud
     private Hud hud;
-    //Batiment
-    private Objet batiment;
     //Menu In game
     private MenuIG menuIG;
     //Condition pour afficher menu
@@ -57,7 +56,6 @@ public class Game extends BasicGameState {
         personnages.add(new Joueur(cartePrincipale));
         personnages.add(new Joueur(cartePrincipale));
         ennemis.add(new Ennemi(cartePrincipale));
-        batiment= new Objet(cartePrincipale);
         cettePlanche = this;
         camera = new Camera(cartePrincipale);
     }
@@ -78,10 +76,6 @@ public class Game extends BasicGameState {
     public ArrayList<Joueur> getPersonnages() {
         return this.personnages;
     }
-    
-    public Objet getBatiment() {
-        return this.batiment;
-    }
 
     public Carte getCartePrincipale() {
         return this.cartePrincipale;
@@ -94,12 +88,16 @@ public class Game extends BasicGameState {
     public Hud getHud(){
         return this.hud;
     }
+    
+    public ArrayList getBatiments(){
+        return this.batiments;
+    }
+    
+    public void ajouterBatiment(Batiment unBatiment){
+        this.batiments.add(unBatiment);
+    }
 
     // *************************************************************************
-    // Main
-
-    public static void main(String[] args) throws SlickException {
-    }
 
     @Override
     public int getID() {
@@ -126,7 +124,7 @@ public class Game extends BasicGameState {
             unEnnemi.setX(500);
             unEnnemi.setY(500);
         }
-        this.batiment.init();
+        //this.batiment.init();
         // entrepot
         int nombreDeRessourceInitial = Entrepot.valeurInitiale;
         entrepot = new Entrepot();
@@ -155,7 +153,7 @@ public class Game extends BasicGameState {
     public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException {
         this.camera.place(container, g);
         this.cartePrincipale.renderArrierePlan();
-        this.batiment.render(g);
+        //this.batiment.render(g);
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.render(g);
@@ -176,6 +174,11 @@ public class Game extends BasicGameState {
         if(escapePressed == true){
             this.menuIG.render(g);   
         }
+        
+        for(Object b : batiments){
+            Batiment unBatiment= (Batiment) b;
+            unBatiment.render(g);
+        }
     }
 
     @Override
@@ -183,11 +186,16 @@ public class Game extends BasicGameState {
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.update(delta);
-            //this.personnage.update(delta);
             this.camera.update(container);
-
-            //this.camera.update(container);
         
+<<<<<<< HEAD
+            for (Object e : ennemis) {
+                Ennemi unEnnemi = (Ennemi) e;
+                unEnnemi.update(delta,unJoueur);
+                //this.personnage.update(delta);
+                this.camera.update(container);
+            }
+=======
         for (Object e : ennemis) {
             Ennemi unEnnemi = (Ennemi) e;
             unEnnemi.update(delta,unJoueur,personnages);
@@ -197,6 +205,7 @@ public class Game extends BasicGameState {
             //this.camera.update(container);
            
         }
+>>>>>>> master
         }
         if (personnages.size() > 1) {
             for (int i = 0; i < personnages.size(); i++) {
@@ -205,6 +214,14 @@ public class Game extends BasicGameState {
                 premierPersonnage = (Joueur)personnages.get(0);
                 unPersonnage.setxDest((int)premierPersonnage.getxDest()+50*i);
             }
+        }
+        
+        for(Object b : batiments){
+            Batiment unBatiment= (Batiment) b;
+            this.camera.update(container);
+            unBatiment.update(this.camera.getX(), this.camera.getY());
+            
+
         }
     }
 }
