@@ -145,7 +145,7 @@ public class Game extends BasicGameState {
         for (int i = 0; i < ennemis.size(); i++) {
             container.getInput().addMouseListener(new ControlleurEnnemi((Ennemi) ennemis.get(i), container, camera));
         }
-        ecoSouris = new ControlleurSouris(cettePlanche, sbg);
+        ecoSouris = new ControlleurSouris(cettePlanche);
         container.getInput().addMouseListener(ecoSouris);
         menuIG = new MenuIG(container, camera, container);
         menuIG.init();
