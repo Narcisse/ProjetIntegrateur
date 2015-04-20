@@ -19,6 +19,9 @@ import org.newdawn.slick.gui.GUIContext;
 public class Hud extends AbstractComponent implements MouseListener{
     
     private Image paneauAction;
+    public static int positionXPaneauAction;
+    public static int positionYPaneauAction;
+    public static int tailleImagePaneauAction;
     // Position 
     private static final int P_BAR_X = 10;
     private static final int P_BAR_Y = 10;
@@ -48,9 +51,6 @@ public class Hud extends AbstractComponent implements MouseListener{
     private Rectangle barreMiniMap;
     private Rectangle barreInformations;
 
-    // Le Hud
-    private vue.Hud.Hud unHud;
-
     public Hud(GUIContext container, Camera uneCamera, GameContainer unContainer) throws SlickException {
         super(container);
         this.container = unContainer;
@@ -73,16 +73,15 @@ public class Hud extends AbstractComponent implements MouseListener{
         int largeurFrameX= container.getWidth();
         int tailleImageX = largeurFrameX/4;
         int tailleImageY = hauteurFrameY/4;
-        int tailleImage;
         if(tailleImageX < tailleImageY){
-            tailleImage = tailleImageX;
+            tailleImagePaneauAction = tailleImageX;
         }else{
-            tailleImage = tailleImageY;
+            tailleImagePaneauAction = tailleImageY;
         }  
-        int positionX = largeurFrameX - tailleImage - 10;
-        int positionY= hauteurFrameY - tailleImage - 10;
+        positionXPaneauAction = largeurFrameX - tailleImagePaneauAction - 10;
+        positionYPaneauAction= hauteurFrameY - tailleImagePaneauAction - 10;
         
-        paneauAction.draw(positionX, positionY, tailleImage, tailleImage);
+        paneauAction.draw(positionXPaneauAction, positionYPaneauAction, tailleImagePaneauAction, tailleImagePaneauAction);
        /* 
         //BOUTON QUITTER
         g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
