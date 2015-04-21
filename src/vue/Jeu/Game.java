@@ -200,13 +200,17 @@ public class Game extends BasicGameState {
         }
         if (personnages.size() > 1) {
             for (int i = 0; i < personnages.size(); i++) {
-                Joueur unPersonnage, premierPersonnage;
-                unPersonnage = (Joueur) personnages.get(i);
-                premierPersonnage = (Joueur) personnages.get(0);
-                if (premierPersonnage.getxDest() == unPersonnage.getxDest()
-                        && premierPersonnage.getyDest() == unPersonnage.getyDest()) {
-                    
-                    unPersonnage.setxDest((int) premierPersonnage.getxDest() + 50 * i);
+                Joueur unPersonnage, premierPersonnage; //On crée 2 objets personnages (Paysans)
+                unPersonnage = (Joueur) personnages.get(i); //unPersonnage représente les autres paysan
+                premierPersonnage = (Joueur) personnages.get(0); //premierPersonnage représente le premier paysan
+                if (premierPersonnage.getxDest() == unPersonnage.getxDest() //Si leur destination (x,y) est la meme, ils vont arreter avant de se rencontrer
+                        && premierPersonnage.getyDest() == unPersonnage.getyDest()
+                        && unPersonnage.getX()< premierPersonnage.getX()) {
+                    unPersonnage.setxDest((int) premierPersonnage.getxDest() - 50 * i); //Si les autres paysans sont a gauche du premier paysan, ils s'arretent a gauche
+                } else if(premierPersonnage.getxDest() == unPersonnage.getxDest()
+                        && premierPersonnage.getyDest() == unPersonnage.getyDest()
+                        && unPersonnage.getX()> premierPersonnage.getX()) {
+                    unPersonnage.setxDest((int) premierPersonnage.getxDest() + 50 * i); //Si les autres paysans sont a droite du premier paysan, ils s'arretent a droite
                 }
             }
         }
