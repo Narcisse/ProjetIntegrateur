@@ -201,9 +201,13 @@ public class Game extends BasicGameState {
         if (personnages.size() > 1) {
             for (int i = 0; i < personnages.size(); i++) {
                 Joueur unPersonnage, premierPersonnage;
-                unPersonnage = (Joueur)personnages.get(i);
-                premierPersonnage = (Joueur)personnages.get(0);
-                unPersonnage.setxDest((int)premierPersonnage.getxDest()+50*i);
+                unPersonnage = (Joueur) personnages.get(i);
+                premierPersonnage = (Joueur) personnages.get(0);
+                if (premierPersonnage.getxDest() == unPersonnage.getxDest()
+                        && premierPersonnage.getyDest() == unPersonnage.getyDest()) {
+                    
+                    unPersonnage.setxDest((int) premierPersonnage.getxDest() + 50 * i);
+                }
             }
         }
         
