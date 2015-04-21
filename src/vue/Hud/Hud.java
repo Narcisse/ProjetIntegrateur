@@ -47,8 +47,8 @@ public class Hud extends AbstractComponent implements MouseListener {
 
     public void init() throws SlickException {
         banque = new Entrepot(50, 40, 30);
-        this.imgNourriture = new Image("images//Icone//nourriture.png");
-        this.imgOr = new Image("images//Icone//or.png");
+        this.imgNourriture = new Image("images//Icone//hamIcon.png");
+        this.imgOr = new Image("images//Icone//goldicon.png");
         this.imgBois = new Image("images//Icone//bois.png");
         this.paneauAction = new Image("images//romanStone.jpg");
     }
