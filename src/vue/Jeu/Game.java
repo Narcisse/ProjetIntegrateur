@@ -204,11 +204,11 @@ public class Game extends BasicGameState {
                 unPersonnage = (Joueur) personnages.get(i); //unPersonnage représente les autres paysan
                 premierPersonnage = (Joueur) personnages.get(0); //premierPersonnage représente le premier paysan
                 if (premierPersonnage.getxDest() == unPersonnage.getxDest() //Si leur destination (x,y) est la meme, ils vont arreter avant de se rencontrer
-                        && premierPersonnage.getY() == unPersonnage.getY()
+                        && premierPersonnage.getyDest() == unPersonnage.getyDest()
                         && unPersonnage.getX()< premierPersonnage.getX()) {
                     unPersonnage.setxDest((int) premierPersonnage.getxDest() - 50 * i); //Si les autres paysans sont a gauche du premier paysan, ils s'arretent a gauche
                 } else if(premierPersonnage.getxDest() == unPersonnage.getxDest()
-                        && premierPersonnage.getY() == unPersonnage.getY()
+                        && premierPersonnage.getyDest() == unPersonnage.getyDest()
                         && unPersonnage.getX()> premierPersonnage.getX()) {
                     unPersonnage.setxDest((int) premierPersonnage.getxDest() + 50 * i); //Si les autres paysans sont a droite du premier paysan, ils s'arretent a droite
                 }
