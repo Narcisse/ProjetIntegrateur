@@ -16,6 +16,7 @@ public class Camera {
     // Donnee membre
     private Carte cartePrincipale;
     private float xCamera, yCamera;
+    private double camSpeed = 0.5;
     //event
     private Input input;
 
@@ -47,18 +48,18 @@ public class Camera {
         int w = container.getWidth() / 3 + 220;
         //Vers la droite
         if (mouseX > this.xCamera + w) {
-            this.xCamera++;
+            this.xCamera += camSpeed;
         }//Vers la gauche 
         else if (mouseX < this.xCamera - w) {
-            this.xCamera--;
+            this.xCamera -= camSpeed;
         }
         int h = container.getHeight() / 3 + 120;
         //Vers le haut
         if (mouseY >= this.yCamera + h) {
-            this.yCamera--;
+            this.yCamera -= camSpeed;
         }//Vers le bas 
         else if (mouseY <= this.yCamera - h) {
-            this.yCamera++;
+            this.yCamera += camSpeed;
         }
 
         //Update la position de la camera avec les touche directionnelles

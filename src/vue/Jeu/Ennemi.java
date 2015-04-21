@@ -54,6 +54,7 @@ public class Ennemi {
         this.rectInteraction = new Rectangle();
         this.rectInteraction.setHeight(64);
         this.rectInteraction.setWidth(64);
+        this.hp = 100;
     }
 
     private Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
