@@ -7,7 +7,6 @@ import controleur.ControlleurSouris;
 import controleur.Informateur;
 import java.util.ArrayList;
 import modele.Entrepot;
-import org.lwjgl.util.Point;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -45,10 +44,10 @@ public class Game extends BasicGameState {
     //Menu In game
     private MenuIG menuIG;
     //Condition pour afficher menu
-    private boolean escapePressed = false;
+    private boolean escapePressed= false;
     // ID
     public static final int ID = 1;
-    private float distance = 0;
+    private float distance=0;
 
     // *************************************************************************
     // Constructeur
@@ -64,6 +63,7 @@ public class Game extends BasicGameState {
 
     // *************************************************************************
     // Methodes specifiques
+
     // *************************************************************************
     // Accesseur \ Mutateur
     public GameContainer getContainer() {
@@ -85,20 +85,21 @@ public class Game extends BasicGameState {
     public Entrepot getEntrepot() {
         return this.entrepot;
     }
-
-    public Hud getHud() {
+    
+    public Hud getHud(){
         return this.hud;
     }
-
-    public ArrayList getBatiments() {
+    
+    public ArrayList getBatiments(){
         return this.batiments;
     }
-
-    public void ajouterBatiment(Batiment unBatiment) {
+    
+    public void ajouterBatiment(Batiment unBatiment){
         this.batiments.add(unBatiment);
     }
 
     // *************************************************************************
+
     @Override
     public int getID() {
         return this.ID;
@@ -119,7 +120,7 @@ public class Game extends BasicGameState {
             unJoueur.setX(container.getWidth() / 2 + 50 * personnages.indexOf(j));
             unJoueur.setY(container.getHeight() / 2 + 50 * personnages.indexOf(j));
         }
-        for (Object e : ennemis) {
+        for (Object e : ennemis){
             Ennemi unEnnemi = (Ennemi) e;
             unEnnemi.init();
             unEnnemi.setX(500);
@@ -168,16 +169,16 @@ public class Game extends BasicGameState {
         g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
         ecoSouris.render(container, g);
         this.hud.render(g);
-
-        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
-            escapePressed = !escapePressed;
+        
+        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
+            escapePressed = !escapePressed;   
         }
-        if (escapePressed == true) {
-            this.menuIG.render(g);
+        if(escapePressed == true){
+            this.menuIG.render(g);   
         }
-
-        for (Object b : batiments) {
-            Batiment unBatiment = (Batiment) b;
+        
+        for(Object b : batiments){
+            Batiment unBatiment= (Batiment) b;
             unBatiment.render(g);
         }
     }
@@ -188,10 +189,10 @@ public class Game extends BasicGameState {
             Joueur unJoueur = (Joueur) j;
             unJoueur.update(delta);
             this.camera.update(container);
-
+        
             for (Object e : ennemis) {
                 Ennemi unEnnemi = (Ennemi) e;
-                unEnnemi.update(delta, unJoueur, personnages);
+                unEnnemi.update(delta,unJoueur,personnages);
                 //this.personnage.update(delta);
                 this.camera.update(container);
                 //this.camera.update(container);
@@ -200,52 +201,34 @@ public class Game extends BasicGameState {
         if (personnages.size() > 1) {
             for (int i = 0; i < personnages.size(); i++) {
                 Joueur unPersonnage, premierPersonnage;
-                unPersonnage = (Joueur) personnages.get(i);
-                premierPersonnage = (Joueur) personnages.get(0);
-                unPersonnage.setxDest((int) premierPersonnage.getxDest() + 50 * i);
+                unPersonnage = (Joueur)personnages.get(i);
+                premierPersonnage = (Joueur)personnages.get(0);
+                unPersonnage.setxDest((int)premierPersonnage.getxDest()+50*i);
             }
         }
-
-        for (Object b : batiments) {
-            Batiment unBatiment = (Batiment) b;
+        
+        for(Object b : batiments){
+            Batiment unBatiment= (Batiment) b;
             this.camera.update(container);
             unBatiment.update(this.camera.getX(), this.camera.getY());
+            
 
         }
     }
-
-    public void victoire(ArrayList ennemis, ArrayList batiments) {
-        if (ennemis.isEmpty() && batiments.isEmpty()) {
+    
+    public void victoire(ArrayList ennemis, ArrayList batiments){
+        if(ennemis.isEmpty() && batiments.isEmpty()){
             game.addState(new EndGameState(null));
             game.enterState(EndGameState.ID);
         }
     }
-
+    
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_D:
                 game.enterState(EndGameState.ID);
                 break;
-            case Input.KEY_A:
-                if (!personnages.isEmpty() && !ennemis.isEmpty()) {
-                    for (Object j : personnages) {
-                        Joueur unPaysan = (Joueur) j;
-                        for (int i=0; i<ennemis.size(); i++) {
-                            Ennemi unEnnemi = (Ennemi) ennemis.get(i);
-                            boolean contient = ennemis.contains(unEnnemi);
-                            Point paysanPos;
-                            paysanPos = new Point((int) unPaysan.getX(), (int) unPaysan.getY());
-                            Point ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
-                            if (unPaysan.isSelected() && unPaysan.distancePoint(paysanPos, ennemiPos) <= 80) {
-                                unEnnemi.removeHP(10);
-                                System.out.println("Vie restante: " + unEnnemi.getHP());
-                            }
-                            if (unEnnemi.getHP() <= 0) {
-                                ennemis.remove(unEnnemi);
-                            }
-                        }
-                    }
-                }
         }
     }
 }
+
