@@ -28,13 +28,14 @@ public class Batiment {
     // *************************************************************************
     // Donnee membre
     private Cursor curseur;
-    private int x,y, indic;
+    private int x,y, indic, tailleImage;
     private float visuelX, visuelY;
     private boolean isSelected = false;
     private Rectangle rectInteraction;
     private Carte carte;
     private Image batiment;
     private GameContainer container;
+    private Animation imagePaysant;
 
     // *************************************************************************
     // Constructeur
@@ -58,6 +59,13 @@ public class Batiment {
         this.rectInteraction = new Rectangle();
         this.rectInteraction.setHeight(64);
         this.rectInteraction.setWidth(64);
+        
+        //Chargement de l'image pour le bouton du paysant
+        tailleImage = vue.Hud.Hud.tailleImagePaneauAction/3;
+        imagePaysant = new Animation();
+        String filePaysant = "data/sprites/people/characters_sheet.png";
+        SpriteSheet uneSpriteSheet = new SpriteSheet(filePaysant, tailleImage, tailleImage);
+        imagePaysant = loadAnimation(uneSpriteSheet, 1, 2);
     }
     // *************************************************************************
     // Affichage
@@ -65,21 +73,15 @@ public class Batiment {
         g.drawImage(batiment,visuelX, visuelY);
         rectInteraction.setX((int)visuelX);
         rectInteraction.setY((int)visuelY);
+        //render des elements graphiques quand le batiment est selectionné.
         if(this.isSelected()){
+            //Render du rectangle qui entoure le batiment quand il est séléctionné.
             g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
-
-            int tailleImage;
-            tailleImage = vue.Hud.Hud.tailleImagePaneauAction/3;
             
+            //Render du bouton paysant.
             int i = 0, j = 0;
             int positionX = vue.Hud.Hud.positionXPaneauAction + tailleImage*i;
             int positionY= vue.Hud.Hud.positionYPaneauAction + tailleImage*j;
-            
-            Animation imagePaysant;
-            imagePaysant = new Animation();
-            String filePaysant = "data/sprites/people/characters_sheet.png";
-            SpriteSheet uneSpriteSheet = new SpriteSheet(filePaysant, tailleImage, tailleImage);
-            imagePaysant = loadAnimation(uneSpriteSheet, 1, 9, 2);
             g.drawAnimation(imagePaysant, positionX, positionY);
         }
     }
@@ -93,11 +95,9 @@ public class Batiment {
     // *************************************************************************
     // Methodes specifiques
     
-    private Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
+    private Animation loadAnimation(SpriteSheet spriteSheet, int positionAnimationX, int positionAnimationY) {
         Animation animation = new Animation();
-        for (int x = startX; x < endX; x++) {
-            animation.addFrame(spriteSheet.getSprite(x, y), 100);
-        }
+        animation.addFrame(spriteSheet.getSprite(positionAnimationX, positionAnimationY), 100);
         return animation;
     }
     
