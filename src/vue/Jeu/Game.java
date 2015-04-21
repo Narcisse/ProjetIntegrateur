@@ -47,8 +47,9 @@ public class Game extends BasicGameState {
     //Condition pour afficher menu
     private boolean escapePressed = false;
     // ID
-    public static final int ID = 1;
+    public static int ID = 1,condi=1,tempsDeJeu=0;
     private float distance = 0;
+    private Ennemi nEnnemi;
 
     // *************************************************************************
     // Constructeur
@@ -122,8 +123,8 @@ public class Game extends BasicGameState {
         for (Object e : ennemis) {
             Ennemi unEnnemi = (Ennemi) e;
             unEnnemi.init();
-            unEnnemi.setX(500);
-            unEnnemi.setY(500);
+            unEnnemi.setX(container.getWidth()/2 + 250 *ennemis.indexOf(e+""+1));
+            unEnnemi.setY(container.getHeight()/2 + 250 * ennemis.indexOf(e));
         }
         //this.batiment.init();
         // entrepot
@@ -199,10 +200,18 @@ public class Game extends BasicGameState {
         }
         if (personnages.size() > 1) {
             for (int i = 0; i < personnages.size(); i++) {
-                Joueur unPersonnage, premierPersonnage;
-                unPersonnage = (Joueur) personnages.get(i);
-                premierPersonnage = (Joueur) personnages.get(0);
-                unPersonnage.setxDest((int) premierPersonnage.getxDest() + 50 * i);
+                Joueur unPersonnage, premierPersonnage; //On crée 2 objets personnages (Paysans)
+                unPersonnage = (Joueur) personnages.get(i); //unPersonnage représente les autres paysan
+                premierPersonnage = (Joueur) personnages.get(0); //premierPersonnage représente le premier paysan
+                if (premierPersonnage.getxDest() == unPersonnage.getxDest() //Si leur destination (x,y) est la meme, ils vont arreter avant de se rencontrer
+                        && premierPersonnage.getY() == unPersonnage.getY()
+                        && unPersonnage.getX()< premierPersonnage.getX()) {
+                    unPersonnage.setxDest((int) premierPersonnage.getxDest() - 50 * i); //Si les autres paysans sont a gauche du premier paysan, ils s'arretent a gauche
+                } else if(premierPersonnage.getxDest() == unPersonnage.getxDest()
+                        && premierPersonnage.getY() == unPersonnage.getY()
+                        && unPersonnage.getX()> premierPersonnage.getX()) {
+                    unPersonnage.setxDest((int) premierPersonnage.getxDest() + 50 * i); //Si les autres paysans sont a droite du premier paysan, ils s'arretent a droite
+                }
             }
         }
 
@@ -212,7 +221,19 @@ public class Game extends BasicGameState {
             unBatiment.update(this.camera.getX(), this.camera.getY());
 
         }
+        
+         if(tempsDeJeu<=5010 && tempsDeJeu>=4990 && condi==1){
+             condi=2;
+             nEnnemi=new Ennemi(cartePrincipale);
+             nEnnemi.init();
+             nEnnemi.setX(500);
+             nEnnemi.setY(500);
+             ennemis.add(nEnnemi);
+
     }
+         tempsDeJeu+=delta;
+         System.out.print(tempsDeJeu+"\n");
+         }
 
     public void victoire(ArrayList ennemis, ArrayList batiments) {
         if (ennemis.isEmpty() && batiments.isEmpty()) {
