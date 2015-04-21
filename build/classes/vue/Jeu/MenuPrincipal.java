@@ -37,13 +37,6 @@ public class MenuPrincipal extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         game = sbg;
         this.background = new Image("images/fond.jpg");
-        try{
-        campagne = new FontButton(gc, "Campagne", 400, 400);
-        } catch(IOException ioEx){
-            
-        } catch(FontFormatException ffEx){
-            
-        }
     }
 
     @Override
@@ -55,7 +48,6 @@ public class MenuPrincipal extends BasicGameState {
         g.drawString("1. Play Game", 50, 100);
         g.drawString("2. High Scores", 50, 120);
         g.drawString("3. Quit", 50, 140);
-        campagne.render(gc, g);
     }
 
     @Override

@@ -36,6 +36,8 @@ public class Batiment {
     private Image batiment;
     private GameContainer container;
     private Animation imagePaysant;
+    private Image imagePaysan;
+    private Image quitter;
 
     // *************************************************************************
     // Constructeur
@@ -62,10 +64,13 @@ public class Batiment {
         
         //Chargement de l'image pour le bouton du paysant
         tailleImage = vue.Hud.Hud.tailleImagePaneauAction/3;
-        imagePaysant = new Animation();
-        String filePaysant = "data/sprites/people/characters_sheet.png";
-        SpriteSheet uneSpriteSheet = new SpriteSheet(filePaysant, tailleImage, tailleImage);
-        imagePaysant = loadAnimation(uneSpriteSheet, 1, 2);
+        //imagePaysant = new Animation();
+        //String filePaysant = "data/sprites/people/characters_sheet.png";
+        //SpriteSheet uneSpriteSheet = new SpriteSheet(filePaysant, tailleImage, tailleImage);
+        //imagePaysant = loadAnimation(uneSpriteSheet, 1, 2);
+        imagePaysan = new Image("images/sprite/paysan.png");
+        
+        quitter = new Image("images/jbutton/quitter.png");
     }
     // *************************************************************************
     // Affichage
@@ -82,7 +87,8 @@ public class Batiment {
             int i = 0, j = 0;
             int positionX = vue.Hud.Hud.positionXPaneauAction + tailleImage*i;
             int positionY= vue.Hud.Hud.positionYPaneauAction + tailleImage*j;
-            g.drawAnimation(imagePaysant, positionX, positionY);
+            //g.drawAnimation(imagePaysant, positionX, positionY);
+            g.drawImage(imagePaysan, positionX, positionY);
         }
     }
     
@@ -95,11 +101,6 @@ public class Batiment {
     // *************************************************************************
     // Methodes specifiques
     
-    private Animation loadAnimation(SpriteSheet spriteSheet, int positionAnimationX, int positionAnimationY) {
-        Animation animation = new Animation();
-        animation.addFrame(spriteSheet.getSprite(positionAnimationX, positionAnimationY), 100);
-        return animation;
-    }
     
     //Acualisation visuel pour la camera en X
     public void setVisuelX(float cameraX){
