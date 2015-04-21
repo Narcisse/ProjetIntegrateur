@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.GUIContext;
+import modele.Entrepot;
+
 
 /**
  *
@@ -55,9 +57,6 @@ public class Hud extends AbstractComponent implements MouseListener{
     }
     
     public void render(Graphics g) {
-        int imageHeight = this.playerbars.getHeight();
-        int imageWidth = this.playerbars.getWidth();
-        
         g.resetTransform();
         //PANEAU ACTION JOUEUR 
         int hauteurFrameY= container.getHeight();
