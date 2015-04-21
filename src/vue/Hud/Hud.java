@@ -57,7 +57,7 @@ public class Hud extends AbstractComponent implements MouseListener{
     }
     
     public void render(Graphics g) {
-        g.resetTransform();
+        /*g.resetTransform();
         //PANEAU ACTION JOUEUR 
         int hauteurFrameY= container.getHeight();
         int largeurFrameX= container.getWidth();
@@ -72,7 +72,7 @@ public class Hud extends AbstractComponent implements MouseListener{
         positionYPaneauAction = hauteurFrameY - tailleImagePaneauAction - 10;
         
         paneauAction.draw(positionXPaneauAction, positionYPaneauAction, tailleImagePaneauAction, tailleImagePaneauAction);
-       
+       */
       //cette méthode empeche ce qui est dessiné de bouger dans l'écran  
       g.resetTransform();
       //On dessine l'icone de l'or avec  sa quantité
