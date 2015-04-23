@@ -18,9 +18,9 @@ public class Ennemi {
     // *************************************************************************
     // Donnee membre
     private final String ID = "ENNEMI";
-    
+
     private int hp = 100;
-    
+
     private float x = 500, y = 500;
     private float xDest = 300, yDest = 300;
     private float vitesse = 0.25f;
@@ -86,43 +86,44 @@ public class Ennemi {
 
     // *************************************************************************
     // Methodes de mise a jour
-    public void update(int delta,Joueur unJoueur,ArrayList personnages) {
-        if (this.x <= unJoueur.getCloser(personnages,this).getX() || this.x >= unJoueur.getCloser(personnages,this).getX() || this.y >= unJoueur.getCloser(personnages,this).getY() || this.y <= unJoueur.getCloser(personnages,this).getY()) {
-            float futurX = getFuturX(delta);
-            float futurY = getFuturY(delta);
-            boolean collision = this.carte.isCollision(futurX, futurY);
-            if (collision) {
-                this.moving = false;
-            } else {
-                if (x < unJoueur.getCloser(personnages,this).getX()) {
-                    this.x += (int)1*vitesse;
-                } else if (x > unJoueur.getCloser(personnages,this).getX()){
-                    this.x -= (int)1*vitesse;
-                } else if (x == unJoueur.getCloser(personnages,this).getX() && y < unJoueur.getCloser(personnages,this).getY()){
-                    this.setDirection(2);
-                } else if (x == unJoueur.getCloser(personnages,this).getX() && y > unJoueur.getCloser(personnages,this).getY()){
-                    this.setDirection(0);
-                }
-
-                if (y < unJoueur.getCloser(personnages,this).getY()) {
-                    this.y += (int)1*vitesse;
-                } else if (y > unJoueur.getCloser(personnages,this).getY()){
-                    this.y -= (int)1*vitesse;
-                } else if (y == unJoueur.getCloser(personnages,this).getY() && x < unJoueur.getCloser(personnages,this).getX()){
-                    this.setDirection(3);
-                } else if (y == unJoueur.getCloser(personnages,this).getY() && x > unJoueur.getCloser(personnages,this).getX()){
-                    this.setDirection(1);
-                }
-
-                if (y == unJoueur.getCloser(personnages,this).getY() && x == unJoueur.getCloser(personnages,this).getX()) {
+    public void update(int delta, Joueur unJoueur, ArrayList personnages) {
+        if (!personnages.isEmpty()) {
+            if (this.x <= unJoueur.getCloser(personnages, this).getX() || this.x >= unJoueur.getCloser(personnages, this).getX() || this.y >= unJoueur.getCloser(personnages, this).getY() || this.y <= unJoueur.getCloser(personnages, this).getY()) {
+                float futurX = getFuturX(delta);
+                float futurY = getFuturY(delta);
+                boolean collision = this.carte.isCollision(futurX, futurY);
+                if (collision) {
                     this.moving = false;
-                }
-            }
-        } else {
-            this.moving = false;
-        }
-    }
+                } else {
+                    if (x < unJoueur.getCloser(personnages, this).getX()) {
+                        this.x += (int) 1 * vitesse;
+                    } else if (x > unJoueur.getCloser(personnages, this).getX()) {
+                        this.x -= (int) 1 * vitesse;
+                    } else if (x == unJoueur.getCloser(personnages, this).getX() && y < unJoueur.getCloser(personnages, this).getY()) {
+                        this.setDirection(2);
+                    } else if (x == unJoueur.getCloser(personnages, this).getX() && y > unJoueur.getCloser(personnages, this).getY()) {
+                        this.setDirection(0);
+                    }
 
+                    if (y < unJoueur.getCloser(personnages, this).getY()) {
+                        this.y += (int) 1 * vitesse;
+                    } else if (y > unJoueur.getCloser(personnages, this).getY()) {
+                        this.y -= (int) 1 * vitesse;
+                    } else if (y == unJoueur.getCloser(personnages, this).getY() && x < unJoueur.getCloser(personnages, this).getX()) {
+                        this.setDirection(3);
+                    } else if (y == unJoueur.getCloser(personnages, this).getY() && x > unJoueur.getCloser(personnages, this).getX()) {
+                        this.setDirection(1);
+                    }
+
+                    if (y == unJoueur.getCloser(personnages, this).getY() && x == unJoueur.getCloser(personnages, this).getX()) {
+                        this.moving = false;
+                    }
+                }
+            } else {
+                this.moving = false;
+            }
+        }else this.moving=false;
+    }
 
     private float getFuturX(int delta) {
         float futurX = this.x;
@@ -159,27 +160,26 @@ public class Ennemi {
         }
         return futurY;
     }
-    public Joueur getCloser(ArrayList listePersonnage,Ennemi unEnnemi){
-        int distanceActuelle=Integer.MAX_VALUE;
-        Joueur unJoueur,joueurProche=null;
-        for(Object j : listePersonnage){
-            unJoueur=(Joueur)j;
-            Point joueur = new Point((int)unJoueur.getX(),(int)unJoueur.getY());
-            Point ennemi = new Point((int)unEnnemi.getX(),(int)unEnnemi.getY());
-            if(distancePoint(joueur,ennemi)<distanceActuelle){
-                distanceActuelle=distancePoint(joueur,ennemi); 
-                joueurProche=unJoueur;
+
+    public Joueur getCloser(ArrayList listePersonnage, Ennemi unEnnemi) {
+        int distanceActuelle = Integer.MAX_VALUE;
+        Joueur unJoueur, joueurProche = null;
+        for (Object j : listePersonnage) {
+            unJoueur = (Joueur) j;
+            Point joueur = new Point((int) unJoueur.getX(), (int) unJoueur.getY());
+            Point ennemi = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
+            if (distancePoint(joueur, ennemi) < distanceActuelle) {
+                distanceActuelle = distancePoint(joueur, ennemi);
+                joueurProche = unJoueur;
             }
-            
-   
+
         }
         return joueurProche;
     }
-    
-    public int distancePoint(Point un,Point deux){
-        return (int)Math.sqrt(Math.pow(deux.getY()-un.getY(),2)+Math.pow(deux.getX()-un.getX(),2));   
+
+    public int distancePoint(Point un, Point deux) {
+        return (int) Math.sqrt(Math.pow(deux.getY() - un.getY(), 2) + Math.pow(deux.getX() - un.getX(), 2));
     }
-       
 
     // *************************************************************************
     // Accesseurs et mutateurs
@@ -238,20 +238,20 @@ public class Ennemi {
     public Rectangle getRectangle() {
         return this.rectInteraction;
     }
-    
-    public String getID(){
+
+    public String getID() {
         return ID;
     }
-    
-    public int getHP(){
+
+    public int getHP() {
         return this.hp;
     }
-    
-    public void addHP(int amountOfHp){
+
+    public void addHP(int amountOfHp) {
         this.hp += amountOfHp;
     }
-    
-    public void removeHP(int amountOfHp){
+
+    public void removeHP(int amountOfHp) {
         this.hp -= amountOfHp;
     }
 }

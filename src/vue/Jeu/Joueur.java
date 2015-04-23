@@ -29,6 +29,7 @@ public class Joueur {
     private Rectangle rectInteraction;
     private Carte carte;
     private Image imageBatiment;
+    private int hp = 100;
 
     // *************************************************************************
     // Constructeur
@@ -258,5 +259,17 @@ public class Joueur {
 
     public Rectangle getRectangle() {
         return this.rectInteraction;
+    }
+    
+    public int getHP(){
+        return this.hp;
+    }
+    
+    public void addHP(int amountOfHp){
+        this.hp += amountOfHp;
+    }
+    
+    public void removeHP(int amountOfHp){
+        this.hp -= amountOfHp;
     }
 }

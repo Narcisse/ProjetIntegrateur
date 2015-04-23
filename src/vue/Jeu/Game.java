@@ -229,15 +229,41 @@ public class Game extends BasicGameState {
              nEnnemi.setX(500);
              nEnnemi.setY(500);
              ennemis.add(nEnnemi);
-
     }
          tempsDeJeu+=delta;
-         System.out.print(tempsDeJeu+"\n");
+         
+         if (!personnages.isEmpty() && !ennemis.isEmpty()) {
+                    for (Object e : ennemis) {
+                        Ennemi unEnnemi = (Ennemi) e;
+                        for (int i=0; i<personnages.size(); i++) {
+                            Joueur unJoueur = (Joueur) personnages.get(i);
+                            boolean contient = personnages.contains(unEnnemi);
+                            Point ennemiPos;
+                            ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
+                            Point joueurPos = new Point((int) unJoueur.getX(), (int) unJoueur.getY());
+                            if (unEnnemi.distancePoint(ennemiPos, joueurPos) <= 30) {
+                                unJoueur.removeHP(10);
+                                System.out.println("Vie restante Paysan: " + unJoueur.getHP());
+                            }
+                            if (unJoueur.getHP() <= 0) {
+                                personnages.remove(unJoueur);                               
+                            }
+                        }
+                    }
+                }
+         victoire(ennemis,batiments);
+         defaite(personnages,batiments);
          }
 
     public void victoire(ArrayList ennemis, ArrayList batiments) {
         if (ennemis.isEmpty() && batiments.isEmpty()) {
-            game.addState(new EndGameState(null));
+           // game.addState(new EndGameState(null));
+            game.enterState(EndGameState.ID);
+        }
+    }
+    public void defaite(ArrayList personnages, ArrayList batiments){
+        if (personnages.isEmpty()){
+           // game.addState(new EndGameState(null));
             game.enterState(EndGameState.ID);
         }
     }
@@ -259,7 +285,7 @@ public class Game extends BasicGameState {
                             Point ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
                             if (unPaysan.isSelected() && unPaysan.distancePoint(paysanPos, ennemiPos) <= 30) {
                                 unEnnemi.removeHP(10);
-                                System.out.println("Vie restante: " + unEnnemi.getHP());
+                                System.out.println("Vie restante Ennemi: " + unEnnemi.getHP());
                             }
                             if (unEnnemi.getHP() <= 0) {
                                 ennemis.remove(unEnnemi);
