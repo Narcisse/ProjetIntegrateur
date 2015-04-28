@@ -57,7 +57,6 @@ public class Game extends BasicGameState {
         super();
         cartePrincipale = new Carte();
         personnages.add(new Joueur(cartePrincipale));
-        personnages.add(new Joueur(cartePrincipale));
         ennemis.add(new Ennemi(cartePrincipale));
         cettePlanche = this;
         camera = new Camera(cartePrincipale);
@@ -106,7 +105,7 @@ public class Game extends BasicGameState {
     }
 
     @Override
-    public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
+    public void init(GameContainer container, StateBasedGame sbg) throws SlickException {      
         // Jeu et carte
         this.container = container;
         this.game = sbg;
@@ -242,8 +241,8 @@ public class Game extends BasicGameState {
                             ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
                             Point joueurPos = new Point((int) unJoueur.getX(), (int) unJoueur.getY());
                             if (unEnnemi.distancePoint(ennemiPos, joueurPos) <= 30) {
-                                unJoueur.removeHP(10);
-                                System.out.println("Vie restante Paysan: " + unJoueur.getHP());
+                                System.out.println("Joueur :"+ unJoueur.getHP());
+                                unEnnemi.attaque(unJoueur, 1, tempsDeJeu);
                             }
                             if (unJoueur.getHP() <= 0) {
                                 personnages.remove(unJoueur);                               
