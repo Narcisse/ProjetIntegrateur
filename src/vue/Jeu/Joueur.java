@@ -225,6 +225,14 @@ public class Joueur {
         this.xDest = x;
     }
     
+    public void setVitesse(float vitesse) {
+        this.vitesse = vitesse;
+    }
+
+    public float getVitesse() {
+        return vitesse;
+    }
+    
     public float getxDest() {
         return this.xDest;
     }
