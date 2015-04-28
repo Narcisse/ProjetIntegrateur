@@ -31,6 +31,8 @@ public class Ennemi {
     private boolean isSelected = false;
     private Rectangle rectInteraction;
     private Carte carte;
+    private int tempsAttaque = 10;
+    private int nouvelleAttaque= 0;
 
     // *************************************************************************
     // Constructeur
@@ -253,5 +255,16 @@ public class Ennemi {
 
     public void removeHP(int amountOfHp) {
         this.hp -= amountOfHp;
+    }
+    
+    public void attaque(Joueur unJoueur, int amoutOfHp, int tempsJeu){
+        if(tempsJeu > nouvelleAttaque){
+            unJoueur.removeHP(amoutOfHp);
+            this.setNouvelleAttaque(tempsJeu);
+        }    
+    }
+    
+    public void setNouvelleAttaque(int tempsJeu){
+        this.nouvelleAttaque = tempsJeu + this.tempsAttaque;
     }
 }
