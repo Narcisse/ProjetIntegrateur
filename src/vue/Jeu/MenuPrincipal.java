@@ -1,7 +1,10 @@
 package vue.Jeu;
 
+import java.awt.Desktop;
 import java.awt.FontFormatException;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import menu.buttons.FontButton;
@@ -37,12 +40,12 @@ public class MenuPrincipal extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         game = sbg;
         this.background = new Image("images/fond.jpg");
-        try{
-        campagne = new FontButton(gc, "Campagne", 400, 400);
-        } catch(IOException ioEx){
-            
-        } catch(FontFormatException ffEx){
-            
+        try {
+            campagne = new FontButton(gc, "Campagne", 400, 400);
+        } catch (IOException ioEx) {
+
+        } catch (FontFormatException ffEx) {
+
         }
     }
 
@@ -54,7 +57,8 @@ public class MenuPrincipal extends BasicGameState {
 
         g.drawString("1. Play Game", 50, 100);
         g.drawString("2. High Scores", 50, 120);
-        g.drawString("3. Quit", 50, 140);
+        g.drawString("3. Tutoriel", 50, 140);
+        g.drawString("4. Quit", 50, 160);
         campagne.render(gc, g);
     }
 
@@ -71,6 +75,14 @@ public class MenuPrincipal extends BasicGameState {
                 // TODO: Implement later
                 break;
             case Input.KEY_3:
+                URI uri = new File("ressources/TexteTutoriel/PageHtml/Menu.htm").toURI();
+                try {
+                    Desktop.getDesktop().browse(uri);
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case Input.KEY_4:
                 System.exit(0);
                 break;
             default:
