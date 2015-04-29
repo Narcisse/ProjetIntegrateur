@@ -1,6 +1,7 @@
 package vue.Jeu;
 
 import java.util.ArrayList;
+import modele.Paysan;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Animation;
@@ -19,8 +20,6 @@ public class Ennemi {
     // Donnee membre
     private final String ID = "ENNEMI";
 
-    private int hp = 100;
-
     private float x = 500, y = 500;
     private float xDest = 300, yDest = 300;
     private float vitesse = 0.25f;
@@ -31,13 +30,19 @@ public class Ennemi {
     private boolean isSelected = false;
     private Rectangle rectInteraction;
     private Carte carte;
+    //temps écouler entre chaque attaque en miliseconde
     private int tempsAttaque = 10;
+    //temps minimum de la nouvelle attaque
     private int nouvelleAttaque= 0;
-
+    //Paysan Ennemi
+    private Paysan paysanEnnemi; 
+    
     // *************************************************************************
     // Constructeur
     public Ennemi(Carte uneCarte) {
         this.carte = uneCarte;
+        paysanEnnemi = new Paysan();
+        paysanEnnemi.setDps(1);
     }
 
     // *************************************************************************
@@ -246,24 +251,28 @@ public class Ennemi {
     }
 
     public int getHP() {
-        return this.hp;
+        return this.paysanEnnemi.getVie();
     }
 
     public void addHP(int amountOfHp) {
-        this.hp += amountOfHp;
+        this.paysanEnnemi.setVie(this.paysanEnnemi.getVie() + amountOfHp);
     }
 
     public void removeHP(int amountOfHp) {
-        this.hp -= amountOfHp;
+        this.paysanEnnemi.setVie(this.paysanEnnemi.getVie() - amountOfHp);
     }
     
-    public void attaque(Joueur unJoueur, int amoutOfHp, int tempsJeu){
+    //méthode qui prend en paramètre un joueur, un quantité de point de d'attaque et le temps de jeu
+    // la méthode enlève des points de vies (le montant de amoutOfHp) si le temps es plus grand que la nouvelle attaque.
+    // Redéfinit le temps pour la prochaine attaque.
+    public void attaque(Joueur unJoueur, int tempsJeu){
         if(tempsJeu > nouvelleAttaque){
-            unJoueur.removeHP(amoutOfHp);
+            unJoueur.removeHP(this.paysanEnnemi.getDps());
             this.setNouvelleAttaque(tempsJeu);
         }    
     }
     
+    //La méthode rédéfinit le temps de la prochaine attaque
     public void setNouvelleAttaque(int tempsJeu){
         this.nouvelleAttaque = tempsJeu + this.tempsAttaque;
     }
