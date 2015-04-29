@@ -1,6 +1,7 @@
 package vue.Jeu;
 
 import java.util.ArrayList;
+import modele.Paysan;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Animation;
@@ -29,12 +30,17 @@ public class Joueur {
     private Rectangle rectInteraction;
     private Carte carte;
     private Image imageBatiment;
-    private int hp = 100;
+    private Paysan paysan;
+    //temps écouler entre chaque attaque en miliseconde (le personnage attaque instantanément)
+    private int tempsAttaque = 0;
+    //temps minimum de la nouvelle attaque
+    private int nouvelleAttaque= 0;
 
     // *************************************************************************
     // Constructeur
     public Joueur(Carte uneCarte) {
         this.carte = uneCarte;
+        this.paysan = new Paysan();
     }
 
     // *************************************************************************
@@ -270,14 +276,29 @@ public class Joueur {
     }
     
     public int getHP(){
-        return this.hp;
+        return paysan.getVie();
     }
     
     public void addHP(int amountOfHp){
-        this.hp += amountOfHp;
+        this.paysan.setVie(this.paysan.getVie() + amountOfHp);
     }
     
     public void removeHP(int amountOfHp){
-        this.hp -= amountOfHp;
+        this.paysan.setVie(this.paysan.getVie() - amountOfHp);
+    }
+    
+    //méthode qui prend en paramètre un joueur, un quantité de point de d'attaque et le temps de jeu
+    // la méthode enlève des points de vies (le montant de amoutOfHp) si le temps es plus grand que la nouvelle attaque.
+    // Redéfinit le temps pour la prochaine attaque.
+    public void attaque(Ennemi unEnnemi, int tempsJeu){
+        if(tempsJeu > nouvelleAttaque){
+            unEnnemi.removeHP(this.paysan.getDps());
+            this.setNouvelleAttaque(tempsJeu);
+        }    
+    }
+    
+    //La méthode rédéfinit le temps de la prochaine attaque
+    public void setNouvelleAttaque(int tempsJeu){
+        this.nouvelleAttaque = tempsJeu + this.tempsAttaque;
     }
 }
