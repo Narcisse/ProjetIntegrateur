@@ -38,7 +38,7 @@ public class Paysan extends Unite {
         /*Les attributs dps nourritureNecessaire sont initialiser dans la classe Unite. 
          *Les attributs nom, vie, orNecessaire et */
         super.setNom("Paysant");
-        super.setVie(50);
+        super.setVie(100);
         super.setOrNecessaire(5);
         super.setDps(10);
         super.setNourritureNecessaire(10);
