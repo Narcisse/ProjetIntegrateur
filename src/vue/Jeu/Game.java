@@ -242,7 +242,7 @@ public class Game extends BasicGameState {
                             Point joueurPos = new Point((int) unJoueur.getX(), (int) unJoueur.getY());
                             if (unEnnemi.distancePoint(ennemiPos, joueurPos) <= 30) {
                                 System.out.println("Joueur :"+ unJoueur.getHP());
-                                unEnnemi.attaque(unJoueur, 1, tempsDeJeu);
+                                unEnnemi.attaque(unJoueur, tempsDeJeu);
                             }
                             if (unJoueur.getHP() <= 0) {
                                 personnages.remove(unJoueur);                               
@@ -283,7 +283,7 @@ public class Game extends BasicGameState {
                             paysanPos = new Point((int) unPaysan.getX(), (int) unPaysan.getY());
                             Point ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
                             if (unPaysan.isSelected() && unPaysan.distancePoint(paysanPos, ennemiPos) <= 30) {
-                                unEnnemi.removeHP(10);
+                                unPaysan.attaque(unEnnemi, tempsDeJeu);
                                 System.out.println("Vie restante Ennemi: " + unEnnemi.getHP());
                             }
                             if (unEnnemi.getHP() <= 0) {
