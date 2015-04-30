@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Joueur;
@@ -32,7 +33,7 @@ public class Nuke extends Attribut {
     }
 
     @Override
-    public void render(Graphics g) throws SlickException {
+    public void render(Graphics g, Carte uneCarte) throws SlickException {
     }
 
 }

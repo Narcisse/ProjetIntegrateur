@@ -9,6 +9,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Joueur;
 
@@ -17,13 +18,6 @@ import vue.ElementsPrincipauxDuJeu.Joueur;
  * @author Christopher Desrosiers Mondor
  */
 public abstract class Attribut {
-
-    // *************************************************************************
-    // Main
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
-
     // *************************************************************************
     // Constructeur
 
@@ -32,7 +26,7 @@ public abstract class Attribut {
 
     // *************************************************************************
     // Affichage
-    public abstract void render(Graphics g) throws SlickException;
+    public abstract void render(Graphics g, Carte uneCarte) throws SlickException;
 
     public abstract void action();
 
