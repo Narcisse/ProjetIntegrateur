@@ -1,12 +1,14 @@
 package controleur;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 //import java.time.*;
 //import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
-import vue.Jeu.Joueur;
+import vue.ElementsPrincipauxDuJeu.Carte;
+import vue.ElementsPrincipauxDuJeu.Joueur;
 /*
 *	Christo
 *	Une classe qui peut être utilisée pour accéder à diverses informations
@@ -44,19 +46,19 @@ public class Informateur {
         return new Point(mouseX, mouseY);
     }
     
-   /* 
-    //**************************************************************************
-    // Methodes specifiques a l'informateur
-    public String donneHeure(){
-        leTemps = LocalTime.now();
-        String heure = leTemps.getHour() + ":" + leTemps.getMinute();
-        return heure;
+    public static Point getRandomCoordinates(Carte uneCarte){
+        int x = 0;
+        int y = 0;
+        
+        int hauteurCarte = uneCarte.getMapDimension().getHeight();
+        int largeurCarte = uneCarte.getMapDimension().getWidth();
+        
+        Random generator = new Random();
+        
+        x = 0 + generator.nextInt(largeurCarte);
+        y = 0 + generator.nextInt(hauteurCarte);
+        
+        return new Point(x, y);
     }
-    public String donneDate(){
-        laDate = LocalDate.now();
-        String date = laDate.format(DateTimeFormatter.ofPattern("d MMM uuuu"));
-        return date;
-    }
-    */
     
 }

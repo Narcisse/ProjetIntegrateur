@@ -10,7 +10,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
-import vue.Jeu.StateHandler;
+import vue.GameSates.StateHandler;
 
 /**
  *

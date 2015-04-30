@@ -5,8 +5,8 @@ import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
-import vue.Jeu.Ennemi;
-import vue.Jeu.Joueur;
+import vue.ElementsPrincipauxDuJeu.Ennemi;
+import vue.ElementsPrincipauxDuJeu.Joueur;
 
 /**
  *
