@@ -51,7 +51,7 @@ public class Game extends BasicGameState {
     //Condition pour afficher menu
     private boolean escapePressed = false;
     // ID
-    public static int ID = 1,condi=1,tempsDeJeu=0;
+    public static int ID = 1, condi = 1, tempsDeJeu = 0;
     private float distance = 0;
     private Ennemi nEnnemi;
 
@@ -109,7 +109,7 @@ public class Game extends BasicGameState {
     }
 
     @Override
-    public void init(GameContainer container, StateBasedGame sbg) throws SlickException {      
+    public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
         // Jeu et carte
         this.container = container;
         this.game = sbg;
@@ -126,8 +126,8 @@ public class Game extends BasicGameState {
         for (Object e : ennemis) {
             Ennemi unEnnemi = (Ennemi) e;
             unEnnemi.init();
-            unEnnemi.setX(container.getWidth()/2 + 250 *ennemis.indexOf(e+""+1));
-            unEnnemi.setY(container.getHeight()/2 + 250 * ennemis.indexOf(e));
+            unEnnemi.setX(container.getWidth() / 2 + 250 * ennemis.indexOf(e + "" + 1));
+            unEnnemi.setY(container.getHeight() / 2 + 250 * ennemis.indexOf(e));
         }
         //this.batiment.init();
         // entrepot
@@ -208,11 +208,11 @@ public class Game extends BasicGameState {
                 premierPersonnage = (Joueur) personnages.get(0); //premierPersonnage représente le premier paysan
                 if (premierPersonnage.getxDest() == unPersonnage.getxDest() //Si leur destination (x,y) est la meme, ils vont arreter avant de se rencontrer
                         && premierPersonnage.getyDest() == unPersonnage.getyDest()
-                        && unPersonnage.getX()< premierPersonnage.getX()) {
+                        && unPersonnage.getX() < premierPersonnage.getX()) {
                     unPersonnage.setxDest((int) premierPersonnage.getxDest() - 50 * i); //Si les autres paysans sont a gauche du premier paysan, ils s'arretent a gauche
-                } else if(premierPersonnage.getxDest() == unPersonnage.getxDest()
+                } else if (premierPersonnage.getxDest() == unPersonnage.getxDest()
                         && premierPersonnage.getyDest() == unPersonnage.getyDest()
-                        && unPersonnage.getX()> premierPersonnage.getX()) {
+                        && unPersonnage.getX() > premierPersonnage.getX()) {
                     unPersonnage.setxDest((int) premierPersonnage.getxDest() + 50 * i); //Si les autres paysans sont a droite du premier paysan, ils s'arretent a droite
                 }
             }
@@ -224,49 +224,50 @@ public class Game extends BasicGameState {
             unBatiment.update(this.camera.getX(), this.camera.getY());
 
         }
-        
-         if(tempsDeJeu<=5010 && tempsDeJeu>=4990 && condi==1){
-             condi=2;
-             nEnnemi=new Ennemi(cartePrincipale);
-             nEnnemi.init();
-             nEnnemi.setX(500);
-             nEnnemi.setY(500);
-             ennemis.add(nEnnemi);
-    }
-         tempsDeJeu+=delta;
-         
-         if (!personnages.isEmpty() && !ennemis.isEmpty()) {
-                    for (Object e : ennemis) {
-                        Ennemi unEnnemi = (Ennemi) e;
-                        for (int i=0; i<personnages.size(); i++) {
-                            Joueur unJoueur = (Joueur) personnages.get(i);
-                            boolean contient = personnages.contains(unEnnemi);
-                            Point ennemiPos;
-                            ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
-                            Point joueurPos = new Point((int) unJoueur.getX(), (int) unJoueur.getY());
-                            if (unEnnemi.distancePoint(ennemiPos, joueurPos) <= 30) {
-                                System.out.println("Joueur :"+ unJoueur.getHP());
-                                unEnnemi.attaque(unJoueur, tempsDeJeu);
-                            }
-                            if (unJoueur.getHP() <= 0) {
-                                personnages.remove(unJoueur);                               
-                            }
-                        }
+
+        if (tempsDeJeu <= 5010 && tempsDeJeu >= 4990 && condi == 1) {
+            condi = 2;
+            nEnnemi = new Ennemi(cartePrincipale);
+            nEnnemi.init();
+            nEnnemi.setX(500);
+            nEnnemi.setY(500);
+            ennemis.add(nEnnemi);
+        }
+        tempsDeJeu += delta;
+
+        if (!personnages.isEmpty() && !ennemis.isEmpty()) {
+            for (Object e : ennemis) {
+                Ennemi unEnnemi = (Ennemi) e;
+                for (int i = 0; i < personnages.size(); i++) {
+                    Joueur unJoueur = (Joueur) personnages.get(i);
+                    boolean contient = personnages.contains(unEnnemi);
+                    Point ennemiPos;
+                    ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
+                    Point joueurPos = new Point((int) unJoueur.getX(), (int) unJoueur.getY());
+                    if (unEnnemi.distancePoint(ennemiPos, joueurPos) <= 30) {
+                        System.out.println("Joueur :" + unJoueur.getHP());
+                        unEnnemi.attaque(unJoueur, tempsDeJeu);
+                    }
+                    if (unJoueur.getHP() <= 0) {
+                        personnages.remove(unJoueur);
                     }
                 }
-         victoire(ennemis,batiments);
-         defaite(personnages,batiments);
-         }
+            }
+        }
+        victoire(ennemis, batiments);
+        defaite(personnages, batiments);
+    }
 
     public void victoire(ArrayList ennemis, ArrayList batiments) {
         if (ennemis.isEmpty() && batiments.isEmpty()) {
-           // game.addState(new EndGameState(null));
+            // game.addState(new EndGameState(null));
             game.enterState(EndGameState.ID);
         }
     }
-    public void defaite(ArrayList personnages, ArrayList batiments){
-        if (personnages.isEmpty()){
-           // game.addState(new EndGameState(null));
+
+    public void defaite(ArrayList personnages, ArrayList batiments) {
+        if (personnages.isEmpty()) {
+            // game.addState(new EndGameState(null));
             game.enterState(EndGameState.ID);
         }
     }
@@ -280,7 +281,7 @@ public class Game extends BasicGameState {
                 if (!personnages.isEmpty() && !ennemis.isEmpty()) {
                     for (Object j : personnages) {
                         Joueur unPaysan = (Joueur) j;
-                        for (int i=0; i<ennemis.size(); i++) {
+                        for (int i = 0; i < ennemis.size(); i++) {
                             Ennemi unEnnemi = (Ennemi) ennemis.get(i);
                             boolean contient = ennemis.contains(unEnnemi);
                             Point paysanPos;
