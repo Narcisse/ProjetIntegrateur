@@ -20,10 +20,10 @@ import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.opengl.CursorLoader;
-import vue.Jeu.Carte;
-import vue.Jeu.Joueur;
-import vue.Jeu.Batiment;
-import vue.Jeu.Game;
+import vue.ElementsPrincipauxDuJeu.Carte;
+import vue.ElementsPrincipauxDuJeu.Joueur;
+import vue.ElementsPrincipauxDuJeu.Batiment;
+import vue.GameSates.Game;
 
 /**
  *

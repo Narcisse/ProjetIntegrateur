@@ -4,7 +4,7 @@
  */
 package vue.composants;
 
-import controleur.DonneesUtiles;
+import controleur.Informateur;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -27,7 +27,7 @@ public class MenuOpaque extends JFrame {
     }
     
     public void initComponents(JPanel unPanneau){
-       this.setSize(DonneesUtiles.largeurEcran, DonneesUtiles.hauteurEcran);
+       this.setSize(Informateur.largeurEcran, Informateur.hauteurEcran);
         this.setUndecorated(true);
         this.setLayout(null);
         int panelX = ((this.getWidth() - unPanneau.getWidth() - this.getInsets().left - this.getInsets().right) / 2);

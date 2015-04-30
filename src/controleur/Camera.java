@@ -4,7 +4,7 @@ import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import vue.Jeu.Carte;
+import vue.ElementsPrincipauxDuJeu.Carte;
 
 /**
  *

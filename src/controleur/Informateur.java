@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
-import vue.Jeu.Joueur;
+import vue.ElementsPrincipauxDuJeu.Joueur;
 /*
 *	Christo
 *	Une classe qui peut être utilisée pour accéder à diverses informations
