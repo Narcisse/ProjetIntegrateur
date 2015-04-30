@@ -15,6 +15,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import vue.Attributs.Attribut;
 import vue.Hud.Hud;
 import vue.ElementsPrincipauxDuJeu.Batiment;
 import vue.ElementsPrincipauxDuJeu.Carte;
@@ -42,6 +43,7 @@ public class Game extends BasicGameState {
     private ArrayList personnages = new ArrayList();
     private ArrayList ennemis = new ArrayList();
     private ArrayList batiments = new ArrayList();
+    private ArrayList attributs = new ArrayList();
     // Planche de jeu
     private Game cettePlanche;
     // Hud
@@ -166,6 +168,10 @@ public class Game extends BasicGameState {
         for (Object e : ennemis) {
             Ennemi unEnnemi = (Ennemi) e;
             unEnnemi.render(g);
+        }
+        for (Object a : attributs) {
+            Attribut unAttribut = (Attribut) a;
+            unAttribut.render(g, cartePrincipale);
         }
         this.cartePrincipale.renderAvantPlan();
         g.setColor(Color.yellow);

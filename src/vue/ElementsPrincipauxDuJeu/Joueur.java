@@ -34,7 +34,7 @@ public class Joueur {
     //temps écouler entre chaque attaque en miliseconde (le personnage attaque instantanément)
     private int tempsAttaque = 0;
     //temps minimum de la nouvelle attaque
-    private int nouvelleAttaque= 0;
+    private int nouvelleAttaque = 0;
 
     // *************************************************************************
     // Constructeur
@@ -77,16 +77,16 @@ public class Joueur {
         rectInteraction.setY((int) this.y - 56);
         if (isSelected) {
             g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
-            
+
             //Image pour le bouton qui crée l'hotel de ville
             int tailleImage;
-            tailleImage = vue.Hud.Hud.tailleImagePaneauAction/3;
-            
+            tailleImage = vue.Hud.Hud.tailleImagePaneauAction / 3;
+
             int i = 0, j = 0;
-            int positionX = vue.Hud.Hud.positionXPaneauAction + tailleImage*i;
-            int positionY= vue.Hud.Hud.positionYPaneauAction + tailleImage*j;
-            
-            imageBatiment =new Image("data/sprites/objet/TownHall.png",true);
+            int positionX = vue.Hud.Hud.positionXPaneauAction + tailleImage * i;
+            int positionY = vue.Hud.Hud.positionYPaneauAction + tailleImage * j;
+
+            imageBatiment = new Image("data/sprites/objet/TownHall.png", true);
             imageBatiment.setRotation(180f);
             g.drawImage(imageBatiment, positionX, positionY);
         }
@@ -113,25 +113,25 @@ public class Joueur {
             } else {
                 if (x < xDest) {
 
-                    this.x += (int)1*vitesse;
-                } else if (x > xDest){
-                    this.x -= (int)1*vitesse;
+                    this.x += (int) 1 * vitesse;
+                } else if (x > xDest) {
+                    this.x -= (int) 1 * vitesse;
 
-                } else if (x == xDest && y < yDest){
+                } else if (x == xDest && y < yDest) {
                     this.setDirection(2);
-                } else if (x == xDest && y > yDest){
+                } else if (x == xDest && y > yDest) {
                     this.setDirection(0);
                 }
 
                 if (y < yDest) {
 
-                    this.y += (int)1*vitesse;
-                } else if (y > yDest){
-                    this.y -= (int)1*vitesse;
+                    this.y += (int) 1 * vitesse;
+                } else if (y > yDest) {
+                    this.y -= (int) 1 * vitesse;
 
-                } else if (y == yDest && x < xDest){
+                } else if (y == yDest && x < xDest) {
                     this.setDirection(3);
-                } else if (y == yDest && x > xDest){
+                } else if (y == yDest && x > xDest) {
                     this.setDirection(1);
                 }
 
@@ -179,27 +179,26 @@ public class Joueur {
         }
         return futurY;
     }
-    public Joueur getCloser(ArrayList listePersonnage,Ennemi unEnnemi){
-        int distanceActuelle=Integer.MAX_VALUE;
-        Joueur unJoueur,joueurProche=null;
-        for(Object j : listePersonnage){
-            unJoueur=(Joueur)j;
-            Point joueur = new Point((int)unJoueur.getX(),(int)unJoueur.getY());
-            Point ennemi = new Point((int)unEnnemi.getX(),(int)unEnnemi.getY());
-            if(distancePoint(joueur,ennemi)<distanceActuelle){
-                distanceActuelle=distancePoint(joueur,ennemi); 
-                joueurProche=unJoueur;
+
+    public Joueur getCloser(ArrayList listePersonnage, Ennemi unEnnemi) {
+        int distanceActuelle = Integer.MAX_VALUE;
+        Joueur unJoueur, joueurProche = null;
+        for (Object j : listePersonnage) {
+            unJoueur = (Joueur) j;
+            Point joueur = new Point((int) unJoueur.getX(), (int) unJoueur.getY());
+            Point ennemi = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
+            if (distancePoint(joueur, ennemi) < distanceActuelle) {
+                distanceActuelle = distancePoint(joueur, ennemi);
+                joueurProche = unJoueur;
             }
-            
-   
+
         }
         return joueurProche;
     }
-    
-    public int distancePoint(Point un,Point deux){
-        return (int)Math.sqrt(Math.pow(deux.getY()-un.getY(),2)+Math.pow(deux.getX()-un.getX(),2));   
-    }
 
+    public int distancePoint(Point un, Point deux) {
+        return (int) Math.sqrt(Math.pow(deux.getY() - un.getY(), 2) + Math.pow(deux.getX() - un.getX(), 2));
+    }
 
     // *************************************************************************
     // Accesseurs et mutateurs
@@ -230,7 +229,7 @@ public class Joueur {
     public void setxDest(int x) {
         this.xDest = x;
     }
-    
+
     public void setVitesse(float vitesse) {
         this.vitesse = vitesse;
     }
@@ -238,11 +237,11 @@ public class Joueur {
     public float getVitesse() {
         return vitesse;
     }
-    
+
     public float getxDest() {
         return this.xDest;
     }
-    
+
     public float getyDest() {
         return this.yDest;
     }
@@ -274,31 +273,43 @@ public class Joueur {
     public Rectangle getRectangle() {
         return this.rectInteraction;
     }
-    
-    public int getHP(){
+
+    public int getHP() {
         return paysan.getVie();
     }
-    
-    public void addHP(int amountOfHp){
+
+    public void addHP(int amountOfHp) {
         this.paysan.setVie(this.paysan.getVie() + amountOfHp);
     }
-    
-    public void removeHP(int amountOfHp){
+
+    public void removeHP(int amountOfHp) {
         this.paysan.setVie(this.paysan.getVie() - amountOfHp);
     }
-    
+
     //méthode qui prend en paramètre un joueur, un quantité de point de d'attaque et le temps de jeu
     // la méthode enlève des points de vies (le montant de amoutOfHp) si le temps es plus grand que la nouvelle attaque.
     // Redéfinit le temps pour la prochaine attaque.
-    public void attaque(Ennemi unEnnemi, int tempsJeu){
-        if(tempsJeu > nouvelleAttaque){
+    public void attaque(Ennemi unEnnemi, int tempsJeu) {
+        if (tempsJeu > nouvelleAttaque) {
             unEnnemi.removeHP(this.paysan.getDps());
             this.setNouvelleAttaque(tempsJeu);
-        }    
+        }
     }
-    
+
     //La méthode rédéfinit le temps de la prochaine attaque
-    public void setNouvelleAttaque(int tempsJeu){
+    public void setNouvelleAttaque(int tempsJeu) {
         this.nouvelleAttaque = tempsJeu + this.tempsAttaque;
+    }
+
+    public void augmenterArmure() {
+        this.paysan.augmenterArmure();
+    }
+
+    public void boostVitesse(float unBoost) {
+        this.vitesse += unBoost;
+    }
+
+    public void vitesseNormale() {
+        this.vitesse = 1.0f;
     }
 }

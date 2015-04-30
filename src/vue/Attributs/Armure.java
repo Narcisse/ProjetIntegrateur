@@ -14,21 +14,11 @@ import vue.ElementsPrincipauxDuJeu.Joueur;
  *
  * @author Christopher Desrosiers Mondor
  */
-public class Armure extends Attribut{
-    // *************************************************************************
-    // Données membres
-    private Image image;
-    
+public class Armure extends Attribut{    
     // *************************************************************************
     // Constructeur
     public Armure() throws SlickException{
-        this.image = new Image("data/sprites/objet/Armure.png");
-    }
-    
-    @Override
-    public void render(Graphics g, Carte uneCarte) throws SlickException {
-        Point coordinates = Informateur.getRandomCoordinates(uneCarte);
-        g.drawImage(image, coordinates.x, coordinates.y);
+        super.setImage(new Image("data/sprites/objet/Armure.png"));
     }
 
     @Override
@@ -37,6 +27,7 @@ public class Armure extends Attribut{
 
     @Override
     public void action(Joueur unJoueur) {
+        unJoueur.augmenterArmure();
     }
 
     @Override
