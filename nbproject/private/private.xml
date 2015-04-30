@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Jeu/Batiment.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Jeu/Game.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Hud/Hud.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Jeu/Joueur.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Jeu/MenuPrincipal.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/ControlleurSouris.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/vue/Jeu/Ennemi.java</file>
-            <file>file:/D:/projetIntegrateurFinal/ProjetIntegrateur/src/controleur/ControlleurPersonnage.java</file>
+            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/Jeu/Joueur.java</file>
+            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/Jeu/Attribut.java</file>
+            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/Jeu/Game.java</file>
+            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/Hud/Hud.java</file>
+            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/Jeu/Soulier.java</file>
+            <file>file:/C:/Users/Hubris/Documents/GitHub/ProjetIntegrateur/src/vue/Jeu/Nuke.java</file>
         </group>
     </open-files>
 </project-private>
