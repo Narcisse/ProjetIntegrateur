@@ -61,7 +61,7 @@ public class Game extends BasicGameState {
     private Ennemi nEnnemi;
     //MenuPrincipal
     private MenuPrincipal menuP;
-    private Music musicOut, musicIG;
+    private Music musicOut;
 
     // *************************************************************************
     // Constructeur
@@ -170,8 +170,7 @@ public class Game extends BasicGameState {
         menuIG.init();
 
         menuP = new MenuPrincipal();
-        musicOut = new Music("ressources/Sons/MusicOut.ogg");
-        musicIG = menuP.getMusicIG();
+        musicOut = new Music("Sons/MusicOut.ogg");
     }
 
     @Override

@@ -1,6 +1,7 @@
 package vue.GameSates;
 
 import controleur.Informateur;
+import org.lwjgl.openal.AL;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -64,6 +65,7 @@ public class EndGameState extends BasicGameState{
                 game.enterState(MenuPrincipal.ID);
                 break;
             case Input.KEY_3:
+                AL.destroy();
                 System.exit(0);
                 break;
             default:

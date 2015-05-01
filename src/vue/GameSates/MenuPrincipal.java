@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.openal.AL;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,6 +17,7 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
 
 /**
  *
@@ -39,8 +42,8 @@ public class MenuPrincipal extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         game = sbg;
         this.background = new Image("images/fond.jpg");
-        musicIntro = new Music("ressources/Sons/MusicIntro.ogg");
-        musicIG = new Music("ressources/Sons/MusicIn.ogg");
+        musicIntro = new Music("Sons/MusicIntro.ogg");
+        musicIG = new Music("Sons/MusicIn.ogg");
 
         musicIntro.play();
         if (!musicIntro.playing()) {
@@ -83,6 +86,7 @@ public class MenuPrincipal extends BasicGameState {
                 }
                 break;
             case Input.KEY_4:
+                AL.destroy();
                 System.exit(0);
                 break;
             default:
