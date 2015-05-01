@@ -12,6 +12,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -56,6 +57,9 @@ public class Game extends BasicGameState {
     public static int ID = 1, condi = 1, tempsDeJeu = 0;
     private float distance = 0;
     private Ennemi nEnnemi;
+    //MenuPrincipal
+    private MenuPrincipal menuP;
+    private Music musicOut, musicIG;
 
     // *************************************************************************
     // Constructeur
@@ -154,6 +158,10 @@ public class Game extends BasicGameState {
         container.getInput().addMouseListener(ecoSouris);
         menuIG = new MenuIG(container, camera, container);
         menuIG.init();
+
+        menuP = new MenuPrincipal();
+        musicOut = new Music("ressources/Sons/MusicOut.ogg");
+        musicIG = menuP.getMusicIG();
     }
 
     @Override
@@ -267,13 +275,15 @@ public class Game extends BasicGameState {
     public void victoire(ArrayList ennemis, ArrayList batiments) {
         if (ennemis.isEmpty() && batiments.isEmpty()) {
             // game.addState(new EndGameState(null));
+            musicOut.play();
             game.enterState(EndGameState.ID);
+
         }
     }
 
     public void defaite(ArrayList personnages, ArrayList batiments) {
         if (personnages.isEmpty()) {
-            // game.addState(new EndGameState(null));
+            musicOut.play();
             game.enterState(EndGameState.ID);
         }
     }

@@ -1,18 +1,17 @@
 package vue.GameSates;
 
 import java.awt.Desktop;
-import java.awt.FontFormatException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import menu.buttons.FontButton;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -29,6 +28,7 @@ public class MenuPrincipal extends BasicGameState {
 
     private StateBasedGame game;
     private Image background;
+    private Music musicIntro, musicIG;
 
     @Override
     public int getID() {
@@ -39,6 +39,13 @@ public class MenuPrincipal extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         game = sbg;
         this.background = new Image("images/fond.jpg");
+        musicIntro = new Music("ressources/Sons/MusicIntro.ogg");
+        musicIG = new Music("ressources/Sons/MusicIn.ogg");
+
+        musicIntro.play();
+        if (!musicIntro.playing()) {
+            musicIntro.loop();
+        }
     }
 
     @Override
@@ -61,6 +68,8 @@ public class MenuPrincipal extends BasicGameState {
         switch (key) {
             case Input.KEY_1:
                 game.enterState(Game.ID);
+                musicIntro.stop();
+                musicIG.loop();
                 break;
             case Input.KEY_2:
                 // TODO: Implement later
@@ -79,5 +88,9 @@ public class MenuPrincipal extends BasicGameState {
             default:
                 break;
         }
+    }
+    
+    public Music getMusicIG(){
+        return musicIG;
     }
 }
