@@ -38,6 +38,8 @@ public class Game extends BasicGameState {
     private ControlleurSouris ecoSouris;
     // Camera
     private Camera camera;
+    //Score
+    private int score;
     // Entrepot
     private Entrepot entrepot;
     //ArrayList de personnage selectionné
@@ -106,6 +108,14 @@ public class Game extends BasicGameState {
 
     public void ajouterBatiment(Batiment unBatiment) {
         this.batiments.add(unBatiment);
+    }
+    
+    public void setScore(int unScore){
+        score = unScore;
+    }
+    
+    public int getScore(){
+        return score;
     }
 
     // *************************************************************************
