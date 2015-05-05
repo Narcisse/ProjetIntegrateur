@@ -64,7 +64,7 @@ public class Game extends BasicGameState {
     private Ennemi nEnnemi;
     //MenuPrincipal
     private MenuPrincipal menuP;
-    private Music musicOut;
+    //private Music musicOut;
     private Random aleatoire = new Random();
 
 
@@ -293,8 +293,7 @@ public class Game extends BasicGameState {
         if (ennemis.isEmpty() && batiments.isEmpty()) {
             // game.addState(new EndGameState(null));
             // musicOut.play();
-            game.enterState(EndGameState.ID);
-
+            game.enterState(EndGameState.ID);           
         }
     }
 
