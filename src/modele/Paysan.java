@@ -25,6 +25,7 @@ public class Paysan extends Unite {
     //**************************************************************************
     // Constructeur
     public Paysan() {
+        super();
         //Initialisation des attributs du paysant
         initComponents();
     }
