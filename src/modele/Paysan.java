@@ -10,7 +10,7 @@ import vue.Attributs.Attribut;
 /**
  * @author Loic Modifier par Christo
  */
-public class Paysan extends Unite {
+public class Paysan {
 
     //**************************************************************************
     // Donnees membres
@@ -21,11 +21,13 @@ public class Paysan extends Unite {
     private Attribut attributActif;
     private double armure = 0.0;
     private final double augmentationArmure = 0.5;
+    private double dps;
+    //Attribut vie est la cantite de vie total que l'element possede
+    private int vie;
 
     //**************************************************************************
     // Constructeur
     public Paysan() {
-        super();
         //Initialisation des attributs du paysant
         initComponents();
     }
@@ -46,11 +48,8 @@ public class Paysan extends Unite {
     public void initComponents() {
         /*Les attributs dps nourritureNecessaire sont initialiser dans la classe Unite. 
          *Les attributs nom, vie, orNecessaire et */
-        super.setNom("Paysant");
-        super.setVie(150);
-        super.setOrNecessaire(5);
-        super.setDps(10);
-        super.setNourritureNecessaire(10);
+        setVie(150);
+        setDps(10);
         attributActif = null;
     }
 }
@@ -59,7 +58,19 @@ public class Paysan extends Unite {
     public Attribut getAttributActif() {
         return attributActif;
     }
-    //Muttateur
+    public int getVie() {
+        return this.vie;
+    }
+    public double getDps(){
+        return this.dps;
+    }
+//Muttateur
     public void setAttributActif(Attribut nouveauAttribut){
         this.attributActif = nouveauAttribut;
+    }
+    public void setVie(int uneVie) {
+        this.vie = uneVie;
+    }
+    public void setDps(double dps) {
+        this.dps = dps;
     }
