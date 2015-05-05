@@ -173,7 +173,7 @@ public class Game extends BasicGameState {
         container.getInput().addMouseListener(ecoSouris);
         menuIG = new MenuIG(container, camera, container);
         menuIG.init();
-        attributs.add(new Soulier(cartePrincipale));
+        //attributs.add(new Soulier(cartePrincipale));
         menuP = new MenuPrincipal();
         //musicOut = new Music("Sons/MusicOut.ogg");
     }
