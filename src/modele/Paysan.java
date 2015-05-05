@@ -53,3 +53,12 @@ public class Paysan extends Unite {
         attributActif = null;
     }
 }
+
+//Accesseur
+    public Attribut getAttributActif() {
+        return attributActif;
+    }
+    //Muttateur
+    public void setAttributActif(Attribut nouveauAttribut){
+        this.attributActif = nouveauAttribut;
+    }
