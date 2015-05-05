@@ -21,7 +21,7 @@ public class Paysan {
     private Attribut attributActif;
     private double armure = 0.0;
     private final double augmentationArmure = 0.5;
-    private double dps;
+    private int dps;
     //Attribut vie est la cantite de vie total que l'element possede
     private int vie;
 
@@ -48,11 +48,11 @@ public class Paysan {
     public void initComponents() {
         /*Les attributs dps nourritureNecessaire sont initialiser dans la classe Unite. 
          *Les attributs nom, vie, orNecessaire et */
-        setVie(150);
-        setDps(10);
+        this.setVie(150);
+        this.setDps(10);
         attributActif = null;
     }
-}
+
 
 //Accesseur
     public Attribut getAttributActif() {
@@ -61,7 +61,7 @@ public class Paysan {
     public int getVie() {
         return this.vie;
     }
-    public double getDps(){
+    public int getDps(){
         return this.dps;
     }
 //Muttateur
@@ -71,6 +71,7 @@ public class Paysan {
     public void setVie(int uneVie) {
         this.vie = uneVie;
     }
-    public void setDps(double dps) {
+    public void setDps(int dps) {
         this.dps = dps;
     }
+}

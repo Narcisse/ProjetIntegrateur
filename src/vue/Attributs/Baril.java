@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import vue.Attributs.Attribut;
+import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Joueur;
 
@@ -17,7 +18,8 @@ public class Baril extends Attribut {
     private double rare;
     private int dommage = 50;
 
-    public Baril() throws SlickException {
+    public Baril(Carte uneCarte) throws SlickException {
+        super(uneCarte);
         super.setImage(new Image("data/sprites/objet/Baril.png"));
     }
 

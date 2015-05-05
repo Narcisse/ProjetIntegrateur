@@ -19,15 +19,16 @@ import vue.ElementsPrincipauxDuJeu.Joueur;
  */
 public abstract class Attribut {
     private Image imageAttribut = null;
+    private Point coordinates;
     // *************************************************************************
     // Constructeur
-    public Attribut() {
+    public Attribut(Carte uneCarte) {
+        coordinates = Informateur.getRandomCoordinates(uneCarte);
     }
 
     // *************************************************************************
     // Affichage
     public void render(Graphics g, Carte uneCarte) throws SlickException{
-        Point coordinates = Informateur.getRandomCoordinates(uneCarte);
         g.drawImage(imageAttribut, coordinates.x, coordinates.y);
     }
 

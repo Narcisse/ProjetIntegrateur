@@ -17,6 +17,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import vue.Attributs.Attribut;
+import vue.Attributs.Soulier;
 import vue.Hud.Hud;
 import vue.ElementsPrincipauxDuJeu.Batiment;
 import vue.ElementsPrincipauxDuJeu.Carte;
@@ -168,7 +169,7 @@ public class Game extends BasicGameState {
         container.getInput().addMouseListener(ecoSouris);
         menuIG = new MenuIG(container, camera, container);
         menuIG.init();
-
+        attributs.add(new Soulier(cartePrincipale));
         menuP = new MenuPrincipal();
         //musicOut = new Music("Sons/MusicOut.ogg");
     }
