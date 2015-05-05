@@ -65,7 +65,7 @@ public class EndGameState extends BasicGameState{
                 game.enterState(MenuPrincipal.ID);
                 break;
             case Input.KEY_3:
-                AL.destroy();
+                //AL.destroy();
                 System.exit(0);
                 break;
             default:
