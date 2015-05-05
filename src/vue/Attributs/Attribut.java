@@ -19,7 +19,7 @@ import vue.ElementsPrincipauxDuJeu.Joueur;
  */
 public abstract class Attribut {
     private Image imageAttribut = null;
-    private Point coordinates;
+    private int[] coordinates;
     // *************************************************************************
     // Constructeur
     public Attribut(Carte uneCarte) {
@@ -29,7 +29,7 @@ public abstract class Attribut {
     // *************************************************************************
     // Affichage
     public void render(Graphics g, Carte uneCarte) throws SlickException{
-        g.drawImage(imageAttribut, coordinates.x, coordinates.y);
+        g.drawImage(imageAttribut, coordinates[0], coordinates[1]);
     }
 
     public abstract void action();
