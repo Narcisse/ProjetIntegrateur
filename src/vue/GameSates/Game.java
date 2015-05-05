@@ -6,6 +6,8 @@ import controleur.ControlleurPersonnage;
 import controleur.ControlleurSouris;
 import controleur.Informateur;
 import java.util.ArrayList;
+import java.util.Random;
+import javax.swing.JOptionPane;
 import modele.Entrepot;
 import org.lwjgl.util.Point;
 import org.newdawn.slick.Color;
@@ -57,12 +59,14 @@ public class Game extends BasicGameState {
     //Condition pour afficher menu
     private boolean escapePressed = false;
     // ID
-    public static int ID = 1, condi = 1, tempsDeJeu = 0;
+    public static int ID = 1, condi = 1, tempsDeJeu = 0,tempsEnnemi=0,highScore=0;
     private float distance = 0;
     private Ennemi nEnnemi;
     //MenuPrincipal
     private MenuPrincipal menuP;
     private Music musicOut;
+    private Random aleatoire = new Random();
+
 
     // *************************************************************************
     // Constructeur
@@ -249,14 +253,17 @@ public class Game extends BasicGameState {
 
         }
 
-        if (tempsDeJeu <= 5010 && tempsDeJeu >= 4990 && condi == 1) {
-            condi = 2;
+        if (tempsDeJeu <= tempsEnnemi+10 && tempsDeJeu >= tempsEnnemi-10) {
+            int randomX = aleatoire.nextInt(1001);//chiffre aléatoire entre 0 et 1000
+            int randomY = aleatoire.nextInt(1001);//chiffre aléatoire entre 0 et 1000
             nEnnemi = new Ennemi(cartePrincipale);
             nEnnemi.init();
-            nEnnemi.setX(500);
-            nEnnemi.setY(500);
+            nEnnemi.setX(randomX);
+            nEnnemi.setY(randomY);
             ennemis.add(nEnnemi);
+            tempsEnnemi=tempsDeJeu+5000;
         }
+        
         tempsDeJeu += delta;
 
         if (!personnages.isEmpty() && !ennemis.isEmpty()) {
@@ -280,8 +287,8 @@ public class Game extends BasicGameState {
         }
         victoire(ennemis, batiments);
         defaite(personnages, batiments);
-    }
-
+        }
+    
     public void victoire(ArrayList ennemis, ArrayList batiments) {
         if (ennemis.isEmpty() && batiments.isEmpty()) {
             // game.addState(new EndGameState(null));
@@ -318,6 +325,7 @@ public class Game extends BasicGameState {
                                 System.out.println("Vie restante Ennemi: " + unEnnemi.getHP());
                             }
                             if (unEnnemi.getHP() <= 0) {
+                                cettePlanche.setScore(cettePlanche.getScore()+100);
                                 ennemis.remove(unEnnemi);
                             }
                         }
