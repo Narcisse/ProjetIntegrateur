@@ -42,13 +42,13 @@ public class MenuPrincipal extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         game = sbg;
         this.background = new Image("images/fond.jpg");
-        musicIntro = new Music("Sons/MusicIntro.ogg");
-        musicIG = new Music("Sons/MusicIn.ogg");
+        // musicIntro = new Music("Sons/MusicIntro.ogg");
+        // musicIG = new Music("Sons/MusicIn.ogg");
 
-        musicIntro.play();
-        if (!musicIntro.playing()) {
-            musicIntro.loop();
-        }
+        //musicIntro.play();
+        //if (!musicIntro.playing()) {
+        //    musicIntro.loop();
+        //}
     }
 
     @Override
@@ -71,8 +71,8 @@ public class MenuPrincipal extends BasicGameState {
         switch (key) {
             case Input.KEY_1:
                 game.enterState(Game.ID);
-                musicIntro.stop();
-                musicIG.loop();
+                //musicIntro.stop();
+                //musicIG.loop();
                 break;
             case Input.KEY_2:
                 // TODO: Implement later
@@ -86,7 +86,7 @@ public class MenuPrincipal extends BasicGameState {
                 }
                 break;
             case Input.KEY_4:
-                AL.destroy();
+                //AL.destroy();
                 System.exit(0);
                 break;
             default:
