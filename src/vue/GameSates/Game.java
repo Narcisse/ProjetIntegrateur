@@ -170,7 +170,7 @@ public class Game extends BasicGameState {
         menuIG.init();
 
         menuP = new MenuPrincipal();
-        musicOut = new Music("Sons/MusicOut.ogg");
+        //musicOut = new Music("Sons/MusicOut.ogg");
     }
 
     @Override
@@ -284,7 +284,7 @@ public class Game extends BasicGameState {
     public void victoire(ArrayList ennemis, ArrayList batiments) {
         if (ennemis.isEmpty() && batiments.isEmpty()) {
             // game.addState(new EndGameState(null));
-            musicOut.play();
+            // musicOut.play();
             game.enterState(EndGameState.ID);
 
         }
@@ -292,7 +292,7 @@ public class Game extends BasicGameState {
 
     public void defaite(ArrayList personnages, ArrayList batiments) {
         if (personnages.isEmpty()) {
-            musicOut.play();
+            // musicOut.play();
             game.enterState(EndGameState.ID);
         }
     }
