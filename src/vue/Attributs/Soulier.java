@@ -14,7 +14,7 @@ public class Soulier extends Attribut {
 
     public Soulier(Carte uneCarte) throws SlickException {
         super(uneCarte);
-        super.setImage(new Image("data/sprites/objet/Soulier.png"));
+        super.setImage(new Image("data/sprites/objet/Soulier.png", false, Image.FILTER_NEAREST));
     }
 
     public void action() {

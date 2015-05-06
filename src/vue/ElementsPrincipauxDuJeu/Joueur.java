@@ -15,7 +15,7 @@ import org.newdawn.slick.SpriteSheet;
  *
  * @author Christopher Desrosiers Mondor
  */
-public class Joueur {
+public class Joueur extends Paysan{
 
     // *************************************************************************
     // Donnee membre    
@@ -39,6 +39,7 @@ public class Joueur {
     // *************************************************************************
     // Constructeur
     public Joueur(Carte uneCarte) {
+        super();
         this.carte = uneCarte;
         this.paysan = new Paysan();
     }
@@ -295,6 +296,8 @@ public class Joueur {
             this.setNouvelleAttaque(tempsJeu);
         }
     }
+    
+    
 
     //La méthode rédéfinit le temps de la prochaine attaque
     public void setNouvelleAttaque(int tempsJeu) {

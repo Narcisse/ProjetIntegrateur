@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import modele.Paysan;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Animation;
+import static org.newdawn.slick.Color.white;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -20,6 +21,8 @@ import vue.ElementsPrincipauxDuJeu.Joueur;
 public abstract class Attribut {
     private Image imageAttribut = null;
     private int[] coordinates;
+    private int height = 50;
+    private int width = 50;
     // *************************************************************************
     // Constructeur
     public Attribut(Carte uneCarte) {
@@ -29,7 +32,7 @@ public abstract class Attribut {
     // *************************************************************************
     // Affichage
     public void render(Graphics g, Carte uneCarte) throws SlickException{
-        g.drawImage(imageAttribut, coordinates[0], coordinates[1]);
+        imageAttribut.draw(coordinates[0], coordinates[1], width, height, white);
     }
 
     public abstract void action();
@@ -48,5 +51,13 @@ public abstract class Attribut {
     
     public void setImage(Image uneImageAttribut){
         this.imageAttribut = uneImageAttribut;
+    }
+    
+    public Rectangle getRectangle(){
+        return new Rectangle(coordinates[0], coordinates[1], width, height);
+    }
+    
+    public String toString(){
+        return this.getClass().getName();
     }
 }

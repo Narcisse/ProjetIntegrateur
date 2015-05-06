@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import modele.Entrepot;
 import org.lwjgl.util.Point;
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,6 +19,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import vue.Attributs.Attribut;
+import vue.Attributs.Soulier;
 import vue.Hud.Hud;
 import vue.ElementsPrincipauxDuJeu.Batiment;
 import vue.ElementsPrincipauxDuJeu.Carte;
@@ -57,14 +59,13 @@ public class Game extends BasicGameState {
     //Condition pour afficher menu
     private boolean escapePressed = false;
     // ID
-    public static int ID = 1, condi = 1, tempsDeJeu = 0,tempsEnnemi=0,highScore=0;
+    public static int ID = 1, condi = 1, tempsDeJeu = 0, tempsEnnemi = 0, highScore = 0;
     private float distance = 0;
     private Ennemi nEnnemi;
     //MenuPrincipal
     private MenuPrincipal menuP;
     //private Music musicOut;
     private Random aleatoire = new Random();
-
 
     // *************************************************************************
     // Constructeur
@@ -112,12 +113,12 @@ public class Game extends BasicGameState {
     public void ajouterBatiment(Batiment unBatiment) {
         this.batiments.add(unBatiment);
     }
-    
-    public void setScore(int unScore){
+
+    public void setScore(int unScore) {
         score = unScore;
     }
-    
-    public int getScore(){
+
+    public int getScore() {
         return score;
     }
 
@@ -171,7 +172,7 @@ public class Game extends BasicGameState {
         container.getInput().addMouseListener(ecoSouris);
         menuIG = new MenuIG(container, camera, container);
         menuIG.init();
-        //attributs.add(new Soulier(cartePrincipale));
+        attributs.add(new Soulier(cartePrincipale));
         menuP = new MenuPrincipal();
         //musicOut = new Music("Sons/MusicOut.ogg");
     }
@@ -193,6 +194,7 @@ public class Game extends BasicGameState {
             Attribut unAttribut = (Attribut) a;
             unAttribut.render(g, cartePrincipale);
         }
+        aquerirAttribut((Joueur) personnages.get(0), attributs);
         this.cartePrincipale.renderAvantPlan();
         g.setColor(Color.yellow);
         g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
@@ -244,17 +246,10 @@ public class Game extends BasicGameState {
             }
         }
 
-        for (Object b : batiments) {
-            Batiment unBatiment = (Batiment) b;
-            this.camera.update(container);
-            unBatiment.update(this.camera.getX(), this.camera.getY());
-
-        }
-
-        if (tempsDeJeu >= tempsEnnemi ) {
+        if (tempsDeJeu >= tempsEnnemi) {
             int randomX = aleatoire.nextInt(1001);//chiffre aléatoire entre 0 et 1000
             int randomY = aleatoire.nextInt(1001);//chiffre aléatoire entre 0 et 1000
-            
+
             int[] coordonees;
             coordonees = Informateur.getRandomCoordinates(cartePrincipale);
             nEnnemi = new Ennemi(cartePrincipale);
@@ -262,10 +257,10 @@ public class Game extends BasicGameState {
             nEnnemi.setX(coordonees[0]);
             nEnnemi.setY(coordonees[1]);
             ennemis.add(nEnnemi);
-            tempsEnnemi=tempsDeJeu+5000;
+            tempsEnnemi = tempsDeJeu + 5000;
             System.out.println("SPAWN");
         }
-        
+
         tempsDeJeu += delta;
 
         if (!personnages.isEmpty() && !ennemis.isEmpty()) {
@@ -289,13 +284,13 @@ public class Game extends BasicGameState {
         }
         victoire(ennemis, batiments);
         defaite(personnages, batiments);
-        }
-    
+    }
+
     public void victoire(ArrayList ennemis, ArrayList batiments) {
         if (ennemis.isEmpty() && batiments.isEmpty()) {
             // game.addState(new EndGameState(null));
             // musicOut.play();
-            game.enterState(EndGameState.ID);           
+            game.enterState(EndGameState.ID);
         }
     }
 
@@ -303,6 +298,22 @@ public class Game extends BasicGameState {
         if (personnages.isEmpty()) {
             // musicOut.play();
             game.enterState(EndGameState.ID);
+        }
+    }
+
+    public void aquerirAttribut(Joueur unPaysan, ArrayList listeAttributs) {
+        if (!listeAttributs.isEmpty()) {
+            for (int i = 0; i < listeAttributs.size(); i++) {
+                Attribut unAttribut = (Attribut) listeAttributs.get(i);
+                Rectangle espaceOccupeAttribut = unAttribut.getRectangle();
+                Rectangle espaceOccupePaysan = unPaysan.getRectangle();
+
+                if (espaceOccupePaysan.intersects(espaceOccupeAttribut)) {
+                    unPaysan.setAttributActif(unAttribut);
+                    attributs.remove(unAttribut);
+                    System.out.println("Attribut acquis: " + unAttribut.toString());
+                }
+            }
         }
     }
 
@@ -326,7 +337,7 @@ public class Game extends BasicGameState {
                                 System.out.println("Vie restante Ennemi: " + unEnnemi.getHP());
                             }
                             if (unEnnemi.getHP() <= 0) {
-                                cettePlanche.setScore(cettePlanche.getScore()+100);
+                                cettePlanche.setScore(cettePlanche.getScore() + 100);
                                 ennemis.remove(unEnnemi);
                             }
                         }
