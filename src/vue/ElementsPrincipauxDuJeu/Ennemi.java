@@ -31,7 +31,7 @@ public class Ennemi {
     private Rectangle rectInteraction;
     private Carte carte;
     //temps écouler entre chaque attaque en miliseconde
-    private int tempsAttaque = 1000;
+    private int tempsAttaque = 100;
     //temps minimum de la nouvelle attaque
     private int nouvelleAttaque= 0;
     //Paysan Ennemi
