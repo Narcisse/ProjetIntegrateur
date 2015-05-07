@@ -14,7 +14,7 @@ import org.newdawn.slick.SpriteSheet;
  *
  * @author Christopher Desrosiers Mondor
  */
-public class Ennemi {
+public class Ennemi extends Paysan{
 
     // *************************************************************************
     // Donnee membre
@@ -22,7 +22,6 @@ public class Ennemi {
 
     private float x = 500, y = 500;
     private float xDest = 300, yDest = 300;
-    private float vitesse = 0.25f;
     private int direction = 0;
     private boolean moving = true;
     private Animation[] animations = new Animation[8];
@@ -45,8 +44,8 @@ public class Ennemi {
     // Constructeur
     public Ennemi(Carte uneCarte) {
         this.carte = uneCarte;
-        paysanEnnemi = new Paysan();
-        paysanEnnemi.setDps(10);
+        setDps(5);
+        setVitesse(0.25f);
     }
 
     // *************************************************************************
@@ -250,25 +249,13 @@ public class Ennemi {
     public String getID() {
         return ID;
     }
-
-    public int getHP() {
-        return this.paysanEnnemi.getVie();
-    }
-
-    public void addHP(int amountOfHp) {
-        this.paysanEnnemi.setVie(this.paysanEnnemi.getVie() + amountOfHp);
-    }
-
-    public void removeHP(int amountOfHp) {
-        this.paysanEnnemi.setVie(this.paysanEnnemi.getVie() - amountOfHp);
-    }
     
     //méthode qui prend en paramètre un joueur, un quantité de point de d'attaque et le temps de jeu
     // la méthode enlève des points de vies (le montant de amoutOfHp) si le temps es plus grand que la nouvelle attaque.
     // Redéfinit le temps pour la prochaine attaque.
     public void attaque(Joueur unJoueur, int tempsJeu){
         if(tempsJeu > nouvelleAttaque){
-            unJoueur.removeHP(this.paysanEnnemi.getDps());
+            unJoueur.removeHP(getDps());
             this.setNouvelleAttaque(tempsJeu);
         }    
     }

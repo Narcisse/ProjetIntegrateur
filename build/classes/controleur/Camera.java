@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import vue.ElementsPrincipauxDuJeu.Carte;
+import vue.ElementsPrincipauxDuJeu.Joueur;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Camera {
     private float xCamera, yCamera;
     //event
     private Input input;
+    private Joueur unJoueur;
 
     // *************************************************************************
     // Constructeur
@@ -36,7 +38,7 @@ public class Camera {
 
     // *************************************************************************
     // Mise a jour de la camera
-    public void update(GameContainer container) {
+    public void update(GameContainer container, Joueur unJoueur) {
         //Event input du container
         input = container.getInput();
 
@@ -44,33 +46,8 @@ public class Camera {
         int mouseX = (int) (Mouse.getX() + (this.xCamera - container.getWidth() / 2));
         int mouseY = (int) (Mouse.getY() + (this.yCamera - container.getHeight() / 2));
 
-        int w = container.getWidth() / 3 + 220;
-        //Vers la droite
-        if (mouseX > this.xCamera + w) {
-            this.xCamera++;
-        }//Vers la gauche 
-        else if (mouseX < this.xCamera - w) {
-            this.xCamera--;
-        }
-        int h = container.getHeight() / 3 + 120;
-        //Vers le haut
-        if (mouseY >= this.yCamera + h) {
-            this.yCamera--;
-        }//Vers le bas 
-        else if (mouseY <= this.yCamera - h) {
-            this.yCamera++;
-        }
-
-        //Update la position de la camera avec les touche directionnelles
-        if (input.isKeyDown(Input.KEY_LEFT)) {
-            this.xCamera--;
-        } else if (input.isKeyDown(Input.KEY_RIGHT)) {
-            this.xCamera++;
-        }else if (input.isKeyDown(Input.KEY_UP)) {
-            this.yCamera--;
-        }else if (input.isKeyDown(Input.KEY_DOWN)) {
-            this.yCamera++;
-        }
+        this.xCamera = unJoueur.getX();
+        this.yCamera = unJoueur.getY();
         // Redefinition des coordonnees de la camera si elle depasse de la map
         if (xCamera - container.getWidth() / 2 < 0) {
             xCamera = container.getWidth() / 2;
