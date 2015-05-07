@@ -42,7 +42,7 @@ public class MenuPrincipal extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        game = sbg;
+        this.game = sbg;
         this.background = new Image("images/fond.jpg");
         this.container = gc;
         // musicIntro = new Music("Sons/MusicIntro.ogg");
@@ -73,12 +73,12 @@ public class MenuPrincipal extends BasicGameState {
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_1:
-                Informateur.enterNewState(Game.ID, container, game);
+                game.enterState(Game.ID);
                 //musicIntro.stop();
                 //musicIG.loop();
                 break;
             case Input.KEY_2:
-                // TODO: Implement later
+                Informateur.enterNewState(HighScoreState.ID, container, game);
                 break;
             case Input.KEY_3:
                 URI uri = new File("ressources/TexteTutoriel/PageHtml/Menu.htm").toURI();

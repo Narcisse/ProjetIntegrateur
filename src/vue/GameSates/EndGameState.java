@@ -19,7 +19,7 @@ public class EndGameState extends BasicGameState {
     // *************************************************************************
     // Donnee membres
 
-    public static final int ID = 3;
+    public static final int ID = 2;
     private String infoPartie;
     private StateBasedGame game;
     public boolean victoire;
