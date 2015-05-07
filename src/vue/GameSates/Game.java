@@ -252,9 +252,6 @@ public class Game extends BasicGameState {
         }
 
         if (tempsDeJeu >= tempsEnnemi) {
-            int randomX = aleatoire.nextInt(1001);//chiffre aléatoire entre 0 et 1000
-            int randomY = aleatoire.nextInt(1001);//chiffre aléatoire entre 0 et 1000
-
             int[] coordonees;
             coordonees = Informateur.getRandomCoordinates(cartePrincipale);
             nEnnemi = new Ennemi(cartePrincipale);
@@ -263,7 +260,6 @@ public class Game extends BasicGameState {
             nEnnemi.setY(coordonees[1]);
             ennemis.add(nEnnemi);
             tempsEnnemi = tempsDeJeu + 5000;
-            System.out.println("SPAWN");
         }
 
         tempsDeJeu += delta;
