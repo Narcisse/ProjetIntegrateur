@@ -1,0 +1,1 @@
+vue.Jeu.Baril

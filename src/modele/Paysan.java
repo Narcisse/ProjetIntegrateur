@@ -22,6 +22,8 @@ public class Paysan {
     private double armure = 0.0;
     private final double augmentationArmure = 0.5;
     private int dps;
+    
+    protected float vitesse = 1f;
     //Attribut vie est la cantite de vie total que l'element possede
     private int vie;
 
@@ -64,6 +66,9 @@ public class Paysan {
     public int getDps(){
         return this.dps;
     }
+    public float getVitesse(){
+        return this.vitesse;
+    }
     
     public int getHP() {
         return this.vie;
@@ -85,5 +90,8 @@ public class Paysan {
     }
     public void setDps(int dps) {
         this.dps = dps;
+    }
+    public void setVitesse(float vitesse){
+        this.vitesse = vitesse;
     }
 }

@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -25,7 +24,6 @@ import vue.Hud.Hud;
 import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Joueur;
-import vue.Jeu.Baril;
 
 /**
  *
@@ -49,7 +47,7 @@ public class Game extends BasicGameState {
     private ArrayList attributs = new ArrayList();
     private ArrayList attPossibles = new ArrayList();
 
-    private static int default_bullet_delay = 10000;
+    private static int default_bullet_delay = 5000;
 
     private static int timer = 0;
     // Planche de jeu
@@ -320,6 +318,7 @@ public class Game extends BasicGameState {
 
                 if (espaceOccupePaysan.intersects(espaceOccupeAttribut)) {
                     unPaysan.setAttributActif(unAttribut);
+                    unPaysan.valeursParDefault();
                     unAttribut.faireActions(unPaysan, null, ennemis);
                     attributs.remove(unAttribut);
                     System.out.println("Attribut acquis: " + unAttribut.toString());
@@ -335,22 +334,26 @@ public class Game extends BasicGameState {
                 break;
             case Input.KEY_A:
                 if (!personnages.isEmpty() && !ennemis.isEmpty()) {
+                    ArrayList attaqueEux = new ArrayList();
+                    Joueur unPaysan = null;
                     for (Object j : personnages) {
-                        Joueur unPaysan = (Joueur) j;
+                        unPaysan = (Joueur) j;
                         for (int i = 0; i < ennemis.size(); i++) {
                             Ennemi unEnnemi = (Ennemi) ennemis.get(i);
                             boolean contient = ennemis.contains(unEnnemi);
                             Point paysanPos;
                             paysanPos = new Point((int) unPaysan.getX(), (int) unPaysan.getY());
                             Point ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
-                            if (unPaysan.isSelected() && unPaysan.distancePoint(paysanPos, ennemiPos) <= 30) {
-                                unPaysan.attaque(unEnnemi, tempsDeJeu);
-                                System.out.println("Vie restante Ennemi: " + unEnnemi.getHP());
+                            if (unPaysan.distancePoint(paysanPos, ennemiPos) <= 150) {
+                                attaqueEux.add(unEnnemi);
                             }
-                            if (unEnnemi.getHP() <= 0) {
-                                cettePlanche.setScore(cettePlanche.getScore() + 100);
-                                ennemis.remove(unEnnemi);
-                            }
+                        }
+                    }
+                    for (int i=0; i<attaqueEux.size(); i++){
+                        Ennemi unEnnemi = (Ennemi)attaqueEux.get(i);
+                        unEnnemi.removeHP(unPaysan.getDps());
+                        if (unEnnemi.getVie() <= 0){
+                            ennemis.remove(unEnnemi);
                         }
                     }
                 }

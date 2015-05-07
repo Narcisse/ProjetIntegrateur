@@ -72,10 +72,6 @@ public class MenuPrincipal extends BasicGameState {
                 //musicIG.loop();
                 break;
             case Input.KEY_2:
-<<<<<<< HEAD
-                Informateur.enterNewState(HighScoreState.ID, container, game);
-=======
->>>>>>> origin/master
                 break;
             case Input.KEY_3:
                 URI uri = new File("ressources/TexteTutoriel/PageHtml/Menu.htm").toURI();

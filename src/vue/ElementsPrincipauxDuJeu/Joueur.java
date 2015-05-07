@@ -21,7 +21,7 @@ public class Joueur extends Paysan{
     // Donnee membre    
     private float x = 300, y = 300;
     private float xDest = 300, yDest = 300;
-    private float vitesse = 1f;
+    
     private int direction = 0;
     private boolean moving = false;
     private Animation[] animations = new Animation[8];
@@ -42,6 +42,7 @@ public class Joueur extends Paysan{
         super();
         this.carte = uneCarte;
         this.paysan = new Paysan();
+        setDps(15);
     }
 
     // *************************************************************************
@@ -80,6 +81,7 @@ public class Joueur extends Paysan{
             g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
         }
         g.fillOval(x - 16, y - 8, 32, 16);
+        g.drawOval(x - 150, y - 150, 300 , 300);
         g.drawAnimation(animations[direction + (moving ? 4 : 0)], x - 32, y - 60);
     }
 
@@ -102,9 +104,9 @@ public class Joueur extends Paysan{
             } else {
                 if (x < xDest) {
 
-                    this.x += (int) 1 * vitesse;
+                    this.x += (int) 1 * getVitesse();
                 } else if (x > xDest) {
-                    this.x -= (int) 1 * vitesse;
+                    this.x -= (int) 1 * getVitesse();
 
                 } else if (x == xDest && y < yDest) {
                     this.setDirection(2);
@@ -114,9 +116,9 @@ public class Joueur extends Paysan{
 
                 if (y < yDest) {
 
-                    this.y += (int) 1 * vitesse;
+                    this.y += (int) 1 * getVitesse();
                 } else if (y > yDest) {
-                    this.y -= (int) 1 * vitesse;
+                    this.y -= (int) 1 * getVitesse();
 
                 } else if (y == yDest && x < xDest) {
                     this.setDirection(3);
@@ -137,10 +139,10 @@ public class Joueur extends Paysan{
         float futurX = this.x;
         switch (this.direction) {
             case 1:
-                futurX = this.x - vitesse * delta;
+                futurX = this.x - getVitesse() * delta;
                 break;
             case 3:
-                futurX = this.x + vitesse * delta;
+                futurX = this.x + getVitesse() * delta;
                 break;
         }
         return futurX;
@@ -150,19 +152,19 @@ public class Joueur extends Paysan{
         float futurY = this.y;
         switch (this.direction) {
             case 0:
-                futurY = this.y - vitesse * delta;
+                futurY = this.y - getVitesse() * delta;
                 break;
             case 2:
-                futurY = this.y + vitesse * delta;
+                futurY = this.y + getVitesse() * delta;
                 break;
             case 1:
                 if (this.onStair) {
-                    futurY = this.y + vitesse * delta;
+                    futurY = this.y + getVitesse() * delta;
                 }
                 break;
             case 3:
                 if (this.onStair) {
-                    futurY = this.y - vitesse * delta;
+                    futurY = this.y - getVitesse() * delta;
                 }
                 break;
         }
@@ -219,14 +221,6 @@ public class Joueur extends Paysan{
         this.xDest = x;
     }
 
-    public void setVitesse(float vitesse) {
-        this.vitesse = vitesse;
-    }
-
-    public float getVitesse() {
-        return vitesse;
-    }
-
     public float getxDest() {
         return this.xDest;
     }
@@ -270,7 +264,7 @@ public class Joueur extends Paysan{
     // Redéfinit le temps pour la prochaine attaque.
     public void attaque(Ennemi unEnnemi, int tempsJeu) {
         if (tempsJeu > nouvelleAttaque) {
-            unEnnemi.removeHP(this.paysan.getDps());
+            unEnnemi.removeHP(getDps());
             this.setNouvelleAttaque(tempsJeu);
         }
     }
@@ -287,10 +281,10 @@ public class Joueur extends Paysan{
     }
 
     public void boostVitesse(float unBoost) {
-        this.vitesse += unBoost;
+        vitesse += unBoost;
     }
 
-    public void vitesseNormale() {
-        this.vitesse = 1.0f;
+    public void valeursParDefault(){
+        vitesse = 1.0f;
     }
 }
