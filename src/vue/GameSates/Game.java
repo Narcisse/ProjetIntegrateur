@@ -4,6 +4,9 @@ import controleur.Camera;
 import controleur.ControlleurEnnemi;
 import controleur.ControlleurPersonnage;
 import controleur.Informateur;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -64,7 +67,7 @@ public class Game extends BasicGameState {
     //MenuPrincipal
     private MenuPrincipal menuP;
     //private Music musicOut;
-    private Random aleatoire = new Random();
+    private BufferedWriter highScoreFile;
 
     // *************************************************************************
     // Constructeur
@@ -270,7 +273,6 @@ public class Game extends BasicGameState {
                 Ennemi unEnnemi = (Ennemi) e;
                 for (int i = 0; i < personnages.size(); i++) {
                     Joueur unJoueur = (Joueur) personnages.get(i);
-                    boolean contient = personnages.contains(unEnnemi);
                     Point ennemiPos;
                     ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());
                     Point joueurPos = new Point((int) unJoueur.getX(), (int) unJoueur.getY());
@@ -287,9 +289,25 @@ public class Game extends BasicGameState {
         defaite(personnages);
     }
 
-    public void defaite(ArrayList personnages) {
+    public void defaite(ArrayList personnages){
         if (personnages.isEmpty()) {
-            Informateur.enterNewState(EndGameState.ID, container, game);
+            Informateur.enterNewState(EndGameState.ID, container, game);           
+            try {
+                highScoreFile = new BufferedWriter(new FileWriter("HighScores//HighScore.txt"));
+            } catch (IOException ex) {
+                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                highScoreFile.write(cettePlanche.getScore());
+            } catch (IOException ex) {
+                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                highScoreFile.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
     }
 
