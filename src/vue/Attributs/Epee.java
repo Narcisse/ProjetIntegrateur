@@ -1,38 +1,39 @@
-package vue.Jeu;
+package vue.Attributs;
 
+import vue.Attributs.Attribut;
 import java.util.ArrayList;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import vue.Attributs.Attribut;
 import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Joueur;
 
+
 /**
  *
- * @author usager
+ * @author Guillaume
  */
-public class Baril extends Attribut {
 
-    private Image imgAttribut;
-    private double rare;
-    private int dommage = 50;
+public class Epee extends Attribut {
+    double rare;
+    int augmenteDps = 10;
 
-    public Baril(Carte uneCarte) throws SlickException {
+    public Epee(Carte uneCarte) throws SlickException {
         super(uneCarte);
-        super.setImage(new Image("data/sprites/objet/Baril.png", false, Image.FILTER_NEAREST));
+        super.setImage(new Image("data/sprites/objet/Epee.png", false, Image.FILTER_NEAREST));
     }
 
     public void action() {
     }
 
     public void action(Joueur unJoueur) {
+        unJoueur.setDps(unJoueur.getDps()+ augmenteDps);
     }
 
     public void action(Ennemi unEnnemi) {
-        unEnnemi.removeHP(dommage);
     }
 
     public void action(ArrayList uneListe) {
     }
+
 }

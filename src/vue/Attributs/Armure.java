@@ -19,7 +19,7 @@ public class Armure extends Attribut{
     // Constructeur
     public Armure(Carte uneCarte) throws SlickException{
         super(uneCarte);
-        super.setImage(new Image("data/sprites/objet/Armure.png"));
+        super.setImage(new Image("data/sprites/objet/Armure.png", false, Image.FILTER_NEAREST));
     }
 
     @Override
