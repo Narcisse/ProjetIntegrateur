@@ -18,13 +18,13 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import vue.Attributs.Attribut;
-import vue.Attributs.Soulier;
+import vue.Attributs.*;
 import vue.Hud.Hud;
 import vue.ElementsPrincipauxDuJeu.Batiment;
 import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Joueur;
+import vue.Jeu.Baril;
 
 /**
  *
@@ -48,6 +48,11 @@ public class Game extends BasicGameState {
     private ArrayList personnages = new ArrayList();
     private ArrayList ennemis = new ArrayList();
     private ArrayList attributs = new ArrayList();
+    private ArrayList attPossibles = new ArrayList();
+
+    private static int default_bullet_delay = 10000;
+
+    private static int timer = 0;
     // Planche de jeu
     private Game cettePlanche;
     // Hud
@@ -117,28 +122,29 @@ public class Game extends BasicGameState {
     public int getID() {
         return this.ID;
     }
-    
+
     @Override
     public void enter(GameContainer gc, StateBasedGame sg) throws SlickException {
-        
+
         // Image curseur = new Image("images/curseur.png", true);
         // this.container.setMouseCursor(curseur, 0, 0);
         camera = new Camera(cartePrincipale);
         this.cartePrincipale.init();
-        
+
         personnages = new ArrayList();
         ennemis = new ArrayList();
         attributs = new ArrayList();
-        
+
         personnages.add(new Joueur(cartePrincipale));
         ennemis.add(new Ennemi(cartePrincipale));
-        attributs.add(new Soulier(cartePrincipale));
         
+        
+
         //Image curseur = new Image("images/curseur.png", true);
         //this.container.setMouseCursor(curseur, 0, 0);
         essentials(container, sg);
     }
-    
+
     @Override
     public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
         // Jeu et carte
@@ -147,11 +153,12 @@ public class Game extends BasicGameState {
         essentials(container, sbg);
         //musicOut = new Music("Sons/MusicOut.ogg");
     }
-    
-    public void essentials(GameContainer container, StateBasedGame sbg) throws SlickException{
+
+    public void essentials(GameContainer container, StateBasedGame sbg) throws SlickException {
         //Image curseur = new Image("images/curseur.png", true);
         //this.container.setMouseCursor(curseur, 0, 0);
         this.cartePrincipale.init();
+        attPossibles = Informateur.getToutAttributs(cartePrincipale);
         // Personnage
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
@@ -188,6 +195,7 @@ public class Game extends BasicGameState {
         menuIG.init();
         menuP = new MenuPrincipal();
     }
+
     @Override
     public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException {
         this.camera.place(container, g);
@@ -221,6 +229,14 @@ public class Game extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
+        // Delai avant de faire apparaitre un attribut;
+        timer -= delta;
+        if (timer <= 0) {
+            Random generator = new Random();
+            int attributChoisit = generator.nextInt(attPossibles.size());
+            attributs.add(attPossibles.get(attributChoisit));
+            timer = default_bullet_delay;  // Reset the timer
+        }
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.update(delta);
