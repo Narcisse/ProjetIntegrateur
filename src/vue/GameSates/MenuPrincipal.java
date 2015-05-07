@@ -3,12 +3,13 @@ package vue.GameSates;
 import controleur.Informateur;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.lwjgl.LWJGLException;
-import org.lwjgl.openal.AL;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,7 +19,6 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
 
 /**
  *
@@ -45,13 +45,6 @@ public class MenuPrincipal extends BasicGameState {
         this.game = sbg;
         this.background = new Image("images/fond.jpg");
         this.container = gc;
-        // musicIntro = new Music("Sons/MusicIntro.ogg");
-        // musicIG = new Music("Sons/MusicIn.ogg");
-
-        //musicIntro.play();
-        //if (!musicIntro.playing()) {
-        //    musicIntro.loop();
-        //}
     }
 
     @Override
@@ -68,6 +61,7 @@ public class MenuPrincipal extends BasicGameState {
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+        
     }
 
     public void keyReleased(int key, char c) {
@@ -78,7 +72,10 @@ public class MenuPrincipal extends BasicGameState {
                 //musicIG.loop();
                 break;
             case Input.KEY_2:
+<<<<<<< HEAD
                 Informateur.enterNewState(HighScoreState.ID, container, game);
+=======
+>>>>>>> origin/master
                 break;
             case Input.KEY_3:
                 URI uri = new File("ressources/TexteTutoriel/PageHtml/Menu.htm").toURI();
@@ -96,8 +93,8 @@ public class MenuPrincipal extends BasicGameState {
                 break;
         }
     }
-    
-    public Music getMusicIG(){
+
+    public Music getMusicIG() {
         return musicIG;
     }
 }

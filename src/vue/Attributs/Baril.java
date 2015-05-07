@@ -30,9 +30,12 @@ public class Baril extends Attribut {
     }
 
     public void action(Ennemi unEnnemi) {
-        unEnnemi.removeHP(dommage);
     }
 
     public void action(ArrayList uneListe) {
+        for (Object e:uneListe){
+            Ennemi unEnnemi = (Ennemi)e;
+            unEnnemi.removeHP(dommage);
+        }
     }
 }

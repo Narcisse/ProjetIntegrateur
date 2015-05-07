@@ -34,7 +34,14 @@ public abstract class Attribut {
     public void render(Graphics g, Carte uneCarte) throws SlickException{
         imageAttribut.draw(coordinates[0], coordinates[1], width, height, white);
     }
-
+    
+    public void faireActions(Joueur unJoueur, Ennemi unEnnemi, ArrayList uneListe){
+        action();
+        action(unJoueur);
+        action(unEnnemi);
+        action(uneListe);
+    }
+    
     public abstract void action();
 
     public abstract void action(Joueur unJoueur);

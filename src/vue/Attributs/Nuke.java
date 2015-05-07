@@ -23,10 +23,10 @@ public class Nuke extends Attribut {
     }
 
     public void action(Ennemi unEnnemi) {
-        unEnnemi.removeHP(unEnnemi.getHP());
     }
 
     public void action(ArrayList uneListe) {
+        uneListe.removeAll(uneListe);
     }
 
 }

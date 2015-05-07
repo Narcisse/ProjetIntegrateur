@@ -12,11 +12,12 @@ import javax.swing.ImageIcon;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
+import vue.Attributs.*;
 import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Joueur;
 import vue.GameSates.Game;
+import vue.Jeu.Baril;
 /*
  *	Christo
  *	Une classe qui peut être utilisée pour accéder à diverses informations
@@ -49,7 +50,23 @@ public class Informateur {
         }
         return estPresent;
     }
-
+    
+    public static ArrayList getToutAttributs(Carte uneCarte){
+        ArrayList uneListe = new ArrayList();
+        try {
+            uneListe.add(new Soulier(uneCarte));
+            uneListe.add(new Nuke(uneCarte));
+            uneListe.add(new Vie(uneCarte));
+            uneListe.add(new Epee(uneCarte));
+            uneListe.add(new Baril(uneCarte));
+            uneListe.add(new Armure(uneCarte));
+        } catch (SlickException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return uneListe;
+    }
+    
     public static Point getMousePosition(Camera uneCamera, GameContainer container) {
         Input input = container.getInput();
         int mouseX = ((int) (input.getMouseX() + (uneCamera.getX() - container.getWidth() / 2)));

@@ -16,6 +16,7 @@ public class Soulier extends Attribut {
         super(uneCarte);
         super.setImage(new Image("data/sprites/objet/Soulier.png", false, Image.FILTER_NEAREST));
     }
+    
 
     public void action() {
     }
