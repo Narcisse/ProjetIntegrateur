@@ -123,6 +123,7 @@ public class Game extends BasicGameState {
 
         // Image curseur = new Image("images/curseur.png", true);
         // this.container.setMouseCursor(curseur, 0, 0);
+        cettePlanche.setScore(0);
         camera = new Camera(cartePrincipale);
         this.cartePrincipale.init();
 
@@ -132,9 +133,7 @@ public class Game extends BasicGameState {
 
         personnages.add(new Joueur(cartePrincipale));
         ennemis.add(new Ennemi(cartePrincipale));
-        
-        
-
+                
         //Image curseur = new Image("images/curseur.png", true);
         //this.container.setMouseCursor(curseur, 0, 0);
         essentials(container, sg);
@@ -293,12 +292,13 @@ public class Game extends BasicGameState {
         if (personnages.isEmpty()) {
             Informateur.enterNewState(EndGameState.ID, container, game);           
             try {
-                highScoreFile = new BufferedWriter(new FileWriter("HighScores//HighScore.txt"));
+                highScoreFile = new BufferedWriter(new FileWriter("HighScores//HighScore.txt",true));
             } catch (IOException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                highScoreFile.write(cettePlanche.getScore());
+                highScoreFile.write(cettePlanche.getScore()+"");
+                highScoreFile.newLine();
             } catch (IOException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -339,7 +339,6 @@ public class Game extends BasicGameState {
                         Joueur unPaysan = (Joueur) j;
                         for (int i = 0; i < ennemis.size(); i++) {
                             Ennemi unEnnemi = (Ennemi) ennemis.get(i);
-                            boolean contient = ennemis.contains(unEnnemi);
                             Point paysanPos;
                             paysanPos = new Point((int) unPaysan.getX(), (int) unPaysan.getY());
                             Point ennemiPos = new Point((int) unEnnemi.getX(), (int) unEnnemi.getY());

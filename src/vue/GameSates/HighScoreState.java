@@ -1,6 +1,13 @@
 package vue.GameSates;
 
 import controleur.Informateur;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -25,8 +32,10 @@ public class HighScoreState extends BasicGameState {
     public boolean victoire;
     private GameContainer container;
     private Image background;
-    private Image imgDefaite;
-
+    private BufferedReader highScoreFile;
+    private ArrayList<String> highScoreListe;
+    private int espace=40;
+    private String uneLigne="";
     // *************************************************************************
     // Constructeur
 
@@ -44,6 +53,7 @@ public class HighScoreState extends BasicGameState {
         this.container = gc;
         this.game = sbg;
         this.background = new Image("images/fond.jpg");
+        this.highScoreListe=new ArrayList<String>();
     }
 
     @Override
@@ -55,8 +65,23 @@ public class HighScoreState extends BasicGameState {
         int x = Informateur.largeurEcran / 2;
         int y = Informateur.hauteurEcran / 2;
         g.drawString("1. Retour", x, y);
-        g.drawString("2. Menu principal", x, y + 40);
-        g.drawString("3. Quitter", x, y + 80);
+        
+        try{
+            highScoreFile = new BufferedReader(new FileReader("HighScores\\HighScore.txt"));
+            while ((uneLigne = highScoreFile.readLine())!= null) {
+                highScoreListe.add(uneLigne+"");
+            }
+                highScoreFile.close();
+            } catch (IOException ex) {
+                Logger.getLogger(HighScoreState.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+
+                for (int i = 0; i < highScoreListe.size(); i++) {
+                    int num=i+1;
+                    g.drawString(""+num+". "+highScoreListe.get(i)+"", x, y + espace);
+                    espace+=40;
+                }        
     }
 
     @Override
