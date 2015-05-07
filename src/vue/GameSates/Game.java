@@ -16,6 +16,7 @@ import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -64,7 +65,7 @@ public class Game extends BasicGameState {
     private Ennemi nEnnemi;
     //MenuPrincipal
     private MenuPrincipal menuP;
-    //private Music musicOut;
+    private Music musicOut;
     private BufferedWriter highScoreFile;
 
     // *************************************************************************
@@ -131,7 +132,7 @@ public class Game extends BasicGameState {
 
         personnages.add(new Joueur(cartePrincipale));
         ennemis.add(new Ennemi(cartePrincipale));
-                
+
         //Image curseur = new Image("images/curseur.png", true);
         //this.container.setMouseCursor(curseur, 0, 0);
         essentials(container, sg);
@@ -143,7 +144,7 @@ public class Game extends BasicGameState {
         this.container = container;
         this.game = sbg;
         essentials(container, sbg);
-        //musicOut = new Music("Sons/MusicOut.ogg");
+        //musicOut = new Music("Sons/MusicOut.wav");
     }
 
     public void essentials(GameContainer container, StateBasedGame sbg) throws SlickException {
@@ -165,7 +166,7 @@ public class Game extends BasicGameState {
             unEnnemi.setY(container.getHeight() / 2 + 250 * ennemis.indexOf(e));
         }
         // Hud
-        hud = new Hud(container, camera, container,(Joueur)personnages.get(0));
+        hud = new Hud(container, camera, container, (Joueur) personnages.get(0));
         hud.init();
         //ajouter le hud comme un mouseListener a la planche du jeu.
         container.getInput().addMouseListener(hud);
@@ -225,13 +226,13 @@ public class Game extends BasicGameState {
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.update(delta);
-            this.camera.update(container, (Joueur)personnages.get(0));
+            this.camera.update(container, (Joueur) personnages.get(0));
 
             for (Object e : ennemis) {
                 Ennemi unEnnemi = (Ennemi) e;
                 unEnnemi.update(delta, unJoueur, personnages);
                 //this.personnage.update(delta);
-                this.camera.update(container, (Joueur)personnages.get(0));
+                this.camera.update(container, (Joueur) personnages.get(0));
                 //this.camera.update(container);
             }
         }
@@ -286,16 +287,17 @@ public class Game extends BasicGameState {
         defaite(personnages);
     }
 
-    public void defaite(ArrayList personnages){
+    public void defaite(ArrayList personnages) {
         if (personnages.isEmpty()) {
-            Informateur.enterNewState(EndGameState.ID, container, game);           
+            //musicOut.loop();
+            Informateur.enterNewState(EndGameState.ID, container, game);
             try {
-                highScoreFile = new BufferedWriter(new FileWriter("HighScores//HighScore.txt",true));
+                highScoreFile = new BufferedWriter(new FileWriter("HighScores//HighScore.txt", true));
             } catch (IOException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                highScoreFile.write(cettePlanche.getScore()+"");
+                highScoreFile.write(cettePlanche.getScore() + "");
                 highScoreFile.newLine();
             } catch (IOException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
@@ -305,7 +307,7 @@ public class Game extends BasicGameState {
             } catch (IOException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }
 
@@ -348,10 +350,10 @@ public class Game extends BasicGameState {
                             }
                         }
                     }
-                    for (int i=0; i<attaqueEux.size(); i++){
-                        Ennemi unEnnemi = (Ennemi)attaqueEux.get(i);
+                    for (int i = 0; i < attaqueEux.size(); i++) {
+                        Ennemi unEnnemi = (Ennemi) attaqueEux.get(i);
                         unEnnemi.removeHP(unPaysan.getDps());
-                        if (unEnnemi.getVie() <= 0){
+                        if (unEnnemi.getVie() <= 0) {
                             ennemis.remove(unEnnemi);
                         }
                     }

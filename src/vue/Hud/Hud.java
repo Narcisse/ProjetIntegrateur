@@ -75,7 +75,7 @@ public class Hud extends AbstractComponent {
             g.drawImage(this.joueur.getAttributActif().getImage().getScaledCopy(40, 40), 22, 20);
         }
         g.setColor(new Color(255, 255, 255));
-        g.drawString("Score : " + game.getScore(), 1315, 15);
+        g.drawString("Score : " + game.getScore(), (container.getWidth()/10)*8, 15);
     }
 
     // *************************************************************************

@@ -3,13 +3,12 @@ package vue.GameSates;
 import controleur.Informateur;
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.lwjgl.openal.AL;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -17,6 +16,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -32,6 +32,8 @@ public class MenuPrincipal extends BasicGameState {
 
     private StateBasedGame game;
     private Image background;
+    private Image[] leGif;
+    private Animation rainingMen;
     private Music musicIntro, musicIG;
     private GameContainer container;
 
@@ -43,14 +45,34 @@ public class MenuPrincipal extends BasicGameState {
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         this.game = sbg;
-        this.background = new Image("images/fond.jpg");
+        
+        this.background = new Image("data/UI/FondEcran.png"); 
+        leGif = new Image[23];
+        for(int i = 0; i < 23; i++){
+            int j = i+1;
+            String leString = ("data/UI/gif/sprite_"+j+".png");
+            Image img = new Image(leString);
+            leGif[i]=img;
+        }
+        rainingMen = new Animation(leGif, 60);
+        
+        musicIntro = new Music("Sons/MusicIntro.wav");
+        //musicIG = new Music("Sons/MusicIn.wav");
+        
+        musicIntro.play();
+        if (!musicIntro.playing()) {
+            musicIntro.loop();
+        }
+        
         this.container = gc;
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         background.draw(0, 0, gc.getWidth(), gc.getHeight());
+        rainingMen.draw(0, 0, gc.getWidth(), gc.getHeight());
         g.setColor(Color.white);
+        g.setFont(Informateur.getFont());
         g.drawString("Higher or Lower", 50, 10);
 
         g.drawString("1. Play Game", 50, 100);
@@ -68,7 +90,7 @@ public class MenuPrincipal extends BasicGameState {
         switch (key) {
             case Input.KEY_1:
                 game.enterState(Game.ID);
-                //musicIntro.stop();
+                musicIntro.stop();
                 //musicIG.loop();
                 break;
             case Input.KEY_2:
@@ -83,7 +105,7 @@ public class MenuPrincipal extends BasicGameState {
                 }
                 break;
             case Input.KEY_4:
-                //AL.destroy();
+                AL.destroy();
                 System.exit(0);
                 break;
             default:

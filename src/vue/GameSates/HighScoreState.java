@@ -52,7 +52,7 @@ public class HighScoreState extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         this.container = gc;
         this.game = sbg;
-        this.background = new Image("images/fond.jpg");
+        this.background = new Image("data/UI/FondEcran.png");
         this.highScoreListe=new ArrayList<String>();
     }
 
