@@ -21,7 +21,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import vue.Attributs.Attribut;
 import vue.Attributs.Soulier;
 import vue.Hud.Hud;
-import vue.ElementsPrincipauxDuJeu.Batiment;
 import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Joueur;
@@ -173,7 +172,7 @@ public class Game extends BasicGameState {
         entrepot.setNourriture(nombreDeRessourceInitial);
         entrepot.setOr(nombreDeRessourceInitial);
         // Hud
-        hud = new Hud(container, camera, container);
+        hud = new Hud(container, camera, container,(Joueur)personnages.get(0));
         hud.init();
         //ajouter le hud comme un mouseListener a la planche du jeu.
         container.getInput().addMouseListener(hud);
@@ -301,7 +300,6 @@ public class Game extends BasicGameState {
 
                 if (espaceOccupePaysan.intersects(espaceOccupeAttribut)) {
                     unPaysan.setAttributActif(unAttribut);
-                    unAttribut.faireActions(unPaysan, null, ennemis);
                     attributs.remove(unAttribut);
                     System.out.println("Attribut acquis: " + unAttribut.toString());
                 }
