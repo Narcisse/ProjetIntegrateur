@@ -3,10 +3,11 @@ package vue.GameSates;
 import controleur.Camera;
 import controleur.ControlleurEnnemi;
 import controleur.ControlleurPersonnage;
-import controleur.ControlleurSouris;
 import controleur.Informateur;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modele.Entrepot;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
@@ -14,7 +15,6 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -38,7 +38,6 @@ public class Game extends BasicGameState {
     private Carte cartePrincipale;
     private StateBasedGame game;
     // Controlleurs (ecouteurs)
-    private ControlleurSouris ecoSouris;
     // Camera
     private Camera camera;
     //Score
@@ -48,7 +47,6 @@ public class Game extends BasicGameState {
     //ArrayList de personnage selectionné
     private ArrayList personnages = new ArrayList();
     private ArrayList ennemis = new ArrayList();
-    private ArrayList batiments = new ArrayList();
     private ArrayList attributs = new ArrayList();
     // Planche de jeu
     private Game cettePlanche;
@@ -72,10 +70,10 @@ public class Game extends BasicGameState {
     public Game() {
         super();
         cartePrincipale = new Carte();
-        personnages.add(new Joueur(cartePrincipale));
-        ennemis.add(new Ennemi(cartePrincipale));
         cettePlanche = this;
         camera = new Camera(cartePrincipale);
+        personnages.add(new Joueur(cartePrincipale));
+        ennemis.add(new Ennemi(cartePrincipale));
     }
 
     // *************************************************************************
@@ -106,14 +104,6 @@ public class Game extends BasicGameState {
         return this.hud;
     }
 
-    public ArrayList getBatiments() {
-        return this.batiments;
-    }
-
-    public void ajouterBatiment(Batiment unBatiment) {
-        this.batiments.add(unBatiment);
-    }
-
     public void setScore(int unScore) {
         score = unScore;
     }
@@ -127,12 +117,38 @@ public class Game extends BasicGameState {
     public int getID() {
         return this.ID;
     }
-
+    
+    @Override
+    public void enter(GameContainer gc, StateBasedGame sg) throws SlickException {
+        
+        // Image curseur = new Image("images/curseur.png", true);
+        // this.container.setMouseCursor(curseur, 0, 0);
+        camera = new Camera(cartePrincipale);
+        this.cartePrincipale.init();
+        
+        personnages = new ArrayList();
+        ennemis = new ArrayList();
+        attributs = new ArrayList();
+        
+        personnages.add(new Joueur(cartePrincipale));
+        ennemis.add(new Ennemi(cartePrincipale));
+        attributs.add(new Soulier(cartePrincipale));
+        
+        //Image curseur = new Image("images/curseur.png", true);
+        //this.container.setMouseCursor(curseur, 0, 0);
+        essentials(container, sg);
+    }
+    
     @Override
     public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
         // Jeu et carte
         this.container = container;
         this.game = sbg;
+        essentials(container, sbg);
+        //musicOut = new Music("Sons/MusicOut.ogg");
+    }
+    
+    public void essentials(GameContainer container, StateBasedGame sbg) throws SlickException{
         //Image curseur = new Image("images/curseur.png", true);
         //this.container.setMouseCursor(curseur, 0, 0);
         this.cartePrincipale.init();
@@ -168,15 +184,10 @@ public class Game extends BasicGameState {
         for (int i = 0; i < ennemis.size(); i++) {
             container.getInput().addMouseListener(new ControlleurEnnemi((Ennemi) ennemis.get(i), container, camera));
         }
-        ecoSouris = new ControlleurSouris(cettePlanche);
-        container.getInput().addMouseListener(ecoSouris);
         menuIG = new MenuIG(container, camera, container);
         menuIG.init();
-        attributs.add(new Soulier(cartePrincipale));
         menuP = new MenuPrincipal();
-        //musicOut = new Music("Sons/MusicOut.ogg");
     }
-
     @Override
     public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException {
         this.camera.place(container, g);
@@ -194,11 +205,10 @@ public class Game extends BasicGameState {
             Attribut unAttribut = (Attribut) a;
             unAttribut.render(g, cartePrincipale);
         }
-        aquerirAttribut((Joueur) personnages.get(0), attributs);
+        if (!personnages.isEmpty()) {
+            aquerirAttribut((Joueur) personnages.get(0), attributs);
+        }
         this.cartePrincipale.renderAvantPlan();
-        g.setColor(Color.yellow);
-        g.drawOval(Informateur.getMousePosition(camera, container).x, Informateur.getMousePosition(camera, container).y, 10, 10);
-        ecoSouris.render(container, g);
         this.hud.render(g);
 
         if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
@@ -206,11 +216,6 @@ public class Game extends BasicGameState {
         }
         if (escapePressed == true) {
             this.menuIG.render(g);
-        }
-
-        for (Object b : batiments) {
-            Batiment unBatiment = (Batiment) b;
-            unBatiment.render(g);
         }
     }
 
@@ -282,22 +287,12 @@ public class Game extends BasicGameState {
                 }
             }
         }
-        victoire(ennemis, batiments);
-        defaite(personnages, batiments);
+        defaite(personnages);
     }
 
-    public void victoire(ArrayList ennemis, ArrayList batiments) {
-        if (ennemis.isEmpty() && batiments.isEmpty()) {
-            // game.addState(new EndGameState(null));
-            // musicOut.play();
-            game.enterState(EndGameState.ID);
-        }
-    }
-
-    public void defaite(ArrayList personnages, ArrayList batiments) {
+    public void defaite(ArrayList personnages) {
         if (personnages.isEmpty()) {
-            // musicOut.play();
-            game.enterState(EndGameState.ID);
+            Informateur.enterNewState(EndGameState.ID, container, game);
         }
     }
 

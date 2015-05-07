@@ -15,7 +15,7 @@ public class StateHandler extends StateBasedGame{
     public StateHandler(String name) {
         super(name);
     }
-
+    
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
         addState(new MenuPrincipal());

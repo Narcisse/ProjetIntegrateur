@@ -1,5 +1,6 @@
 package vue.GameSates;
 
+import controleur.Informateur;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class MenuPrincipal extends BasicGameState {
     private StateBasedGame game;
     private Image background;
     private Music musicIntro, musicIG;
+    private GameContainer container;
 
     @Override
     public int getID() {
@@ -42,6 +44,7 @@ public class MenuPrincipal extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         game = sbg;
         this.background = new Image("images/fond.jpg");
+        this.container = gc;
         // musicIntro = new Music("Sons/MusicIntro.ogg");
         // musicIG = new Music("Sons/MusicIn.ogg");
 
@@ -70,7 +73,7 @@ public class MenuPrincipal extends BasicGameState {
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_1:
-                game.enterState(Game.ID);
+                Informateur.enterNewState(Game.ID, container, game);
                 //musicIntro.stop();
                 //musicIG.loop();
                 break;

@@ -5,7 +5,7 @@ import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
-import vue.Jeu.Joueur;
+import vue.ElementsPrincipauxDuJeu.Joueur;
 
 /**
  *
@@ -59,7 +59,7 @@ public class ControlleurPersonnage implements MouseListener {
 
     @Override
     public void mousePressed(int button, int x, int y) {
-        if (button == 1 && personnage.isSelected()) {
+        if (button == 1) {
             Point mousPos = Informateur.getMousePosition(camera, container);
             if (this.personnage.getX() < mousPos.x) {
                 this.personnage.setDirection(3);

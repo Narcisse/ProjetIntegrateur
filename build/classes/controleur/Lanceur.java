@@ -1,7 +1,6 @@
 package controleur;
 
 import org.newdawn.slick.SlickException;
-import vue.PanneauxInterface.PanMenuPrincipal;
 import vue.UnePartie;
 
 /**

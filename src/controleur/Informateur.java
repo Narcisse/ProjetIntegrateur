@@ -3,15 +3,20 @@ package controleur;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import org.lwjgl.util.Point;
 //import java.time.*;
 //import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.StateBasedGame;
 import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Joueur;
+import vue.GameSates.Game;
 /*
  *	Christo
  *	Une classe qui peut être utilisée pour accéder à diverses informations
@@ -50,6 +55,23 @@ public class Informateur {
         int mouseX = ((int) (input.getMouseX() + (uneCamera.getX() - container.getWidth() / 2)));
         int mouseY = ((int) (input.getMouseY() + (uneCamera.getY() - container.getHeight() / 2)));
         return new Point(mouseX, mouseY);
+    }
+    
+    public static void enterNewState(int StateID, GameContainer container, StateBasedGame game) {
+        /*
+        try {
+            game.getCurrentState().leave(container, game);
+        } catch (SlickException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            game.getState(StateID).enter(container, game);
+        } catch (SlickException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        game.enterState(StateID);
     }
 
     public static  int[] getRandomCoordinates(Carte uneCarte) {

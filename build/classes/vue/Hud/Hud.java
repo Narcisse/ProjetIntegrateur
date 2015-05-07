@@ -11,25 +11,22 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.GUIContext;
+import modele.Entrepot;
 
 /**
  *
  * @author Christopher Desrosiers Mondor
  */
-public class Hud extends AbstractComponent implements MouseListener{
-    
+public class Hud extends AbstractComponent implements MouseListener {
+
     private Image paneauAction;
     public static int positionXPaneauAction, positionYPaneauAction;
     public static int tailleImagePaneauAction;
-    // Position 
-    private static final int P_BAR_X = 10;
-    private static final int P_BAR_Y = 10;
 
     // Composants du Hud
-    // Haut
-    private Image playerbars; // Test seulement
-    private Image ressourcesBar; // Doit etre fait **
-    private Image menuBar; // Doit etre fait **
+    private Image imgBois; // image bois
+    private Image imgOr; //  image Or
+    private Image imgNourriture; // image nourriture
     // Bas
     private Image actionBar; // Doit etre fait **
     private Image miniMap; // Doit etre fait **
@@ -39,16 +36,7 @@ public class Hud extends AbstractComponent implements MouseListener{
     private Camera camera;
     private GameContainer container;
 
-    // Rectangles correspondants aux différents composants
-    // Haut
-    private Rectangle barreDeVie;
-    private Rectangle barreRessource;
-    private Rectangle barreMenu;
-
-    // Bas
-    private Rectangle barreAction;
-    private Rectangle barreMiniMap;
-    private Rectangle barreInformations;
+    private Entrepot banque;
 
     public Hud(GUIContext container, Camera uneCamera, GameContainer unContainer) throws SlickException {
         super(container);
@@ -58,42 +46,44 @@ public class Hud extends AbstractComponent implements MouseListener{
     }
 
     public void init() throws SlickException {
-        this.playerbars = new Image("images//jbutton//buttonVide.png");
+        banque = new Entrepot(50, 40, 30);
+        this.imgNourriture = new Image("images//Icone//hamIcon.png");
+        this.imgOr = new Image("images//Icone//goldicon.png");
+        this.imgBois = new Image("images//Icone//bois.png");
         this.paneauAction = new Image("images//romanStone.jpg");
     }
-    
+
     public void render(Graphics g) {
-        int imageHeight = this.playerbars.getHeight();
-        int imageWidth = this.playerbars.getWidth();
-        
+        //cette méthode empeche ce qui est dessiné de bouger dans l'écran  
         g.resetTransform();
         //PANEAU ACTION JOUEUR 
-        int hauteurFrameY= container.getHeight();
-        int largeurFrameX= container.getWidth();
-        int tailleImageX = largeurFrameX/4;
-        int tailleImageY = hauteurFrameY/4;
-        if(tailleImageX < tailleImageY){
+        int hauteurFrameY = container.getHeight();
+        int largeurFrameX = container.getWidth();
+        int tailleImageX = largeurFrameX / 4;
+        int tailleImageY = hauteurFrameY / 4;
+        if (tailleImageX < tailleImageY) {
             tailleImagePaneauAction = tailleImageX;
-        }else{
+        } else {
             tailleImagePaneauAction = tailleImageY;
-        }  
+        }
         positionXPaneauAction = largeurFrameX - tailleImagePaneauAction - 10;
         positionYPaneauAction = hauteurFrameY - tailleImagePaneauAction - 10;
-        
+
         paneauAction.draw(positionXPaneauAction, positionYPaneauAction, tailleImagePaneauAction, tailleImagePaneauAction);
-       /* 
-        //BOUTON QUITTER
-        g.drawImage(this.playerbars, P_BAR_X, P_BAR_Y);
-        //String "Quitter sur le bouton en au à gauche
-        g.setColor(Color.green);
-        g.drawString("Quitter", P_BAR_X+20, P_BAR_Y+imageHeight/2);
-        */
+
+        //On dessine l'icone de l'or avec  sa quantité
+        //  g.drawImage(imgOr, 20, 20);
+        g.drawString(": " + banque.getOr(), 60, 24);
+        //On dessine l'icone de nourriture avec  sa quantité
+        //g.drawImage(imgNourriture, 120, 20);
+        g.drawString(": " + banque.getNourriture(), 160, 24);
+        //On dessine l'icone de bois avec  sa quantité
+        //  g.drawImage(imgBois, 220, 20);
+        g.drawString(": " + banque.getBois(), 260, 24);
     }
-    
-    
+
     // *************************************************************************
     // Ecouteurs
-
     @Override
     public void mouseWheelMoved(int i) {
     }
@@ -104,14 +94,6 @@ public class Hud extends AbstractComponent implements MouseListener{
 
     @Override
     public void mousePressed(int button, int i1, int i2) {
-        /*int imageHeight = this.playerbars.getHeight();
-        int imageWidth = this.playerbars.getWidth();
-        
-        Rectangle image = new Rectangle(P_BAR_X, P_BAR_Y, imageWidth, imageHeight);
-        
-        if (button == 0 && image.contains(i1, i2)){
-            System.exit(0);
-        }*/
     }
 
     @Override
@@ -132,7 +114,7 @@ public class Hud extends AbstractComponent implements MouseListener{
 
     @Override
     public boolean isAcceptingInput() {
-            return true;
+        return true;
     }
 
     @Override
@@ -171,3 +153,4 @@ public class Hud extends AbstractComponent implements MouseListener{
         return 0;
     }
 }
+

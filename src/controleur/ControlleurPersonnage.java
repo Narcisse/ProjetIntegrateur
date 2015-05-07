@@ -59,7 +59,7 @@ public class ControlleurPersonnage implements MouseListener {
 
     @Override
     public void mousePressed(int button, int x, int y) {
-        if (button == 1 && personnage.isSelected()) {
+        if (button == 1) {
             Point mousPos = Informateur.getMousePosition(camera, container);
             if (this.personnage.getX() < mousPos.x) {
                 this.personnage.setDirection(3);
