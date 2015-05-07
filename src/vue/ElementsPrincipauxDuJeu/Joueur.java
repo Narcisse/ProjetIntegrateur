@@ -78,18 +78,6 @@ public class Joueur extends Paysan{
         rectInteraction.setY((int) this.y - 56);
         if (isSelected) {
             g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
-
-            //Image pour le bouton qui crée l'hotel de ville
-            int tailleImage;
-            tailleImage = vue.Hud.Hud.tailleImagePaneauAction / 3;
-
-            int i = 0, j = 0;
-            int positionX = vue.Hud.Hud.positionXPaneauAction + tailleImage * i;
-            int positionY = vue.Hud.Hud.positionYPaneauAction + tailleImage * j;
-
-            imageBatiment = new Image("data/sprites/objet/TownHall.png", true);
-            imageBatiment.setRotation(180f);
-            g.drawImage(imageBatiment, positionX, positionY);
         }
         g.fillOval(x - 16, y - 8, 32, 16);
         g.drawAnimation(animations[direction + (moving ? 4 : 0)], x - 32, y - 60);
