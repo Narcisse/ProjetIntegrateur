@@ -36,6 +36,10 @@ public class Ennemi {
     private int nouvelleAttaque= 0;
     //Paysan Ennemi
     private Paysan paysanEnnemi; 
+    //Longueur/hauteur/couleur barre de vie
+    private final int BAR_WIDTH = 30;
+    private final int BAR_HEIGHT = 5;
+    private final Color LIFE_COLOR = new Color(255, 0, 0);
     
     // *************************************************************************
     // Constructeur
@@ -74,12 +78,9 @@ public class Ennemi {
     // *************************************************************************
     // Affichage
     public void render(Graphics g) throws SlickException {
+        g.setColor(LIFE_COLOR);
+        g.fillRect(getX() - 20, getY()-64, (float)(getHP() / 100.0) * BAR_WIDTH, BAR_HEIGHT);
         g.setColor(new Color(0, 0, 0, .5f));
-        rectInteraction.setX((int) this.x - 32);
-        rectInteraction.setY((int) this.y - 56);
-        if (isSelected) {
-            g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
-        }
         g.fillOval(x - 16, y - 8, 32, 16);
         g.drawAnimation(animations[direction + (moving ? 4 : 0)], x - 32, y - 60);
     }
