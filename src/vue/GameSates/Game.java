@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modele.Entrepot;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Color;
@@ -20,7 +19,6 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import vue.Attributs.*;
 import vue.Hud.Hud;
-import vue.ElementsPrincipauxDuJeu.Batiment;
 import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Ennemi;
 import vue.ElementsPrincipauxDuJeu.Joueur;
@@ -42,8 +40,6 @@ public class Game extends BasicGameState {
     private Camera camera;
     //Score
     private int score;
-    // Entrepot
-    private Entrepot entrepot;
     //ArrayList de personnage selectionné
     private ArrayList personnages = new ArrayList();
     private ArrayList ennemis = new ArrayList();
@@ -99,10 +95,6 @@ public class Game extends BasicGameState {
 
     public Carte getCartePrincipale() {
         return this.cartePrincipale;
-    }
-
-    public Entrepot getEntrepot() {
-        return this.entrepot;
     }
 
     public Hud getHud() {
@@ -172,15 +164,8 @@ public class Game extends BasicGameState {
             unEnnemi.setX(container.getWidth() / 2 + 250 * ennemis.indexOf(e + "" + 1));
             unEnnemi.setY(container.getHeight() / 2 + 250 * ennemis.indexOf(e));
         }
-        //this.batiment.init();
-        // entrepot
-        int nombreDeRessourceInitial = Entrepot.valeurInitiale;
-        entrepot = new Entrepot();
-        entrepot.setBois(nombreDeRessourceInitial);
-        entrepot.setNourriture(nombreDeRessourceInitial);
-        entrepot.setOr(nombreDeRessourceInitial);
         // Hud
-        hud = new Hud(container, camera, container);
+        hud = new Hud(container, camera, container,(Joueur)personnages.get(0));
         hud.init();
         //ajouter le hud comme un mouseListener a la planche du jeu.
         container.getInput().addMouseListener(hud);
@@ -317,7 +302,6 @@ public class Game extends BasicGameState {
 
                 if (espaceOccupePaysan.intersects(espaceOccupeAttribut)) {
                     unPaysan.setAttributActif(unAttribut);
-                    unAttribut.faireActions(unPaysan, null, ennemis);
                     attributs.remove(unAttribut);
                     System.out.println("Attribut acquis: " + unAttribut.toString());
                 }

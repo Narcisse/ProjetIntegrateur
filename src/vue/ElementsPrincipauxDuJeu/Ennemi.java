@@ -31,7 +31,7 @@ public class Ennemi {
     private Rectangle rectInteraction;
     private Carte carte;
     //temps écouler entre chaque attaque en miliseconde
-    private int tempsAttaque = 10;
+    private int tempsAttaque = 1000;
     //temps minimum de la nouvelle attaque
     private int nouvelleAttaque= 0;
     //Paysan Ennemi
@@ -42,7 +42,7 @@ public class Ennemi {
     public Ennemi(Carte uneCarte) {
         this.carte = uneCarte;
         paysanEnnemi = new Paysan();
-        paysanEnnemi.setDps(1);
+        paysanEnnemi.setDps(10);
     }
 
     // *************************************************************************
