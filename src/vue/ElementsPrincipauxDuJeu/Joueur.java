@@ -263,17 +263,7 @@ public class Joueur extends Paysan{
         return this.rectInteraction;
     }
 
-    public int getHP() {
-        return paysan.getVie();
-    }
-
-    public void addHP(int amountOfHp) {
-        this.paysan.setVie(this.paysan.getVie() + amountOfHp);
-    }
-
-    public void removeHP(int amountOfHp) {
-        this.paysan.setVie(this.paysan.getVie() - amountOfHp);
-    }
+    
 
     //méthode qui prend en paramètre un joueur, un quantité de point de d'attaque et le temps de jeu
     // la méthode enlève des points de vies (le montant de amoutOfHp) si le temps es plus grand que la nouvelle attaque.

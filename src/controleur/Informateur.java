@@ -95,8 +95,8 @@ public class Informateur {
         int x = 0;
         int y = 0;
 
-        int hauteurCarte = 700;//uneCarte.getMapDimension().getHeight();
-        int largeurCarte = 1200;//uneCarte.getMapDimension().getWidth();
+        int hauteurCarte = uneCarte.getMapDimension().getHeight();
+        int largeurCarte = uneCarte.getMapDimension().getWidth();
 
         Random generator = new Random();
 

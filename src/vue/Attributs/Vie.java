@@ -27,7 +27,7 @@ public class Vie extends Attribut {
     }
 
     public void action(Joueur unJoueur) {
-        unJoueur.setVie(unJoueur.getHP() + augmenteVie);
+        unJoueur.addHP(augmenteVie);
     }
 
     public void action(Ennemi unEnnemi) {

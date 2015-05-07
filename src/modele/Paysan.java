@@ -64,6 +64,18 @@ public class Paysan {
     public int getDps(){
         return this.dps;
     }
+    
+    public int getHP() {
+        return this.vie;
+    }
+
+    public void addHP(int amountOfHp) {
+        this.vie += amountOfHp;
+    }
+
+    public void removeHP(int amountOfHp) {
+        this.vie -= amountOfHp;
+    }
 //Muttateur
     public void setAttributActif(Attribut nouveauAttribut){
         this.attributActif = nouveauAttribut;

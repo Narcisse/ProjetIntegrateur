@@ -225,13 +225,13 @@ public class Game extends BasicGameState {
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.update(delta);
-            this.camera.update(container);
+            this.camera.update(container, (Joueur)personnages.get(0));
 
             for (Object e : ennemis) {
                 Ennemi unEnnemi = (Ennemi) e;
                 unEnnemi.update(delta, unJoueur, personnages);
                 //this.personnage.update(delta);
-                this.camera.update(container);
+                this.camera.update(container, (Joueur)personnages.get(0));
                 //this.camera.update(container);
             }
         }
