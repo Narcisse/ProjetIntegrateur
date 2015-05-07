@@ -301,6 +301,7 @@ public class Game extends BasicGameState {
 
                 if (espaceOccupePaysan.intersects(espaceOccupeAttribut)) {
                     unPaysan.setAttributActif(unAttribut);
+                    unAttribut.faireActions(unPaysan, null, ennemis);
                     attributs.remove(unAttribut);
                     System.out.println("Attribut acquis: " + unAttribut.toString());
                 }
