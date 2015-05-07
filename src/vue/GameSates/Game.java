@@ -40,8 +40,6 @@ public class Game extends BasicGameState {
     private Camera camera;
     //Score
     private int score;
-    // Entrepot
-    private Entrepot entrepot;
     //ArrayList de personnage selectionné
     private ArrayList personnages = new ArrayList();
     private ArrayList ennemis = new ArrayList();
@@ -92,10 +90,6 @@ public class Game extends BasicGameState {
 
     public Carte getCartePrincipale() {
         return this.cartePrincipale;
-    }
-
-    public Entrepot getEntrepot() {
-        return this.entrepot;
     }
 
     public Hud getHud() {
