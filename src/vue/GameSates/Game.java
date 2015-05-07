@@ -164,13 +164,6 @@ public class Game extends BasicGameState {
             unEnnemi.setX(container.getWidth() / 2 + 250 * ennemis.indexOf(e + "" + 1));
             unEnnemi.setY(container.getHeight() / 2 + 250 * ennemis.indexOf(e));
         }
-        //this.batiment.init();
-        // entrepot
-        int nombreDeRessourceInitial = Entrepot.valeurInitiale;
-        entrepot = new Entrepot();
-        entrepot.setBois(nombreDeRessourceInitial);
-        entrepot.setNourriture(nombreDeRessourceInitial);
-        entrepot.setOr(nombreDeRessourceInitial);
         // Hud
         hud = new Hud(container, camera, container,(Joueur)personnages.get(0));
         hud.init();
