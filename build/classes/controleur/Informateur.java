@@ -1,6 +1,7 @@
 package controleur;
 
 import java.awt.*;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -12,7 +13,9 @@ import javax.swing.ImageIcon;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.ResourceLoader;
 import vue.Attributs.*;
 import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Joueur;
@@ -113,6 +116,25 @@ public class Informateur {
         int[] t= new int[2];
         t[0]=x; t[1]= y;
         return  t;
+    }
+    
+    public static TrueTypeFont getFont(){
+        Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
+        TrueTypeFont font = new TrueTypeFont(awtFont, false);
+        TrueTypeFont font2 = null;
+
+        // load font from a .ttf file
+        try {
+            InputStream inputStream = ResourceLoader.getResourceAsStream("data/fonts/roboto.ttf");
+
+            Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+            awtFont2 = awtFont2.deriveFont(20f); // set font size
+            font2 = new TrueTypeFont(awtFont2, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return font2;
     }
 
 }

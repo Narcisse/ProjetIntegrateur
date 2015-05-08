@@ -54,6 +54,10 @@ public class Paysan {
         this.setDps(10);
         attributActif = null;
     }
+    
+    public void addDPs(){
+        this.dps += 20;
+    }
 
 
 //Accesseur

@@ -27,6 +27,7 @@ public class Epee extends Attribut {
     }
 
     public void action(Joueur unJoueur) {
+        unJoueur.addDPs();
     }
 
     public void action(Ennemi unEnnemi) {

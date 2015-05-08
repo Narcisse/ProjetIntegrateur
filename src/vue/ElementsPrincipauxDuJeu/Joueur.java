@@ -296,5 +296,6 @@ public class Joueur extends Paysan{
 
     public void valeursParDefault(){
         vitesse = 1.0f;
+        setDps(20);
     }
 }

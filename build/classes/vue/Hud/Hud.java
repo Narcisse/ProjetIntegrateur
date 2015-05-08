@@ -36,6 +36,7 @@ public class Hud extends AbstractComponent {
     private final int P_BAR_Y = 10;
     private final int BAR_X = 84 + P_BAR_X;
     private final int LIFE_BAR_Y = 4 + P_BAR_Y;
+    private final int ARMOR_BAR_Y = 24 + P_BAR_Y;
     private final int BAR_WIDTH = 80;
     private final int BAR_HEIGHT = 16;
     private final Color LIFE_COLOR = new Color(255, 0, 0);
@@ -57,16 +58,24 @@ public class Hud extends AbstractComponent {
         //cette méthode empeche ce qui est dessiné de bouger dans l'écran  
         g.resetTransform();
 
-        //On dessine la barre de vie en rouge et on la draw à l'endroit voulu
+       //On dessine la barre de vie en rouge et on la draw à l'endroit voulu
         g.setColor(LIFE_COLOR);
         //On remplit la barre
+
         g.fillRect(BAR_X, LIFE_BAR_Y, (float) (joueur.getHP() / 100.0) * BAR_WIDTH - 40, BAR_HEIGHT);
+
+        g.fillRect(BAR_X , LIFE_BAR_Y, (float)(joueur.getVie() / joueur.getVieMax()) * BAR_WIDTH, BAR_HEIGHT);
+        //Barre d'armure
+        g.setColor(Color.blue);
+        g.fillRect(BAR_X ,ARMOR_BAR_Y, (float)(joueur.getArmure() / joueur.getArmureMax()) * BAR_WIDTH , BAR_HEIGHT);
+        //On dessine la barre de vie
+
         g.drawImage(this.barreVie, P_BAR_X, P_BAR_Y);
         if (joueur.getAttributActif() != null) {
             g.drawImage(this.joueur.getAttributActif().getImage().getScaledCopy(40, 40), 22, 20);
         }
         g.setColor(new Color(255, 255, 255));
-        g.drawString("Score : " + game.getScore(), 1315, 15);
+        g.drawString("Score : " + game.getScore(), (container.getWidth()/10)*8, 15);
     }
 
     // *************************************************************************

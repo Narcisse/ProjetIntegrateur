@@ -228,6 +228,16 @@ public class Joueur extends Paysan{
     public float getyDest() {
         return this.yDest;
     }
+    public float getArmure() {
+        return 0;
+    }
+    public float getVieMax() {
+        return 0;
+    }
+    public float getArmureMax() {
+        return 0;
+    }
+    
 
     public void setyDest(int y) {
         this.yDest = y;
@@ -286,5 +296,6 @@ public class Joueur extends Paysan{
 
     public void valeursParDefault(){
         vitesse = 1.0f;
+        setDps(20);
     }
 }
