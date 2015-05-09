@@ -56,13 +56,13 @@ public class MenuPrincipal extends BasicGameState {
         }
         rainingMen = new Animation(leGif, 60);
         
-        musicIntro = new Music("Sons/MusicIntro.wav");
+        //musicIntro = new Music("Sons/MusicIntro.wav");
         //musicIG = new Music("Sons/MusicIn.wav");
         
-        musicIntro.play();
+       /* musicIntro.play();
         if (!musicIntro.playing()) {
             musicIntro.loop();
-        }
+        }*/
         
         this.container = gc;
     }
@@ -90,7 +90,7 @@ public class MenuPrincipal extends BasicGameState {
         switch (key) {
             case Input.KEY_1:
                 game.enterState(Game.ID);
-                musicIntro.stop();
+               // musicIntro.stop();
                 //musicIG.loop();
                 break;
             case Input.KEY_2:

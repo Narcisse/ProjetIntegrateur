@@ -166,7 +166,7 @@ public class Game extends BasicGameState {
             unEnnemi.setY(container.getHeight() / 2 + 250 * ennemis.indexOf(e));
         }
         // Hud
-        hud = new Hud(container, camera, container, (Joueur) personnages.get(0));
+        hud = new Hud(container, camera, container, (Joueur) personnages.get(0),cettePlanche);
         hud.init();
         //ajouter le hud comme un mouseListener a la planche du jeu.
         container.getInput().addMouseListener(hud);
@@ -355,6 +355,7 @@ public class Game extends BasicGameState {
                         unEnnemi.removeHP(unPaysan.getDps());
                         if (unEnnemi.getVie() <= 0) {
                             ennemis.remove(unEnnemi);
+                            cettePlanche.setScore(cettePlanche.getScore()+100);
                         }
                     }
                 }

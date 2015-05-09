@@ -24,7 +24,7 @@ public class EndGameState extends BasicGameState {
     private StateBasedGame game;
     public boolean victoire;
     private GameContainer container;
-   // private Image backgroundDefaite;
+    private Image backgroundDefaite;
     private Image imgDefaite;
 
     // *************************************************************************
@@ -43,14 +43,14 @@ public class EndGameState extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         container = gc;
         game = sbg;
-       // backgroundDefaite = new Image("data/UI/backDef.png");
+        backgroundDefaite = new Image("data/UI/backDef.png");
         imgDefaite = new Image("data/UI/321.png");
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 
-        //backgroundDefaite.draw(0, 0, gc.getWidth(), gc.getHeight());
+        backgroundDefaite.draw(0, 0, gc.getWidth(), gc.getHeight());
 
         g.setColor(Color.white);
         int x = Informateur.largeurEcran / 2;
