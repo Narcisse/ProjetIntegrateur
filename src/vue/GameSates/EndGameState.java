@@ -18,7 +18,6 @@ public class EndGameState extends BasicGameState {
 
     // *************************************************************************
     // Donnee membres
-
     public static final int ID = 2;
     private String infoPartie;
     private StateBasedGame game;
@@ -29,7 +28,6 @@ public class EndGameState extends BasicGameState {
 
     // *************************************************************************
     // Constructeur
-
     public EndGameState(String infoPartie) {
         this.infoPartie = infoPartie;
     }
@@ -40,11 +38,11 @@ public class EndGameState extends BasicGameState {
     }
 
     @Override
-    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        container = gc;
-        game = sbg;
-        backgroundDefaite = new Image("data/UI/backDef.png");
-        imgDefaite = new Image("data/UI/321.png");
+    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
+        this.container = gc;
+        this.game = sbg;
+        this.backgroundDefaite = new Image("data/UI/backDef.png");
+        this.imgDefaite = new Image("data/UI/321.png");
     }
 
     @Override
