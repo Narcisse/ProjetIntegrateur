@@ -21,11 +21,14 @@ public class MenuIG extends AbstractComponent implements MouseListener{
     private GameContainer container;
     private Input input;
     private Graphics j;
+    private int largeurFenetre, hauteurFenetre;
 
     public MenuIG(GUIContext container, Camera uneCamera, GameContainer unContainer) throws SlickException {
         super(container);
         this.container = unContainer;
         this.camera = uneCamera;
+        hauteurFenetre = this.container.getHeight();
+        largeurFenetre = this.container.getWidth();
     }
 
     public void init() throws SlickException {
@@ -38,19 +41,19 @@ public class MenuIG extends AbstractComponent implements MouseListener{
     public void render(Graphics g) {
         g.setColor(Color.black);
         //Cadre
-        g.drawImage(this.cadre, this.camera.getX() - (cadre.getWidth() / 2), this.camera.getY() - (this.cadre.getHeight() / 2));
+        g.drawImage(this.cadre, largeurFenetre/2 - (cadre.getWidth() / 2), hauteurFenetre/2 - (this.cadre.getHeight() / 2));
         //bouton Retour
-        g.drawImage(bouton, this.camera.getX() - (cadre.getWidth() / 2) + 65, this.camera.getY() - (this.cadre.getHeight() / 2) + 20);
-        g.drawString("Retour", this.camera.getX() - (cadre.getWidth() / 2) + 95, this.camera.getY() - (this.cadre.getHeight() / 2) + 70);
+        g.drawImage(bouton, largeurFenetre/2 - (cadre.getWidth() / 2) + 65, hauteurFenetre/2 - (this.cadre.getHeight() / 2) + 20);
+        g.drawString("Retour", largeurFenetre/2 - (cadre.getWidth() / 2) + 95, hauteurFenetre/2 - (this.cadre.getHeight() / 2) + 70);
         //bouton Aide
-        g.drawImage(bouton, this.camera.getX() - (cadre.getWidth() / 2) + 65, this.camera.getY() - (this.cadre.getHeight() / 2) + 100);
-        g.drawString("Aide", this.camera.getX() - (cadre.getWidth() / 2) + 105, this.camera.getY() - (this.cadre.getHeight() / 2) + 150);
+        g.drawImage(bouton, largeurFenetre/2 - (cadre.getWidth() / 2) + 65, hauteurFenetre/2 - (this.cadre.getHeight() / 2) + 100);
+        g.drawString("Aide", largeurFenetre/2 - (cadre.getWidth() / 2) + 105, hauteurFenetre/2 - (this.cadre.getHeight() / 2) + 150);
         //bouton Menu
-        g.drawImage(bouton, this.camera.getX() - (cadre.getWidth() / 2) + 65, this.camera.getY() - (this.cadre.getHeight() / 2) + 180);
-        g.drawString("Menu", this.camera.getX() - (cadre.getWidth() / 2) + 105, this.camera.getY() - (this.cadre.getHeight() / 2) + 230);
+        g.drawImage(bouton, largeurFenetre/2 - (cadre.getWidth() / 2) + 65, hauteurFenetre/2 - (this.cadre.getHeight() / 2) + 180);
+        g.drawString("Menu", largeurFenetre/2 - (cadre.getWidth() / 2) + 105, hauteurFenetre/2 - (this.cadre.getHeight() / 2) + 230);
         //Bouton Quitter
-        g.drawImage(bouton, this.camera.getX() - (cadre.getWidth() / 2) + 65, this.camera.getY() - (this.cadre.getHeight() / 2) + 260);
-        g.drawString("Quitter", this.camera.getX() - (cadre.getWidth() / 2) + 95, this.camera.getY() - (this.cadre.getHeight() / 2) + 310); 
+        g.drawImage(bouton, largeurFenetre/2 - (cadre.getWidth() / 2) + 65, hauteurFenetre/2 - (this.cadre.getHeight() / 2) + 260);
+        g.drawString("Quitter", largeurFenetre/2 - (cadre.getWidth() / 2) + 95, hauteurFenetre/2 - (this.cadre.getHeight() / 2) + 310); 
     }
 
    
