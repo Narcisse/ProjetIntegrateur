@@ -228,7 +228,7 @@ public class Game extends BasicGameState {
             System.out.println("Attribut");
             timer = default_bullet_delay;  // Reset the timer
         }
-        if (timer/10 <=0){
+        /*if (timer/10 <=0){
             int[] coordonees;
             coordonees = Informateur.getRandomCoordinates(cartePrincipale);
             nEnnemi = new Ennemi(cartePrincipale);
@@ -237,7 +237,7 @@ public class Game extends BasicGameState {
             nEnnemi.setY(coordonees[1]);
             ennemis.add(nEnnemi);
             System.out.println("Ennemi");
-        }
+        }*/
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.update(delta);
@@ -268,7 +268,7 @@ public class Game extends BasicGameState {
             }
         }
         
-        /*
+        
         if (tempsDeJeu >= tempsEnnemi) {
             int[] coordonees;
             coordonees = Informateur.getRandomCoordinates(cartePrincipale);
@@ -277,9 +277,9 @@ public class Game extends BasicGameState {
             nEnnemi.setX(coordonees[0]);
             nEnnemi.setY(coordonees[1]);
             ennemis.add(nEnnemi);
-            tempsEnnemi = tempsDeJeu + 5000;
+            tempsEnnemi = tempsDeJeu + 2000;
         }
-        */
+        
         tempsDeJeu += delta;
 
         if (!personnages.isEmpty() && !ennemis.isEmpty()) {
