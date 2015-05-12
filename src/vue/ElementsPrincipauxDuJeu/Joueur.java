@@ -42,6 +42,7 @@ public class Joueur extends Paysan{
         super();
         this.carte = uneCarte;
         this.paysan = new Paysan();
+        setVitesse(2.0f);
         setDps(15);
     }
 
@@ -103,7 +104,6 @@ public class Joueur extends Paysan{
                 this.moving = false;
             } else {
                 if (x < xDest) {
-
                     this.x += (int) 1 * getVitesse();
                 } else if (x > xDest) {
                     this.x -= (int) 1 * getVitesse();

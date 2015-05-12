@@ -35,7 +35,7 @@ public class HighScoreState extends BasicGameState {
     private BufferedReader highScoreFile;
     private ArrayList<String> highScoreListe;
     private int espace=40;
-    private String uneLigne="";
+    private String uneLigne="",score1,score2,score3,score4,score5;
     // *************************************************************************
     // Constructeur
 
@@ -54,6 +54,23 @@ public class HighScoreState extends BasicGameState {
         this.game = sbg;
         this.background = new Image("data/UI/FondEcran.png");
         this.highScoreListe=new ArrayList<String>();
+        try{
+            highScoreFile = new BufferedReader(new FileReader("HighScores//HighScore.txt"));
+            while ((uneLigne = highScoreFile.readLine())!= null) {
+                highScoreListe.add(uneLigne+"");
+            }
+                highScoreFile.close();
+            } catch (IOException ex) {
+                Logger.getLogger(HighScoreState.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        for (int i = 0; i < highScoreListe.size(); i++) {
+            score1=highScoreListe.get(0);
+            score2=highScoreListe.get(1);
+            score3=highScoreListe.get(2);
+            score4=highScoreListe.get(3);
+            score5=highScoreListe.get(4);       
+        } 
     }
 
     @Override
@@ -65,23 +82,13 @@ public class HighScoreState extends BasicGameState {
         int x = Informateur.largeurEcran / 2;
         int y = Informateur.hauteurEcran / 2;
         g.drawString("1. Retour", x, y);
+        g.drawString("1. "+score1, x, y+40);
+        g.drawString("2. "+score2, x, y+80);
+        g.drawString("3. "+score3, x, y+120);
+        g.drawString("4. "+score4, x, y+160);
+        g.drawString("5. "+score5, x, y+200);
         
-        try{
-            highScoreFile = new BufferedReader(new FileReader("HighScores\\HighScore.txt"));
-            while ((uneLigne = highScoreFile.readLine())!= null) {
-                highScoreListe.add(uneLigne+"");
-            }
-                highScoreFile.close();
-            } catch (IOException ex) {
-                Logger.getLogger(HighScoreState.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-
-                for (int i = 0; i < highScoreListe.size(); i++) {
-                    int num=i+1;
-                    g.drawString(""+num+". "+highScoreListe.get(i)+"", x, y + espace);
-                    espace+=40;
-                }        
+               
     }
 
     @Override

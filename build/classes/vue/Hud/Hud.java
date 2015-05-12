@@ -41,17 +41,17 @@ public class Hud extends AbstractComponent {
     private final int BAR_HEIGHT = 16;
     private final Color LIFE_COLOR = new Color(255, 0, 0);
 
-    public Hud(GUIContext container, Camera uneCamera, GameContainer unContainer, Joueur joueur) throws SlickException {
+    public Hud(GUIContext container, Camera uneCamera, GameContainer unContainer, Joueur joueur,Game game) throws SlickException {
         super(container);
         this.container = unContainer;
         this.camera = uneCamera;
         this.joueur = joueur;
+        this.game=game;
         init();
     }
 
     public void init() throws SlickException {
         this.barreVie = new Image("data//Hud//barreVie.png");
-        this.game = new Game();
     }
 
     public void render(Graphics g) {
@@ -72,7 +72,7 @@ public class Hud extends AbstractComponent {
 
         g.drawImage(this.barreVie, P_BAR_X, P_BAR_Y);
         if (joueur.getAttributActif() != null) {
-            g.drawImage(this.joueur.getAttributActif().getImage().getScaledCopy(40, 40), 22, 20);
+            g.drawImage(this.joueur.getAttributActif().getImage().getScaledCopy(40, 40), 22, 20);           
         }
         g.setColor(new Color(255, 255, 255));
         g.drawString("Score : " + game.getScore(), (container.getWidth()/10)*8, 15);
