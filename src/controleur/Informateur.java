@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import org.lwjgl.util.Point;
-//import java.time.*;
-//import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
@@ -21,6 +18,8 @@ import vue.ElementsPrincipauxDuJeu.Carte;
 import vue.ElementsPrincipauxDuJeu.Joueur;
 import vue.GameSates.Game;
 import vue.Jeu.Baril;
+
+
 /*
  *	Christo
  *	Une classe qui peut être utilisée pour accéder à diverses informations
@@ -106,7 +105,7 @@ public class Informateur {
         x = 0 + generator.nextInt(largeurCarte);
         y = 0 + generator.nextInt(hauteurCarte);
 
-        while (uneCarte.isCollision(x, y) == true) {
+        while (uneCarte.isCollision(x, y)) {
             x = 0 + generator.nextInt(largeurCarte);
             y = 0 + generator.nextInt(hauteurCarte);
             

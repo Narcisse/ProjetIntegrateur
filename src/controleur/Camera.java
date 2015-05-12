@@ -56,10 +56,10 @@ public class Camera {
             yCamera = container.getHeight() / 2;
         }
         if (xCamera + container.getWidth() / 2 > cartePrincipale.getMapDimension().getWidth()) {
-            xCamera = 3200 - container.getWidth() / 2;
+            xCamera = cartePrincipale.getMapDimension().getWidth() - container.getWidth() / 2;
         }
         if (yCamera + container.getHeight() / 2 > cartePrincipale.getMapDimension().getHeight()) {
-            yCamera = 3200 - container.getHeight() / 2;
+            yCamera = cartePrincipale.getMapDimension().getHeight() - container.getHeight() / 2;
         }
 
     }

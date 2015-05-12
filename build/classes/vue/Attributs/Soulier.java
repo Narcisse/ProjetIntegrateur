@@ -10,7 +10,7 @@ import vue.ElementsPrincipauxDuJeu.Joueur;
 
 public class Soulier extends Attribut {
     double rare;
-    float boostVitesse = 0.5f;
+    float boostVitesse = 2.0f;
 
     public Soulier(Carte uneCarte) throws SlickException {
         super(uneCarte);

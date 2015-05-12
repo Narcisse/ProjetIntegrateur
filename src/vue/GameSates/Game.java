@@ -225,7 +225,18 @@ public class Game extends BasicGameState {
             Random generator = new Random();
             int attributChoisit = generator.nextInt(attPossibles.size());
             attributs.add(attPossibles.get(attributChoisit));
+            System.out.println("Attribut");
             timer = default_bullet_delay;  // Reset the timer
+        }
+        if (timer/10 <=0){
+            int[] coordonees;
+            coordonees = Informateur.getRandomCoordinates(cartePrincipale);
+            nEnnemi = new Ennemi(cartePrincipale);
+            nEnnemi.init();
+            nEnnemi.setX(coordonees[0]);
+            nEnnemi.setY(coordonees[1]);
+            ennemis.add(nEnnemi);
+            System.out.println("Ennemi");
         }
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
@@ -256,7 +267,8 @@ public class Game extends BasicGameState {
                 }
             }
         }
-
+        
+        /*
         if (tempsDeJeu >= tempsEnnemi) {
             int[] coordonees;
             coordonees = Informateur.getRandomCoordinates(cartePrincipale);
@@ -267,7 +279,7 @@ public class Game extends BasicGameState {
             ennemis.add(nEnnemi);
             tempsEnnemi = tempsDeJeu + 5000;
         }
-
+        */
         tempsDeJeu += delta;
 
         if (!personnages.isEmpty() && !ennemis.isEmpty()) {
@@ -328,6 +340,7 @@ public class Game extends BasicGameState {
                     unAttribut.faireActions(unPaysan, null, ennemis);
                     attributs.remove(unAttribut);
                     System.out.println("Attribut acquis: " + unAttribut.toString());
+                    break;
                 }
             }
         }

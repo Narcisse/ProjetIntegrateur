@@ -2,8 +2,10 @@ package vue.GameSates;
 
 import controleur.Informateur;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +36,7 @@ public class HighScoreState extends BasicGameState {
     private GameContainer container;
     private Image background;
     private BufferedReader highScoreFile;
+    private BufferedWriter highScoreEffacer;
     private ArrayList<String> highScoreListe;
     private String uneLigne="",chainString="";
     private  ArrayList<Integer> highScoreListe2;           
@@ -41,7 +44,7 @@ public class HighScoreState extends BasicGameState {
     // Constructeur
 
     public HighScoreState(String infoPartie) {
-        this.infoPartie = infoPartie;
+        this.infoPartie = infoPartie;        
     }
 
     @Override
@@ -85,10 +88,9 @@ public class HighScoreState extends BasicGameState {
         g.setColor(Color.white);
         int x = Informateur.largeurEcran / 2;
         int y = Informateur.hauteurEcran / 2;
-        g.drawString("1. Retour", x, y);
-        g.drawString(chainString, x, y+40);
-        
-               
+        g.drawString("R. Retour", x, y);
+        g.drawString("E. Effacer", x, y+40);
+        g.drawString(chainString, x, y+80);                 
     }
 
     @Override
@@ -98,8 +100,26 @@ public class HighScoreState extends BasicGameState {
 
     public void keyReleased(int key, char c) {
         switch (key) {
-            case Input.KEY_1:
+            case Input.KEY_R:
                 game.enterState(MenuPrincipal.ID);
+                break;
+            case Input.KEY_E:
+        {
+            try {
+                highScoreEffacer = new BufferedWriter(new FileWriter("HighScores//HighScore.txt"));
+            } catch (IOException ex) {
+                Logger.getLogger(HighScoreState.class.getName()).log(Level.SEVERE, null, ex);
+            }try {
+                highScoreEffacer.flush();
+            } catch (IOException ex) {
+                Logger.getLogger(HighScoreState.class.getName()).log(Level.SEVERE, null, ex);
+            }try {
+                highScoreEffacer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(HighScoreState.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+            
                 break;
         }
     }
