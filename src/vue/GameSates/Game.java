@@ -156,8 +156,12 @@ public class Game extends BasicGameState {
         for (Object j : personnages) {
             Joueur unJoueur = (Joueur) j;
             unJoueur.init();
-            unJoueur.setX(container.getWidth() / 2 + 50 * personnages.indexOf(j));
-            unJoueur.setY(container.getHeight() / 2 + 50 * personnages.indexOf(j));
+            int[] coordonees;
+            coordonees = Informateur.getRandomCoordinates(cartePrincipale);
+            unJoueur.setX(coordonees[0]);
+            unJoueur.setY(coordonees[1]);
+            //unJoueur.setX(container.getWidth() / 2 + 50 * personnages.indexOf(j));
+            //unJoueur.setY(container.getHeight() / 2 + 50 * personnages.indexOf(j));
         }
         for (Object e : ennemis) {
             Ennemi unEnnemi = (Ennemi) e;
@@ -166,7 +170,7 @@ public class Game extends BasicGameState {
             unEnnemi.setY(container.getHeight() / 2 + 250 * ennemis.indexOf(e));
         }
         // Hud
-        hud = new Hud(container, camera, container, (Joueur) personnages.get(0),cettePlanche);
+        hud = new Hud(container, camera, container, (Joueur) personnages.get(0), cettePlanche);
         hud.init();
         //ajouter le hud comme un mouseListener a la planche du jeu.
         container.getInput().addMouseListener(hud);
@@ -355,7 +359,7 @@ public class Game extends BasicGameState {
                         unEnnemi.removeHP(unPaysan.getDps());
                         if (unEnnemi.getVie() <= 0) {
                             ennemis.remove(unEnnemi);
-                            cettePlanche.setScore(cettePlanche.getScore()+100);
+                            cettePlanche.setScore(cettePlanche.getScore() + 100);
                         }
                     }
                 }

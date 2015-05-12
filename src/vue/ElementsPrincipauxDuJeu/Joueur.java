@@ -1,5 +1,6 @@
 package vue.ElementsPrincipauxDuJeu;
 
+import controleur.Informateur;
 import java.util.ArrayList;
 import modele.Paysan;
 import org.lwjgl.util.Point;
@@ -15,13 +16,13 @@ import org.newdawn.slick.SpriteSheet;
  *
  * @author Christopher Desrosiers Mondor
  */
-public class Joueur extends Paysan{
+public class Joueur extends Paysan {
 
     // *************************************************************************
     // Donnee membre    
     private float x = 300, y = 300;
     private float xDest = 300, yDest = 300;
-    
+
     private int direction = 0;
     private boolean moving = false;
     private Animation[] animations = new Animation[8];
@@ -81,7 +82,7 @@ public class Joueur extends Paysan{
             g.drawRect(rectInteraction.getX(), rectInteraction.getY(), rectInteraction.getWidth(), rectInteraction.getHeight());
         }
         g.fillOval(x - 16, y - 8, 32, 16);
-        g.drawOval(x - 150, y - 150, 300 , 300);
+        g.drawOval(x - 150, y - 150, 300, 300);
         g.drawAnimation(animations[direction + (moving ? 4 : 0)], x - 32, y - 60);
     }
 
@@ -228,16 +229,18 @@ public class Joueur extends Paysan{
     public float getyDest() {
         return this.yDest;
     }
+
     public float getArmure() {
         return 0;
     }
+
     public float getVieMax() {
         return 0;
     }
+
     public float getArmureMax() {
         return 0;
     }
-    
 
     public void setyDest(int y) {
         this.yDest = y;
@@ -267,8 +270,6 @@ public class Joueur extends Paysan{
         return this.rectInteraction;
     }
 
-    
-
     //méthode qui prend en paramètre un joueur, une quantité de point d'attaque et le temps de jeu
     // la méthode enlève des points de vies (le montant de amoutOfHp) si le temps es plus grand que la nouvelle attaque.
     // Redéfinit le temps pour la prochaine attaque.
@@ -278,8 +279,6 @@ public class Joueur extends Paysan{
             this.setNouvelleAttaque(tempsJeu);
         }
     }
-    
-    
 
     //La méthode rédéfinit le temps de la prochaine attaque
     public void setNouvelleAttaque(int tempsJeu) {
@@ -294,7 +293,7 @@ public class Joueur extends Paysan{
         vitesse += unBoost;
     }
 
-    public void valeursParDefault(){
+    public void valeursParDefault() {
         vitesse = 1.0f;
         setDps(20);
     }
