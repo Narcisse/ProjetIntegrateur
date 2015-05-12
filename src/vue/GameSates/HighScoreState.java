@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.Color;
@@ -34,8 +35,8 @@ public class HighScoreState extends BasicGameState {
     private Image background;
     private BufferedReader highScoreFile;
     private ArrayList<String> highScoreListe;
-    private int espace=40;
-    private String uneLigne="",score1,score2,score3,score4,score5;
+    private String uneLigne="",chainString="";
+    private  ArrayList<Integer> highScoreListe2;           
     // *************************************************************************
     // Constructeur
 
@@ -59,18 +60,21 @@ public class HighScoreState extends BasicGameState {
             while ((uneLigne = highScoreFile.readLine())!= null) {
                 highScoreListe.add(uneLigne+"");
             }
+            highScoreListe2 = new ArrayList<Integer>(highScoreListe.size()); 
+            for (String myInt : highScoreListe) 
+            { 
+              highScoreListe2.add(Integer.valueOf(myInt)); 
+            }
+                Collections.sort(highScoreListe2);
+                Collections.reverse(highScoreListe2);
                 highScoreFile.close();
             } catch (IOException ex) {
                 Logger.getLogger(HighScoreState.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-        for (int i = 0; i < highScoreListe.size(); i++) {
-            score1=highScoreListe.get(0);
-            score2=highScoreListe.get(1);
-            score3=highScoreListe.get(2);
-            score4=highScoreListe.get(3);
-            score5=highScoreListe.get(4);       
-        } 
+        for (int i = 0; i < highScoreListe2.size(); i++) {
+            chainString+=(i+1)+". "+highScoreListe2.get(i)+"\n";     
+        }
     }
 
     @Override
@@ -82,11 +86,7 @@ public class HighScoreState extends BasicGameState {
         int x = Informateur.largeurEcran / 2;
         int y = Informateur.hauteurEcran / 2;
         g.drawString("1. Retour", x, y);
-        g.drawString("1. "+score1, x, y+40);
-        g.drawString("2. "+score2, x, y+80);
-        g.drawString("3. "+score3, x, y+120);
-        g.drawString("4. "+score4, x, y+160);
-        g.drawString("5. "+score5, x, y+200);
+        g.drawString(chainString, x, y+40);
         
                
     }
