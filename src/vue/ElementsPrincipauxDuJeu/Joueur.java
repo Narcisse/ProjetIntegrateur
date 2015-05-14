@@ -230,18 +230,6 @@ public class Joueur extends Paysan {
         return this.yDest;
     }
 
-    public float getArmure() {
-        return 0;
-    }
-
-    public float getVieMax() {
-        return 0;
-    }
-
-    public float getArmureMax() {
-        return 0;
-    }
-
     public void setyDest(int y) {
         this.yDest = y;
     }
@@ -273,7 +261,7 @@ public class Joueur extends Paysan {
     //méthode qui prend en paramètre un joueur, une quantité de point d'attaque et le temps de jeu
     // la méthode enlève des points de vies (le montant de amoutOfHp) si le temps es plus grand que la nouvelle attaque.
     // Redéfinit le temps pour la prochaine attaque.
-    public void attaque(Ennemi unEnnemi, int tempsJeu) {
+   public void attaque(Ennemi unEnnemi, int tempsJeu) {
         if (tempsJeu > nouvelleAttaque) {
             unEnnemi.removeHP(getDps());
             this.setNouvelleAttaque(tempsJeu);
@@ -283,10 +271,6 @@ public class Joueur extends Paysan {
     //La méthode rédéfinit le temps de la prochaine attaque
     public void setNouvelleAttaque(int tempsJeu) {
         this.nouvelleAttaque = tempsJeu + this.tempsAttaque;
-    }
-
-    public void augmenterArmure() {
-        this.paysan.augmenterArmure();
     }
 
     public void boostVitesse(float unBoost) {

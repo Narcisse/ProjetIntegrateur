@@ -253,11 +253,16 @@ public class Ennemi extends Paysan{
     //méthode qui prend en paramètre un joueur, un quantité de point de d'attaque et le temps de jeu
     // la méthode enlève des points de vies (le montant de amoutOfHp) si le temps es plus grand que la nouvelle attaque.
     // Redéfinit le temps pour la prochaine attaque.
-    public void attaque(Joueur unJoueur, int tempsJeu){
-        if(tempsJeu > nouvelleAttaque){
-            unJoueur.removeHP(getDps());
-            this.setNouvelleAttaque(tempsJeu);
-        }    
+    public void attaque(Joueur unJoueur, int tempsJeu) {
+        if (tempsJeu > nouvelleAttaque) {
+            if (unJoueur.getArmure() > 0) {
+                unJoueur.removeArmure(getDps());
+                this.setNouvelleAttaque(tempsJeu);
+            } else {
+                unJoueur.removeHP(getDps());
+                this.setNouvelleAttaque(tempsJeu);
+            }
+        }
     }
     
     //La méthode rédéfinit le temps de la prochaine attaque

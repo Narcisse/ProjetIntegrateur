@@ -16,6 +16,7 @@ import vue.ElementsPrincipauxDuJeu.Joueur;
  */
 public class Armure extends Attribut{    
     // *************************************************************************
+    private final int augmentation = 25;
     // Constructeur
     public Armure(Carte uneCarte) throws SlickException{
         super(uneCarte);
@@ -28,7 +29,7 @@ public class Armure extends Attribut{
 
     @Override
     public void action(Joueur unJoueur) {
-        unJoueur.augmenterArmure();
+        unJoueur.addArmure(augmentation);
     }
 
     @Override

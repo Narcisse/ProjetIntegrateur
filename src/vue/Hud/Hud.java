@@ -60,16 +60,12 @@ public class Hud extends AbstractComponent {
 
        //On dessine la barre de vie en rouge et on la draw à l'endroit voulu
         g.setColor(LIFE_COLOR);
-        //On remplit la barre
-
-        g.fillRect(BAR_X, LIFE_BAR_Y, (float) (joueur.getHP() / 100.0) * BAR_WIDTH - 40, BAR_HEIGHT);
-
-        g.fillRect(BAR_X , LIFE_BAR_Y, (float)(joueur.getVie() / joueur.getVieMax()) * BAR_WIDTH, BAR_HEIGHT);
+        //On remplit la barre de vie
+        g.fillRect(BAR_X , LIFE_BAR_Y, (float)joueur.getVie() / (float)joueur.getVieMax() * BAR_WIDTH, BAR_HEIGHT);
         //Barre d'armure
         g.setColor(Color.blue);
-        g.fillRect(BAR_X ,ARMOR_BAR_Y, (float)(joueur.getArmure() / joueur.getArmureMax()) * BAR_WIDTH , BAR_HEIGHT);
-        //On dessine la barre de vie
-
+        g.fillRect(BAR_X ,ARMOR_BAR_Y, (float)joueur.getArmure() / (float)joueur.getArmureMax() * BAR_WIDTH , BAR_HEIGHT);
+        //On dessine la barre de vie et d'armure
         g.drawImage(this.barreVie, P_BAR_X, P_BAR_Y);
         if (joueur.getAttributActif() != null) {
             g.drawImage(this.joueur.getAttributActif().getImage().getScaledCopy(40, 40), 22, 20);           

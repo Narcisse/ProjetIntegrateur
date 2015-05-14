@@ -20,12 +20,13 @@ public class Paysan {
     //Objet attribut 
     private Attribut attributActif;
     private double armure = 0.0;
-    private final double augmentationArmure = 0.5;
+    private double armureMax = 100.0;
     private int dps;
     
     protected float vitesse = 1f;
     //Attribut vie est la cantite de vie total que l'element possede
     private int vie;
+    private int vieMax = 150;
 
     //**************************************************************************
     // Constructeur
@@ -42,15 +43,15 @@ public class Paysan {
                 + " la récolte de ressource et le combat");
     }
     
-    public void augmenterArmure(){
-        this.armure += augmentationArmure;
+    public void addArmure(int amountArmure) {
+        this.armure += amountArmure;
     }
 
     // Initialisation des données
     public void initComponents() {
         /*Les attributs dps nourritureNecessaire sont initialiser dans la classe Unite. 
          *Les attributs nom, vie, orNecessaire et */
-        this.setVie(150);
+        this.setVie(vieMax);
         this.setDps(10);
         attributActif = null;
     }
@@ -67,6 +68,11 @@ public class Paysan {
     public int getVie() {
         return this.vie;
     }
+    
+     public int getVieMax() {
+        return this.vieMax;
+    }
+    
     public int getDps(){
         return this.dps;
     }
@@ -77,6 +83,14 @@ public class Paysan {
     public int getHP() {
         return this.vie;
     }
+    
+     public double getArmureMax() {
+        return this.armureMax;
+    }
+     
+     public double getArmure() {
+        return this.armure;
+    }
 
     public void addHP(int amountOfHp) {
         this.vie += amountOfHp;
@@ -84,6 +98,10 @@ public class Paysan {
 
     public void removeHP(int amountOfHp) {
         this.vie -= amountOfHp;
+    }
+    
+     public void removeArmure(int amountOfArmure) {
+        this.armure -= amountOfArmure;
     }
 //Muttateur
     public void setAttributActif(Attribut nouveauAttribut){
