@@ -22,5 +22,6 @@ public class StateHandler extends StateBasedGame{
         addState(new Game());
         addState(new EndGameState(null));
         addState(new HighScoreState(null));
+        addState(new CreditState(null));
     }
 }

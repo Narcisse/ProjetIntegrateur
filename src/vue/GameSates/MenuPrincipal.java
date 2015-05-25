@@ -78,7 +78,8 @@ public class MenuPrincipal extends BasicGameState {
         g.drawString("1. Play Game", 50, 100);
         g.drawString("2. High Scores", 50, 120);
         g.drawString("3. Tutoriel", 50, 140);
-        g.drawString("4. Quit", 50, 160);
+        g.drawString("4. Crédits", 50, 160);
+        g.drawString("5. Quit", 50, 180);
     }
 
     @Override
@@ -105,6 +106,9 @@ public class MenuPrincipal extends BasicGameState {
                 }
                 break;
             case Input.KEY_4:
+                Informateur.enterNewState(CreditState.ID, container, game);
+                break;
+            case Input.KEY_5:
                 AL.destroy();
                 System.exit(0);
                 break;
